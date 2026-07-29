@@ -1,0 +1,63 @@
+/* ============================================================
+   Flavor Studio — Spacing, radius, shadow, layout tokens
+   The product is built on an 8px soft grid with 4px half-steps.
+   Corners are gently rounded (6–10px on controls, pill on chips).
+   Shadows are whisper-soft and cool-neutral, never heavy.
+   ============================================================ */
+
+:root {
+  /* ---- Spacing scale (4 / 8 grid) ---- */
+  --space-0: 0;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 20px;
+  --space-7: 24px;
+  --space-8: 32px;
+  --space-9: 40px;
+  --space-10: 48px;
+  --space-12: 64px;
+  --space-16: 80px;   /* page gutter on wide views */
+
+  /* ---- Radii ---- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;     /* inputs, small buttons */
+  --radius-md: 8px;     /* buttons, fields */
+  --radius-lg: 10px;    /* cards, panels */
+  --radius-xl: 14px;    /* modals */
+  --radius-2xl: 20px;
+  --radius-pill: 999px; /* chips, version tabs, avatars */
+  --radius-circle: 50%;
+
+  /* ---- Borders ---- */
+  --border-width: 1px;
+  --border-width-thick: 2px;
+
+  /* ---- Shadows (cool, low-opacity, layered) ---- */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-sm: 0 1px 3px rgba(46, 59, 83, 0.06), 0 1px 2px rgba(46, 59, 83, 0.04);
+  --shadow-md: 0 2px 8px rgba(46, 59, 83, 0.08), 0 1px 3px rgba(46, 59, 83, 0.05);
+  --shadow-lg: 0 8px 24px rgba(46, 59, 83, 0.12), 0 2px 6px rgba(46, 59, 83, 0.06);
+  --shadow-xl: 0 18px 48px rgba(46, 59, 83, 0.18);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.03);
+  /* inset top shadow used under the dark top-nav */
+  --shadow-inset-top: inset 0 3px 4px rgba(0, 0, 0, 0.15);
+  --shadow-focus: var(--focus-ring);
+
+  /* ---- Layout ---- */
+  --nav-height: 50px;
+  --subnav-height: 74px;
+  --page-gutter: 80px;
+  --content-max: 1280px;
+  --sidebar-width: 360px;
+
+  /* ---- Motion ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1); /* @kind other */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --duration-fast: 120ms; /* @kind other */
+  --duration-base: 180ms; /* @kind other */
+  --duration-slow: 280ms; /* @kind other */
+  --transition-base: all var(--duration-base) var(--ease-standard);
+}

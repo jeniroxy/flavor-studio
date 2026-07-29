@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/base.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/styles.css">
+  <script src="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/_ds_bundle.js"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #ffffff; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue-500); text-decoration: none; }
+    a:hover { color: var(--blue-700); }
+    @keyframes fsPulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.25); opacity: .7; } }
+    @keyframes fsDot { 0%,80%,100% { transform: translateY(0); opacity:.4; } 40% { transform: translateY(-5px); opacity:1; } }
+    @keyframes fsFloat { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-16px) rotate(6deg); } }
+    @keyframes fsHeroPan { 0%, 100% { background-position: 50% 0%; } 50% { background-position: 50% 100%; } }
+    @keyframes fsOrbA { 0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: .85; } 33% { transform: translate3d(9%,-6%,0) scale(1.14); opacity: 1; } 66% { transform: translate3d(-5%,7%,0) scale(.94); opacity: .7; } }
+    @keyframes fsOrbB { 0%, 100% { transform: translate3d(0,0,0) scale(1.04); opacity: .7; } 40% { transform: translate3d(-8%,8%,0) scale(.9); opacity: 1; } 70% { transform: translate3d(4%,-5%,0) scale(1.16); opacity: .8; } }
+    @keyframes fsHeroSheen { 0% { transform: translateX(-40%) rotate(8deg); opacity: 0; } 45% { opacity: .5; } 100% { transform: translateX(60%) rotate(8deg); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</helmet>
+
+<div style="font-family: var(--font-sans); color: var(--text-body); background: #fff; overflow-x: clip; min-height: 100vh;">
+  <dc-import name="SiteNav" active="agent" hint-size="100%,60px"></dc-import>
+
+  <!-- Hero -->
+  <section data-screen-label="Agent hero" style="position: relative; background: linear-gradient(180deg, #253349 0%, #2b3d59 30%, #27374f 55%, #223047 78%, #1e2a3e 100%); background-size: 100% 220%; background-position: 50% 0%; animation: fsHeroPan 20s ease-in-out infinite; will-change: background-position; padding: clamp(56px, 8vw, 104px) 24px; overflow: clip;">
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;"></div>
+    <div style="position: absolute; top: 34%; left: -14%; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(96,152,220,.22) 0%, rgba(96,152,220,0) 62%); filter: blur(10px); pointer-events: none; animation: fsOrbA 17s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; top: -4%; right: -16%; width: 820px; height: 820px; border-radius: 50%; background: radial-gradient(circle, rgba(98,168,86,.2) 0%, rgba(74,132,90,.08) 44%, rgba(98,168,86,0) 66%); filter: blur(12px); pointer-events: none; animation: fsOrbB 23s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 32%, rgba(255,255,255,.05) 0%, rgba(0,0,0,0) 46%, rgba(11,18,32,.42) 100%); pointer-events: none;"></div>
+    <div style="max-width: 1180px; margin: 0 auto; position: relative; text-align: center;">
+      <div data-reveal style="display: inline-flex; align-items: center; gap: 10px; background: rgba(24,188,156,.16); color: #4fd8bd; border-radius: 999px; padding: 7px 16px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" fill="url(#agh)"></path><defs><linearGradient id="agh" x1="2" y1="2" x2="22" y2="22"><stop stop-color="#59a3eb"></stop><stop offset="1" stop-color="#18bc9c"></stop></linearGradient></defs></svg>
+        The AI Agent
+      </div>
+      <h1 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(38px, 5vw, 68px); line-height: 1.05; letter-spacing: -0.025em; color: #ffffff; margin: 20px auto 0; max-width: 16ch;">A food scientist that never sleeps.</h1>
+      <p data-reveal data-reveal-delay="0.12" style="font-size: clamp(16px, 1.5vw, 19px); line-height: 1.6; color: #aebdd0; margin: 20px auto 0; max-width: 58ch;">Built into Flavor Studio, the AI Agent reads your recipes, ingredient library and supplier data — then answers formulation, nutrition, allergen, labeling and costing questions like a colleague, with a citation on every claim.</p>
+      <div data-reveal data-reveal-delay="0.2" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+        <a href="#try" style="background: #7fd234; color: #16223a; font-size: 16px; font-weight: 800; padding: 16px 34px; border-radius: 999px; white-space: nowrap; box-shadow: 0 12px 30px rgba(127,210,52,.3); transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;" style-hover="background: #8ede40; color: #16223a; transform: translateY(-2px); box-shadow: 0 18px 40px rgba(127,210,52,.42);">Try it live</a>
+        <a href="Contact.dc.html" style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); color: #fff; font-size: 16px; font-weight: 700; padding: 15px 30px; border-radius: 999px; white-space: nowrap; transition: background 180ms ease;" style-hover="background: rgba(255,255,255,.14); color: #ffffff;">Request a demo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Capabilities -->
+  <section data-screen-label="Capabilities" style="padding: clamp(64px, 8vw, 110px) 24px; background: #fff;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div style="text-align: center; max-width: 620px; margin: 0 auto;">
+        <div data-reveal style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #5c8f1c; text-transform: uppercase;">What it does</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; letter-spacing: -0.02em; color: var(--slate-800); margin: 14px 0 0;">Real work, not chit-chat.</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 20px; margin-top: clamp(36px, 5vw, 56px);">
+        <div data-reveal style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; padding: 26px 24px; transition: transform 180ms ease, box-shadow 180ms ease;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 40px rgba(43,59,83,.12);">
+          <span class="iconify" data-icon="icon-park-outline:search" style="font-size: 26px; color: var(--blue-500);"></span>
+          <div style="font-weight: 800; font-size: 17px; color: var(--slate-800); margin-top: 14px;">Ingredient sourcing</div>
+          <div style="font-size: 14px; line-height: 1.6; color: var(--slate-500); margin-top: 7px;">"Find a non-GMO starch with no soy under $2.10/kg." It searches your library and supplier feeds and ranks the matches.</div>
+        </div>
+        <div data-reveal data-reveal-delay="0.06" style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; padding: 26px 24px; transition: transform 180ms ease, box-shadow 180ms ease;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 40px rgba(43,59,83,.12);">
+          <span class="iconify" data-icon="icon-park-outline:doc-detail" style="font-size: 26px; color: var(--teal-500);"></span>
+          <div style="font-weight: 800; font-size: 17px; color: var(--slate-800); margin-top: 14px;">Claim &amp; label checks</div>
+          <div style="font-size: 14px; line-height: 1.6; color: var(--slate-500); margin-top: 7px;">Validates nutrient content claims against 21 CFR 101 and flags what you qualify for before you print the label.</div>
+        </div>
+        <div data-reveal data-reveal-delay="0.12" style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; padding: 26px 24px; transition: transform 180ms ease, box-shadow 180ms ease;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 40px rgba(43,59,83,.12);">
+          <span class="iconify" data-icon="icon-park-outline:chart-histogram" style="font-size: 26px; color: var(--blue-500);"></span>
+          <div style="font-weight: 800; font-size: 17px; color: var(--slate-800); margin-top: 14px;">What-if costing</div>
+          <div style="font-size: 14px; line-height: 1.6; color: var(--slate-500); margin-top: 7px;">Model ingredient swaps, supplier changes and batch scaling — see the cost and margin impact before touching the formula.</div>
+        </div>
+        <div data-reveal data-reveal-delay="0.18" style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; padding: 26px 24px; transition: transform 180ms ease, box-shadow 180ms ease;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 40px rgba(43,59,83,.12);">
+          <span class="iconify" data-icon="icon-park-outline:weight" style="font-size: 26px; color: var(--lime-500);"></span>
+          <div style="font-weight: 800; font-size: 17px; color: var(--slate-800); margin-top: 14px;">Nutrition compare</div>
+          <div style="font-size: 14px; line-height: 1.6; color: var(--slate-500); margin-top: 7px;">Side-by-side nutrient panels across versions — see exactly what a reformulation changes, per serving and per 100 g.</div>
+        </div>
+        <div data-reveal data-reveal-delay="0.24" style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; padding: 26px 24px; transition: transform 180ms ease, box-shadow 180ms ease;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 40px rgba(43,59,83,.12);">
+          <span class="iconify" data-icon="icon-park-outline:caution" style="font-size: 26px; color: var(--amber-500);"></span>
+          <div style="font-weight: 800; font-size: 17px; color: var(--slate-800); margin-top: 14px;">Allergen watch</div>
+          <div style="font-size: 14px; line-height: 1.6; color: var(--slate-500); margin-top: 7px;">Ask what the big-9 exposure is on any formula and get the mandatory "Contains" statement, cross-contact risks included.</div>
+        </div>
+        <div data-reveal data-reveal-delay="0.3" style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; padding: 26px 24px; transition: transform 180ms ease, box-shadow 180ms ease;" style-hover="transform: translateY(-4px); box-shadow: 0 16px 40px rgba(43,59,83,.12);">
+          <span class="iconify" data-icon="icon-park-outline:experiment" style="font-size: 26px; color: var(--violet-500);"></span>
+          <div style="font-weight: 800; font-size: 17px; color: var(--slate-800); margin-top: 14px;">Reformulation ideas</div>
+          <div style="font-size: 14px; line-height: 1.6; color: var(--slate-500); margin-top: 7px;">Propose swaps to hit a sugar, sodium or cost target while holding the sensory score — as reviewable draft versions.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE CHAT -->
+  <section id="try" data-screen-label="Live AI Agent" style="background: linear-gradient(160deg, var(--slate-800) 0%, #1b2942 60%, var(--slate-900) 100%); padding: clamp(64px, 9vw, 120px) 24px; position: relative; overflow: clip;">
+    <div style="position: absolute; top: 8%; left: -60px; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(24,188,156,.12) 0%, rgba(24,188,156,0) 70%); pointer-events: none;"></div>
+    <div style="max-width: 860px; margin: 0 auto; position: relative;">
+      <div style="text-align: center; max-width: 620px; margin: 0 auto;">
+        <div data-reveal style="display: inline-flex; align-items: center; gap: 8px; background: rgba(24,188,156,.16); color: #4fd8bd; border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;">
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--teal-500); animation: fsPulse 2s ease infinite;"></span>Live demo
+        </div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.1; letter-spacing: -0.02em; color: var(--slate-800); margin: 14px 0 0;">Ask the AI Agent yourself.</h2>
+        <p data-reveal data-reveal-delay="0.12" style="font-size: 16px; line-height: 1.6; color: var(--slate-300); margin: 16px 0 0;">This is really talking to an AI. Ask a food-science question and watch it answer in real time.</p>
+      </div>
+
+      <div data-reveal data-reveal-delay="0.16" style="margin-top: clamp(32px, 4vw, 48px); background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; overflow: hidden; backdrop-filter: blur(6px);">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,.08);">
+          <span style="flex: none; width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, var(--blue-500), var(--teal-500)); display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" fill="#ffffff"></path></svg></span>
+          <div style="line-height: 1.2;"><div style="color: #fff; font-weight: 800; font-size: 14px;">AI Agent</div><div style="color: #9db0c9; font-size: 11.5px; font-weight: 500;">Flavor Studio · food-science assistant</div></div>
+          <span style="margin-left: auto; display: inline-flex; align-items: center; gap: 6px; color: #4fd8bd; font-size: 11.5px; font-weight: 700;"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--teal-500); animation: fsPulse 2s ease infinite;"></span>Online</span>
+        </div>
+
+        <div data-chatscroll style="max-height: 400px; min-height: 280px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+          <sc-if value="{{ chatEmpty }}" hint-placeholder-val="{{ true }}">
+            <div style="margin: auto 0; text-align: center; color: #9db0c9;">
+              <div style="font-size: 14px; line-height: 1.55; margin-bottom: 16px;">Try one of these, or type your own:</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="4">
+                  <button onClick="{{ s.use }}" style="all: unset; box-sizing: border-box; cursor: pointer; border: 1px solid rgba(89,163,235,.4); color: #9ccbf5; border-radius: 999px; font-size: 12.5px; font-weight: 600; padding: 8px 15px; font-family: var(--font-sans); transition: background 180ms ease;" style-hover="background: rgba(89,163,235,.15);">{{ s.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-for list="{{ chat }}" as="msg" hint-placeholder-count="0">
+            <sc-if value="{{ msg.isUser }}" hint-placeholder-val="{{ false }}">
+              <div style="align-self: flex-end; max-width: 86%; background: var(--blue-500); color: #fff; border-radius: 14px 14px 4px 14px; padding: 11px 15px; font-size: 13.5px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere;">{{ msg.text }}</div>
+            </sc-if>
+            <sc-if value="{{ msg.isAgent }}" hint-placeholder-val="{{ false }}">
+              <div style="align-self: flex-start; max-width: 92%; display: flex; gap: 10px;">
+                <span style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--blue-500), var(--teal-500)); display: flex; align-items: center; justify-content: center; margin-top: 2px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" fill="#ffffff"></path></svg></span>
+                <div style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.08); color: #dfe5ee; border-radius: 14px 14px 14px 4px; padding: 11px 15px; font-size: 13.5px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere;">{{ msg.text }}</div>
+              </div>
+            </sc-if>
+          </sc-for>
+
+          <sc-if value="{{ chatLoading }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self: flex-start; display: flex; gap: 10px;">
+              <span style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--blue-500), var(--teal-500)); display: flex; align-items: center; justify-content: center; margin-top: 2px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" fill="#ffffff"></path></svg></span>
+              <div style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.08); border-radius: 20px; padding: 13px 16px; display: flex; gap: 5px;">
+                <span style="width: 6px; height: 6px; border-radius: 50%; background: #9db0c9; animation: fsDot 1.2s ease infinite;"></span>
+                <span style="width: 6px; height: 6px; border-radius: 50%; background: #9db0c9; animation: fsDot 1.2s ease .15s infinite;"></span>
+                <span style="width: 6px; height: 6px; border-radius: 50%; background: #9db0c9; animation: fsDot 1.2s ease .3s infinite;"></span>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ chatError }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self: flex-start; background: rgba(229,72,77,.15); border: 1px solid rgba(229,72,77,.3); color: #f4a2a4; border-radius: 18px; padding: 10px 14px; font-size: 12.5px; line-height: 1.5;">{{ chatErrorMsg }}</div>
+          </sc-if>
+        </div>
+
+        <div style="border-top: 1px solid rgba(255,255,255,.08); padding: 14px 16px; display: flex; gap: 10px; align-items: flex-end;">
+          <textarea value="{{ chatInput }}" onInput="{{ onChatInput }}" onKeyDown="{{ onChatKey }}" rows="1" placeholder="Ask about ingredients, allergens, claims, cost…" style="flex: 1; resize: none; font-family: var(--font-sans); font-size: 14px; line-height: 1.5; color: #fff; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 14px; padding: 11px 14px; outline: none; max-height: 120px;" style-focus="border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(89,163,235,.25);"></textarea>
+          <button onClick="{{ sendChat }}" aria-label="Send" style="all: unset; box-sizing: border-box; flex: none; width: 44px; height: 44px; border-radius: 14px; background: {{ sendBg }}; display: flex; align-items: center; justify-content: center; cursor: {{ sendCursor }}; transition: background 180ms ease;"><span class="iconify" data-icon="icon-park-outline:send" style="font-size: 19px; color: #fff;"></span></button>
+        </div>
+      </div>
+      <div style="text-align: center; font-size: 11.5px; color: var(--slate-500); margin-top: 14px;">Responses are AI-generated for demonstration. In the product, the Agent answers from your own recipes, library and supplier data — with real citations.</div>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section data-screen-label="How it works" style="padding: clamp(64px, 8vw, 110px) 24px; background: #fff;">
+    <div style="max-width: 1080px; margin: 0 auto;">
+      <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+        <div data-reveal style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #5c8f1c; text-transform: uppercase;">How it works</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.1; letter-spacing: -0.02em; color: var(--slate-800); margin: 14px 0 0;">Grounded in your data, never guessing.</h2>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 20px; margin-top: clamp(36px, 5vw, 56px);">
+        <div data-reveal style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 18px; padding: 26px 24px;">
+          <span style="display: flex; width: 34px; height: 34px; border-radius: 50%; background: var(--blue-200); color: var(--blue-700); font-weight: 800; align-items: center; justify-content: center;">1</span>
+          <div style="font-weight: 800; font-size: 16px; color: var(--slate-800); margin-top: 14px;">Reads your workspace</div>
+          <div style="font-size: 13.5px; line-height: 1.6; color: var(--slate-500); margin-top: 6px;">Recipes, versions, ingredient library, cost assumptions, taste tests and supplier specs — scoped to your org only.</div>
+        </div>
+        <div data-reveal data-reveal-delay="0.08" style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 18px; padding: 26px 24px;">
+          <span style="display: flex; width: 34px; height: 34px; border-radius: 50%; background: var(--blue-200); color: var(--blue-700); font-weight: 800; align-items: center; justify-content: center;">2</span>
+          <div style="font-weight: 800; font-size: 16px; color: var(--slate-800); margin-top: 14px;">Answers with sources</div>
+          <div style="font-size: 13.5px; line-height: 1.6; color: var(--slate-500); margin-top: 6px;">Every claim links to the recipe, regulation or test it came from. If it can't source an answer, it says so.</div>
+        </div>
+        <div data-reveal data-reveal-delay="0.16" style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 18px; padding: 26px 24px;">
+          <span style="display: flex; width: 34px; height: 34px; border-radius: 50%; background: var(--blue-200); color: var(--blue-700); font-weight: 800; align-items: center; justify-content: center;">3</span>
+          <div style="font-weight: 800; font-size: 16px; color: var(--slate-800); margin-top: 14px;">Proposes, you approve</div>
+          <div style="font-size: 13.5px; line-height: 1.6; color: var(--slate-500); margin-top: 6px;">Reformulation ideas land as draft versions. A developer reviews and applies — nothing in production changes without a human.</div>
+        </div>
+      </div>
+      <div data-reveal style="display: flex; align-items: center; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: clamp(32px, 4vw, 44px); background: var(--blue-050); border: 1px solid var(--blue-300); border-radius: 18px; padding: 18px 24px;">
+        <span class="iconify" data-icon="icon-park-outline:lock" style="font-size: 20px; color: var(--blue-500); flex: none;"></span>
+        <span style="font-size: 14px; line-height: 1.55; color: var(--slate-700); text-align: center;">Your formulas are trade secrets. Nothing is shared across customers, and nothing you formulate is used to train models.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section data-screen-label="CTA" style="background: var(--slate-900); padding: clamp(64px, 9vw, 110px) 24px; position: relative; overflow: clip;">
+    <div style="position: absolute; top: 20px; right: 20px; width: 40px; opacity: .45; animation: fsFloat 8s ease-in-out infinite; pointer-events: none;"><img src="assets/logo-mark.png" alt="" style="width: 100%;"></div>
+    <div style="max-width: 720px; margin: 0 auto; text-align: center; position: relative;">
+      <h2 data-reveal style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.02em; color: #fff; margin: 0;">Put the AI Agent on your own formulas.</h2>
+      <p data-reveal data-reveal-delay="0.08" style="font-size: 16px; line-height: 1.65; color: var(--slate-300); margin: 16px auto 0; max-width: 46ch;">A 30-minute demo, tailored to your category. Bring a recipe — we'll ask the Agent about it live.</p>
+      <div data-reveal data-reveal-delay="0.14" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+        <a href="Contact.dc.html" style="background: #7fd234; color: #16223a; font-size: 16px; font-weight: 800; padding: 16px 34px; border-radius: 999px; white-space: nowrap; box-shadow: 0 12px 30px rgba(127,210,52,.3); transition: transform 180ms ease;" style-hover="background: #8ede40; color: #16223a; transform: translateY(-2px);">Request a demo</a>
+        <a href="Pricing.dc.html" style="border: 1px solid rgba(255,255,255,.3); color: #fff; font-size: 16px; font-weight: 700; padding: 15px 30px; border-radius: 999px; white-space: nowrap; transition: background 180ms ease;" style-hover="background: rgba(255,255,255,.1); color: #ffffff;">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,300px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { chat: [], chatInput: '', chatLoading: false, chatError: '' };
+
+  componentDidMount() {
+    this._alive = true;
+    this._poll = setInterval(() => {
+      if (window.gsap && window.ScrollTrigger) {
+        clearInterval(this._poll);
+        this._setup();
+      }
+    }, 80);
+  }
+
+  componentDidUpdate() {
+    const el = document.querySelector('[data-chatscroll]');
+    if (el) el.scrollTop = el.scrollHeight;
+  }
+
+  componentWillUnmount() {
+    this._alive = false;
+    clearInterval(this._poll);
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+  }
+
+  _setup() {
+    const g = window.gsap;
+    const _io = (el, cb) => {
+      if (!el) return;
+      let done = false;
+      const run = () => { if (done) return; done = true; cb(el); };
+      const o = new IntersectionObserver((ents) => {
+        ents.forEach(e => { if (e.isIntersecting) { o.unobserve(el); run(); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      o.observe(el);
+    };
+    const _finalize = () => {
+      const cp = { clearProps: 'opacity,transform,translate,rotate,scale,x,y' };
+      g.utils.toArray('[data-reveal]').forEach(el => g.set(el, cp));
+    };
+    let _rafOk = false;
+    requestAnimationFrame(() => { _rafOk = true; });
+    setTimeout(() => { if (!_rafOk) _finalize(); }, 450);
+    setTimeout(() => { if (!_rafOk) _finalize(); }, 2600);
+
+    g.utils.toArray('[data-reveal]').forEach(el => {
+      g.set(el, { y: 30, opacity: 0 });
+      _io(el, t => g.to(t, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: parseFloat(t.getAttribute('data-reveal-delay') || '0') }));
+    });
+  }
+
+  async _ask(question) {
+    const q = (question || '').trim();
+    if (!q || this.state.chatLoading) return;
+    const history = this.state.chat.concat([{ role: 'user', text: q }]);
+    this.setState({ chat: history, chatInput: '', chatLoading: true, chatError: '' });
+    try {
+      if (!window.claude || !window.claude.complete) throw new Error('offline');
+      const messages = history.map(m => ({ role: m.role === 'agent' ? 'assistant' : 'user', content: m.text }));
+      const system = "You are the AI Agent inside Flavor Studio, a food R&D and recipe-formulation platform for product developers and food scientists. Answer questions about recipe formulation, ingredient substitutions, nutrition, allergens (big-9), FDA/CFIA labeling and nutrient content claims, yield and costing. Be concise (usually 2-5 sentences or a short list), precise and operational — talk like a food technologist, not marketing. Use explicit units ($, g, %, mg). When a claim would reference a regulation or data source, end with a short 'Sources:' line naming plausible references (e.g. 21 CFR 101.61, USDA FoodData Central, ingredient library). This is a public demo, so invent reasonable illustrative figures rather than asking for the user's data, but keep them realistic. No emoji.";
+      const raw = await window.claude.complete({ system, messages, max_tokens: 700 });
+      if (!this._alive) return;
+      const clean = (raw || '')
+        .replace(/\*\*(.*?)\*\*/g, '$1')
+        .replace(/(^|\s)\*(?!\s)(.*?)\*/g, '$1$2')
+        .replace(/^#{1,6}\s+/gm, '')
+        .replace(/^\s*[-*]\s+/gm, '• ')
+        .trim();
+      this.setState({ chat: this.state.chat.concat([{ role: 'agent', text: clean || 'Sorry, I could not generate a response — try rephrasing.' }]), chatLoading: false });
+    } catch (e) {
+      if (!this._alive) return;
+      this.setState({ chatLoading: false, chatError: "The Agent is unavailable right now — this live demo needs a connection. Request a demo to see it on your own data." });
+    }
+  }
+
+  renderVals() {
+    return {
+      chat: this.state.chat.map(m => ({ text: m.text, isUser: m.role === 'user', isAgent: m.role === 'agent' })),
+      chatEmpty: this.state.chat.length === 0,
+      chatInput: this.state.chatInput,
+      chatLoading: this.state.chatLoading,
+      chatError: !!this.state.chatError,
+      chatErrorMsg: this.state.chatError,
+      sendBg: (this.state.chatInput.trim() && !this.state.chatLoading) ? 'var(--blue-500)' : 'rgba(255,255,255,.12)',
+      sendCursor: (this.state.chatInput.trim() && !this.state.chatLoading) ? 'pointer' : 'default',
+      onChatInput: e => this.setState({ chatInput: e.target.value }),
+      onChatKey: e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); this._ask(this.state.chatInput); } },
+      sendChat: () => this._ask(this.state.chatInput),
+      suggestions: [
+        { label: 'Soy-free starch under $2.10/kg?', use: () => this._ask('Find me a non-GMO starch with no soy cross-contact under $2.10/kg.') },
+        { label: 'Reduce sodium 20% — claim impact?', use: () => this._ask('If I cut sodium 20% in a chicken broth, what nutrient content claim could I make and what should I watch for?') },
+        { label: 'Swap butter to cut cost', use: () => this._ask('How can I swap butter in a cookie to cut cost 8% while keeping the sensory score?') },
+        { label: 'Allergens in a granola bar?', use: () => this._ask('What big-9 allergens are typically in a nut-and-oat granola bar, and what Contains statement do I need?') }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

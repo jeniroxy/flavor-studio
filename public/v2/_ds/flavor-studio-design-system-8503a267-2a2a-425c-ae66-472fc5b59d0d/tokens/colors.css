@@ -1,0 +1,104 @@
+/* ============================================================
+   Flavor Studio — Color tokens
+   A calm, professional palette: slate navy structure, a friendly
+   sky-blue primary action color, and a lime-citrus brand accent
+   borrowed from the logo mark.
+   ============================================================ */
+
+:root {
+  /* ---- Brand: slate (structure, text, headers) ---- */
+  --slate-900: #2b3b53;   /* deepest ink */
+  --slate-800: #324561;   /* top nav, dark surfaces, headings */
+  --slate-700: #3e5a7f;   /* primary brand text / wordmark */
+  --slate-600: #4a6896;
+  --slate-500: #6178a0;
+  --slate-400: #8891a7;   /* placeholder / disabled label */
+  --slate-300: #9db0c9;   /* muted / secondary text */
+  --slate-200: #c4cedd;
+  --slate-100: #dfe5ee;
+
+  /* ---- Primary: sky blue (actions, links, selection) ---- */
+  --blue-700: #2060a6;
+  --blue-600: #3da4f1;
+  --blue-500: #59a3eb;   /* PRIMARY — buttons, active states */
+  --blue-400: #74a9e0;
+  --blue-300: #b5d5f4;
+  --blue-200: #deedfb;   /* selected row / chip fill */
+  --blue-100: #eef6fd;   /* hover tint */
+  --blue-050: #f8fbfe;   /* faint section tint */
+
+  /* ---- Brand accent: lime citrus (logo, highlights, success-ish) ---- */
+  --lime-500: #8cd135;   /* logo core */
+  --lime-400: #a8dd5e;
+  --lime-300: #d0f16b;
+  --lime-200: #efff84;   /* logo gradient top */
+  --lime-100: #f1f8e2;
+
+  /* ---- Semantic accents (sparse, from the file) ---- */
+  --teal-500: #18bc9c;   /* success / positive */
+  --teal-100: #e3f7f2;
+  --amber-500: #efc051;  /* warning / pending */
+  --amber-100: #fcf3da;
+  --violet-500: #7b61ff; /* special tags / AI */
+  --violet-100: #eee9ff;
+  --red-500: #e5484d;    /* destructive / error */
+  --red-100: #fdebec;
+
+  /* ---- Neutrals (surfaces, borders, dividers) ---- */
+  --white: #ffffff;
+  --gray-050: #f9f9fb;
+  --gray-100: #f3f3f6;   /* app canvas background */
+  --gray-150: #f7f7fa;
+  --gray-200: #eeeeee;
+  --gray-300: #e9e9e9;   /* default border / divider */
+  --gray-400: #d9d9d9;
+  --black: #000000;
+
+  /* ============================================================
+     Semantic aliases — prefer these in components
+     ============================================================ */
+
+  /* Text */
+  --text-strong:   var(--slate-800);  /* headings, key numbers */
+  --text-body:     var(--slate-700);  /* default body copy */
+  --text-muted:    var(--slate-300);  /* secondary / captions */
+  --text-placeholder: var(--slate-400);
+  --text-on-dark:  var(--white);
+  --text-link:     var(--blue-500);
+  --text-inverse:  var(--white);
+
+  /* Surfaces */
+  --surface-canvas:   var(--gray-100); /* page background */
+  --surface-card:     var(--white);    /* cards, panels, rows */
+  --surface-raised:   var(--white);
+  --surface-sunken:   var(--gray-050);
+  --surface-nav:      var(--slate-800);/* dark top navigation */
+  --surface-subnav:   var(--blue-500); /* admin blue sub-bar */
+  --surface-selected: var(--blue-200);
+  --surface-hover:    var(--blue-100);
+  --surface-accent:   var(--blue-500); /* panel headers, fills */
+  --surface-accent-deep: var(--slate-700);
+
+  /* Borders */
+  --border-default: var(--gray-300);
+  --border-strong:  var(--slate-200);
+  --border-input:   var(--gray-300);
+  --border-focus:   var(--blue-500);
+
+  /* Interactive / brand */
+  --brand:          var(--slate-700);
+  --brand-mark:     var(--lime-500);
+  --primary:        var(--blue-500);
+  --primary-hover:  var(--blue-600);
+  --primary-active: var(--blue-700);
+  --primary-soft:   var(--blue-200);
+
+  /* Feedback */
+  --success: var(--teal-500);
+  --warning: var(--amber-500);
+  --danger:  var(--red-500);
+  --info:    var(--blue-500);
+
+  /* Focus ring */
+  --focus-ring: 0 0 0 3px rgba(89, 163, 235, 0.35);
+}

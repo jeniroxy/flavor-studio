@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/base.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/styles.css">
+  <script src="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/_ds_bundle.js"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #ffffff; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue-500); text-decoration: none; }
+    a:hover { color: var(--blue-700); }
+    @keyframes fsHeroPan { 0%, 100% { background-position: 50% 0%; } 50% { background-position: 50% 100%; } }
+    @keyframes fsOrbA { 0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: .85; } 33% { transform: translate3d(9%,-6%,0) scale(1.14); opacity: 1; } 66% { transform: translate3d(-5%,7%,0) scale(.94); opacity: .7; } }
+    @keyframes fsOrbB { 0%, 100% { transform: translate3d(0,0,0) scale(1.04); opacity: .7; } 40% { transform: translate3d(-8%,8%,0) scale(.9); opacity: 1; } 70% { transform: translate3d(4%,-5%,0) scale(1.16); opacity: .8; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</helmet>
+
+<div style="font-family: var(--font-sans); color: var(--text-body); background: #eeeff4; min-height: 100vh; display: flex; flex-direction: column;">
+  <dc-import name="SiteNav v3" hint-size="100%,64px" style="position: sticky; top: 0; z-index: 90;"></dc-import>
+
+  <div style="display: flex; flex-direction: column; gap: clamp(16px, 2.2vw, 34px); padding: 0 clamp(16px, 2.2vw, 34px) clamp(16px, 2.2vw, 34px);">
+
+  <!-- Page hero -->
+  <section data-screen-label="Customers hero" style="position: relative; background: linear-gradient(180deg, #253349 0%, #2b3d59 30%, #27374f 55%, #223047 78%, #1e2a3e 100%); background-size: 100% 220%; background-position: 50% 0%; animation: fsHeroPan 20s ease-in-out infinite; will-change: background-position; overflow: clip; padding: clamp(56px, 7vw, 96px) clamp(28px, 3.6vw, 64px); border-radius: clamp(20px, 2vw, 30px);">
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;"></div>
+    <div style="position: absolute; top: 34%; left: -14%; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(96,152,220,.22) 0%, rgba(96,152,220,0) 62%); filter: blur(10px); pointer-events: none; animation: fsOrbA 17s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; top: -4%; right: -16%; width: 820px; height: 820px; border-radius: 50%; background: radial-gradient(circle, rgba(98,168,86,.2) 0%, rgba(74,132,90,.08) 44%, rgba(98,168,86,0) 66%); filter: blur(12px); pointer-events: none; animation: fsOrbB 23s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 32%, rgba(255,255,255,.05) 0%, rgba(0,0,0,0) 46%, rgba(11,18,32,.42) 100%); pointer-events: none;"></div>
+    <div style="position: relative; max-width: 1180px; margin: 0 auto; text-align: center;">
+      <div data-reveal style="display: inline-flex; align-items: center; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: 6px 14px; font-size: 11.5px; font-weight: 800; letter-spacing: .14em; color: #ffffff; text-transform: uppercase;">Customers</div>
+      <h1 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.08; letter-spacing: -0.02em; color: #ffffff; margin: 14px auto 0; max-width: 20ch;">Praise from our happy customers</h1>
+      <p data-reveal data-reveal-delay="0.12" style="font-size: clamp(16px, 1.5vw, 18px); line-height: 1.65; color: #aebdd0; margin: 18px auto 0; max-width: 54ch;">Spend less time behind a computer and more time doing what you do best — creating.</p>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section data-screen-label="Clients say" style="padding: clamp(56px, 6.5vw, 92px) clamp(28px, 3.6vw, 64px); background: #ffffff; border-radius: clamp(20px, 2vw, 30px); overflow: clip;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <h2 data-reveal style="font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -0.02em; color: var(--slate-800); text-align: center; margin: 0 0 clamp(32px, 4vw, 52px);">Clients say …</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px;">
+        <sc-for list="{{ testimonials }}" as="t" hint-placeholder-count="7">
+          <div data-reveal style="background: {{ t.bg }}; border: 1px solid {{ t.border }}; border-radius: 18px; padding: 28px 26px; display: flex; flex-direction: column; gap: 18px;">
+            <span class="iconify" data-icon="icon-park-outline:quote" style="font-size: 24px; color: {{ t.quoteColor }};"></span>
+            <p style="font-size: 15px; line-height: 1.65; color: {{ t.textColor }}; margin: 0;">{{ t.quote }}</p>
+            <div style="display: flex; align-items: center; gap: 12px; margin-top: auto;">
+              <img src="{{ t.photo }}" alt="{{ t.name }}" style="width: 46px; height: 46px; border-radius: 50%; object-fit: cover; display: block; background: var(--gray-100);">
+              <div><div style="font-weight: 700; font-size: 14px; color: {{ t.nameColor }};">{{ t.name }}</div><div style="font-size: 12.5px; color: {{ t.roleColor }};">{{ t.role }}</div></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who uses it -->
+  <section data-screen-label="Industry segments" style="padding: clamp(56px, 6.5vw, 92px) clamp(28px, 3.6vw, 64px); background: #ffffff; border-radius: clamp(20px, 2vw, 30px); overflow: clip;">
+    <div style="max-width: 1080px; margin: 0 auto;">
+      <div style="text-align: center; max-width: 640px; margin: 0 auto;">
+        <div data-reveal style="display: inline-flex; align-items: center; border: 1px solid var(--gray-300); border-radius: 999px; padding: 6px 14px; font-size: 11.5px; font-weight: 800; letter-spacing: .14em; color: var(--slate-700); text-transform: uppercase;">Who uses Flavor Studio</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3.2vw, 40px); letter-spacing: -0.02em; color: var(--slate-800); margin: 14px 0 0;">If you're anyway involved in the food industry…</h2>
+        <p data-reveal data-reveal-delay="0.12" style="font-size: 16px; line-height: 1.65; color: var(--slate-500); margin: 16px 0 0;">…then it's time to start using Flavor Studio.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); gap: 14px; margin-top: clamp(32px, 4vw, 48px);">
+        <sc-for list="{{ segments }}" as="s" hint-placeholder-count="11">
+          <div data-logo style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 14px; padding: 16px 18px; display: flex; align-items: center; gap: 12px;">
+            <span class="iconify" data-icon="{{ s.icon }}" style="font-size: 20px; color: var(--blue-500); flex: none;"></span>
+            <span style="font-weight: 700; font-size: 14px; color: var(--slate-700);">{{ s.name }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section data-screen-label="CTA" style="background: var(--slate-900); padding: clamp(60px, 7vw, 100px) clamp(28px, 3.6vw, 64px); border-radius: clamp(20px, 2vw, 30px); overflow: clip;">
+    <div style="max-width: 720px; margin: 0 auto; text-align: center;">
+      <h2 data-reveal style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.02em; color: #fff; margin: 0;">Join them.</h2>
+      <p data-reveal data-reveal-delay="0.08" style="font-size: 16px; line-height: 1.65; color: var(--slate-300); margin: 16px auto 0; max-width: 44ch;">See how their stories started — or start your own with a free 14-day trial.</p>
+      <div data-reveal data-reveal-delay="0.14" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+        <a href="Contact v3.dc.html" style="background: var(--blue-500); color: #fff; font-size: 16px; font-weight: 700; padding: 15px 32px; border-radius: 14px; white-space: nowrap; box-shadow: 0 12px 30px rgba(89,163,235,.4); transition: background 180ms ease, transform 180ms ease; transition: transform 180ms ease;" style-hover="background: var(--blue-600); color: #fff; transform: translateY(-2px);">Request a demo</a>
+        <a href="Success Stories v3.dc.html" style="border: 1px solid rgba(255,255,255,.28); color: #fff; font-size: 16px; font-weight: 700; padding: 15px 32px; border-radius: 14px; white-space: nowrap; transition: background 180ms ease;" style-hover="background: rgba(255,255,255,.1); color: #fff;">Read success stories</a>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <dc-import name="SiteFooter v3" hint-size="100%,300px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._poll = setInterval(() => {
+      if (window.gsap && window.ScrollTrigger) {
+        clearInterval(this._poll);
+        this._setup();
+      }
+    }, 80);
+  }
+  componentWillUnmount() {
+    clearInterval(this._poll);
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+  }
+  _setup() {
+    this._alive = true;
+    const g = window.gsap;
+    let _frames = 0;
+    if (g.ticker && g.ticker.add) g.ticker.add(() => { _frames++; });
+
+    const _queue = [];
+    // snap() is the instant end-state of the same animation, used only to repair
+    // a tween that demonstrably failed to run while the element was on screen.
+    const _io = (el, cb, snap, probe) => {
+      if (!el) return;
+      _queue.push({ el: el, cb: cb, snap: snap, probe: probe, done: false, healed: false, at: 0 });
+    };
+    let _layoutReady = false;
+    const _sweepQueue = () => {
+      const vh = window.innerHeight || 800;
+      _queue.forEach(item => {
+        if (item.done) return;
+        const r = item.el.getBoundingClientRect();
+        const inView = r.top < vh * 0.94 && r.bottom > 0;
+        if (!inView) { item.seen = 0; return; }
+        item.seen = (item.seen || 0) + 1;
+        if (!_layoutReady || item.seen < 2) return;
+        item.done = true;
+        item.at = Date.now();
+        item.cb(item.el);
+      });
+    };
+    const _markLayoutReady = () => {
+      if (_layoutReady) return;
+      _layoutReady = true;
+      // re-arm: anything that is no longer on screen must wait its turn again
+      if (this._registerReveals) this._registerReveals();
+      _queue.forEach(item => { if (!item.done) item.seen = 0; });
+      _sweepQueue();
+      setTimeout(_sweepQueue, 60);
+    };
+    const _waitForLayout = () => {
+      const fonts = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+      fonts.then(() => setTimeout(_markLayoutReady, 80));
+    };
+    if (document.readyState === 'complete') _waitForLayout();
+    else window.addEventListener('load', _waitForLayout, { once: true });
+    // never wait indefinitely on a slow or blocked remote asset
+    setTimeout(_markLayoutReady, 2600);
+    // Repair pass. Deliberately scoped to elements the user can currently see
+    // whose tween should already have finished: a blanket sweep would reveal
+    // everything below the fold up front and kill every scroll animation.
+    const _healPass = () => {
+      if (!_layoutReady) return;
+      const vh = window.innerHeight || 800;
+      const now = Date.now();
+      const framesDead = _frames < 2;
+      _queue.forEach(item => {
+        if (!item.done || item.healed || !item.snap) return;
+        if (now - item.at < 1600) return;
+        const r = item.el.getBoundingClientRect();
+        if (r.bottom < 0 || r.top > vh) return;
+        const targets = item.probe ? item.probe() : [item.el];
+        const stuck = targets.some(el => el && parseFloat(getComputedStyle(el).opacity) < 0.9);
+        if (framesDead || stuck) {
+          item.healed = true;
+          item.snap();
+        }
+      });
+    };
+    this._revealSweep = _sweepQueue;
+    window.addEventListener('scroll', _sweepQueue, { passive: true });
+    window.addEventListener('resize', _sweepQueue, { passive: true });
+    this._revealTimer = setInterval(() => {
+      if (!this._alive) { clearInterval(this._revealTimer); return; }
+      _registerReveals();
+      _sweepQueue();
+      _healPass();
+    }, 400);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches || (this.props.pauseLoops === true);
+
+    // Registration is re-run on every tick, not once at mount: the template
+    // streams, so anything below the first painted chunk does not exist yet when
+    // componentDidMount fires. Elements are marked once initialised so this is
+    // idempotent, and a stagger group whose children arrive later (sc-for) has
+    // the newcomers hidden too until the group actually fires.
+    const _registerReveals = () => {
+      g.utils.toArray('[data-reveal-stagger]').forEach(box => {
+        const kids = [].slice.call(box.children);
+        if (!kids.length) return;
+        const live = () => [].slice.call(box.children);
+        if (box.getAttribute('data-rev-init') !== '1') {
+          box.setAttribute('data-rev-init', '1');
+          g.set(kids, { y: 26, opacity: 0 });
+          kids.forEach(k => k.setAttribute('data-rev-hidden', '1'));
+          _io(box, () => {
+            box.setAttribute('data-rev-fired', '1');
+            g.to(live(), {
+              y: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+              stagger: parseFloat(box.getAttribute('data-reveal-stagger')) || 0.09,
+              delay: parseFloat(box.getAttribute('data-reveal-delay') || '0')
+            });
+          }, () => g.set(live(), { clearProps: 'opacity,transform,translate,rotate,scale,x,y' }), live);
+          return;
+        }
+        if (box.getAttribute('data-rev-fired') === '1') return;
+        kids.forEach(k => {
+          if (k.getAttribute('data-rev-hidden') === '1') return;
+          k.setAttribute('data-rev-hidden', '1');
+          g.set(k, { y: 26, opacity: 0 });
+        });
+      });
+
+      g.utils.toArray('[data-reveal]').forEach(el => {
+        if (el.getAttribute('data-rev-init') === '1') return;
+        el.setAttribute('data-rev-init', '1');
+        g.set(el, { y: 30, opacity: 0 });
+        _io(el, x => g.to(x, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: parseFloat(x.getAttribute('data-reveal-delay') || '0') }), () => g.set(el, { clearProps: 'opacity,transform,translate,rotate,scale,x,y' }));
+      });
+
+      g.utils.toArray('[data-count]').forEach(el => {
+        if (el.getAttribute('data-rev-init') === '1') return;
+        el.setAttribute('data-rev-init', '1');
+        const end = parseFloat(el.getAttribute('data-count'));
+        const dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        const suf = el.getAttribute('data-suffix') || '';
+        const pre = el.getAttribute('data-prefix') || '';
+        const fmt = v => pre + v.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+        _io(el, () => {
+          const obj = { v: 0 };
+          g.to(obj, { v: end, duration: 1.8, ease: 'power2.out', onUpdate: () => { el.textContent = fmt(obj.v); } });
+        }, () => { el.textContent = fmt(end); });
+      });
+
+      // one-off grouped sequences, each keyed off its own trigger
+      const once = (trigger, sel, from, extra) => {
+        const el = document.querySelector(trigger);
+        if (!el || el.getAttribute('data-rev-group') === '1') return;
+        if (!document.querySelector(sel)) return;
+        el.setAttribute('data-rev-group', '1');
+        _io(el, () => g.from(sel, Object.assign({}, from)), () => g.set(sel, extra || { clearProps: 'opacity,transform,translate,rotate,scale,x,y' }),
+          () => [].slice.call(document.querySelectorAll(sel)));
+      };
+      once('[data-formula]', '[data-trow]', { x: -26, opacity: 0, duration: 0.55, ease: 'power2.out', stagger: 0.12 });
+      once('[data-label]', '[data-lrow]', { opacity: 0, x: -14, duration: 0.4, ease: 'power2.out', stagger: 0.09 });
+      once('[data-schat]', '[data-smsg]', { y: 18, opacity: 0, duration: 0.6, ease: 'power2.out', stagger: 0.35 });
+      once('#why', '[data-whyicon]', { scale: 0.55, duration: 0.6, ease: 'back.out(2.2)', stagger: 0.11, delay: 0.12 }, { clearProps: 'transform,scale' });
+      once('[data-storyimg]', '[data-storyimg]', { scale: 1.07, duration: 1.1, ease: 'power3.out' }, { clearProps: 'transform,scale' });
+      once('[data-anim-grid]', '[data-srow]', { x: -24, opacity: 0, duration: 0.5, ease: 'power2.out', stagger: 0.12 });
+      once('[data-anim-kanban]', '[data-kcard]', { y: 20, opacity: 0, duration: 0.5, ease: 'power2.out', stagger: 0.12 });
+      once('[data-anim-inspire]', '[data-icard]', { y: 24, opacity: 0, duration: 0.5, ease: 'power2.out', stagger: 0.15 });
+      once('[data-anim-crm]', '[data-crow]', { x: -24, opacity: 0, duration: 0.5, ease: 'power2.out', stagger: 0.12 });
+      g.utils.toArray('[data-bar]').forEach(el => {
+        if (el.getAttribute('data-rev-init') === '1') return;
+        el.setAttribute('data-rev-init', '1');
+        g.set(el, { scaleX: 0 });
+        _io(el, () => g.to(el, { scaleX: 1, duration: 1.2, ease: 'power3.out' }), () => g.set(el, { scaleX: 1 }));
+      });
+    };
+    _registerReveals();
+    this._registerReveals = _registerReveals;
+  }
+  renderVals() {
+    const P = 'https://www.flavorstudio.com/gfx/senspire/testimonials/';
+    const light = { bg: '#ffffff', border: 'var(--gray-300)', quoteColor: 'var(--blue-400)', textColor: 'var(--slate-700)', nameColor: 'var(--slate-800)', roleColor: 'var(--slate-400)' };
+    const dark = { bg: 'var(--slate-800)', border: 'var(--slate-800)', quoteColor: 'var(--lime-400)', textColor: '#dfe5ee', nameColor: '#ffffff', roleColor: 'var(--slate-300)' };
+    const data = [
+      { quote: '"This is bar none the best program I\u2019ve ever seen or worked with."', name: 'Andrew Hunter', role: 'President at Chef Andrew Hunter', photo: P + 'andrew_hunter.png', s: dark },
+      { quote: '"Today we communicate, collaborate and prioritize projects in an organized and highly visible fashion… We can not live without Flavor Studio!"', name: 'Charles Hayes', role: 'VP Culinary Innovation, R&D Deli Star', photo: P + 'charles_hayes.png', s: light },
+      { quote: '"Flavor Studio has always provided unparalleled customer service and has been extremely patient in working with us…"', name: 'Stefan Czapalay', role: 'CEO Signature Culinary Solutions', photo: P + 'stefan_czapalay.png', s: light },
+      { quote: '"It\u2019s a great organizing tool and keeps you on task — like an Outlook calendar for food."', name: 'Greg Grisanti', role: 'Director of R&D at Frischs Big Boy Inc.', photo: P + 'greg_grisanti.png', s: light },
+      { quote: '"We are loving Flavor Studio more than ever!"', name: 'Kari Baker', role: 'Product Developer at Hope Foods', photo: P + 'kari_baker.png', s: dark },
+      { quote: '"…a very robust and full-featured software for ideation and product formulation."', name: 'Michael Cheng, PhD., CHE', role: 'Director of Food and Beverage Program at FIU', photo: P + 'michael_cheng.png', s: light },
+      { quote: '"Flavor Studio has provided ATE with not only a valuable business tool… but a proactive, solution driven relationship."', name: 'Chef Rob Corliss', role: 'Owner of ATE (All Things Epicurean)', photo: P + 'chef_rob_corliss.png', s: light }
+    ];
+    const segs = [
+      { name: 'CPG Manufacturers', icon: 'icon-park-outline:factory-building' },
+      { name: 'Ingredient Suppliers', icon: 'icon-park-outline:box' },
+      { name: 'Product Developers', icon: 'icon-park-outline:experiment' },
+      { name: 'Flavor and Fragrance Companies', icon: 'icon-park-outline:leaves' },
+      { name: 'QSR Chains', icon: 'icon-park-outline:hamburger' },
+      { name: 'Fast Casual Restaurant Chains', icon: 'icon-park-outline:knife-fork' },
+      { name: 'Food Science Programs', icon: 'icon-park-outline:degree-hat' },
+      { name: 'Culinology Programs', icon: 'icon-park-outline:chef-hat-one' },
+      { name: 'Sensory Science Companies', icon: 'icon-park-outline:tongue' },
+      { name: 'Consumer Research Agencies', icon: 'icon-park-outline:chart-histogram' },
+      { name: 'Dieticians and Nutritionists', icon: 'icon-park-outline:doc-detail' }
+    ];
+    return {
+      testimonials: data.map(t => ({ quote: t.quote, name: t.name, role: t.role, photo: t.photo, bg: t.s.bg, border: t.s.border, quoteColor: t.s.quoteColor, textColor: t.s.textColor, nameColor: t.s.nameColor, roleColor: t.s.roleColor })),
+      segments: segs
+    };
+  }
+}
+</script>
+</body>
+</html>

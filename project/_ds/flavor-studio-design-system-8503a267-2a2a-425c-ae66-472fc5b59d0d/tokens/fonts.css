@@ -1,0 +1,16 @@
+/* ============================================================
+   Flavor Studio — Webfonts
+   ------------------------------------------------------------
+   The original product is set in "Avenir Next" (a licensed Apple
+   system face). Avenir Next is NOT web-distributable, so this
+   system substitutes **Mulish** — a humanist geometric sans with
+   very close proportions, x-height and roundness — as the primary
+   UI face. "Manrope" (used natively in a few spots of the file) is
+   kept as a secondary/display companion.
+
+   ⚠️ SUBSTITUTION: Mulish stands in for Avenir Next. If you have
+   the licensed Avenir Next webfont files, drop them in /assets/fonts
+   and replace this @import with local @font-face rules.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Manrope:wght@500;600;700;800&display=swap');

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/base.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/styles.css">
+  <script src="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/_ds_bundle.js"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #ffffff; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue-500); text-decoration: none; }
+    a:hover { color: var(--blue-700); }
+    @keyframes fsPulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.25); opacity: .7; } }
+    @keyframes fsHeroPan { 0%, 100% { background-position: 50% 0%; } 50% { background-position: 50% 100%; } }
+    @keyframes fsOrbA { 0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: .85; } 33% { transform: translate3d(9%,-6%,0) scale(1.14); opacity: 1; } 66% { transform: translate3d(-5%,7%,0) scale(.94); opacity: .7; } }
+    @keyframes fsOrbB { 0%, 100% { transform: translate3d(0,0,0) scale(1.04); opacity: .7; } 40% { transform: translate3d(-8%,8%,0) scale(.9); opacity: 1; } 70% { transform: translate3d(4%,-5%,0) scale(1.16); opacity: .8; } }
+    @keyframes fsHeroSheen { 0% { transform: translateX(-40%) rotate(8deg); opacity: 0; } 45% { opacity: .5; } 100% { transform: translateX(60%) rotate(8deg); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</helmet>
+
+<div style="font-family: var(--font-sans); color: var(--text-body); background: #fff; overflow-x: clip; min-height: 100vh;">
+  <dc-import name="SiteNav v2" active="features" hint-size="100%,60px"></dc-import>
+
+  <!-- Page hero -->
+  <section data-screen-label="Features hero" style="position: relative; background: linear-gradient(180deg, #253349 0%, #2b3d59 30%, #27374f 55%, #223047 78%, #1e2a3e 100%); background-size: 100% 220%; background-position: 50% 0%; animation: fsHeroPan 20s ease-in-out infinite; will-change: background-position; overflow: clip; padding: clamp(56px, 7vw, 96px) 24px;">
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;"></div>
+    <div style="position: absolute; top: 34%; left: -14%; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(96,152,220,.22) 0%, rgba(96,152,220,0) 62%); filter: blur(10px); pointer-events: none; animation: fsOrbA 17s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; top: -4%; right: -16%; width: 820px; height: 820px; border-radius: 50%; background: radial-gradient(circle, rgba(98,168,86,.2) 0%, rgba(74,132,90,.08) 44%, rgba(98,168,86,0) 66%); filter: blur(12px); pointer-events: none; animation: fsOrbB 23s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 32%, rgba(255,255,255,.05) 0%, rgba(0,0,0,0) 46%, rgba(11,18,32,.42) 100%); pointer-events: none;"></div>
+    <div style="position: relative;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div data-reveal style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: var(--lime-400); text-transform: uppercase;">Product</div>
+      <h1 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.08; letter-spacing: -0.02em; color: #ffffff; margin: 14px 0 0; max-width: 16ch;">Six studios. One source of truth.</h1>
+      <p data-reveal data-reveal-delay="0.12" style="font-size: clamp(16px, 1.5vw, 18px); line-height: 1.65; color: #aebdd0; margin: 18px 0 0; max-width: 56ch;">Every tool a food developer touches — formulation, nutrition, labels, projects, sensory and CRM — sharing one ingredient library and one live cost model.</p>
+    </div>
+    </div>
+  </section>
+
+  <!-- 1. Recipes -->
+  <section id="recipes" data-screen-label="Recipes" style="padding: clamp(64px, 8vw, 110px) 24px; background: #fff;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(36px, 5vw, 64px); align-items: center;">
+      <div>
+        <div data-reveal style="display: inline-flex; align-items: center; gap: 8px; color: var(--blue-600); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;"><span class="iconify" data-icon="icon-park-outline:chef-hat-one" style="font-size: 16px;"></span>Recipes</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3vw, 38px); line-height: 1.12; letter-spacing: -0.02em; color: var(--slate-800); margin: 12px 0 0;">Formulate in a grid that never loses count.</h2>
+        <p data-reveal data-reveal-delay="0.12" style="font-size: 15.5px; line-height: 1.65; color: var(--slate-500); margin: 16px 0 0; max-width: 50ch;">Ingredients, steps and quantities on the left; batch size, servings, cost and retail price rolling up live on the right. Branch versions, compare them, promote the winner.</p>
+        <div data-reveal data-reveal-delay="0.18" style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px; font-size: 14px; color: var(--slate-700);">
+          <div style="display: flex; gap: 10px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Unlimited versions with pill-tab switching</div>
+          <div style="display: flex; gap: 10px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Procedure, images and notes on every recipe</div>
+          <div style="display: flex; gap: 10px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Scale batches without touching ratios</div>
+        </div>
+      </div>
+      <div data-reveal data-reveal-delay="0.1" data-anim-grid style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; box-shadow: 0 14px 40px rgba(43,59,83,.1); overflow: hidden;">
+        <div style="background: var(--blue-500); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 9px 16px;">Granola bar · v4</div>
+        <div data-srow style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 10px 16px; font-size: 13.5px; border-bottom: 1px solid var(--gray-150, #f7f7fa);"><span style="font-weight: 600; color: var(--slate-700);">Rolled oats</span><span style="font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">300 g</span><span style="color: var(--slate-400); width: 56px; text-align: right; font-variant-numeric: tabular-nums;">$0.48</span></div>
+        <div data-srow style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 10px 16px; font-size: 13.5px; border-bottom: 1px solid var(--gray-150, #f7f7fa);"><span style="font-weight: 600; color: var(--slate-700);">Almond butter</span><span style="font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">160 g</span><span style="color: var(--slate-400); width: 56px; text-align: right; font-variant-numeric: tabular-nums;">$2.08</span></div>
+        <div data-srow style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 10px 16px; font-size: 13.5px; border-bottom: 1px solid var(--gray-150, #f7f7fa);"><span style="font-weight: 600; color: var(--slate-700);">Honey, clover</span><span style="font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">120 g</span><span style="color: var(--slate-400); width: 56px; text-align: right; font-variant-numeric: tabular-nums;">$0.94</span></div>
+        <div data-srow style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 10px 16px; font-size: 13.5px;"><span style="font-weight: 600; color: var(--slate-700);">Dried cranberries</span><span style="font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">90 g</span><span style="color: var(--slate-400); width: 56px; text-align: right; font-variant-numeric: tabular-nums;">$1.12</span></div>
+        <div style="background: var(--slate-700); color: #fff; display: flex; align-items: center; gap: 12px; padding: 12px 16px;">
+          <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #c4cedd;">Cost / batch</span>
+          <span data-count="4.62" data-decimals="2" data-prefix="$" style="font-size: 19px; font-weight: 800; font-variant-numeric: tabular-nums;">$0.00</span>
+          <span style="margin-left: auto; background: var(--blue-500); border-radius: 999px; font-size: 11px; font-weight: 700; padding: 4px 12px;">36 bars</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Nutritional analysis -->
+  <section id="nutrition" data-screen-label="Nutritional analysis" style="padding: clamp(64px, 8vw, 110px) 24px; background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%);">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(36px, 5vw, 64px); align-items: center;">
+      <div data-reveal data-reveal-delay="0.1" data-anim-bars style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; box-shadow: 0 14px 40px rgba(43,59,83,.1); padding: 22px 24px;">
+        <div style="font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--slate-300); margin-bottom: 18px;">Per serving · vs daily value</div>
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          <div><div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;"><span style="font-weight: 700; color: var(--slate-800);">Protein · 12 g</span><span style="color: var(--slate-400); font-weight: 600;">24%</span></div><div style="height: 8px; border-radius: 999px; background: var(--gray-100); overflow: hidden;"><span data-bar style="display: block; height: 100%; width: 24%; border-radius: 999px; background: var(--teal-500); transform-origin: left;"></span></div></div>
+          <div><div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;"><span style="font-weight: 700; color: var(--slate-800);">Dietary fiber · 4 g</span><span style="color: var(--slate-400); font-weight: 600;">14%</span></div><div style="height: 8px; border-radius: 999px; background: var(--gray-100); overflow: hidden;"><span data-bar style="display: block; height: 100%; width: 14%; border-radius: 999px; background: var(--blue-500); transform-origin: left;"></span></div></div>
+          <div><div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;"><span style="font-weight: 700; color: var(--slate-800);">Total fat · 9 g</span><span style="color: var(--slate-400); font-weight: 600;">12%</span></div><div style="height: 8px; border-radius: 999px; background: var(--gray-100); overflow: hidden;"><span data-bar style="display: block; height: 100%; width: 12%; border-radius: 999px; background: var(--blue-400); transform-origin: left;"></span></div></div>
+          <div><div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;"><span style="font-weight: 700; color: var(--slate-800);">Sodium · 105 mg</span><span style="color: var(--slate-400); font-weight: 600;">5%</span></div><div style="height: 8px; border-radius: 999px; background: var(--gray-100); overflow: hidden;"><span data-bar style="display: block; height: 100%; width: 5%; border-radius: 999px; background: var(--amber-500); transform-origin: left;"></span></div></div>
+          <div><div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;"><span style="font-weight: 700; color: var(--slate-800);">Added sugars · 8 g</span><span style="color: var(--slate-400); font-weight: 600;">16%</span></div><div style="height: 8px; border-radius: 999px; background: var(--gray-100); overflow: hidden;"><span data-bar style="display: block; height: 100%; width: 16%; border-radius: 999px; background: var(--slate-300); transform-origin: left;"></span></div></div>
+        </div>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px;">
+          <span style="background: var(--teal-100); color: #0e8b73; border-radius: 999px; font-size: 11.5px; font-weight: 700; padding: 5px 12px;">Good source of protein</span>
+          <span style="background: var(--blue-200); color: var(--blue-700); border-radius: 999px; font-size: 11.5px; font-weight: 700; padding: 5px 12px;">Low sodium</span>
+        </div>
+      </div>
+      <div>
+        <div data-reveal style="display: inline-flex; align-items: center; gap: 8px; color: var(--blue-600); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;"><span class="iconify" data-icon="icon-park-outline:doc-detail" style="font-size: 16px;"></span>Nutritional analysis</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3vw, 38px); line-height: 1.12; letter-spacing: -0.02em; color: var(--slate-800); margin: 12px 0 0;">Every nutrient, recomputed on every edit.</h2>
+        <p data-reveal data-reveal-delay="0.12" style="font-size: 15.5px; line-height: 1.65; color: var(--slate-500); margin: 16px 0 0; max-width: 50ch;">USDA FoodData Central built in, supplier spec sheets and lab assays layered on top. Nutrient content claims are checked against the CFR automatically — the AI Agent flags the ones you qualify for.</p>
+        <div data-reveal data-reveal-delay="0.18" style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px; font-size: 14px; color: var(--slate-700);">
+          <div style="display: flex; gap: 10px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Full nutrient panels, per serving and per 100 g</div>
+          <div style="display: flex; gap: 10px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Big-9 allergen roll-up from the ingredient tree</div>
+          <div style="display: flex; gap: 10px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Supplement Facts for dietary supplements</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Agent banner -->
+  <section data-screen-label="AI banner" style="background: linear-gradient(168deg, #ffffff 0%, #f4faff 44%, #eefaf3 100%); padding: clamp(48px, 6vw, 72px) 24px;">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; align-items: center; gap: clamp(20px, 4vw, 48px); flex-wrap: wrap;">
+      <span data-reveal style="flex: none; width: 52px; height: 52px; border-radius: 20px; background: linear-gradient(135deg, var(--blue-500), var(--teal-500)); display: flex; align-items: center; justify-content: center;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" fill="#ffffff"></path></svg></span>
+      <div data-reveal data-reveal-delay="0.06" style="flex: 1; min-width: min(100%, 360px);">
+        <div style="font-family: var(--font-display); font-weight: 800; font-size: clamp(20px, 2.4vw, 28px); color: #fff;">The AI Agent works inside every studio.</div>
+        <div style="font-size: 14.5px; line-height: 1.6; color: var(--slate-300); margin-top: 6px;">Ingredient sourcing in Recipes, claim checks in Labels, what-if costing everywhere — with cited answers.</div>
+      </div>
+      <a data-reveal data-reveal-delay="0.12" href="AI Agent.dc.html" style="background: #7fd234; color: #16223a; font-size: 14.5px; font-weight: 800; padding: 13px 26px; border-radius: 999px; white-space: nowrap; transition: transform 180ms ease;" style-hover="background: #8ede40; color: #16223a; transform: translateY(-2px);">See the AI Agent</a>
+    </div>
+  </section>
+
+  <!-- 3. Project management -->
+  <section id="projects" data-screen-label="Project management" style="padding: clamp(64px, 8vw, 110px) 24px; background: #fff;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(36px, 5vw, 64px); align-items: center;">
+      <div>
+        <div data-reveal style="display: inline-flex; align-items: center; gap: 8px; color: var(--blue-600); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;"><span class="iconify" data-icon="icon-park-outline:folder-open" style="font-size: 16px;"></span>Project management</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3vw, 38px); line-height: 1.12; letter-spacing: -0.02em; color: var(--slate-800); margin: 12px 0 0;">Launches move through gates, not inboxes.</h2>
+        <p data-reveal data-reveal-delay="0.12" style="font-size: 15.5px; line-height: 1.65; color: var(--slate-500); margin: 16px 0 0; max-width: 50ch;">Briefs, tasks and stage gates tied directly to the recipes they concern. Everyone sees where a launch stands — and what's blocking it.</p>
+      </div>
+      <div data-reveal data-reveal-delay="0.1" data-anim-kanban style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+        <div style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 14px; padding: 12px;">
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--slate-400); margin-bottom: 10px;">Concept</div>
+          <div data-kcard style="background: #fff; border: 1px solid var(--gray-300); border-radius: 8px; padding: 10px 11px; font-size: 12.5px; font-weight: 600; color: var(--slate-700); margin-bottom: 8px;">Oat clusters<div style="margin-top: 7px;"><span style="background: var(--violet-100); color: var(--violet-500); border-radius: 999px; font-size: 10px; font-weight: 700; padding: 2px 8px;">Ideation</span></div></div>
+          <div data-kcard style="background: #fff; border: 1px solid var(--gray-300); border-radius: 8px; padding: 10px 11px; font-size: 12.5px; font-weight: 600; color: var(--slate-700);">Chili crisp mayo<div style="margin-top: 7px;"><span style="background: var(--blue-200); color: var(--blue-700); border-radius: 999px; font-size: 10px; font-weight: 700; padding: 2px 8px;">Brief</span></div></div>
+        </div>
+        <div style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 14px; padding: 12px;">
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--slate-400); margin-bottom: 10px;">Bench</div>
+          <div data-kcard style="background: #fff; border: 1px solid var(--gray-300); border-radius: 8px; padding: 10px 11px; font-size: 12.5px; font-weight: 600; color: var(--slate-700); margin-bottom: 8px;">Protein cookie v4<div style="margin-top: 7px;"><span style="background: var(--amber-100); color: #a97d17; border-radius: 999px; font-size: 10px; font-weight: 700; padding: 2px 8px;">Testing</span></div></div>
+          <div data-kcard style="background: #fff; border: 1px solid var(--gray-300); border-radius: 8px; padding: 10px 11px; font-size: 12.5px; font-weight: 600; color: var(--slate-700);">Broth, low-sodium<div style="margin-top: 7px;"><span style="background: var(--amber-100); color: #a97d17; border-radius: 999px; font-size: 10px; font-weight: 700; padding: 2px 8px;">Sensory</span></div></div>
+        </div>
+        <div style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 14px; padding: 12px;">
+          <div style="font-size: 10.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--slate-400); margin-bottom: 10px;">Launch</div>
+          <div data-kcard style="background: #fff; border: 1px solid var(--gray-300); border-radius: 8px; padding: 10px 11px; font-size: 12.5px; font-weight: 600; color: var(--slate-700);">Granola bar v7<div style="margin-top: 7px;"><span style="background: var(--teal-100); color: #0e8b73; border-radius: 999px; font-size: 10px; font-weight: 700; padding: 2px 8px;">Finalized</span></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Ideation -->
+  <section id="inspire" data-screen-label="Ideation" style="padding: clamp(64px, 8vw, 110px) 24px; background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%);">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(36px, 5vw, 64px); align-items: center;">
+      <div data-reveal data-reveal-delay="0.1" data-anim-inspire style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
+        <div data-icard style="background: #fff; border: 1px solid var(--gray-300); border-radius: 14px; overflow: hidden;">
+          <img src="assets/food-1.png" alt="" style="width: 100%; aspect-ratio: 1; object-fit: cover; display: block;">
+          <div style="padding: 10px 12px; font-size: 12px; font-weight: 700; color: var(--slate-700);">Fermented heat</div>
+        </div>
+        <div data-icard style="background: #fff; border: 1px solid var(--gray-300); border-radius: 14px; overflow: hidden; margin-top: 18px;">
+          <img src="assets/food-2.png" alt="" style="width: 100%; aspect-ratio: 1; object-fit: cover; display: block;">
+          <div style="padding: 10px 12px; font-size: 12px; font-weight: 700; color: var(--slate-700);">Upcycled grains</div>
+        </div>
+        <div data-icard style="background: #fff; border: 1px solid var(--gray-300); border-radius: 14px; overflow: hidden;">
+          <img src="assets/food-3.png" alt="" style="width: 100%; aspect-ratio: 1; object-fit: cover; display: block;">
+          <div style="padding: 10px 12px; font-size: 12px; font-weight: 700; color: var(--slate-700);">Botanical sodas</div>
+        </div>
+      </div>
+      <div>
+        <div data-reveal style="display: inline-flex; align-items: center; gap: 8px; color: var(--blue-600); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;"><span class="iconify" data-icon="icon-park-outline:star" style="font-size: 16px;"></span>Ideation · Inspire</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3vw, 38px); line-height: 1.12; letter-spacing: -0.02em; color: var(--slate-800); margin: 12px 0 0;">Start the next product before the trend peaks.</h2>
+        <p data-reveal data-reveal-delay="0.12" style="font-size: 15.5px; line-height: 1.65; color: var(--slate-500); margin: 16px 0 0; max-width: 50ch;">A feed of ingredients, concepts and category trends your team can clip into briefs. One click turns an idea into a project with a starter formula.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Taste tests -->
+  <section id="taste-tests" data-screen-label="Taste tests" style="padding: clamp(64px, 8vw, 110px) 24px; background: #fff;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(36px, 5vw, 64px); align-items: center;">
+      <div>
+        <div data-reveal style="display: inline-flex; align-items: center; gap: 8px; color: var(--blue-600); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;"><span class="iconify" data-icon="icon-park-outline:experiment" style="font-size: 16px;"></span>Taste tests</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3vw, 38px); line-height: 1.12; letter-spacing: -0.02em; color: var(--slate-800); margin: 12px 0 0;">Sensory data that flows back into the formula.</h2>
+        <p data-reveal data-reveal-delay="0.12" style="font-size: 15.5px; line-height: 1.65; color: var(--slate-500); margin: 16px 0 0; max-width: 50ch;">Run internal panels or consumer surveys, score attributes side by side across versions, and let the winner carry its data into production.</p>
+      </div>
+      <div data-reveal data-reveal-delay="0.1" data-anim-bars2 style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; box-shadow: 0 14px 40px rgba(43,59,83,.1); padding: 22px 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+          <span style="font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--slate-300);">Panel #212 · v3 vs v4</span>
+          <span style="background: var(--teal-100); color: #0e8b73; border-radius: 999px; font-size: 11px; font-weight: 800; padding: 3px 11px;">v4 wins</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 15px;">
+          <div><div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;"><span style="font-weight: 700; color: var(--slate-800);">Overall liking</span><span style="color: var(--slate-400); font-weight: 600;">7.8 / 9</span></div><div style="height: 8px; border-radius: 999px; background: var(--gray-100); overflow: hidden;"><span data-bar style="display: block; height: 100%; width: 87%; border-radius: 999px; background: var(--teal-500); transform-origin: left;"></span></div></div>
+          <div><div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;"><span style="font-weight: 700; color: var(--slate-800);">Texture</span><span style="color: var(--slate-400); font-weight: 600;">7.2 / 9</span></div><div style="height: 8px; border-radius: 999px; background: var(--gray-100); overflow: hidden;"><span data-bar style="display: block; height: 100%; width: 80%; border-radius: 999px; background: var(--blue-500); transform-origin: left;"></span></div></div>
+          <div><div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;"><span style="font-weight: 700; color: var(--slate-800);">Sweetness</span><span style="color: var(--slate-400); font-weight: 600;">6.9 / 9</span></div><div style="height: 8px; border-radius: 999px; background: var(--gray-100); overflow: hidden;"><span data-bar style="display: block; height: 100%; width: 77%; border-radius: 999px; background: var(--blue-400); transform-origin: left;"></span></div></div>
+          <div><div style="display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px;"><span style="font-weight: 700; color: var(--slate-800);">Purchase intent</span><span style="color: var(--slate-400); font-weight: 600;">72%</span></div><div style="height: 8px; border-radius: 999px; background: var(--gray-100); overflow: hidden;"><span data-bar style="display: block; height: 100%; width: 72%; border-radius: 999px; background: var(--lime-500); transform-origin: left;"></span></div></div>
+        </div>
+        <div style="font-size: 12.5px; color: var(--slate-400); margin-top: 16px;">48 panelists · blind triangle · <span data-count="94" data-suffix="%" style="font-weight: 700; color: var(--slate-700);">0%</span> completion</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CRM -->
+  <section id="crm" data-screen-label="CRM" style="padding: clamp(64px, 8vw, 110px) 24px; background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%);">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(36px, 5vw, 64px); align-items: center;">
+      <div data-reveal data-reveal-delay="0.1" data-anim-crm style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; box-shadow: 0 14px 40px rgba(43,59,83,.1); overflow: hidden;">
+        <div style="background: var(--slate-800); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 9px 16px;">Open requests</div>
+        <div data-crow style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--gray-150, #f7f7fa);">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--blue-200); color: var(--blue-700); font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex: none;">NB</div>
+          <div style="flex: 1; min-width: 0;"><div style="font-size: 13.5px; font-weight: 700; color: var(--slate-800);">Northbake Co.</div><div style="font-size: 12px; color: var(--slate-400);">Sample: protein cookie v4 · 24 units</div></div>
+          <span style="background: var(--amber-100); color: #a97d17; border-radius: 999px; font-size: 10.5px; font-weight: 700; padding: 3px 10px; white-space: nowrap;">Sampling</span>
+        </div>
+        <div data-crow style="display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--gray-150, #f7f7fa);">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--lime-100); color: #5c8f1c; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex: none;">PB</div>
+          <div style="flex: 1; min-width: 0;"><div style="font-size: 13.5px; font-weight: 700; color: var(--slate-800);">Pura Beverage</div><div style="font-size: 12px; color: var(--slate-400);">Brief: botanical soda, reduced sugar</div></div>
+          <span style="background: var(--blue-200); color: var(--blue-700); border-radius: 999px; font-size: 10.5px; font-weight: 700; padding: 3px 10px; white-space: nowrap;">In brief</span>
+        </div>
+        <div data-crow style="display: flex; align-items: center; gap: 12px; padding: 12px 16px;">
+          <div style="width: 32px; height: 32px; border-radius: 50%; background: var(--violet-100); color: var(--violet-500); font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex: none;">CC</div>
+          <div style="flex: 1; min-width: 0;"><div style="font-size: 13.5px; font-weight: 700; color: var(--slate-800);">Cascade Creamery</div><div style="font-size: 12px; color: var(--slate-400);">Reformulation: bilingual label refresh</div></div>
+          <span style="background: var(--teal-100); color: #0e8b73; border-radius: 999px; font-size: 10.5px; font-weight: 700; padding: 3px 10px; white-space: nowrap;">Delivered</span>
+        </div>
+      </div>
+      <div>
+        <div data-reveal style="display: inline-flex; align-items: center; gap: 8px; color: var(--blue-600); font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;"><span class="iconify" data-icon="icon-park-outline:peoples" style="font-size: 16px;"></span>CRM</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3vw, 38px); line-height: 1.12; letter-spacing: -0.02em; color: var(--slate-800); margin: 12px 0 0;">Every customer request, tied to a formula.</h2>
+        <p data-reveal data-reveal-delay="0.12" style="font-size: 15.5px; line-height: 1.65; color: var(--slate-500); margin: 16px 0 0; max-width: 50ch;">Track briefs, samples and reformulation requests next to the recipes that answer them — no separate CRM, no copy-paste between systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section data-screen-label="CTA" style="background: var(--slate-900); padding: clamp(64px, 9vw, 110px) 24px;">
+    <div style="max-width: 720px; margin: 0 auto; text-align: center;">
+      <h2 data-reveal style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.02em; color: #fff; margin: 0;">See all six studios on your own formulas.</h2>
+      <div data-reveal data-reveal-delay="0.1" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+        <a href="Contact v2.dc.html" style="background: #7fd234; color: #16223a; font-size: 16px; font-weight: 800; padding: 16px 34px; border-radius: 999px; white-space: nowrap; box-shadow: 0 12px 30px rgba(127,210,52,.3); transition: transform 180ms ease;" style-hover="background: #8ede40; color: #16223a; transform: translateY(-2px);">Request a demo</a>
+        <a href="Pricing v2.dc.html" style="border: 1px solid rgba(255,255,255,.3); color: #fff; font-size: 16px; font-weight: 700; padding: 15px 30px; border-radius: 999px; white-space: nowrap; transition: background 180ms ease;" style-hover="background: rgba(255,255,255,.1); color: #ffffff;">View pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter v2" hint-size="100%,300px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._poll = setInterval(() => {
+      if (window.gsap && window.ScrollTrigger) {
+        clearInterval(this._poll);
+        this._setup();
+      }
+    }, 80);
+  }
+  componentWillUnmount() {
+    clearInterval(this._poll);
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+  }
+  _setup() {
+    const g = window.gsap;
+    const _io = (el, cb) => {
+      if (!el) return;
+      let done = false;
+      const run = () => { if (done) return; done = true; cb(el); };
+      const o = new IntersectionObserver((ents) => {
+        ents.forEach(e => { if (e.isIntersecting) { o.unobserve(el); run(); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      o.observe(el);
+    };
+    // Failsafe: if animation frames never run (non-composited/hidden render),
+    // apply the final resting state synchronously so nothing stays hidden.
+    const _finalize = () => {
+      const cp = { clearProps: 'opacity,transform,translate,rotate,scale,x,y' };
+      g.utils.toArray('[data-reveal]').forEach(el => g.set(el, cp));
+      g.utils.toArray('[data-bar]').forEach(el => g.set(el, { scaleX: 1 }));
+      ['[data-srow]','[data-kcard]','[data-icard]','[data-crow]','[data-trow]','[data-lrow]','[data-smsg]'].forEach(sel =>
+        g.utils.toArray(sel).forEach(el => g.set(el, cp)));
+      g.utils.toArray('[data-count]').forEach(el => {
+        const end = parseFloat(el.getAttribute('data-count'));
+        const dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        const suf = el.getAttribute('data-suffix') || '';
+        const pre = el.getAttribute('data-prefix') || '';
+        el.textContent = pre + end.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+      });
+    };
+    let _rafOk = false;
+    requestAnimationFrame(() => { _rafOk = true; });
+    setTimeout(() => { if (!_rafOk) _finalize(); }, 450);
+    setTimeout(() => { if (!_rafOk) _finalize(); }, 2600);
+    g.utils.toArray('[data-reveal]').forEach(el => {
+      g.set(el, { y: 30, opacity: 0 });
+      _io(el, t => g.to(t, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: parseFloat(t.getAttribute('data-reveal-delay') || '0') }));
+    });
+    g.utils.toArray('[data-count]').forEach(el => {
+      const end = parseFloat(el.getAttribute('data-count'));
+      const dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      const suf = el.getAttribute('data-suffix') || '';
+      const pre = el.getAttribute('data-prefix') || '';
+      _io(el, () => {
+        const obj = { v: 0 };
+        g.to(obj, {
+          v: end, duration: 1.8, ease: 'power2.out',
+          onUpdate: () => {
+            el.textContent = pre + obj.v.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+          }
+        });
+      });
+    });
+    g.utils.toArray('[data-bar]').forEach(el => {
+      g.set(el, { scaleX: 0 });
+      _io(el, t => g.to(t, { scaleX: 1, duration: 1.2, ease: 'power3.out' }));
+    });
+    const stagger = (sel, trigger, vars) => {
+      const trg = document.querySelector(trigger);
+      if (!trg || !document.querySelector(sel)) return;
+      _io(trg, () => g.from(sel, Object.assign({ duration: 0.5, ease: 'power2.out', stagger: 0.12 }, vars)));
+    };
+    stagger('[data-srow]', '[data-anim-grid]', { x: -24, opacity: 0 });
+    stagger('[data-kcard]', '[data-anim-kanban]', { y: 20, opacity: 0 });
+    stagger('[data-icard]', '[data-anim-inspire]', { y: 24, opacity: 0, stagger: 0.15 });
+    stagger('[data-crow]', '[data-anim-crm]', { x: -24, opacity: 0 });
+  }
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/v2/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/fonts.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/colors.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/typography.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/spacing.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/base.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/styles.css">
+  <script src="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/_ds_bundle.js"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #ffffff; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue-500); text-decoration: none; }
+    a:hover { color: var(--blue-700); }
+    @keyframes fsHeroPan { 0%, 100% { background-position: 50% 0%; } 50% { background-position: 50% 100%; } }
+    @keyframes fsOrbA { 0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: .85; } 33% { transform: translate3d(9%,-6%,0) scale(1.14); opacity: 1; } 66% { transform: translate3d(-5%,7%,0) scale(.94); opacity: .7; } }
+    @keyframes fsOrbB { 0%, 100% { transform: translate3d(0,0,0) scale(1.04); opacity: .7; } 40% { transform: translate3d(-8%,8%,0) scale(.9); opacity: 1; } 70% { transform: translate3d(4%,-5%,0) scale(1.16); opacity: .8; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</helmet>
+
+<div style="font-family: var(--font-sans); color: var(--text-body); background: #fff; overflow-x: clip; min-height: 100vh;">
+  <dc-import name="SiteNav v2" active="pricing" hint-size="100%,60px"></dc-import>
+
+  <!-- Page hero -->
+  <section data-screen-label="Pricing hero" style="position: relative; background: linear-gradient(180deg, #253349 0%, #2b3d59 30%, #27374f 55%, #223047 78%, #1e2a3e 100%); background-size: 100% 220%; background-position: 50% 0%; animation: fsHeroPan 20s ease-in-out infinite; will-change: background-position; overflow: clip; padding: clamp(56px, 7vw, 96px) 24px;">
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;"></div>
+    <div style="position: absolute; top: 34%; left: -14%; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(96,152,220,.22) 0%, rgba(96,152,220,0) 62%); filter: blur(10px); pointer-events: none; animation: fsOrbA 17s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; top: -4%; right: -16%; width: 820px; height: 820px; border-radius: 50%; background: radial-gradient(circle, rgba(98,168,86,.2) 0%, rgba(74,132,90,.08) 44%, rgba(98,168,86,0) 66%); filter: blur(12px); pointer-events: none; animation: fsOrbB 23s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 32%, rgba(255,255,255,.05) 0%, rgba(0,0,0,0) 46%, rgba(11,18,32,.42) 100%); pointer-events: none;"></div>
+    <div style="position: relative; max-width: 1180px; margin: 0 auto; text-align: center;">
+      <div data-reveal style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: var(--lime-400); text-transform: uppercase;">Pricing</div>
+      <h1 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.08; letter-spacing: -0.02em; color: #ffffff; margin: 14px auto 0; max-width: 18ch;">Pricing and Plans</h1>
+      <p data-reveal data-reveal-delay="0.12" style="font-size: clamp(16px, 1.5vw, 18px); line-height: 1.65; color: #aebdd0; margin: 18px auto 0; max-width: 52ch;">Try Flavor Studio completely free for two weeks — no credit card needed.</p>
+    </div>
+  </section>
+
+  <!-- Plans -->
+  <section data-screen-label="Plans" style="padding: clamp(56px, 7vw, 90px) 24px; background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%);">
+    <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 265px), 1fr)); gap: 20px; align-items: stretch;">
+
+      <div data-reveal style="background: #fff; border: 1px solid var(--gray-300); border-radius: 20px; padding: 30px 28px; display: flex; flex-direction: column;">
+        <div style="font-weight: 800; font-size: 15px; letter-spacing: .1em; color: var(--slate-800);">TRIAL</div>
+        <div style="margin-top: 14px;"><span style="font-family: var(--font-display); font-weight: 800; font-size: 44px; color: var(--slate-800);">$0</span></div>
+        <div style="font-size: 13.5px; font-weight: 700; color: var(--slate-700); margin-top: 4px;">14 days</div>
+        <div style="font-size: 14px; color: var(--slate-500); line-height: 1.6; margin-top: 12px;">Enjoy Premium plan access for a limited time. No credit card needed to sign up.</div>
+        <a href="/v2/contact" style="margin-top: auto; text-align: center; border: 1px solid var(--blue-500); color: var(--blue-600); border-radius: 14px; padding: 12px 0; font-weight: 700; font-size: 14.5px; white-space: nowrap; transition: background 180ms ease;" style-hover="background: var(--blue-100); color: var(--blue-700);">Get Started!</a>
+      </div>
+
+      <div data-reveal data-reveal-delay="0.06" style="background: #fff; border: 1px solid var(--gray-300); border-radius: 20px; padding: 30px 28px; display: flex; flex-direction: column;">
+        <div style="font-weight: 800; font-size: 15px; letter-spacing: .1em; color: var(--slate-800);">PROFESSIONAL</div>
+        <div style="margin-top: 14px;"><span style="font-family: var(--font-display); font-weight: 800; font-size: 44px; color: var(--slate-800);">$100</span><span style="font-size: 13.5px; color: var(--slate-400); font-weight: 600;"> USD per user / month</span></div>
+        <div style="font-size: 12.5px; color: var(--slate-400); margin-top: 4px;">Billed annually, or $110 month-to-month</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin: 20px 0 26px; font-size: 14px; color: var(--slate-700);">
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Unlimited Project Repository Storage</div>
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Unlimited Project Tasks</div>
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Unlimited Messages</div>
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Secure end-to-end encryption</div>
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>24/7 support (email/messages/phone)</div>
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Fully integrated CRM</div>
+        </div>
+        <a href="/v2/contact" style="margin-top: auto; text-align: center; border: 1px solid var(--blue-500); color: var(--blue-600); border-radius: 14px; padding: 12px 0; font-weight: 700; font-size: 14.5px; white-space: nowrap; transition: background 180ms ease;" style-hover="background: var(--blue-100); color: var(--blue-700);">Get Started!</a>
+      </div>
+
+      <div data-reveal data-reveal-delay="0.12" style="position: relative; background: #fff; border: 2px solid var(--blue-500); border-radius: 20px; padding: 30px 28px; display: flex; flex-direction: column; box-shadow: 0 20px 50px rgba(89,163,235,.2);">
+        <div style="position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--blue-500); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; border-radius: 999px; padding: 5px 14px; white-space: nowrap;">Best choice</div>
+        <div style="font-weight: 800; font-size: 15px; letter-spacing: .1em; color: var(--slate-800);">PREMIUM</div>
+        <div style="margin-top: 14px;"><span style="font-family: var(--font-display); font-weight: 800; font-size: 44px; color: var(--slate-800);">$150</span><span style="font-size: 13.5px; color: var(--slate-400); font-weight: 600;"> USD per user / month</span></div>
+        <div style="font-size: 12.5px; color: var(--slate-400); margin-top: 4px;">Billed annually, or $165 month-to-month</div>
+        <div style="display: flex; flex-direction: column; gap: 10px; margin: 20px 0 26px; font-size: 14px; color: var(--slate-700);">
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Everything in the Professional and…</div>
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Unlimited Inspire Collections</div>
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Unlimited Recipes</div>
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Unlimited Nutrition Labels</div>
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Unlimited Taste Test Surveys</div>
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>R&amp;D tax credit reporting</div>
+          <div style="display: flex; gap: 9px; align-items: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="color: var(--teal-500); font-size: 16px;"></span>Continuous updates and new features</div>
+        </div>
+        <a href="/v2/contact" style="margin-top: auto; text-align: center; background: var(--blue-500); color: #fff; border-radius: 14px; padding: 13px 0; font-weight: 700; font-size: 14.5px; white-space: nowrap; box-shadow: 0 8px 20px rgba(89,163,235,.35); transition: background 180ms ease;" style-hover="background: var(--blue-600); color: #fff;">Get Started!</a>
+      </div>
+
+      <div data-reveal data-reveal-delay="0.18" style="background: var(--slate-800); border-radius: 20px; padding: 30px 28px; display: flex; flex-direction: column;">
+        <div style="font-weight: 800; font-size: 15px; letter-spacing: .1em; color: #fff;">ENTERPRISE</div>
+        <div style="margin-top: 14px; font-family: var(--font-display); font-weight: 800; font-size: 30px; line-height: 1.2; color: #fff;">More than 30 users?</div>
+        <div style="font-size: 14px; color: var(--slate-300); line-height: 1.65; margin-top: 12px;">Email us at <a href="mailto:sales@senspirellc.com" style="color: var(--lime-400); font-weight: 700;">sales@senspirellc.com</a> so that we can create a custom solution that aligns with your size.</div>
+        <a href="mailto:sales@senspirellc.com" style="margin-top: auto; text-align: center; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); color: #fff; border-radius: 14px; padding: 12px 0; font-weight: 700; font-size: 14.5px; white-space: nowrap; transition: background 180ms ease;" style-hover="background: rgba(255,255,255,.16); color: #ffffff;">Email sales</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value props -->
+  <section data-screen-label="Why our pricing" style="padding: clamp(56px, 7vw, 90px) 24px; background: #fff;">
+    <div style="max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 20px;">
+      <div data-reveal style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 20px; padding: 26px 24px;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/pricing/simple_pricing.png" alt="Simple pricing" style="width: 64px; height: 64px; object-fit: contain; display: block;">
+        <div style="font-weight: 800; font-size: 16px; color: var(--slate-800); margin-top: 14px;">Simple Pricing</div>
+        <div style="font-size: 13.5px; line-height: 1.6; color: var(--slate-500); margin-top: 7px;">One solution for all of your food and beverage product development activities — no complex software licenses. Billing as easy to understand as the software is to use.</div>
+      </div>
+      <div data-reveal data-reveal-delay="0.06" style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 20px; padding: 26px 24px;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/pricing/flexible_terms.png" alt="Flexible terms" style="width: 64px; height: 64px; object-fit: contain; display: block;">
+        <div style="font-weight: 800; font-size: 16px; color: var(--slate-800); margin-top: 14px;">Flexible Terms</div>
+        <div style="font-size: 13.5px; line-height: 1.6; color: var(--slate-500); margin-top: 7px;">No setup fees or annual maintenance costs. Start today with just a credit card.</div>
+      </div>
+      <div data-reveal data-reveal-delay="0.12" style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 20px; padding: 26px 24px;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/pricing/pay_for_actual.png" alt="Only pay for actual usage" style="width: 64px; height: 64px; object-fit: contain; display: block;">
+        <div style="font-weight: 800; font-size: 16px; color: var(--slate-800); margin-top: 14px;">Only Pay For Actual Usage</div>
+        <div style="font-size: 13.5px; line-height: 1.6; color: var(--slate-500); margin-top: 7px;">Real-time costing shows individual ingredient costs, total batch cost, and estimated retail pricing.</div>
+      </div>
+      <div data-reveal data-reveal-delay="0.18" style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 20px; padding: 26px 24px;">
+        <span class="iconify" data-icon="icon-park-outline:protect" style="font-size: 52px; color: var(--blue-500); display: block; height: 64px;"></span>
+        <div style="font-weight: 800; font-size: 16px; color: var(--slate-800); margin-top: 14px;">No Hidden Fees</div>
+        <div style="font-size: 13.5px; line-height: 1.6; color: var(--slate-500); margin-top: 7px;">What you see on the table is what you get. Only a monthly licensing fee — that's it.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing FAQ -->
+  <section data-screen-label="Pricing FAQ" style="padding: clamp(56px, 7vw, 90px) 24px; background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%);">
+    <div style="max-width: 720px; margin: 0 auto;">
+      <h2 data-reveal style="font-family: var(--font-display); font-weight: 800; font-size: clamp(24px, 2.8vw, 34px); letter-spacing: -0.02em; color: var(--slate-800); text-align: center; margin: 0 0 clamp(24px, 4vw, 40px);">Pricing questions</h2>
+      <div data-reveal data-reveal-delay="0.08" style="display: flex; flex-direction: column; gap: 12px;">
+        <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="6">
+          <div style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; overflow: hidden;">
+            <button onClick="{{ item.toggle }}" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 14px; width: 100%; padding: 17px 22px; cursor: pointer; font-family: var(--font-sans);">
+              <span style="flex: 1; font-weight: 700; font-size: 15px; color: var(--slate-800); line-height: 1.4;">{{ item.q }}</span>
+              <span style="flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--blue-100); color: var(--blue-600); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; transition: transform 220ms ease; transform: rotate({{ item.rot }});">+</span>
+            </button>
+            <div style="display: grid; grid-template-rows: {{ item.rows }}; transition: grid-template-rows 260ms ease;">
+              <div style="overflow: hidden;">
+                <p style="margin: 0; padding: 0 22px 20px; font-size: 14.5px; line-height: 1.65; color: var(--slate-500);">{{ item.a }}</p>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div data-reveal style="text-align: center; margin-top: 24px; font-size: 14px; color: var(--slate-500);">More questions? See the full <a href="/v2/faq" style="font-weight: 700;">FAQ</a>.</div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section data-screen-label="CTA" style="background: var(--slate-900); padding: clamp(64px, 9vw, 110px) 24px;">
+    <div style="max-width: 720px; margin: 0 auto; text-align: center;">
+      <h2 data-reveal style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.02em; color: #fff; margin: 0;">Start your free 14-day trial.</h2>
+      <p data-reveal data-reveal-delay="0.08" style="font-size: 16px; line-height: 1.65; color: var(--slate-300); margin: 16px auto 0; max-width: 44ch;">Full Premium access, as many users as you need, and nothing you build is lost when you become a customer.</p>
+      <div data-reveal data-reveal-delay="0.14" style="margin-top: 30px;">
+        <a href="/v2/contact" style="background: #7fd234; color: #16223a; font-size: 16px; font-weight: 800; padding: 16px 34px; border-radius: 999px; white-space: nowrap; box-shadow: 0 12px 30px rgba(127,210,52,.3); transition: transform 180ms ease; display: inline-block;" style-hover="background: #8ede40; color: #16223a; transform: translateY(-2px);">Get Started!</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter v2" hint-size="100%,300px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { faqOpen: -1 };
+  componentDidMount() {
+    this._poll = setInterval(() => {
+      if (window.gsap && window.ScrollTrigger) {
+        clearInterval(this._poll);
+        this._setup();
+      }
+    }, 80);
+  }
+  componentWillUnmount() {
+    clearInterval(this._poll);
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+  }
+  _setup() {
+    const g = window.gsap;
+    const _io = (el, cb) => {
+      if (!el) return;
+      let done = false;
+      const run = () => { if (done) return; done = true; cb(el); };
+      const o = new IntersectionObserver((ents) => {
+        ents.forEach(e => { if (e.isIntersecting) { o.unobserve(el); run(); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      o.observe(el);
+    };
+    const _finalize = () => {
+      const cp = { clearProps: 'opacity,transform,translate,rotate,scale,x,y' };
+      g.utils.toArray('[data-reveal]').forEach(el => g.set(el, cp));
+    };
+    const _stalled = () => g.utils.toArray('[data-reveal]').some(el => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return false;
+      return parseFloat(getComputedStyle(el).opacity) < 0.9;
+    });
+    setTimeout(() => { if (_stalled()) _finalize(); }, 1800);
+    setTimeout(() => { if (_stalled()) _finalize(); }, 3600);
+    g.utils.toArray('[data-reveal]').forEach(el => {
+      g.set(el, { y: 30, opacity: 0 });
+      _io(el, t => g.to(t, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: parseFloat(t.getAttribute('data-reveal-delay') || '0') }));
+    });
+  }
+  renderVals() {
+    const open = this.state.faqOpen;
+    const faqData = [
+      { q: 'Is there a free trial to test Flavor Studio?', a: 'Yes — a 14-day, totally free trial with access to 100% of Flavor Studio\u2019s functionality. No credit card required, add as many users as you need, and nothing you create is lost when you transition to a paid plan.' },
+      { q: 'How much does Flavor Studio cost?', a: 'Plans start at $100 per user per month billed annually ($110 month-to-month). The Premium plan with additional features is $150/$165. Teams with more than 30 users get a custom Enterprise solution.' },
+      { q: 'Do we have to pay for upgrades?', a: 'No. As a SaaS product, updates happen seamlessly behind the scenes — every user is always on the most current version with the latest tools, automatically.' },
+      { q: 'Are there any long-term contracts to sign?', a: 'Nope. You pay as you go, monthly or annually, for the services and users that you need.' },
+      { q: 'How do I cancel?', a: 'Account closure is handled personally, case by case — just drop us a line. To stop billing for a single user, mark them inactive on your administration screen and they won\u2019t be counted in the next payment.' },
+      { q: 'Do I need a credit card to sign up?', a: 'No. The trial needs only your name, email and a password. A card is requested only when the two weeks are over and you choose to continue.' },
+      { q: 'How does billing work?', a: 'Billing runs automatically, monthly or annually. On each anniversary, Flavor Studio counts active users and bills accordingly. First payment is by card; after that you can switch to ACH or a traditional invoice.' },
+      { q: 'Are there other hidden charges or supplemental modules?', a: 'No. The only additional charges would be for custom development you explicitly request for your organization alone.' },
+      { q: 'Do you offer academic discounts to universities?', a: 'Yes — Senspire has supported food science and culinology programs from day one. Reach out through the contact form and we\u2019ll make it happen.' }
+    ];
+    return {
+      faqs: faqData.map((f, i) => ({
+        q: f.q,
+        a: f.a,
+        rows: open === i ? '1fr' : '0fr',
+        rot: open === i ? '45deg' : '0deg',
+        toggle: () => this.setState({ faqOpen: open === i ? -1 : i })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

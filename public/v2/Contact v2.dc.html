@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/v2/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/fonts.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/colors.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/typography.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/spacing.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/base.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/styles.css">
+  <script src="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/_ds_bundle.js"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #ffffff; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue-500); text-decoration: none; }
+    a:hover { color: var(--blue-700); }
+    @keyframes fsHeroPan { 0%, 100% { background-position: 50% 0%; } 50% { background-position: 50% 100%; } }
+    @keyframes fsOrbA { 0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: .85; } 33% { transform: translate3d(9%,-6%,0) scale(1.14); opacity: 1; } 66% { transform: translate3d(-5%,7%,0) scale(.94); opacity: .7; } }
+    @keyframes fsOrbB { 0%, 100% { transform: translate3d(0,0,0) scale(1.04); opacity: .7; } 40% { transform: translate3d(-8%,8%,0) scale(.9); opacity: 1; } 70% { transform: translate3d(4%,-5%,0) scale(1.16); opacity: .8; } }
+    @keyframes fsHeroSheen { 0% { transform: translateX(-40%) rotate(8deg); opacity: 0; } 45% { opacity: .5; } 100% { transform: translateX(60%) rotate(8deg); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</helmet>
+
+<div style="font-family: var(--font-sans); color: var(--text-body); background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); overflow-x: clip; min-height: 100vh; display: flex; flex-direction: column;">
+  <dc-import name="SiteNav v2" hint-size="100%,60px"></dc-import>
+
+  <!-- Page hero -->
+  <section data-screen-label="Contact hero" style="position: relative; background: linear-gradient(180deg, #253349 0%, #2b3d59 30%, #27374f 55%, #223047 78%, #1e2a3e 100%); background-size: 100% 220%; background-position: 50% 0%; animation: fsHeroPan 20s ease-in-out infinite; will-change: background-position; overflow: clip; padding: clamp(48px, 6vw, 80px) 24px;">
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;"></div>
+    <div style="position: absolute; top: 34%; left: -14%; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(96,152,220,.22) 0%, rgba(96,152,220,0) 62%); filter: blur(10px); pointer-events: none; animation: fsOrbA 17s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; top: -4%; right: -16%; width: 820px; height: 820px; border-radius: 50%; background: radial-gradient(circle, rgba(98,168,86,.2) 0%, rgba(74,132,90,.08) 44%, rgba(98,168,86,0) 66%); filter: blur(12px); pointer-events: none; animation: fsOrbB 23s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 32%, rgba(255,255,255,.05) 0%, rgba(0,0,0,0) 46%, rgba(11,18,32,.42) 100%); pointer-events: none;"></div>
+    <div style="position: relative;">
+    <div style="max-width: 1180px; margin: 0 auto; text-align: center;">
+      <div data-reveal style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: var(--lime-400); text-transform: uppercase;">Contact</div>
+      <h1 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(34px, 4.2vw, 54px); line-height: 1.08; letter-spacing: -0.02em; color: #ffffff; margin: 14px auto 0; max-width: 20ch;">Contact Us</h1>
+      <p data-reveal data-reveal-delay="0.12" style="font-size: clamp(16px, 1.5vw, 18px); line-height: 1.65; color: #aebdd0; margin: 18px auto 0; max-width: 50ch;">Need additional information? Complete the following form and we will contact you regarding your request.</p>
+    </div>
+    </div>
+  </section>
+
+  <!-- Form + info -->
+  <section data-screen-label="Demo form" style="padding: clamp(48px, 6vw, 80px) 24px; flex: 1;">
+    <div style="max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: clamp(28px, 4vw, 56px); align-items: start;">
+
+      <div data-reveal style="background: #fff; border: 1px solid var(--gray-300); border-radius: 20px; box-shadow: 0 14px 40px rgba(43,59,83,.08); padding: clamp(24px, 3vw, 36px);">
+        <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 20px; color: var(--slate-800);">Request a demo</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 14px;">
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: var(--slate-700);">Full name
+                <input value="{{ name }}" onChange="{{ onName }}" placeholder="Dana Whitfield" style="font-family: var(--font-sans); font-size: 14px; color: var(--slate-800); background: #fff; border: 1px solid var(--gray-300); border-radius: 6px; padding: 10px 12px; outline: none;" style-focus="border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(89,163,235,.35);">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: var(--slate-700);">Work email
+                <input value="{{ email }}" onChange="{{ onEmail }}" placeholder="dana@company.com" type="email" style="font-family: var(--font-sans); font-size: 14px; color: var(--slate-800); background: #fff; border: 1px solid var(--gray-300); border-radius: 6px; padding: 10px 12px; outline: none;" style-focus="border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(89,163,235,.35);">
+              </label>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 14px;">
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: var(--slate-700);">Company
+                <input value="{{ company }}" onChange="{{ onCompany }}" placeholder="Northbake Co." style="font-family: var(--font-sans); font-size: 14px; color: var(--slate-800); background: #fff; border: 1px solid var(--gray-300); border-radius: 6px; padding: 10px 12px; outline: none;" style-focus="border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(89,163,235,.35);">
+              </label>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: var(--slate-700);">Category
+                <select value="{{ category }}" onChange="{{ onCategory }}" style="font-family: var(--font-sans); font-size: 14px; color: var(--slate-800); background: #fff; border: 1px solid var(--gray-300); border-radius: 6px; padding: 10px 12px; outline: none; appearance: auto;" style-focus="border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(89,163,235,.35);">
+                  <option value="">Select one</option>
+                  <option value="bakery">Bakery &amp; snacks</option>
+                  <option value="beverage">Beverage</option>
+                  <option value="dairy">Dairy</option>
+                  <option value="supplements">Supplements</option>
+                  <option value="comanufacturing">Co-manufacturing</option>
+                  <option value="other">Other</option>
+                </select>
+              </label>
+            </div>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: var(--slate-700);">What are you working on?
+              <textarea value="{{ message }}" onChange="{{ onMessage }}" rows="4" placeholder="e.g. Reformulating a granola bar line for reduced sugar, exporting to Canada next year…" style="font-family: var(--font-sans); font-size: 14px; line-height: 1.5; color: var(--slate-800); background: #fff; border: 1px solid var(--gray-300); border-radius: 6px; padding: 10px 12px; outline: none; resize: vertical;" style-focus="border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(89,163,235,.35);"></textarea>
+            </label>
+            <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+              <div style="background: var(--red-100); color: var(--red-500); border-radius: 8px; padding: 10px 14px; font-size: 13px; font-weight: 600;">{{ error }}</div>
+            </sc-if>
+            <button onClick="{{ submit }}" style="all: unset; box-sizing: border-box; text-align: center; background: var(--blue-500); color: #fff; border-radius: 14px; padding: 13px 0; font-family: var(--font-sans); font-weight: 700; font-size: 15px; cursor: pointer; box-shadow: 0 8px 20px rgba(89,163,235,.35); transition: background 180ms ease;" style-hover="background: var(--blue-600);">Request a demo</button>
+            <div style="font-size: 12.5px; color: var(--slate-400); text-align: center;">We reply within one business day. No credit card, no spam.</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding: 28px 8px;">
+            <span style="width: 56px; height: 56px; border-radius: 50%; background: var(--teal-100); display: flex; align-items: center; justify-content: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="font-size: 28px; color: var(--teal-500);"></span></span>
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--slate-800);">Request received.</div>
+            <p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: var(--slate-500); max-width: 38ch;">Thanks{{ sentName }} — we'll reach out within one business day to schedule your demo. Bring a recipe.</p>
+            <button onClick="{{ reset }}" style="all: unset; color: var(--blue-600); font-family: var(--font-sans); font-weight: 700; font-size: 14px; cursor: pointer;">Send another request</button>
+          </div>
+        </sc-if>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div data-reveal style="background: #fff; border: 1px solid var(--gray-300); border-radius: 20px; padding: 24px 26px;">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--slate-400); margin-bottom: 14px;">What to expect</div>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; gap: 12px; align-items: flex-start;"><span style="flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--blue-200); color: var(--blue-700); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center;">1</span><div style="font-size: 14px; line-height: 1.55; color: var(--slate-700);"><strong style="font-weight: 700; color: var(--slate-800);">Intro call</strong> — 15 minutes on your category, team and current tools.</div></div>
+            <div style="display: flex; gap: 12px; align-items: flex-start;"><span style="flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--blue-200); color: var(--blue-700); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center;">2</span><div style="font-size: 14px; line-height: 1.55; color: var(--slate-700);"><strong style="font-weight: 700; color: var(--slate-800);">Live demo</strong> — we formulate one of your recipes, label and all, in 30 minutes.</div></div>
+            <div style="display: flex; gap: 12px; align-items: flex-start;"><span style="flex: none; width: 24px; height: 24px; border-radius: 50%; background: var(--blue-200); color: var(--blue-700); font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center;">3</span><div style="font-size: 14px; line-height: 1.55; color: var(--slate-700);"><strong style="font-weight: 700; color: var(--slate-800);">Guided pilot</strong> — 30 days on your own data, onboarding included.</div></div>
+          </div>
+        </div>
+        <div data-reveal data-reveal-delay="0.08" style="background: #fff; border: 1px solid var(--gray-300); border-radius: 20px; padding: 24px 26px;">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--slate-400); margin-bottom: 14px;">Reach us directly</div>
+          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 14px; color: var(--slate-700);">
+            <a href="mailto:info@senspirellc.com" style="display: flex; align-items: center; gap: 10px; color: var(--slate-700);" style-hover="color: var(--blue-600);"><span class="iconify" data-icon="icon-park-outline:mail" style="font-size: 17px; color: var(--blue-500);"></span>Info — info@senspirellc.com</a>
+            <a href="mailto:support@senspirellc.com" style="display: flex; align-items: center; gap: 10px; color: var(--slate-700);" style-hover="color: var(--blue-600);"><span class="iconify" data-icon="icon-park-outline:headset-one" style="font-size: 17px; color: var(--blue-500);"></span>Technical Support — support@senspirellc.com</a>
+            <a href="tel:+16502514429" style="display: flex; align-items: center; gap: 10px; color: var(--slate-700);" style-hover="color: var(--blue-600);"><span class="iconify" data-icon="icon-park-outline:phone-telephone" style="font-size: 17px; color: var(--blue-500);"></span>(650) 251-4429</a>
+            <div style="display: flex; align-items: flex-start; gap: 10px;"><span class="iconify" data-icon="icon-park-outline:local-two" style="font-size: 17px; color: var(--blue-500); margin-top: 2px;"></span><span style="line-height: 1.5;">Senspire Co, 1547 Palos Verdes Suite 221<br>Walnut Creek, CA 94597</span></div>
+            <a href="https://www.linkedin.com/company/senspire" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 10px; color: var(--slate-700);" style-hover="color: var(--blue-600);"><span class="iconify" data-icon="icon-park-outline:linkedin" style="font-size: 17px; color: var(--blue-500);"></span>linkedin.com/company/senspire</a>
+          </div>
+        </div>
+        <div data-reveal data-reveal-delay="0.16" style="background: linear-gradient(135deg, var(--slate-900), var(--slate-800)); border-radius: 20px; padding: 22px 26px; display: flex; align-items: center; gap: 14px;">
+          <span style="flex: none; width: 38px; height: 38px; border-radius: 14px; background: linear-gradient(135deg, var(--blue-500), var(--teal-500)); display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" fill="#ffffff"></path></svg></span>
+          <div style="font-size: 13.5px; line-height: 1.55; color: var(--slate-300);">At IFT this year? See the <strong style="color: #fff; font-weight: 700;">AI Agent</strong> live at <strong style="color: #fff; font-weight: 700;">booth #315</strong>.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter v2" hint-size="100%,300px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { name: '', email: '', company: '', category: '', message: '', sent: false, error: '' };
+  componentDidMount() {
+    this._poll = setInterval(() => {
+      if (window.gsap && window.ScrollTrigger) {
+        clearInterval(this._poll);
+        this._setup();
+      }
+    }, 80);
+  }
+  componentWillUnmount() {
+    clearInterval(this._poll);
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+  }
+  _setup() {
+    const g = window.gsap;
+    const _io = (el, cb) => {
+      if (!el) return;
+      let done = false;
+      const run = () => { if (done) return; done = true; cb(el); };
+      const o = new IntersectionObserver((ents) => {
+        ents.forEach(e => { if (e.isIntersecting) { o.unobserve(el); run(); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      o.observe(el);
+    };
+    // Failsafe: if animation frames never run (non-composited/hidden render),
+    // apply the final resting state synchronously so nothing stays hidden.
+    const _finalize = () => {
+      const cp = { clearProps: 'opacity,transform,translate,rotate,scale,x,y' };
+      g.utils.toArray('[data-reveal]').forEach(el => g.set(el, cp));
+      g.utils.toArray('[data-bar]').forEach(el => g.set(el, { scaleX: 1 }));
+      ['[data-srow]','[data-kcard]','[data-icard]','[data-crow]','[data-trow]','[data-lrow]','[data-smsg]'].forEach(sel =>
+        g.utils.toArray(sel).forEach(el => g.set(el, cp)));
+      g.utils.toArray('[data-count]').forEach(el => {
+        const end = parseFloat(el.getAttribute('data-count'));
+        const dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        const suf = el.getAttribute('data-suffix') || '';
+        const pre = el.getAttribute('data-prefix') || '';
+        el.textContent = pre + end.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+      });
+    };
+    let _rafOk = false;
+    requestAnimationFrame(() => { _rafOk = true; });
+    setTimeout(() => { if (!_rafOk) _finalize(); }, 450);
+    setTimeout(() => { if (!_rafOk) _finalize(); }, 2600);
+    g.utils.toArray('[data-reveal]').forEach(el => {
+      g.set(el, { y: 30, opacity: 0 });
+      _io(el, t => g.to(t, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: parseFloat(t.getAttribute('data-reveal-delay') || '0') }));
+    });
+  }
+  renderVals() {
+    const s = this.state;
+    return {
+      name: s.name,
+      email: s.email,
+      company: s.company,
+      category: s.category,
+      message: s.message,
+      sent: s.sent,
+      notSent: !s.sent,
+      hasError: !!s.error,
+      error: s.error,
+      sentName: s.name ? ', ' + s.name.split(' ')[0] : '',
+      onName: e => this.setState({ name: e.target.value }),
+      onEmail: e => this.setState({ email: e.target.value }),
+      onCompany: e => this.setState({ company: e.target.value }),
+      onCategory: e => this.setState({ category: e.target.value }),
+      onMessage: e => this.setState({ message: e.target.value }),
+      submit: () => {
+        if (!s.name.trim() || !s.email.trim()) {
+          this.setState({ error: 'Please add your name and work email.' });
+          return;
+        }
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s.email.trim())) {
+          this.setState({ error: 'That email doesn\'t look right — mind checking it?' });
+          return;
+        }
+        this.setState({ sent: true, error: '' });
+      },
+      reset: () => this.setState({ sent: false, name: '', email: '', company: '', category: '', message: '', error: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

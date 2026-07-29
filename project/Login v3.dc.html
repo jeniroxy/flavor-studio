@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/fonts.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/colors.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/typography.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/spacing.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/base.css">
+  <link rel="stylesheet" href="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/styles.css">
+  <script src="_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/_ds_bundle.js"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #eeeff4; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue-500); text-decoration: none; }
+    a:hover { color: var(--blue-700); }
+    @keyframes fsHeroPan { 0%, 100% { background-position: 50% 0%; } 50% { background-position: 50% 100%; } }
+    @keyframes fsOrbA { 0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: .85; } 33% { transform: translate3d(9%,-6%,0) scale(1.14); opacity: 1; } 66% { transform: translate3d(-5%,7%,0) scale(.94); opacity: .7; } }
+    @keyframes fsPulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.25); opacity: .7; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</helmet>
+
+<div style="font-family: var(--font-sans); color: var(--text-body); background: #eeeff4; min-height: 100vh; display: flex; flex-direction: column;">
+  <dc-import name="SiteNav v3" hint-size="100%,64px" style="position: sticky; top: 0; z-index: 90;"></dc-import>
+
+  <div style="display: flex; flex-direction: column; gap: clamp(16px, 2.2vw, 34px); padding: 0 clamp(16px, 2.2vw, 34px) clamp(16px, 2.2vw, 34px); flex: 1;">
+
+    <section data-screen-label="Login" style="position: relative; background: linear-gradient(180deg, #253349 0%, #2b3d59 30%, #27374f 55%, #223047 78%, #1e2a3e 100%); background-size: 100% 220%; background-position: 50% 0%; animation: fsHeroPan 20s ease-in-out infinite; will-change: background-position; overflow: clip; padding: clamp(48px, 6vw, 84px) clamp(28px, 3.6vw, 64px); border-radius: clamp(20px, 2vw, 30px); flex: 1; display: flex; align-items: center;">
+      <div aria-hidden="true" style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;"></div>
+      <div aria-hidden="true" style="position: absolute; top: 30%; left: -14%; width: 720px; height: 720px; border-radius: 50%; background: radial-gradient(circle, rgba(96,152,220,.22) 0%, rgba(96,152,220,0) 62%); filter: blur(10px); pointer-events: none; animation: fsOrbA 17s ease-in-out infinite; will-change: transform, opacity;"></div>
+
+      <div style="position: relative; width: 100%; max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: clamp(28px, 3.4vw, 56px); align-items: center;">
+
+        <div style="min-width: 0;">
+          <div data-reveal style="display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; padding: 6px 14px; font-size: 11.5px; font-weight: 800; letter-spacing: .14em; color: #ffffff; text-transform: uppercase;">Customer login</div>
+          <h1 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(32px, 4.2vw, 52px); line-height: 1.08; letter-spacing: -0.025em; color: #ffffff; margin: 18px 0 0; max-width: 18ch;">Welcome back to your workspace.</h1>
+          <p data-reveal data-reveal-delay="0.12" style="font-size: clamp(15px, 1.4vw, 17px); line-height: 1.65; color: #aebdd0; margin: 16px 0 0; max-width: 46ch;">Sign in to pick up your formulas, taste tests and labels exactly where you left them.</p>
+
+          <div data-reveal data-reveal-delay="0.18" style="display: flex; flex-direction: column; gap: 11px; margin-top: 26px;">
+            <div style="display: flex; gap: 10px; align-items: center; font-size: 14px; color: var(--slate-300);"><span class="iconify" data-icon="icon-park-outline:lock" style="font-size: 17px; color: var(--lime-400); flex: none;"></span>SOC 2 Type II, encrypted in transit and at rest</div>
+            <div style="display: flex; gap: 10px; align-items: center; font-size: 14px; color: var(--slate-300);"><span class="iconify" data-icon="icon-park-outline:key-one" style="font-size: 17px; color: var(--lime-400); flex: none;"></span>SSO available on Enterprise plans</div>
+          </div>
+        </div>
+
+        <div data-reveal data-reveal-delay="0.16" style="min-width: 0;">
+          <div style="background: #ffffff; border-radius: clamp(18px, 1.8vw, 24px); box-shadow: 0 28px 70px rgba(0,0,0,.34); padding: clamp(26px, 3vw, 38px);">
+            <sc-if value="{{ notSignedIn }}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div>
+                  <div style="font-family: var(--font-display); font-weight: 800; font-size: 21px; color: var(--slate-800);">Sign in</div>
+                  <div style="font-size: 13.5px; color: var(--slate-400); margin-top: 5px;">Use the email your workspace was created with.</div>
+                </div>
+
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700; color: var(--slate-700);">Work email
+                  <input value="{{ email }}" onChange="{{ onEmail }}" type="email" placeholder="dana@company.com" style="font-family: var(--font-sans); font-size: 14.5px; color: var(--slate-800); background: #fff; border: 1px solid var(--gray-300); border-radius: 10px; padding: 12px 14px; outline: none;" style-focus="border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(89,163,235,.28);">
+                </label>
+
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700; color: var(--slate-700);">Password
+                  <input value="{{ password }}" onChange="{{ onPassword }}" type="password" placeholder="••••••••" style="font-family: var(--font-sans); font-size: 14.5px; color: var(--slate-800); background: #fff; border: 1px solid var(--gray-300); border-radius: 10px; padding: 12px 14px; outline: none;" style-focus="border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(89,163,235,.28);">
+                </label>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+                  <label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--slate-600, var(--slate-700)); cursor: pointer;">
+                    <input type="checkbox" checked="{{ remember }}" onChange="{{ onRemember }}" style="width: 15px; height: 15px; accent-color: var(--blue-500);">
+                    Keep me signed in
+                  </label>
+                  <a href="#reset" style="font-size: 13px; font-weight: 700; color: var(--blue-600);">Forgot password?</a>
+                </div>
+
+                <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+                  <div style="background: #fdecec; color: #c0393d; border-radius: 10px; padding: 10px 14px; font-size: 13px; font-weight: 600;">{{ error }}</div>
+                </sc-if>
+
+                <button onClick="{{ submit }}" style="all: unset; box-sizing: border-box; text-align: center; background: var(--blue-500); color: #fff; border-radius: 999px; padding: 14px 0; font-family: var(--font-sans); font-weight: 800; font-size: 15px; cursor: pointer; box-shadow: 0 10px 24px rgba(89,163,235,.34); transition: background 180ms ease;" style-hover="background: var(--blue-600);">Sign in</button>
+
+                <div style="display: flex; align-items: center; gap: 12px; color: var(--slate-300); font-size: 11.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;">
+                  <span style="flex: 1; height: 1px; background: var(--gray-300);"></span>or<span style="flex: 1; height: 1px; background: var(--gray-300);"></span>
+                </div>
+
+                <button onClick="{{ sso }}" style="all: unset; box-sizing: border-box; display: flex; align-items: center; justify-content: center; gap: 9px; text-align: center; background: #fff; border: 1px solid var(--gray-300); color: var(--slate-800); border-radius: 999px; padding: 13px 0; font-family: var(--font-sans); font-weight: 700; font-size: 14.5px; cursor: pointer; transition: background 180ms ease;" style-hover="background: var(--gray-050);">
+                  <span class="iconify" data-icon="icon-park-outline:key-one" style="font-size: 17px; color: var(--slate-500);"></span>Continue with SSO
+                </button>
+
+                <div style="font-size: 13px; color: var(--slate-400); text-align: center;">No workspace yet? <a href="Contact v3.dc.html" style="font-weight: 700; color: var(--blue-600);">Request a demo</a></div>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ signedIn }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; align-items: center; gap: 13px; text-align: center; padding: 26px 6px;">
+                <span style="width: 54px; height: 54px; border-radius: 50%; background: var(--teal-100); display: flex; align-items: center; justify-content: center;"><span class="iconify" data-icon="icon-park-outline:check-one" style="font-size: 27px; color: var(--teal-500);"></span></span>
+                <div style="font-family: var(--font-display); font-weight: 800; font-size: 21px; color: var(--slate-800);">Signing you in…</div>
+                <p style="margin: 0; font-size: 14px; line-height: 1.6; color: var(--slate-500); max-width: 34ch;">This is a design prototype, so there's no live workspace behind it yet.</p>
+                <button onClick="{{ reset }}" style="all: unset; color: var(--blue-600); font-family: var(--font-sans); font-weight: 700; font-size: 14px; cursor: pointer;">Back to sign in</button>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </div>
+
+  <dc-import name="SiteFooter v3" hint-size="100%,300px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { email: '', password: '', remember: true, signedIn: false, error: '' };
+
+  componentDidMount() {
+    this._alive = true;
+    this._poll = setInterval(() => {
+      if (window.gsap) { clearInterval(this._poll); this._setup(); }
+    }, 80);
+  }
+
+  componentWillUnmount() {
+    this._alive = false;
+    clearInterval(this._poll);
+    clearInterval(this._revealTimer);
+    if (this._revealSweep) {
+      window.removeEventListener('scroll', this._revealSweep);
+      window.removeEventListener('resize', this._revealSweep);
+    }
+  }
+
+  _setup() {
+    const g = window.gsap;
+    let frames = 0;
+    if (g.ticker && g.ticker.add) g.ticker.add(() => { frames++; });
+
+    const queue = [];
+    const sweep = () => {
+      const vh = window.innerHeight || 800;
+      queue.forEach(item => {
+        if (item.done) return;
+        const r = item.el.getBoundingClientRect();
+        if (r.top < vh * 0.94 && r.bottom > 0) {
+          item.done = true;
+          item.at = Date.now();
+          g.to(item.el, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: item.delay });
+        }
+      });
+    };
+    const heal = () => {
+      const now = Date.now();
+      queue.forEach(item => {
+        if (!item.done || item.healed) return;
+        if (now - item.at < 1500) return;
+        if (frames < 2 || parseFloat(getComputedStyle(item.el).opacity) < 0.9) {
+          item.healed = true;
+          g.set(item.el, { clearProps: 'opacity,transform,translate,x,y' });
+        }
+      });
+    };
+
+    g.utils.toArray('[data-reveal]').forEach(el => {
+      g.set(el, { y: 26, opacity: 0 });
+      queue.push({ el: el, delay: parseFloat(el.getAttribute('data-reveal-delay') || '0'), done: false, healed: false, at: 0 });
+    });
+
+    this._revealSweep = sweep;
+    window.addEventListener('scroll', sweep, { passive: true });
+    window.addEventListener('resize', sweep, { passive: true });
+    this._revealTimer = setInterval(() => {
+      if (!this._alive) { clearInterval(this._revealTimer); return; }
+      sweep();
+      heal();
+    }, 400);
+    sweep();
+  }
+
+  renderVals() {
+    const s = this.state;
+    return {
+      email: s.email,
+      password: s.password,
+      remember: s.remember,
+      signedIn: s.signedIn,
+      notSignedIn: !s.signedIn,
+      hasError: !!s.error,
+      error: s.error,
+      onEmail: e => this.setState({ email: e.target.value }),
+      onPassword: e => this.setState({ password: e.target.value }),
+      onRemember: e => this.setState({ remember: e.target.checked }),
+      submit: () => {
+        if (!s.email.trim() || !s.password) {
+          this.setState({ error: 'Enter your work email and password.' });
+          return;
+        }
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s.email.trim())) {
+          this.setState({ error: 'That email doesn\'t look right — mind checking it?' });
+          return;
+        }
+        this.setState({ signedIn: true, error: '' });
+      },
+      sso: () => this.setState({ signedIn: true, error: '' }),
+      reset: () => this.setState({ signedIn: false, email: '', password: '', error: '' })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+/* ============================================================
+   Flavor Studio — Typography tokens
+   Primary face: Mulish (≈ Avenir Next). Display companion: Manrope.
+   The product UI is compact and data-dense: 13–14px body, medium
+   weight for most labels, demi-bold for emphasis.
+   ============================================================ */
+
+:root {
+  /* ---- Families ---- */
+  --font-sans: 'Mulish', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Manrope', 'Mulish', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Menlo', 'Consolas', monospace;
+
+  /* ---- Weights (mapped from Avenir Next usage) ---- */
+  --weight-regular: 400;  /* Regular */
+  --weight-medium: 500;   /* Medium — the workhorse weight */
+  --weight-semibold: 600; /* Demi Bold — emphasis, headings */
+  --weight-bold: 700;     /* Bold */
+  --weight-extrabold: 800;/* Display / wordmark */
+
+  /* ---- Type scale (px → rem at 16px base) ---- */
+  --text-2xs: 0.6875rem;  /* 11px — micro labels */
+  --text-xs: 0.75rem;     /* 12px — captions, table meta */
+  --text-sm: 0.8125rem;   /* 13px — dense body, inputs */
+  --text-base: 0.875rem;  /* 14px — default body / nav */
+  --text-md: 1rem;        /* 16px — emphasized body */
+  --text-lg: 1.125rem;    /* 18px — sub-headings */
+  --text-xl: 1.25rem;     /* 20px — panel titles */
+  --text-2xl: 1.5rem;     /* 24px — section headings */
+  --text-3xl: 2rem;       /* 32px — page titles */
+  --text-4xl: 2.75rem;    /* 44px — hero */
+  --text-display: 4.5rem; /* 72px — marketing / cover */
+
+  /* ---- Line heights ---- */
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.45;
+  --leading-relaxed: 1.6;
+
+  /* ---- Letter spacing ---- */
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.04em;    /* nav items, eyebrows */
+  --tracking-wider: 0.08em;   /* ALL-CAPS table headers */
+
+  /* ---- Semantic text roles ---- */
+  --font-page-title: var(--weight-medium) var(--text-3xl)/var(--leading-tight) var(--font-sans);
+  --font-section-title: var(--weight-semibold) var(--text-xl)/var(--leading-snug) var(--font-sans);
+  --font-body: var(--weight-regular) var(--text-base)/var(--leading-normal) var(--font-sans);
+  --font-body-medium: var(--weight-medium) var(--text-base)/var(--leading-normal) var(--font-sans);
+  --font-label: var(--weight-medium) var(--text-sm)/var(--leading-snug) var(--font-sans);
+  --font-caption: var(--weight-regular) var(--text-xs)/var(--leading-normal) var(--font-sans);
+  --font-eyebrow: var(--weight-semibold) var(--text-xs)/1 var(--font-sans);
+}

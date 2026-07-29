@@ -1,0 +1,56 @@
+/* ============================================================
+   Flavor Studio — Base / reset layer
+   Sensible defaults so specimens & components inherit the brand
+   without each file re-declaring fonts and colors.
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+  background: var(--surface-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  color: var(--text-strong);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+}
+
+p { margin: 0; }
+
+a {
+  color: var(--text-link);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img { display: block; max-width: 100%; }
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}

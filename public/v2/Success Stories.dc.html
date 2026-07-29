@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/v2/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/fonts.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/colors.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/typography.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/spacing.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/base.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/styles.css">
+  <script src="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/_ds_bundle.js"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #ffffff; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue-500); text-decoration: none; }
+    a:hover { color: var(--blue-700); }
+    @keyframes fsHeroPan { 0%, 100% { background-position: 50% 0%; } 50% { background-position: 50% 100%; } }
+    @keyframes fsOrbA { 0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: .85; } 33% { transform: translate3d(9%,-6%,0) scale(1.14); opacity: 1; } 66% { transform: translate3d(-5%,7%,0) scale(.94); opacity: .7; } }
+    @keyframes fsOrbB { 0%, 100% { transform: translate3d(0,0,0) scale(1.04); opacity: .7; } 40% { transform: translate3d(-8%,8%,0) scale(.9); opacity: 1; } 70% { transform: translate3d(4%,-5%,0) scale(1.16); opacity: .8; } }
+    @keyframes fsHeroSheen { 0% { transform: translateX(-40%) rotate(8deg); opacity: 0; } 45% { opacity: .5; } 100% { transform: translateX(60%) rotate(8deg); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</helmet>
+
+<div style="font-family: var(--font-sans); color: var(--text-body); background: #fff; overflow-x: clip; min-height: 100vh;">
+  <dc-import name="SiteNav" active="stories" hint-size="100%,60px"></dc-import>
+
+  <!-- Page hero -->
+  <section data-screen-label="Stories hero" style="position: relative; background: linear-gradient(180deg, #253349 0%, #2b3d59 30%, #27374f 55%, #223047 78%, #1e2a3e 100%); background-size: 100% 220%; background-position: 50% 0%; animation: fsHeroPan 20s ease-in-out infinite; will-change: background-position; overflow: clip; padding: clamp(56px, 7vw, 96px) 24px;">
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;"></div>
+    <div style="position: absolute; top: 34%; left: -14%; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(96,152,220,.22) 0%, rgba(96,152,220,0) 62%); filter: blur(10px); pointer-events: none; animation: fsOrbA 17s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; top: -4%; right: -16%; width: 820px; height: 820px; border-radius: 50%; background: radial-gradient(circle, rgba(98,168,86,.2) 0%, rgba(74,132,90,.08) 44%, rgba(98,168,86,0) 66%); filter: blur(12px); pointer-events: none; animation: fsOrbB 23s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 32%, rgba(255,255,255,.05) 0%, rgba(0,0,0,0) 46%, rgba(11,18,32,.42) 100%); pointer-events: none;"></div>
+    <div style="position: relative;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div data-reveal style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: var(--lime-400); text-transform: uppercase;">Success stories</div>
+      <h1 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.08; letter-spacing: -0.02em; color: #ffffff; margin: 14px 0 0; max-width: 18ch;">From bench to shelf, measurably faster.</h1>
+      <p data-reveal data-reveal-delay="0.12" style="font-size: clamp(16px, 1.5vw, 18px); line-height: 1.65; color: #aebdd0; margin: 18px 0 0; max-width: 56ch;">Three teams, three categories, one pattern: fewer spreadsheets, faster iterations, cleaner launches.</p>
+    </div>
+    </div>
+  </section>
+
+  <!-- Story 1 -->
+  <section data-screen-label="Story Northbake" style="padding: clamp(64px, 8vw, 110px) 24px; background: #fff;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(36px, 5vw, 64px); align-items: center;">
+      <div data-reveal style="position: relative;">
+        <img src="/v2/assets/food-1.png" alt="Northbake cookie line" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; display: block; box-shadow: 0 20px 50px rgba(43,59,83,.16);">
+        <div style="position: absolute; left: 18px; bottom: 18px; background: rgba(43,59,83,.85); backdrop-filter: blur(6px); color: #fff; border-radius: 14px; padding: 10px 16px; font-family: var(--font-display); font-weight: 800; font-size: 15px;">NORTHBAKE CO.</div>
+      </div>
+      <div>
+        <div data-reveal style="font-size: 12px; font-weight: 700; letter-spacing: .14em; color: #5c8f1c; text-transform: uppercase;">Bakery · 40-person R&amp;D team</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3vw, 38px); line-height: 1.12; letter-spacing: -0.02em; color: var(--slate-800); margin: 12px 0 0;">Eleven spreadsheets retired in a month.</h2>
+        <p data-reveal data-reveal-delay="0.12" style="font-size: 15.5px; line-height: 1.65; color: var(--slate-500); margin: 16px 0 0; max-width: 52ch;">Northbake's cookie and bar lines lived across shared drives — one costing file per SKU, one nutrition file per market. Moving the library into Flavor Studio gave every version a live cost and a compliant label from day one.</p>
+        <div data-reveal data-reveal-delay="0.18" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin-top: 24px;">
+          <div style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 14px; padding: 14px 16px;"><div data-count="3.2" data-decimals="1" data-suffix="×" style="font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--slate-800); font-variant-numeric: tabular-nums;">0</div><div style="font-size: 12px; font-weight: 600; color: var(--slate-400); margin-top: 3px;">more iterations / week</div></div>
+          <div style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 14px; padding: 14px 16px;"><div data-count="11" style="font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--slate-800); font-variant-numeric: tabular-nums;">0</div><div style="font-size: 12px; font-weight: 600; color: var(--slate-400); margin-top: 3px;">spreadsheets retired</div></div>
+          <div style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 14px; padding: 14px 16px;"><div data-count="6" data-suffix=" wks" style="font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--teal-500); font-variant-numeric: tabular-nums;">0</div><div style="font-size: 12px; font-weight: 600; color: var(--slate-400); margin-top: 3px;">shaved off launch</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story 2 -->
+  <section data-screen-label="Story Pura" style="padding: clamp(64px, 8vw, 110px) 24px; background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%);">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(36px, 5vw, 64px); align-items: center;">
+      <div>
+        <div data-reveal style="font-size: 12px; font-weight: 700; letter-spacing: .14em; color: #5c8f1c; text-transform: uppercase;">Beverage · regulatory-heavy</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3vw, 38px); line-height: 1.12; letter-spacing: -0.02em; color: var(--slate-800); margin: 12px 0 0;">Claim checks went from a week to ten seconds.</h2>
+        <p data-reveal data-reveal-delay="0.12" style="font-size: 15.5px; line-height: 1.65; color: var(--slate-500); margin: 16px 0 0; max-width: 52ch;">Pura's functional sodas carry nutrient content claims on every can. The AI Agent validates each claim against the CFR as the formula changes — their regulatory consultant now reviews citations instead of hunting them.</p>
+        <div data-reveal data-reveal-delay="0.18" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin-top: 24px;">
+          <div style="background: #fff; border: 1px solid var(--gray-300); border-radius: 14px; padding: 14px 16px;"><div data-count="98" data-suffix="%" style="font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--slate-800); font-variant-numeric: tabular-nums;">0</div><div style="font-size: 12px; font-weight: 600; color: var(--slate-400); margin-top: 3px;">less time on claim review</div></div>
+          <div style="background: #fff; border: 1px solid var(--gray-300); border-radius: 14px; padding: 14px 16px;"><div data-count="14" style="font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--slate-800); font-variant-numeric: tabular-nums;">0</div><div style="font-size: 12px; font-weight: 600; color: var(--slate-400); margin-top: 3px;">SKUs relabeled in one sprint</div></div>
+          <div style="background: #fff; border: 1px solid var(--gray-300); border-radius: 14px; padding: 14px 16px;"><div data-count="0" style="font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--teal-500); font-variant-numeric: tabular-nums;">0</div><div style="font-size: 12px; font-weight: 600; color: var(--slate-400); margin-top: 3px;">compliance findings since</div></div>
+        </div>
+      </div>
+      <div data-reveal style="position: relative;">
+        <img src="/v2/assets/food-2.png" alt="Pura Beverage botanicals" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; display: block; box-shadow: 0 20px 50px rgba(43,59,83,.16);">
+        <div style="position: absolute; left: 18px; bottom: 18px; background: rgba(43,59,83,.85); backdrop-filter: blur(6px); color: #fff; border-radius: 14px; padding: 10px 16px; font-family: var(--font-display); font-weight: 800; font-size: 15px;">PURA BEVERAGE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story 3 -->
+  <section data-screen-label="Story Cascade" style="padding: clamp(64px, 8vw, 110px) 24px; background: #fff;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(36px, 5vw, 64px); align-items: center;">
+      <div data-reveal style="position: relative;">
+        <img src="/v2/assets/food-3.png" alt="Cascade Creamery products" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 20px; display: block; box-shadow: 0 20px 50px rgba(43,59,83,.16);">
+        <div style="position: absolute; left: 18px; bottom: 18px; background: rgba(43,59,83,.85); backdrop-filter: blur(6px); color: #fff; border-radius: 14px; padding: 10px 16px; font-family: var(--font-display); font-weight: 800; font-size: 15px;">CASCADE CREAMERY</div>
+      </div>
+      <div>
+        <div data-reveal style="font-size: 12px; font-weight: 700; letter-spacing: .14em; color: #5c8f1c; text-transform: uppercase;">Dairy · exporting to Canada</div>
+        <h2 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3vw, 38px); line-height: 1.12; letter-spacing: -0.02em; color: var(--slate-800); margin: 12px 0 0;">Bilingual labels became a button, not a project.</h2>
+        <p data-reveal data-reveal-delay="0.12" style="font-size: 15.5px; line-height: 1.65; color: var(--slate-500); margin: 16px 0 0; max-width: 52ch;">A twelve-person creamery expanding into Canadian retail. CFIA bilingual panels used to be outsourced per SKU; now the label regenerates with the recipe, in both formats, print-ready.</p>
+        <div data-reveal data-reveal-delay="0.18" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 14px; margin-top: 24px;">
+          <div style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 14px; padding: 14px 16px;"><div data-count="9200" data-prefix="$" style="font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--slate-800); font-variant-numeric: tabular-nums;">$0</div><div style="font-size: 12px; font-weight: 600; color: var(--slate-400); margin-top: 3px;">saved / yr on label consultants</div></div>
+          <div style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 14px; padding: 14px 16px;"><div data-count="2" data-suffix=" wks → 1 day" style="font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--slate-800); font-variant-numeric: tabular-nums;">0</div><div style="font-size: 12px; font-weight: 600; color: var(--slate-400); margin-top: 3px;">label turnaround</div></div>
+          <div style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 14px; padding: 14px 16px;"><div data-count="18" style="font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--teal-500); font-variant-numeric: tabular-nums;">0</div><div style="font-size: 12px; font-weight: 600; color: var(--slate-400); margin-top: 3px;">SKUs now in Canada</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section data-screen-label="CTA" style="background: var(--slate-900); padding: clamp(64px, 9vw, 110px) 24px;">
+    <div style="max-width: 720px; margin: 0 auto; text-align: center;">
+      <h2 data-reveal style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 4vw, 48px); line-height: 1.08; letter-spacing: -0.02em; color: #fff; margin: 0;">Your category could be next.</h2>
+      <p data-reveal data-reveal-delay="0.08" style="font-size: 16px; line-height: 1.65; color: var(--slate-300); margin: 16px auto 0; max-width: 44ch;">Tell us what you're building — we'll show you how similar teams run it in Flavor Studio.</p>
+      <div data-reveal data-reveal-delay="0.14" style="margin-top: 30px;">
+        <a href="/v2/Contact.dc.html" style="background: #7fd234; color: #16223a; font-size: 16px; font-weight: 800; padding: 16px 34px; border-radius: 999px; white-space: nowrap; box-shadow: 0 12px 30px rgba(127,210,52,.3); transition: transform 180ms ease; display: inline-block;" style-hover="background: #8ede40; color: #16223a; transform: translateY(-2px);">Request a demo</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,300px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    this._poll = setInterval(() => {
+      if (window.gsap && window.ScrollTrigger) {
+        clearInterval(this._poll);
+        this._setup();
+      }
+    }, 80);
+  }
+  componentWillUnmount() {
+    clearInterval(this._poll);
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+  }
+  _setup() {
+    const g = window.gsap;
+    const _io = (el, cb) => {
+      if (!el) return;
+      let done = false;
+      const run = () => { if (done) return; done = true; cb(el); };
+      const o = new IntersectionObserver((ents) => {
+        ents.forEach(e => { if (e.isIntersecting) { o.unobserve(el); run(); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      o.observe(el);
+    };
+    // Failsafe: if animation frames never run (non-composited/hidden render),
+    // apply the final resting state synchronously so nothing stays hidden.
+    const _finalize = () => {
+      const cp = { clearProps: 'opacity,transform,translate,rotate,scale,x,y' };
+      g.utils.toArray('[data-reveal]').forEach(el => g.set(el, cp));
+      g.utils.toArray('[data-bar]').forEach(el => g.set(el, { scaleX: 1 }));
+      ['[data-srow]','[data-kcard]','[data-icard]','[data-crow]','[data-trow]','[data-lrow]','[data-smsg]'].forEach(sel =>
+        g.utils.toArray(sel).forEach(el => g.set(el, cp)));
+      g.utils.toArray('[data-count]').forEach(el => {
+        const end = parseFloat(el.getAttribute('data-count'));
+        const dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        const suf = el.getAttribute('data-suffix') || '';
+        const pre = el.getAttribute('data-prefix') || '';
+        el.textContent = pre + end.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+      });
+    };
+    let _rafOk = false;
+    requestAnimationFrame(() => { _rafOk = true; });
+    setTimeout(() => { if (!_rafOk) _finalize(); }, 450);
+    setTimeout(() => { if (!_rafOk) _finalize(); }, 2600);
+    g.utils.toArray('[data-reveal]').forEach(el => {
+      g.set(el, { y: 30, opacity: 0 });
+      _io(el, t => g.to(t, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: parseFloat(t.getAttribute('data-reveal-delay') || '0') }));
+    });
+    g.utils.toArray('[data-count]').forEach(el => {
+      const end = parseFloat(el.getAttribute('data-count'));
+      const dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      const suf = el.getAttribute('data-suffix') || '';
+      const pre = el.getAttribute('data-prefix') || '';
+      _io(el, () => {
+        const obj = { v: 0 };
+        g.to(obj, {
+          v: end, duration: 1.8, ease: 'power2.out',
+          onUpdate: () => {
+            el.textContent = pre + obj.v.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+          }
+        });
+      });
+    });
+  }
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

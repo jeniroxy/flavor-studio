@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="/v2/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/fonts.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/colors.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/typography.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/spacing.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/base.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/styles.css">
+  <script src="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/_ds_bundle.js"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #ffffff; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue-500); text-decoration: none; }
+    a:hover { color: var(--blue-700); }
+    @keyframes fsHeroPan { 0%, 100% { background-position: 50% 0%; } 50% { background-position: 50% 100%; } }
+    @keyframes fsOrbA { 0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: .85; } 33% { transform: translate3d(9%,-6%,0) scale(1.14); opacity: 1; } 66% { transform: translate3d(-5%,7%,0) scale(.94); opacity: .7; } }
+    @keyframes fsOrbB { 0%, 100% { transform: translate3d(0,0,0) scale(1.04); opacity: .7; } 40% { transform: translate3d(-8%,8%,0) scale(.9); opacity: 1; } 70% { transform: translate3d(4%,-5%,0) scale(1.16); opacity: .8; } }
+    @keyframes fsHeroSheen { 0% { transform: translateX(-40%) rotate(8deg); opacity: 0; } 45% { opacity: .5; } 100% { transform: translateX(60%) rotate(8deg); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</helmet>
+
+<div style="font-family: var(--font-sans); color: var(--text-body); background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); overflow-x: clip; min-height: 100vh; display: flex; flex-direction: column;">
+  <dc-import name="SiteNav" active="faq" hint-size="100%,60px"></dc-import>
+
+  <!-- Page hero -->
+  <section data-screen-label="FAQ hero" style="position: relative; background: linear-gradient(180deg, #253349 0%, #2b3d59 30%, #27374f 55%, #223047 78%, #1e2a3e 100%); background-size: 100% 220%; background-position: 50% 0%; animation: fsHeroPan 20s ease-in-out infinite; will-change: background-position; overflow: clip; padding: clamp(48px, 6vw, 80px) 24px;">
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;"></div>
+    <div style="position: absolute; top: 34%; left: -14%; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(96,152,220,.22) 0%, rgba(96,152,220,0) 62%); filter: blur(10px); pointer-events: none; animation: fsOrbA 17s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; top: -4%; right: -16%; width: 820px; height: 820px; border-radius: 50%; background: radial-gradient(circle, rgba(98,168,86,.2) 0%, rgba(74,132,90,.08) 44%, rgba(98,168,86,0) 66%); filter: blur(12px); pointer-events: none; animation: fsOrbB 23s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 32%, rgba(255,255,255,.05) 0%, rgba(0,0,0,0) 46%, rgba(11,18,32,.42) 100%); pointer-events: none;"></div>
+    <div style="position: relative;">
+    <div style="max-width: 1180px; margin: 0 auto; text-align: center;">
+      <div data-reveal style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: var(--lime-400); text-transform: uppercase;">FAQ</div>
+      <h1 data-reveal data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(34px, 4.2vw, 54px); line-height: 1.08; letter-spacing: -0.02em; color: #ffffff; margin: 14px auto 0;">Questions, answered.</h1>
+      <p data-reveal data-reveal-delay="0.12" style="font-size: clamp(16px, 1.5vw, 18px); line-height: 1.65; color: #aebdd0; margin: 18px auto 0; max-width: 48ch;">Everything teams ask before moving their formulas in. Something missing? <a href="/v2/Contact.dc.html" style="color: var(--lime-400); font-weight: 700;">Ask us directly.</a></p>
+    </div>
+    </div>
+  </section>
+
+  <!-- Groups -->
+  <section data-screen-label="FAQ groups" style="padding: clamp(48px, 6vw, 80px) 24px; flex: 1;">
+    <div style="max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: clamp(32px, 4vw, 48px);">
+      <sc-for list="{{ groups }}" as="group" hint-placeholder-count="4">
+        <div>
+          <div data-reveal style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+            <span class="iconify" data-icon="{{ group.icon }}" style="font-size: 19px; color: var(--blue-500);"></span>
+            <span style="font-family: var(--font-display); font-weight: 800; font-size: 19px; color: var(--slate-800);">{{ group.title }}</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-for list="{{ group.items }}" as="item" hint-placeholder-count="3">
+              <div style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; overflow: hidden;">
+                <button onClick="{{ item.toggle }}" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 14px; width: 100%; padding: 17px 22px; cursor: pointer; font-family: var(--font-sans);">
+                  <span style="flex: 1; font-weight: 700; font-size: 15px; color: var(--slate-800); line-height: 1.4;">{{ item.q }}</span>
+                  <span style="flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--blue-100); color: var(--blue-600); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; transition: transform 220ms ease; transform: rotate({{ item.rot }});">+</span>
+                </button>
+                <div style="display: grid; grid-template-rows: {{ item.rows }}; transition: grid-template-rows 260ms ease;">
+                  <div style="overflow: hidden;">
+                    <p style="margin: 0; padding: 0 22px 20px; font-size: 14.5px; line-height: 1.65; color: var(--slate-500);">{{ item.a }}</p>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section data-screen-label="CTA" style="background: var(--slate-900); padding: clamp(56px, 8vw, 96px) 24px;">
+    <div style="max-width: 720px; margin: 0 auto; text-align: center;">
+      <h2 data-reveal style="font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.08; letter-spacing: -0.02em; color: #fff; margin: 0;">Still curious? Ask on a demo.</h2>
+      <div data-reveal data-reveal-delay="0.1" style="margin-top: 28px;">
+        <a href="/v2/Contact.dc.html" style="background: #7fd234; color: #16223a; font-size: 16px; font-weight: 800; padding: 16px 34px; border-radius: 999px; white-space: nowrap; box-shadow: 0 12px 30px rgba(127,210,52,.3); transition: transform 180ms ease; display: inline-block;" style-hover="background: #8ede40; color: #16223a; transform: translateY(-2px);">Request a demo</a>
+      </div>
+    </div>
+  </section>
+
+  <dc-import name="SiteFooter" hint-size="100%,300px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { open: '' };
+  componentDidMount() {
+    this._poll = setInterval(() => {
+      if (window.gsap && window.ScrollTrigger) {
+        clearInterval(this._poll);
+        this._setup();
+      }
+    }, 80);
+  }
+  componentWillUnmount() {
+    clearInterval(this._poll);
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+  }
+  _setup() {
+    const g = window.gsap;
+    const _io = (el, cb) => {
+      if (!el) return;
+      let done = false;
+      const run = () => { if (done) return; done = true; cb(el); };
+      const o = new IntersectionObserver((ents) => {
+        ents.forEach(e => { if (e.isIntersecting) { o.unobserve(el); run(); } });
+      }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+      o.observe(el);
+    };
+    // Failsafe: if animation frames never run (non-composited/hidden render),
+    // apply the final resting state synchronously so nothing stays hidden.
+    const _finalize = () => {
+      const cp = { clearProps: 'opacity,transform,translate,rotate,scale,x,y' };
+      g.utils.toArray('[data-reveal]').forEach(el => g.set(el, cp));
+      g.utils.toArray('[data-bar]').forEach(el => g.set(el, { scaleX: 1 }));
+      ['[data-srow]','[data-kcard]','[data-icard]','[data-crow]','[data-trow]','[data-lrow]','[data-smsg]'].forEach(sel =>
+        g.utils.toArray(sel).forEach(el => g.set(el, cp)));
+      g.utils.toArray('[data-count]').forEach(el => {
+        const end = parseFloat(el.getAttribute('data-count'));
+        const dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        const suf = el.getAttribute('data-suffix') || '';
+        const pre = el.getAttribute('data-prefix') || '';
+        el.textContent = pre + end.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+      });
+    };
+    let _rafOk = false;
+    requestAnimationFrame(() => { _rafOk = true; });
+    setTimeout(() => { if (!_rafOk) _finalize(); }, 450);
+    setTimeout(() => { if (!_rafOk) _finalize(); }, 2600);
+    g.utils.toArray('[data-reveal]').forEach(el => {
+      g.set(el, { y: 30, opacity: 0 });
+      _io(el, t => g.to(t, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: parseFloat(t.getAttribute('data-reveal-delay') || '0') }));
+    });
+  }
+  renderVals() {
+    const open = this.state.open;
+    const groups = [
+      { title: 'Product', icon: 'icon-park-outline:chef-hat-one', items: [
+        { q: 'What does Flavor Studio replace?', a: 'Typically: formulation and costing spreadsheets, a standalone label tool or consultant, survey software for taste tests, and a generic project tracker. One workspace, one ingredient library, one live cost model.' },
+        { q: 'Can we import our existing spreadsheets?', a: 'Yes. Onboarding includes a guided import for recipes, ingredients and cost data from Excel or CSV. Most teams are formulating in Flavor Studio within their first week.' },
+        { q: 'Does it handle sub-recipes and scaling?', a: 'Sub-recipes nest to any depth — a frosting inside a cake inside a variety pack — and batch scaling preserves ratios, yields and cost roll-ups automatically.' },
+        { q: 'Where does the nutrition data come from?', a: 'The USDA FoodData Central database is built in, and you can add supplier spec sheets or lab assay values per ingredient. Every nutrient panel shows exactly which source it used.' }
+      ] },
+      { title: 'AI Agent', icon: 'icon-park-outline:doc-search', items: [
+        { q: 'How does the AI Agent know about my formulas?', a: 'It reads only your workspace — recipes, ingredient library, cost assumptions, taste tests and supplier data. Nothing is shared across customers, and nothing you formulate is used to train models.' },
+        { q: 'Can I trust its regulatory answers?', a: 'Every claim comes with a citation — the CFR section, the recipe version, the taste test it drew from. If the Agent can\'t source an answer, it says so instead of guessing.' },
+        { q: 'Can it change my recipes?', a: 'Only as drafts. The Agent proposes swaps and what-if scenarios; a developer reviews and applies them to a new version. Nothing in production changes without a human.' }
+      ] },
+      { title: 'Labels & compliance', icon: 'icon-park-outline:doc-detail', items: [
+        { q: 'Which label formats are supported?', a: 'US FDA 2016 Nutrition Facts, Canadian CFIA bilingual panels, Supplement Facts, dual-column and simplified formats — plus auto-generated ingredient statements and big-9 allergen declarations.' },
+        { q: 'Are the labels print-ready?', a: 'Yes — export as vector PDF or SVG at regulation point sizes, ready for your packaging designer or co-packer.' },
+        { q: 'What about nutrient content claims?', a: '"Low sodium", "good source of protein" and the rest are checked against 21 CFR 101 automatically. You see which claims you qualify for on every version.' }
+      ] },
+      { title: 'Data & billing', icon: 'icon-park-outline:setting-two', items: [
+        { q: 'Is our data secure?', a: 'Formulas are trade secrets and we treat them that way: SOC 2 Type II, encryption at rest and in transit, role-based permissions and a full audit log on Enterprise plans.' },
+        { q: 'Who owns the recipes we create?', a: 'You do, unconditionally. Export everything — recipes, versions, labels, test data — at any time, in open formats.' },
+        { q: 'Is there a free trial?', a: 'We run guided pilots instead of self-serve trials: a 30-day evaluation on your own recipes with onboarding included. Request a demo to start one.' }
+      ] }
+    ];
+    return {
+      groups: groups.map((gp, gi) => ({
+        title: gp.title,
+        icon: gp.icon,
+        items: gp.items.map((f, i) => {
+          const key = gi + '-' + i;
+          const isOpen = open === key;
+          return {
+            q: f.q,
+            a: f.a,
+            rows: isOpen ? '1fr' : '0fr',
+            rot: isOpen ? '45deg' : '0deg',
+            toggle: () => this.setState({ open: isOpen ? '' : key })
+          };
+        })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

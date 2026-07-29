@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="ext-resource-dependency" content="https://www.flavorstudio.com/gfx/senspire/testimonials/andrew_hunter.png" data-resource-id="tst-andrew-hunter" />
+<meta name="ext-resource-dependency" content="https://www.flavorstudio.com/gfx/senspire/testimonials/charles_hayes.png" data-resource-id="tst-charles-hayes" />
+<meta name="ext-resource-dependency" content="https://www.flavorstudio.com/gfx/senspire/testimonials/stefan_czapalay.png" data-resource-id="tst-stefan-czapalay" />
+<meta name="ext-resource-dependency" content="https://www.flavorstudio.com/gfx/senspire/testimonials/greg_grisanti.png" data-resource-id="tst-greg-grisanti" />
+<meta name="ext-resource-dependency" content="https://www.flavorstudio.com/gfx/senspire/testimonials/kari_baker.png" data-resource-id="tst-kari-baker" />
+<meta name="ext-resource-dependency" content="https://www.flavorstudio.com/gfx/senspire/testimonials/michael_cheng.png" data-resource-id="tst-michael-cheng" />
+<meta name="ext-resource-dependency" content="https://www.flavorstudio.com/gfx/senspire/testimonials/chef_rob_corliss.png" data-resource-id="tst-chef-rob-corliss" />
+<template id="__bundler_thumbnail" data-bg-color="#223047">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#223047"/>
+    <path d="M600 250l64 202 202 64-202 64-64 202-64-202-202-64 202-64 64-202z" fill="url(#fsSplash)"/>
+    <defs>
+      <linearGradient id="fsSplash" x1="398" y1="250" x2="802" y2="654" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#8CD135"/>
+        <stop offset="1" stop-color="#59A3EB"/>
+      </linearGradient>
+    </defs>
+  </svg>
+</template>
+<script src="/v2/support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/fonts.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/colors.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/typography.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/spacing.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/tokens/base.css">
+  <link rel="stylesheet" href="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/styles.css">
+  <script src="/v2/_ds/flavor-studio-design-system-8503a267-2a2a-425c-ae66-472fc5b59d0d/_ds_bundle.js"></script>
+  <script src="https://code.iconify.design/3/3.1.1/iconify.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #ffffff; font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue-500); text-decoration: none; }
+    a:hover { color: var(--blue-700); }
+    @keyframes fsMarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes fsFloat { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-18px) rotate(6deg); } }
+    @keyframes fsFloat2 { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(14px) rotate(-8deg); } }
+    @keyframes fsPhotoA { 0%,100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-14px) rotate(-2deg); } }
+    @keyframes fsPhotoB { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(12px) rotate(5deg); } }
+    @keyframes fsPulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.25); opacity: .7; } }
+    @keyframes fsDot { 0%,80%,100% { transform: translateY(0); opacity:.4; } 40% { transform: translateY(-5px); opacity:1; } }
+    @keyframes fsScan { 0% { top: 4%; opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { top: 94%; opacity: 0; } }
+    @keyframes fsBlink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+    @keyframes fsSheen { 0% { transform: translateX(-120%); } 100% { transform: translateX(220%); } }
+    @keyframes fsHeroPan { 0%, 100% { background-position: 50% 0%; } 50% { background-position: 50% 100%; } }
+    @keyframes fsOrbA { 0%, 100% { transform: translate3d(0,0,0) scale(1); opacity: .85; } 33% { transform: translate3d(9%,-6%,0) scale(1.14); opacity: 1; } 66% { transform: translate3d(-5%,7%,0) scale(.94); opacity: .7; } }
+    @keyframes fsOrbB { 0%, 100% { transform: translate3d(0,0,0) scale(1.04); opacity: .7; } 40% { transform: translate3d(-8%,8%,0) scale(.9); opacity: 1; } 70% { transform: translate3d(4%,-5%,0) scale(1.16); opacity: .8; } }
+    @keyframes fsHeroSheen { 0% { transform: translateX(-40%) rotate(8deg); opacity: 0; } 45% { opacity: .5; } 100% { transform: translateX(60%) rotate(8deg); opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      body * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</helmet>
+
+<div style="font-family: var(--font-sans); color: var(--text-body); background: #fff; overflow-x: clip; min-height: 100vh;">
+
+  <!-- ============ ANNOUNCEMENT ============ -->
+  <sc-if value="{{ showAnnouncement }}" hint-placeholder-val="{{ true }}">
+    <div style="background: #16223a; color: #fff; display: flex; align-items: center; justify-content: center; gap: 10px; padding: 9px 16px; font-size: 13px; font-weight: 500; letter-spacing: .02em; flex-wrap: wrap; text-align: center;">
+      <span style="width: 8px; height: 8px; border-radius: 50%; background: var(--lime-500); display: inline-block; animation: fsPulse 2s ease infinite;"></span>
+      <span style="line-height: 1.5;">Meet the <strong style="font-weight: 700;">AI Agent</strong> — built into the platform. Live at IFT, booth #315. <a href="#sous" style="color: var(--lime-300); font-weight: 700; white-space: nowrap;">See it in action →</a></span>
+    </div>
+  </sc-if>
+
+  <!-- ============ NAV ============ -->
+  <dc-import name="SiteNav v2" hint-size="100%,60px"></dc-import>
+
+  <!-- ============ HERO ============ -->
+  <section id="top" data-screen-label="Hero" style="position: relative; background: linear-gradient(180deg, #253349 0%, #2b3d59 30%, #27374f 55%, #223047 78%, #1e2a3e 100%); background-size: 100% 220%; background-position: 50% 0%; animation: fsHeroPan 20s ease-in-out infinite; will-change: background-position; overflow: clip;">
+    <div style="position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.055) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none;"></div>
+    <div style="position: absolute; top: 34%; left: -14%; width: 760px; height: 760px; border-radius: 50%; background: radial-gradient(circle, rgba(96,152,220,.22) 0%, rgba(96,152,220,0) 62%); filter: blur(10px); pointer-events: none; animation: fsOrbA 17s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; top: -4%; right: -16%; width: 820px; height: 820px; border-radius: 50%; background: radial-gradient(circle, rgba(98,168,86,.2) 0%, rgba(74,132,90,.08) 44%, rgba(98,168,86,0) 66%); filter: blur(12px); pointer-events: none; animation: fsOrbB 23s ease-in-out infinite; will-change: transform, opacity;"></div>
+    <div style="position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 32%, rgba(255,255,255,.05) 0%, rgba(0,0,0,0) 46%, rgba(11,18,32,.42) 100%); pointer-events: none;"></div>
+    <div aria-hidden="true" style="position: absolute; bottom: -70px; left: -70px; width: 420px; height: 420px; border-radius: 50%; overflow: hidden; opacity: .2; filter: blur(1px) saturate(1.15); mask-image: radial-gradient(circle at 40% 60%, #000 12%, transparent 68%); -webkit-mask-image: radial-gradient(circle at 40% 60%, #000 12%, transparent 68%); pointer-events: none;">
+      <img src="/v2/assets/food-1.png" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+    </div>
+    <div style="max-width: 1180px; margin: 0 auto; padding: clamp(56px, 8vw, 110px) 24px clamp(56px, 8vw, 104px); display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: clamp(36px, 5vw, 64px); align-items: center; position: relative;">
+
+      <div>
+        <a href="#sous" data-reveal="" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 6px 16px 6px 6px; color: #dfe5ee; font-size: 13.5px; font-weight: 600; transition: border-color 180ms ease, transform 180ms ease;" style-hover="border-color: rgba(255,255,255,.5); color: #ffffff; transform: translateY(-1px);">
+          <span style="background: linear-gradient(90deg, var(--blue-500), var(--teal-500)); color: #fff; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: .08em; padding: 5px 12px;">NEW</span>
+          <span>Meet the AI Agent — built into the platform</span>
+          <span class="iconify" data-icon="icon-park-outline:arrow-right" style="font-size: 14px; color: #9db0c9;"></span>
+        </a>
+        <h1 data-reveal="" data-reveal-delay="0.08" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(42px, 5.4vw, 72px); line-height: 1.05; letter-spacing: -0.025em; color: #ffffff; margin: 24px 0 0;">
+          Own your formula, from <span style="background: linear-gradient(96deg, var(--lime-500) 0%, #4fd8bd 48%, var(--blue-400) 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent;">idea to shelf.</span>
+        </h1>
+        <p data-reveal="" data-reveal-delay="0.16" style="font-size: clamp(16px, 1.5vw, 19px); line-height: 1.65; color: #aebdd0; max-width: 52ch; margin: 22px 0 0;">
+          The unified platform for food &amp; beverage product development — recipes, nutrition, labeling, projects and CRM, with an AI Agent that does the heavy lifting alongside you.
+        </p>
+        <div data-reveal="" data-reveal-delay="0.24" style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 32px;">
+          <a href="/v2/contact" style="position: relative; overflow: hidden; background: #7fd234; color: #16223a; font-size: 16px; font-weight: 800; padding: 16px 34px; border-radius: 999px; white-space: nowrap; box-shadow: 0 12px 30px rgba(127,210,52,.3); transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;" style-hover="background: #8ede40; color: #16223a; transform: translateY(-2px); box-shadow: 0 18px 40px rgba(127,210,52,.42);">
+            Request a demo
+            <span style="position: absolute; top: 0; left: 0; width: 40%; height: 100%; background: linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 100%); animation: fsSheen 3.4s ease-in-out infinite; pointer-events: none;"></span>
+          </a>
+          <a href="#product" style="background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); color: #fff; font-size: 16px; font-weight: 700; padding: 15px 30px; border-radius: 999px; white-space: nowrap; transition: background 180ms ease;" style-hover="background: rgba(255,255,255,.14); color: #ffffff;">Explore the platform</a>
+        </div>
+        <div data-reveal="" data-reveal-delay="0.32" style="display: flex; align-items: center; gap: 12px; margin-top: 36px;">
+          <div style="display: flex;">
+            <img src="/v2/assets/avatar-sample.png" alt="" style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--slate-800); display: block;">
+            <div style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--slate-800); background: var(--blue-200); color: var(--blue-700); font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-left: -8px;">RK</div>
+            <div style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--slate-800); background: var(--lime-100); color: #5c8f1c; font-size: 11px; font-weight: 800; display: flex; align-items: center; justify-content: center; margin-left: -8px;">MT</div>
+          </div>
+          <span style="font-size: 13px; color: var(--slate-400); font-weight: 600;">Trusted by 400+ food &amp; beverage R&amp;D teams</span>
+        </div>
+      </div>
+
+      <!-- Live walkthrough card -->
+      <div data-reveal="" data-reveal-delay="0.15" style="position: relative;">
+        <div data-walk="" style="background: #fff; border-radius: 16px; box-shadow: 0 30px 80px rgba(0,0,0,.38); overflow: hidden;">
+          
+          <div style="background: var(--slate-900); display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding: 14px 18px 13px;">
+            <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0;">
+              <div style="display: flex; align-items: center; gap: 8px; min-width: 0;">
+                <span data-wdot="0" style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,.14); color: #c4cedd; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex: none;">1</span>
+                <span style="color: #dfe5ee; font-size: 12.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Formulate</span>
+              </div>
+              <div style="height: 3px; border-radius: 3px; background: rgba(255,255,255,.14); overflow: hidden;"><span data-wbar="0" style="display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--blue-500), var(--teal-500)); transform: scaleX(0); transform-origin: left;"></span></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0;">
+              <div style="display: flex; align-items: center; gap: 8px; min-width: 0;">
+                <span data-wdot="1" style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,.14); color: #c4cedd; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex: none;">2</span>
+                <span style="color: #dfe5ee; font-size: 12.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Cost &amp; nutrition</span>
+              </div>
+              <div style="height: 3px; border-radius: 3px; background: rgba(255,255,255,.14); overflow: hidden;"><span data-wbar="1" style="display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--blue-500), var(--teal-500)); transform: scaleX(0); transform-origin: left;"></span></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0;">
+              <div style="display: flex; align-items: center; gap: 8px; min-width: 0;">
+                <span data-wdot="2" style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,.14); color: #c4cedd; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex: none;">3</span>
+                <span style="color: #dfe5ee; font-size: 12.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">AI Agent</span>
+              </div>
+              <div style="height: 3px; border-radius: 3px; background: rgba(255,255,255,.14); overflow: hidden;"><span data-wbar="2" style="display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--blue-500), var(--teal-500)); transform: scaleX(0); transform-origin: left;"></span></div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 8px; min-width: 0;">
+              <div style="display: flex; align-items: center; gap: 8px; min-width: 0;">
+                <span data-wdot="3" style="width: 24px; height: 24px; border-radius: 50%; background: rgba(255,255,255,.14); color: #c4cedd; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex: none;">4</span>
+                <span style="color: #dfe5ee; font-size: 12.5px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">FDA label</span>
+              </div>
+              <div style="height: 3px; border-radius: 3px; background: rgba(255,255,255,.14); overflow: hidden;"><span data-wbar="3" style="display: block; height: 100%; width: 100%; background: linear-gradient(90deg, var(--blue-500), var(--teal-500)); transform: scaleX(0); transform-origin: left;"></span></div>
+            </div>
+          </div>
+          <div style="position: relative; height: 340px; background: #fff;">
+
+            <div data-wpanel="0" style="position: absolute; inset: 0; padding: 14px 18px 16px; display: flex; flex-direction: column; opacity: 1;">
+              <div style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; padding: 4px 4px 8px; font-size: 10.5px; font-weight: 700; letter-spacing: .08em; color: var(--slate-300); text-transform: uppercase; border-bottom: 1px solid var(--gray-300);">
+                <span>Ingredient</span><span style="text-align: right;">Qty (g)</span><span style="text-align: right; width: 58px;">Cost</span>
+              </div>
+              <div data-wrow="" style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 8px 4px; font-size: 13px; border-bottom: 1px solid var(--gray-150, #f7f7fa);"><span style="font-weight: 600; color: var(--slate-700);">Unbleached wheat flour</span><span style="text-align: right; font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">320</span><span style="text-align: right; width: 58px; color: var(--slate-500); font-variant-numeric: tabular-nums;">$0.84</span></div>
+              <div data-wrow="" style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 8px 4px; font-size: 13px; border-bottom: 1px solid var(--gray-150, #f7f7fa);"><span style="font-weight: 600; color: var(--slate-700);">Butter, cultured 82%</span><span style="text-align: right; font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">225</span><span style="text-align: right; width: 58px; color: var(--slate-500); font-variant-numeric: tabular-nums;">$1.92</span></div>
+              <div data-wrow="" style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 8px 4px; font-size: 13px; border-bottom: 1px solid var(--gray-150, #f7f7fa);"><span style="font-weight: 600; color: var(--slate-700);">Brown sugar, light</span><span style="text-align: right; font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">180</span><span style="text-align: right; width: 58px; color: var(--slate-500); font-variant-numeric: tabular-nums;">$0.61</span></div>
+              <div data-wrow="" style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 8px 4px; font-size: 13px; border-bottom: 1px solid var(--gray-150, #f7f7fa);"><span style="font-weight: 600; color: var(--slate-700);">Dark chocolate 64%</span><span style="text-align: right; font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">210</span><span style="text-align: right; width: 58px; color: var(--slate-500); font-variant-numeric: tabular-nums;">$2.35</span></div>
+              <div data-wrow="" style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 8px 4px; font-size: 13px;"><span style="font-weight: 600; color: var(--slate-700);">Whey protein isolate</span><span style="text-align: right; font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">40</span><span style="text-align: right; width: 58px; color: var(--slate-500); font-variant-numeric: tabular-nums;">$1.49</span></div>
+              <div style="margin-top: auto; background: var(--slate-700); color: #fff; border-radius: 8px; display: flex; align-items: center; gap: 12px; padding: 11px 16px;">
+                <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #c4cedd;">Cost / batch</span>
+                <span data-wcost="" style="font-size: 19px; font-weight: 800; font-variant-numeric: tabular-nums;">$0.00</span>
+                <span style="margin-left: auto; background: var(--blue-500); border-radius: 999px; font-size: 11px; font-weight: 700; padding: 4px 12px;">Yield 48</span>
+              </div>
+            </div>
+
+            <div data-wpanel="1" style="position: absolute; inset: 0; padding: 18px; display: flex; flex-direction: column; gap: 16px; opacity: 0;">
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 14px;">
+                <div style="border: 1px solid var(--gray-300); border-radius: 14px; overflow: hidden;">
+                  <div style="background: var(--blue-500); color: #fff; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: 7px 12px;">Cost / serving</div>
+                  <div style="padding: 14px 12px;"><span data-wc1="" style="font-size: 24px; font-weight: 800; color: var(--slate-800); font-variant-numeric: tabular-nums;">$0.00</span></div>
+                </div>
+                <div style="border: 1px solid var(--gray-300); border-radius: 14px; overflow: hidden;">
+                  <div style="background: var(--blue-500); color: #fff; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: 7px 12px;">Calories</div>
+                  <div style="padding: 14px 12px;"><span data-wc2="" style="font-size: 24px; font-weight: 800; color: var(--slate-800); font-variant-numeric: tabular-nums;">0</span><span style="font-size: 12px; color: var(--slate-400); font-weight: 600;"> kcal</span></div>
+                </div>
+                <div style="border: 1px solid var(--gray-300); border-radius: 14px; overflow: hidden;">
+                  <div style="background: var(--slate-700); color: #fff; font-size: 10.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; padding: 7px 12px;">Protein</div>
+                  <div style="padding: 14px 12px;"><span data-wc3="" style="font-size: 24px; font-weight: 800; color: var(--teal-500); font-variant-numeric: tabular-nums;">0 g</span></div>
+                </div>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px; background: var(--blue-050); border: 1px solid var(--blue-300); border-radius: 14px; padding: 12px 15px; font-size: 13px; color: var(--slate-700); line-height: 1.5;">
+                <span class="iconify" data-icon="icon-park-outline:lightning" style="font-size: 17px; color: var(--blue-500); flex: none;"></span>
+                Nutrition, allergens and cost recompute live on every change to the grid — no re-keying, ever.
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto;">
+                <span style="background: var(--amber-100); color: #a97d17; border-radius: 999px; font-size: 11.5px; font-weight: 700; padding: 5px 12px;">Contains: wheat, milk</span>
+                <span style="background: var(--teal-100); color: #0e8b73; border-radius: 999px; font-size: 11.5px; font-weight: 700; padding: 5px 12px;">Good source of protein</span>
+                <span style="background: var(--blue-200); color: var(--blue-700); border-radius: 999px; font-size: 11.5px; font-weight: 700; padding: 5px 12px;">Margin 71% @ $2.99</span>
+              </div>
+            </div>
+
+            <div data-wpanel="2" style="position: absolute; inset: 0; padding: 18px; display: flex; flex-direction: column; gap: 13px; opacity: 0;">
+              <div data-wq="" style="align-self: flex-end; background: var(--blue-500); color: #fff; border-radius: 999px; padding: 10px 18px; font-size: 13.5px; font-weight: 600;">Cut cost 8%, keep protein ≥ 12g</div>
+              <div data-wa="" style="display: flex; gap: 12px; align-items: flex-start;">
+                <span style="flex: none; width: 28px; height: 28px; border-radius: 8px; background: linear-gradient(135deg, var(--blue-500), var(--teal-500)); display: flex; align-items: center; justify-content: center;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" fill="#ffffff"></path></svg></span>
+                <div style="font-size: 13.5px; line-height: 1.55; color: var(--slate-700); padding-top: 3px;">Swap butter → high-oleic blend and lift whey by 3%. Allergens unchanged.</div>
+              </div>
+              <div data-wcmpwrap="" style="border: 1px solid var(--gray-300); border-radius: 14px; padding: 13px 16px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+                <span style="font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--slate-300);">Cost / batch</span>
+                <span style="font-size: 17px; font-weight: 700; color: var(--slate-300); text-decoration: line-through; font-variant-numeric: tabular-nums;">$7.21</span>
+                <span class="iconify" data-icon="icon-park-outline:arrow-right" style="font-size: 14px; color: var(--slate-400);"></span>
+                <span data-wcmp="" style="font-size: 21px; font-weight: 800; color: var(--teal-500); font-variant-numeric: tabular-nums;">$7.21</span>
+                <span style="margin-left: auto; background: var(--teal-100); color: #0e8b73; border-radius: 999px; font-size: 11.5px; font-weight: 800; padding: 4px 11px;">−8.2%</span>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto;">
+                <span style="border: 1px solid var(--blue-500); color: var(--blue-600); border-radius: 999px; font-size: 12.5px; font-weight: 700; padding: 7px 15px; cursor: pointer;">Apply to v5 draft</span>
+                <span style="border: 1px solid var(--gray-300); color: var(--slate-500); border-radius: 999px; font-size: 12.5px; font-weight: 700; padding: 7px 15px; cursor: pointer;">Keep both versions</span>
+              </div>
+            </div>
+
+            <div data-wpanel="3" style="position: absolute; inset: 0; padding: 16px 18px; display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; opacity: 0;">
+              <div style="background: #fff; border: 2px solid #000; border-radius: 3px; width: min(228px, 100%); padding: 10px 12px; font-family: Helvetica, Arial, sans-serif; color: #000;">
+                <div data-wlrow="" style="font-size: 19px; font-weight: 900; line-height: 1;">Nutrition Facts</div>
+                <div data-wlrow="" style="display: flex; justify-content: space-between; font-size: 10.5px; font-weight: 800; border-bottom: 7px solid #000; padding: 3px 0;"><span>Serving size</span><span>1 cookie (34g)</span></div>
+                <div data-wlrow="" style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 4px solid #000; padding: 2px 0;"><span style="font-size: 14px; font-weight: 900;">Calories</span><span style="font-size: 21px; font-weight: 900;">190</span></div>
+                <div data-wlrow="" style="display: flex; justify-content: space-between; font-size: 10.5px; border-bottom: 1px solid #000; padding: 2px 0;"><span><strong>Total Fat</strong> 8g</span><strong>10%</strong></div>
+                <div data-wlrow="" style="display: flex; justify-content: space-between; font-size: 10.5px; border-bottom: 1px solid #000; padding: 2px 0;"><span><strong>Sodium</strong> 95mg</span><strong>4%</strong></div>
+                <div data-wlrow="" style="display: flex; justify-content: space-between; font-size: 10.5px; border-bottom: 1px solid #000; padding: 2px 0;"><span><strong>Total Carb.</strong> 26g</span><strong>9%</strong></div>
+                <div data-wlrow="" style="display: flex; justify-content: space-between; font-size: 10.5px; padding: 2px 0;"><span><strong>Protein</strong> 5g</span><span></span></div>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 10px; min-width: 150px;">
+                <span data-wbadge="" style="display: inline-flex; align-items: center; gap: 8px; background: var(--teal-100); color: #0e8b73; border-radius: 999px; font-size: 12.5px; font-weight: 800; padding: 8px 15px; width: fit-content;"><span class="iconify" data-icon="icon-park-outline:check-one" style="font-size: 15px;"></span>Passes FDA review</span>
+                <span style="font-size: 12.5px; color: var(--slate-500); line-height: 1.55; max-width: 22ch;">FDA 2016 format, bilingual CFIA and ingredient statement — print-ready.</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOGO MARQUEE ============ -->
+  <section id="customers-band" style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border-top: 1px solid var(--gray-300); border-bottom: 1px solid var(--gray-300); padding: 26px 0; overflow: clip;">
+    <div style="text-align: center; font-size: 11px; font-weight: 700; letter-spacing: .14em; color: var(--slate-400); text-transform: uppercase; margin-bottom: 18px;">Trusted by product teams at</div>
+    <div style="overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);">
+      <div style="display: flex; gap: 72px; width: max-content; animation: fsMarquee 32s linear infinite; align-items: center;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/made-in-nature.png" alt="Made in Nature" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/sensient.png" alt="Sensient" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/luvo.png" alt="Luvo" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/clearwater.png" alt="Clearwater" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/jmh.png" alt="JMH" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/made-in-nature.png" alt="Made in Nature" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/sensient.png" alt="Sensient" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/luvo.png" alt="Luvo" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/clearwater.png" alt="Clearwater" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/jmh.png" alt="JMH" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/made-in-nature.png" alt="Made in Nature" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/sensient.png" alt="Sensient" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/luvo.png" alt="Luvo" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/clearwater.png" alt="Clearwater" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+        <img src="https://www.flavorstudio.com/gfx/senspire/customers/jmh.png" alt="JMH" style="height: 40px; width: auto; object-fit: contain; filter: grayscale(1) sepia(.9) hue-rotate(175deg) saturate(.9) brightness(.92); opacity: .7;">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRODUCT / FORMULATION ============ -->
+  <section id="product" data-screen-label="Formulation" style="padding: clamp(72px, 10vw, 130px) 24px; background: #fff;">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: clamp(40px, 5vw, 72px); align-items: center;">
+      <div>
+        <div data-reveal="" style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #5c8f1c; text-transform: uppercase;">Recipe formulation</div>
+        <h2 data-reveal="" data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.1; letter-spacing: -0.02em; color: var(--slate-800); margin: 14px 0 0;">A recipe grid that thinks ahead.</h2>
+        <p data-reveal="" data-reveal-delay="0.12" style="font-size: 16px; line-height: 1.65; color: var(--slate-500); margin: 18px 0 0; max-width: 50ch;">Every ingredient you add recalculates nutrition, allergens, yield and cost — live. No spreadsheets, no re-keying, no version chaos.</p>
+        <div data-reveal="" data-reveal-delay="0.18" style="display: flex; flex-direction: column; gap: 14px; margin-top: 26px;">
+          <div style="display: flex; gap: 14px; align-items: center;">
+            <span style="flex: none; width: 38px; height: 38px; border-radius: 12px; background: var(--blue-200); display: flex; align-items: center; justify-content: center;"><span class="iconify" data-icon="icon-park-outline:chart-histogram" style="font-size: 20px; color: var(--blue-700);"></span></span>
+            <div style="font-size: 14.5px; line-height: 1.55; color: var(--slate-700);"><strong style="font-weight: 700; color: var(--slate-800);">Live cost roll-up</strong> — batch cost, serving cost and retail margin update on every keystroke.</div>
+          </div>
+          <div style="display: flex; gap: 14px; align-items: center;">
+            <span style="flex: none; width: 38px; height: 38px; border-radius: 12px; background: var(--amber-100); display: flex; align-items: center; justify-content: center;"><span class="iconify" data-icon="icon-park-outline:caution" style="font-size: 20px; color: #a97d17;"></span></span>
+            <div style="font-size: 14.5px; line-height: 1.55; color: var(--slate-700);"><strong style="font-weight: 700; color: var(--slate-800);">Allergen watch</strong> — flags the big-9 the moment a risky ingredient lands in the grid.</div>
+          </div>
+          <div style="display: flex; gap: 14px; align-items: center;">
+            <span style="flex: none; width: 38px; height: 38px; border-radius: 12px; background: var(--teal-100); display: flex; align-items: center; justify-content: center;"><span class="iconify" data-icon="icon-park-outline:branch-one" style="font-size: 20px; color: #0e8b73;"></span></span>
+            <div style="font-size: 14.5px; line-height: 1.55; color: var(--slate-700);"><strong style="font-weight: 700; color: var(--slate-800);">Version pills</strong> — branch v4 from v3, taste-test both, promote the winner to production.</div>
+          </div>
+        </div>
+      </div>
+      <div data-formula="" data-reveal="" data-reveal-delay="0.1" style="display: grid; grid-template-columns: 1fr; gap: 16px;">
+        <div style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; box-shadow: 0 14px 40px rgba(43,59,83,.1); overflow: hidden;">
+          <div style="display: flex; gap: 8px; padding: 12px 16px; border-bottom: 1px solid var(--gray-300); align-items: center;">
+            <span style="background: var(--blue-500); color: #fff; border-radius: 999px; font-size: 11.5px; font-weight: 700; padding: 4px 13px;">v4 · Testing</span>
+            <span style="background: var(--gray-100); color: var(--slate-500); border-radius: 999px; font-size: 11.5px; font-weight: 700; padding: 4px 13px;">v3</span>
+            <span style="background: var(--gray-100); color: var(--slate-500); border-radius: 999px; font-size: 11.5px; font-weight: 700; padding: 4px 13px;">v2</span>
+            <span style="margin-left: auto; display: inline-flex; align-items: center; gap: 6px; background: var(--amber-100); color: #a97d17; border-radius: 999px; font-size: 11.5px; font-weight: 700; padding: 4px 12px;"><span class="iconify" data-icon="icon-park-outline:attention" style="font-size: 13px;"></span>Contains: wheat, milk</span>
+          </div>
+          <div data-trow="" style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 10px 16px; font-size: 13.5px; border-bottom: 1px solid var(--gray-150, #f7f7fa);"><span style="font-weight: 600; color: var(--slate-700);">Oat flour, gluten-free</span><span style="font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">240 g</span><span style="color: var(--slate-400); font-variant-numeric: tabular-nums; width: 56px; text-align: right;">$0.72</span></div>
+          <div data-trow="" style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 10px 16px; font-size: 13.5px; border-bottom: 1px solid var(--gray-150, #f7f7fa); background: var(--blue-100);"><span style="font-weight: 600; color: var(--slate-700);">Almond butter, roasted</span><span style="font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">160 g</span><span style="color: var(--slate-400); font-variant-numeric: tabular-nums; width: 56px; text-align: right;">$2.08</span></div>
+          <div data-trow="" style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 10px 16px; font-size: 13.5px; border-bottom: 1px solid var(--gray-150, #f7f7fa);"><span style="font-weight: 600; color: var(--slate-700);">Maple syrup, grade A</span><span style="font-weight: 700; color: var(--slate-800); font-variant-numeric: tabular-nums;">110 g</span><span style="color: var(--slate-400); font-variant-numeric: tabular-nums; width: 56px; text-align: right;">$1.36</span></div>
+          <div data-trow="" style="display: grid; grid-template-columns: 1fr auto auto; gap: 0 14px; align-items: center; padding: 10px 16px; font-size: 13.5px;"><span style="color: var(--blue-500); font-weight: 700;">+ Add ingredient</span><span></span><span></span></div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px;">
+          <div style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; overflow: hidden; box-shadow: 0 8px 24px rgba(43,59,83,.07);">
+            <div style="background: var(--blue-500); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 8px 14px;">Yield</div>
+            <div style="padding: 14px;"><span data-count="36" style="font-size: 26px; font-weight: 800; color: var(--slate-800); font-variant-numeric: tabular-nums;">0</span><span style="font-size: 13px; color: var(--slate-400); font-weight: 600;"> bars / batch</span></div>
+          </div>
+          <div style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; overflow: hidden; box-shadow: 0 8px 24px rgba(43,59,83,.07);">
+            <div style="background: var(--blue-500); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 8px 14px;">Cost / serving</div>
+            <div style="padding: 14px;"><span data-count="0.34" data-decimals="2" data-prefix="$" style="font-size: 26px; font-weight: 800; color: var(--slate-800); font-variant-numeric: tabular-nums;">$0.00</span></div>
+          </div>
+          <div style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; overflow: hidden; box-shadow: 0 8px 24px rgba(43,59,83,.07);">
+            <div style="background: var(--slate-700); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 8px 14px;">Margin @ $2.99</div>
+            <div style="padding: 14px;"><span data-count="71" data-suffix="%" style="font-size: 26px; font-weight: 800; color: var(--teal-500); font-variant-numeric: tabular-nums;">0%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SOUS AI ============ -->
+  <section id="sous" data-screen-label="AI Agent" style="background: #223047; padding: clamp(72px, 10vw, 130px) 24px clamp(56px, 6vw, 80px); position: relative; overflow: clip;">
+    <div style="max-width: 1180px; margin: 0 auto; position: relative;">
+      <div style="max-width: 640px;">
+        <div data-reveal="" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(123,97,255,.18); color: #b9a8ff; border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" fill="url(#fsg4)"></path><defs><linearGradient id="fsg4" x1="2" y1="2" x2="22" y2="22"><stop stop-color="#59a3eb"></stop><stop offset="1" stop-color="#18bc9c"></stop></linearGradient></defs></svg>
+          AI Agent — built in
+        </div>
+        <h2 data-reveal="" data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.1; letter-spacing: -0.02em; color: #fff; margin: 14px 0 0;">Ask your formula anything.</h2>
+        <p data-reveal="" data-reveal-delay="0.12" style="font-size: 16px; line-height: 1.65; color: var(--slate-300); margin: 18px 0 0;">The AI Agent reads your recipes, ingredient library and supplier data — then answers like a colleague who never sleeps. Every claim comes with a source.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(28px, 4vw, 56px); align-items: start; margin-top: clamp(36px, 5vw, 56px);">
+        <div data-schat="" data-reveal="" style="background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 16px; padding: 22px 20px; display: flex; flex-direction: column; gap: 12px; backdrop-filter: blur(6px);">
+          <div data-smsg="" style="align-self: flex-end; max-width: 86%; background: var(--blue-500); color: #fff; border-radius: 14px 14px 4px 14px; padding: 11px 15px; font-size: 13.5px; line-height: 1.5;">What happens to the label if I cut sodium 20% in the v4 broth?</div>
+          <div data-smsg="" style="align-self: flex-start; max-width: 92%; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.09); color: #dfe5ee; border-radius: 14px 14px 14px 4px; padding: 12px 15px; font-size: 13.5px; line-height: 1.6;">Sodium drops to <strong style="color: #fff;">430 mg / serving</strong> — you qualify for a <strong style="color: #4fd8bd;">"Reduced sodium" claim</strong> under FDA §101.61. Potassium chloride at 0.4% keeps the salinity score within 2 points of control.</div>
+          <div data-smsg="" style="align-self: flex-start; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span style="font-size: 11px; font-weight: 700; color: #6178a0; letter-spacing: .06em; text-transform: uppercase; align-self: center;">Sources</span>
+            <span style="font-size: 11px; color: #9db0c9; background: rgba(255,255,255,.07); border-radius: 999px; padding: 3px 10px;">21 CFR 101.61</span>
+            <span style="font-size: 11px; color: #9db0c9; background: rgba(255,255,255,.07); border-radius: 999px; padding: 3px 10px;">Taste test #212</span>
+            <span style="font-size: 11px; color: #9db0c9; background: rgba(255,255,255,.07); border-radius: 999px; padding: 3px 10px;">Broth v4</span>
+          </div>
+          <div data-smsg="" style="align-self: flex-start; display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px;">
+            <span style="border: 1px solid rgba(89,163,235,.5); color: #9ccbf5; border-radius: 999px; font-size: 12px; font-weight: 600; padding: 6px 13px; cursor: pointer;">Apply to v5 draft</span>
+            <span style="border: 1px solid rgba(255,255,255,.18); color: #c4cedd; border-radius: 999px; font-size: 12px; font-weight: 600; padding: 6px 13px; cursor: pointer;">Show label preview</span>
+          </div>
+        </div>
+
+        <div style="display: grid; gap: 14px;">
+          <div data-reveal="" data-reveal-delay="0.05" style="background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start;">
+            <span class="iconify" data-icon="icon-park-outline:doc-search" style="font-size: 22px; color: var(--blue-400); flex: none; margin-top: 2px;"></span>
+            <div><div style="color: #fff; font-weight: 700; font-size: 15px;">Cited answers</div><div style="color: var(--slate-300); font-size: 13.5px; line-height: 1.55; margin-top: 4px;">Every response links to the recipe, regulation or test it came from. No hallucinated food science.</div></div>
+          </div>
+          <div data-reveal="" data-reveal-delay="0.12" style="background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start;">
+            <span class="iconify" data-icon="icon-park-outline:chart-histogram" style="font-size: 22px; color: var(--teal-500); flex: none; margin-top: 2px;"></span>
+            <div><div style="color: #fff; font-weight: 700; font-size: 15px;">What-if costing</div><div style="color: var(--slate-300); font-size: 13.5px; line-height: 1.55; margin-top: 4px;">Model ingredient swaps, supplier changes and batch scaling before you touch the formula.</div></div>
+          </div>
+          <div data-reveal="" data-reveal-delay="0.19" style="background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; padding: 18px 20px; display: flex; gap: 14px; align-items: flex-start;">
+            <span class="iconify" data-icon="icon-park-outline:weight" style="font-size: 22px; color: var(--lime-400); flex: none; margin-top: 2px;"></span>
+            <div><div style="color: #fff; font-weight: 700; font-size: 15px;">Nutrition compare</div><div style="color: var(--slate-300); font-size: 13.5px; line-height: 1.55; margin-top: 4px;">Side-by-side nutrient panels across versions — see exactly what a reformulation changes.</div></div>
+          </div>
+          <a data-reveal="" data-reveal-delay="0.26" href="/v2/contact" style="display: inline-flex; align-items: center; gap: 8px; color: #fff; background: rgba(89,163,235,.22); border: 1px solid rgba(89,163,235,.55); border-radius: 14px; padding: 13px 20px; font-size: 14.5px; font-weight: 700; width: fit-content; transition: background 180ms ease;" style-hover="background: rgba(89,163,235,.4); color: #fff;">
+            See the AI Agent on your own data
+            <span class="iconify" data-icon="icon-park-outline:arrow-right" style="font-size: 15px;"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LIVE AI CHAT ============ -->
+  <section id="try" data-screen-label="Live AI Agent" style="background: #223047; padding: clamp(56px, 6vw, 80px) 24px clamp(64px, 9vw, 120px); position: relative; overflow: clip;">
+    <div style="max-width: 860px; margin: 0 auto; position: relative;">
+      <div style="text-align: center; max-width: 620px; margin: 0 auto;">
+        <div data-reveal="" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(24,188,156,.16); color: #4fd8bd; border-radius: 999px; padding: 7px 14px; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;">
+          <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--teal-500); animation: fsPulse 2s ease infinite;"></span>Live demo
+        </div>
+        <h2 data-reveal="" data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.1; letter-spacing: -0.02em; color: #fff; margin: 14px 0 0;">Ask the AI Agent yourself.</h2>
+        <p data-reveal="" data-reveal-delay="0.12" style="font-size: 16px; line-height: 1.6; color: var(--slate-300); margin: 16px 0 0;">This is really talking to an AI. Ask it a food-science question — ingredient swaps, allergens, nutrient claims, costing — and watch it answer.</p>
+      </div>
+
+      <div data-reveal="" data-reveal-delay="0.16" style="margin-top: clamp(32px, 4vw, 48px); background: #ffffff; border: 1px solid rgba(255,255,255,.14); border-radius: 18px; overflow: hidden; box-shadow: 0 26px 60px rgba(8,15,28,.45);">
+        <div style="display: flex; align-items: center; gap: 10px; padding: 14px 20px; border-bottom: 1px solid var(--gray-300); background: var(--gray-050);">
+          <span style="flex: none; width: 30px; height: 30px; border-radius: 9px; background: linear-gradient(135deg, var(--blue-500), var(--teal-500)); display: flex; align-items: center; justify-content: center;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" fill="#ffffff"></path></svg></span>
+          <div style="line-height: 1.2;"><div style="color: var(--slate-800); font-weight: 800; font-size: 14px;">AI Agent</div><div style="color: var(--slate-400); font-size: 11.5px; font-weight: 500;">Flavor Studio · food-science assistant</div></div>
+          <span style="margin-left: auto; display: inline-flex; align-items: center; gap: 6px; background: var(--teal-100); color: #0e8b73; border-radius: 999px; padding: 4px 11px; font-size: 11.5px; font-weight: 800;"><span style="width: 7px; height: 7px; border-radius: 50%; background: var(--teal-500); animation: fsPulse 2s ease infinite;"></span>Online</span>
+        </div>
+
+        <div data-chatscroll="" style="max-height: 360px; min-height: 260px; overflow-y: auto; padding: 20px; display: flex; flex-direction: column; gap: 12px;">
+          <sc-if value="{{ chatEmpty }}" hint-placeholder-val="{{ true }}">
+            <div style="margin: auto 0; text-align: center; color: var(--slate-500);">
+              <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 700; color: var(--slate-800); margin-bottom: 4px;">
+                <span class="iconify" data-icon="icon-park-outline:click" style="font-size: 18px; color: var(--blue-500);"></span>
+                <span>Tap a question to get a real answer</span>
+              </div>
+              <div style="font-size: 13px; line-height: 1.55; margin-bottom: 16px;">…or type your own in the box below.</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="3">
+                  <button onClick="{{ s.use }}" style="all: unset; box-sizing: border-box; cursor: pointer; background: var(--blue-100); border: 1px solid var(--blue-300); color: var(--blue-700); border-radius: 999px; font-size: 12.5px; font-weight: 700; padding: 9px 16px; font-family: var(--font-sans); box-shadow: 0 2px 6px rgba(43,59,83,.06); transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;" style-hover="background: var(--blue-500); color: #ffffff; transform: translateY(-1px); box-shadow: 0 8px 18px rgba(89,163,235,.32);">{{ s.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-for list="{{ chat }}" as="msg" hint-placeholder-count="0">
+            <sc-if value="{{ msg.isUser }}" hint-placeholder-val="{{ false }}">
+              <div style="align-self: flex-end; max-width: 86%; background: var(--blue-500); color: #fff; border-radius: 14px 14px 4px 14px; padding: 11px 15px; font-size: 13.5px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere;">{{ msg.text }}</div>
+            </sc-if>
+            <sc-if value="{{ msg.isAgent }}" hint-placeholder-val="{{ false }}">
+              <div style="align-self: flex-start; max-width: 92%; display: flex; gap: 10px;">
+                <span style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--blue-500), var(--teal-500)); display: flex; align-items: center; justify-content: center; margin-top: 2px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" fill="#ffffff"></path></svg></span>
+                <div style="background: var(--gray-050); border: 1px solid var(--gray-300); color: var(--slate-700); border-radius: 14px 14px 14px 4px; padding: 11px 15px; font-size: 13.5px; line-height: 1.6; white-space: pre-wrap; overflow-wrap: anywhere;">{{ msg.text }}</div>
+              </div>
+            </sc-if>
+          </sc-for>
+
+          <sc-if value="{{ chatLoading }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self: flex-start; display: flex; gap: 10px;">
+              <span style="flex: none; width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--blue-500), var(--teal-500)); display: flex; align-items: center; justify-content: center; margin-top: 2px;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4L12 2z" fill="#ffffff"></path></svg></span>
+              <div style="background: var(--gray-050); border: 1px solid var(--gray-300); border-radius: 20px; padding: 13px 16px; display: flex; gap: 5px;">
+                <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--slate-300); animation: fsDot 1.2s ease infinite;"></span>
+                <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--slate-300); animation: fsDot 1.2s ease .15s infinite;"></span>
+                <span style="width: 6px; height: 6px; border-radius: 50%; background: var(--slate-300); animation: fsDot 1.2s ease .3s infinite;"></span>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ chatError }}" hint-placeholder-val="{{ false }}">
+            <div style="align-self: flex-start; background: var(--red-100, #fdecec); border: 1px solid rgba(229,72,77,.35); color: #c0393d; border-radius: 18px; padding: 10px 14px; font-size: 12.5px; line-height: 1.5;">{{ chatErrorMsg }}</div>
+          </sc-if>
+        </div>
+
+        <div style="border-top: 1px solid var(--gray-300); background: var(--gray-050); padding: 14px 16px; display: flex; gap: 10px; align-items: flex-end;">
+          <textarea value="{{ chatInput }}" onInput="{{ onChatInput }}" onKeyDown="{{ onChatKey }}" rows="1" placeholder="Ask about ingredients, allergens, claims, cost…" style="flex: 1; resize: none; font-family: var(--font-sans); font-size: 14.5px; line-height: 1.5; color: var(--slate-800); background: #ffffff; border: 1.5px solid var(--blue-300); border-radius: 14px; padding: 12px 15px; outline: none; max-height: 120px; box-shadow: 0 1px 3px rgba(43,59,83,.06);" style-focus="border-color: var(--blue-500); box-shadow: 0 0 0 3px rgba(89,163,235,.22);"></textarea>
+          <button onClick="{{ sendChat }}" aria-label="Send" style="all: unset; box-sizing: border-box; flex: none; width: 44px; height: 44px; border-radius: 14px; background: {{ sendBg }}; display: flex; align-items: center; justify-content: center; cursor: {{ sendCursor }}; color: {{ sendIcon }}; transition: background 180ms ease, color 180ms ease;"><span class="iconify" data-icon="icon-park-outline:send" style="font-size: 19px; color: currentColor;"></span></button>
+        </div>
+      </div>
+      <div style="text-align: center; font-size: 11.5px; color: var(--slate-400); margin-top: 14px;">Responses are AI-generated for demonstration. In the product, the Agent answers from your own recipes, library and supplier data — with real citations.</div>
+    </div>
+  </section>
+
+  <!-- ============ LABELS ============ -->
+  <section id="labels" data-screen-label="Labels" style="padding: clamp(72px, 10vw, 130px) 24px; background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%);">
+    <div style="max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: clamp(40px, 5vw, 72px); align-items: center;">
+      <div data-label="" data-reveal="" style="display: flex; justify-content: center;">
+        <div style="position: relative; background: #fff; border: 2px solid #000; border-radius: 4px; width: min(320px, 100%); padding: 14px 16px; font-family: Helvetica, Arial, sans-serif; color: #000; box-shadow: 0 20px 50px rgba(43,59,83,.14);">
+          <div style="position: absolute; left: 4%; right: 4%; height: 3px; background: linear-gradient(90deg, rgba(89,163,235,0), rgba(89,163,235,.85), rgba(89,163,235,0)); border-radius: 3px; animation: fsScan 4.5s ease-in-out infinite; pointer-events: none;"></div>
+          <div data-lrow="" style="font-size: 27px; font-weight: 900; letter-spacing: -0.01em; line-height: 1;">Nutrition Facts</div>
+          <div data-lrow="" style="border-bottom: 1px solid #000; font-size: 12.5px; padding: 4px 0;">8 servings per container</div>
+          <div data-lrow="" style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 800; border-bottom: 10px solid #000; padding: 3px 0;"><span>Serving size</span><span>1 bar (52g)</span></div>
+          <div data-lrow="" style="font-size: 11px; font-weight: 700; padding-top: 5px;">Amount per serving</div>
+          <div data-lrow="" style="display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 5px solid #000; padding-bottom: 2px;"><span style="font-size: 20px; font-weight: 900;">Calories</span><span style="font-size: 30px; font-weight: 900;">210</span></div>
+          <div data-lrow="" style="text-align: right; font-size: 10.5px; font-weight: 700; border-bottom: 1px solid #000; padding: 3px 0;">% Daily Value*</div>
+          <div data-lrow="" style="display: flex; justify-content: space-between; font-size: 12.5px; border-bottom: 1px solid #000; padding: 3px 0;"><span><strong>Total Fat</strong> 9g</span><strong>12%</strong></div>
+          <div data-lrow="" style="display: flex; justify-content: space-between; font-size: 12.5px; border-bottom: 1px solid #000; padding: 3px 0 3px 14px;"><span>Saturated Fat 1.5g</span><strong>8%</strong></div>
+          <div data-lrow="" style="display: flex; justify-content: space-between; font-size: 12.5px; border-bottom: 1px solid #000; padding: 3px 0;"><span><strong>Sodium</strong> 105mg</span><strong>5%</strong></div>
+          <div data-lrow="" style="display: flex; justify-content: space-between; font-size: 12.5px; border-bottom: 1px solid #000; padding: 3px 0;"><span><strong>Total Carbohydrate</strong> 28g</span><strong>10%</strong></div>
+          <div data-lrow="" style="display: flex; justify-content: space-between; font-size: 12.5px; border-bottom: 1px solid #000; padding: 3px 0 3px 14px;"><span>Dietary Fiber 4g</span><strong>14%</strong></div>
+          <div data-lrow="" style="display: flex; justify-content: space-between; font-size: 12.5px; border-bottom: 4px solid #000; padding: 3px 0;"><span><strong>Protein</strong> 6g</span><span></span></div>
+          <div data-lrow="" style="font-size: 10px; line-height: 1.4; padding-top: 5px; color: #333;">*The % Daily Value tells you how much a nutrient in a serving contributes to a daily diet. 2,000 calories a day is used for general nutrition advice.</div>
+        </div>
+      </div>
+      <div>
+        <div data-reveal="" style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #5c8f1c; text-transform: uppercase;">Labeling &amp; compliance</div>
+        <h2 data-reveal="" data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.1; letter-spacing: -0.02em; color: var(--slate-800); margin: 14px 0 0;">Compliant labels, generated in seconds.</h2>
+        <p data-reveal="" data-reveal-delay="0.12" style="font-size: 16px; line-height: 1.65; color: var(--slate-500); margin: 18px 0 0; max-width: 50ch;">The moment your formula changes, the label follows — FDA 2016 format, Canadian bilingual, supplement facts and ingredient statements, all print-ready.</p>
+        <div data-reveal="" data-reveal-delay="0.18" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px;">
+          <span style="display: inline-flex; align-items: center; gap: 7px; background: var(--blue-200); color: var(--blue-700); border-radius: 999px; padding: 8px 15px; font-size: 12.5px; font-weight: 700;"><span class="iconify" data-icon="icon-park-outline:check-one" style="font-size: 14px;"></span>FDA 2016 format</span>
+          <span style="display: inline-flex; align-items: center; gap: 7px; background: var(--teal-100); color: #0e8b73; border-radius: 999px; padding: 8px 15px; font-size: 12.5px; font-weight: 700;"><span class="iconify" data-icon="icon-park-outline:check-one" style="font-size: 14px;"></span>CFIA bilingual</span>
+          <span style="display: inline-flex; align-items: center; gap: 7px; background: var(--amber-100); color: #a97d17; border-radius: 999px; padding: 8px 15px; font-size: 12.5px; font-weight: 700;"><span class="iconify" data-icon="icon-park-outline:check-one" style="font-size: 14px;"></span>Big-9 allergen rules</span>
+          <span style="display: inline-flex; align-items: center; gap: 7px; background: var(--violet-100); color: var(--violet-500); border-radius: 999px; padding: 8px 15px; font-size: 12.5px; font-weight: 700;"><span class="iconify" data-icon="icon-park-outline:check-one" style="font-size: 14px;"></span>Nutrient content claims</span>
+        </div>
+        <p data-reveal="" data-reveal-delay="0.24" style="font-size: 14.5px; line-height: 1.6; color: var(--slate-500); margin: 22px 0 0;">The AI Agent checks every claim against the CFR before you print — <strong style="color: var(--slate-800); font-weight: 700;">99.2% of labels pass review first try.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SIX STUDIOS ============ -->
+  <section id="features" data-screen-label="Features" style="padding: clamp(72px, 10vw, 130px) 24px; background: #fff;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div style="text-align: center; max-width: 640px; margin: 0 auto;">
+        <div data-reveal="" style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #5c8f1c; text-transform: uppercase;">The platform</div>
+        <h2 data-reveal="" data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.1; letter-spacing: -0.02em; color: var(--slate-800); margin: 14px 0 0;">Everything R&amp;D, one workspace.</h2>
+        <p data-reveal="" data-reveal-delay="0.12" style="font-size: 16px; line-height: 1.65; color: var(--slate-500); margin: 16px 0 0;">Six connected studios replace the spreadsheet sprawl — from first idea to production-ready formula.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: clamp(28px, 4vw, 42px);">
+        <sc-for list="{{ platTabs }}" as="tab" hint-placeholder-count="6">
+          <button onClick="{{ tab.select }}" style="all: unset; box-sizing: border-box; cursor: pointer; position: relative; overflow: hidden; display: inline-flex; align-items: center; gap: 9px; padding: 11px 20px; border-radius: 999px; font-family: var(--font-sans); font-size: 14px; font-weight: 700; white-space: nowrap; background: {{ tab.bg }}; color: {{ tab.color }}; border: 1px solid {{ tab.border }}; box-shadow: {{ tab.shadow }}; transition: background 180ms ease, color 180ms ease, border-color 180ms ease, transform 180ms ease;" style-hover="transform: translateY(-1px);">
+            <span class="iconify" data-icon="{{ tab.icon }}" style="font-size: 17px;"></span>
+            <span>{{ tab.label }}</span>
+            <sc-if value="{{ tab.isActive }}" hint-placeholder-val="{{ false }}">
+              <span data-platprog style="position: absolute; left: 0; bottom: 0; height: 3px; width: 100%; background: rgba(255,255,255,.55); transform-origin: left; transform: scaleX(0);"></span>
+            </sc-if>
+          </button>
+        </sc-for>
+      </div>
+
+      <div data-reveal data-reveal-delay="0.1" style="margin-top: clamp(24px, 3vw, 36px); background: #fff; border: 1px solid var(--gray-300); border-radius: 20px; box-shadow: 0 18px 46px rgba(43,59,83,.1); padding: clamp(24px, 3.4vw, 44px); overflow: hidden;">
+        <div data-platpanel style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap: clamp(28px, 4vw, 56px); align-items: center;">
+          <div>
+            <div data-platitem style="display: inline-flex; align-items: center; gap: 8px; background: {{ act.badgeBg }}; color: {{ act.badgeColor }}; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;">
+              <span class="iconify" data-icon="{{ act.icon }}" style="font-size: 15px;"></span>
+              <span>{{ act.label }}</span>
+            </div>
+            <h3 data-platitem style="font-family: var(--font-display); font-weight: 800; font-size: clamp(23px, 2.6vw, 32px); line-height: 1.15; letter-spacing: -0.02em; color: var(--slate-800); margin: 16px 0 0;">{{ act.title }}</h3>
+            <p data-platitem style="font-size: 15.5px; line-height: 1.65; color: var(--slate-500); margin: 12px 0 0; max-width: 46ch;">{{ act.desc }}</p>
+            <div style="display: flex; flex-direction: column; gap: 11px; margin-top: 20px;">
+              <sc-for list="{{ act.checks }}" as="c" hint-placeholder-count="3">
+                <div data-platitem style="display: flex; gap: 10px; align-items: center; font-size: 14.5px; line-height: 1.5; color: var(--slate-700);">
+                  <span class="iconify" data-icon="icon-park-outline:check-one" style="font-size: 17px; color: var(--teal-500); flex: none;"></span>
+                  <span>{{ c.text }}</span>
+                </div>
+              </sc-for>
+            </div>
+            <a data-platitem href="{{ act.href }}" style="display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; color: var(--blue-600); font-size: 14.5px; font-weight: 800;" style-hover="color: var(--blue-700);">
+              <span>{{ act.cta }}</span>
+              <span class="iconify" data-icon="icon-park-outline:arrow-right" style="font-size: 15px;"></span>
+            </a>
+          </div>
+
+          <div data-platmock style="border: 1px solid var(--gray-300); border-radius: 14px; overflow: hidden; box-shadow: 0 10px 28px rgba(43,59,83,.08);">
+            <div style="background: var(--blue-500); color: #fff; display: flex; align-items: center; gap: 10px; padding: 11px 16px;">
+              <span style="font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;">{{ act.mockTitle }}</span>
+              <span style="margin-left: auto; background: var(--lime-400); color: var(--slate-900); border-radius: 999px; font-size: 11px; font-weight: 800; padding: 3px 10px; white-space: nowrap;">{{ act.mockBadge }}</span>
+            </div>
+            <div style="padding: 18px 18px 20px;">
+              <div data-platmetric style="font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--slate-800); font-variant-numeric: tabular-nums; line-height: 1.1;">{{ act.metric }}</div>
+              <div style="font-size: 12.5px; color: var(--slate-400); font-weight: 600; margin-top: 3px;">{{ act.metricCaption }}</div>
+              <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 18px;">
+                <sc-for list="{{ act.bars }}" as="b" hint-placeholder-count="3">
+                  <div style="display: grid; grid-template-columns: minmax(80px, 36%) 1fr; gap: 12px; align-items: center;">
+                    <span style="font-size: 12.5px; font-weight: 700; color: var(--slate-700);">{{ b.label }}</span>
+                    <span style="display: block; height: 9px; border-radius: 999px; background: var(--gray-100); overflow: hidden;">
+                      <span data-platbar style="display: block; height: 100%; width: {{ b.width }}; border-radius: 999px; background: {{ b.color }}; transform-origin: left;"></span>
+                    </span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section id="customers" data-screen-label="Customers" style="padding: clamp(72px, 10vw, 130px) 24px; background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%);">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div style="text-align: center; max-width: 620px; margin: 0 auto;">
+        <div data-reveal="" style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #5c8f1c; text-transform: uppercase;">Customers</div>
+        <h2 data-reveal="" data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.1; letter-spacing: -0.02em; color: var(--slate-800); margin: 14px 0 0;">Teams ship more, retest less.</h2>
+      </div>
+      <div data-tstwrap style="position: relative; margin-top: clamp(36px, 5vw, 56px);">
+        <div style="overflow: hidden; mask-image: linear-gradient(90deg, #000 0%, #000 90%, rgba(0,0,0,.15) 100%); -webkit-mask-image: linear-gradient(90deg, #000 0%, #000 90%, rgba(0,0,0,.15) 100%);">
+          <div data-tstcard style="display: flex; gap: 20px; align-items: stretch;">
+            <sc-for list="{{ tstCards }}" as="c" hint-placeholder-count="4">
+              <div data-tstitem style="flex: 0 0 clamp(240px, 27.5%, 330px); background: #ffffff; border: 1px solid var(--gray-300); border-radius: 20px; box-shadow: 0 14px 36px rgba(43,59,83,.08); padding: 24px; display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                  <span role="img" aria-label="{{ c.name }}" style="flex: none; width: 46px; height: 46px; border-radius: 50%; background-color: var(--gray-100); background-image: url('{{ c.photo }}'); background-size: cover; background-position: center;"></span>
+                  <div style="flex: 1; min-width: 0;">
+                    <div style="font-weight: 800; font-size: 14.5px; color: var(--slate-800); line-height: 1.25;">{{ c.name }}</div>
+                    <div style="font-size: 12.5px; line-height: 1.35; color: var(--slate-400); margin-top: 2px;">{{ c.role }}</div>
+                  </div>
+                  <span style="flex: none; width: 32px; height: 32px; border-radius: 10px; background: var(--blue-100); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 20px; line-height: 0; color: var(--blue-500); padding-top: 8px;">“</span>
+                </div>
+                <p style="font-size: 15px; line-height: 1.6; color: var(--slate-700); margin: 0; text-wrap: pretty;">{{ c.quote }}</p>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; padding-top: 6px;">
+                  <span style="color: var(--lime-500); font-size: 13px; letter-spacing: 2px;">★★★★★</span>
+                  <span style="font-size: 12px; font-weight: 600; color: var(--slate-300);">{{ c.tag }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        
+        <button onClick="{{ tstNext }}" aria-label="Next testimonials" style="all: unset; box-sizing: border-box; cursor: pointer; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); z-index: 3; width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,.92); backdrop-filter: blur(6px); border: 1px solid var(--gray-300); box-shadow: 0 8px 24px rgba(43,59,83,.16); color: var(--slate-500); display: flex; align-items: center; justify-content: center; transition: background 180ms ease, color 180ms ease;" style-hover="background: var(--blue-500); color: #ffffff;"><span class="iconify" data-icon="icon-park-outline:right" style="font-size: 20px; color: currentColor;"></span></button>
+        <div style="display: flex; justify-content: center; gap: 7px; margin-top: 24px;">
+          <sc-for list="{{ tstDots }}" as="d" hint-placeholder-count="3">
+            <button onClick="{{ d.go }}" aria-label="Show testimonials" style="all: unset; box-sizing: border-box; cursor: pointer; width: {{ d.w }}; height: 7px; border-radius: 999px; background: {{ d.bg }}; transition: width 240ms ease, background 240ms ease;"></button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ============ PRICING TEASER ============ -->
+  <section id="pricing" data-screen-label="Pricing" style="padding: clamp(56px, 7vw, 88px) 24px; background: #fff;">
+    <div style="max-width: 1180px; margin: 0 auto;">
+      <div data-reveal style="background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%); border: 1px solid var(--gray-300); border-radius: 20px; padding: clamp(28px, 3.6vw, 44px); display: flex; flex-wrap: wrap; align-items: center; gap: clamp(24px, 4vw, 48px);">
+        <div style="flex: 1; min-width: min(100%, 320px);">
+          <div style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #5c8f1c; text-transform: uppercase;">Pricing</div>
+          <h2 style="font-family: var(--font-display); font-weight: 800; font-size: clamp(24px, 2.8vw, 34px); line-height: 1.15; letter-spacing: -0.02em; color: var(--slate-800); margin: 12px 0 0;">Plans from $79 per developer.</h2>
+          <p style="font-size: 15.5px; line-height: 1.6; color: var(--slate-500); margin: 10px 0 0; max-width: 46ch;">Every plan includes unlimited recipes, nutrition analysis and US labels. <strong style="color: var(--slate-800); font-weight: 700;">Studio adds the AI Agent</strong> and Canadian bilingual labels.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 12px; align-items: flex-start;">
+          <div style="display: flex; align-items: baseline; gap: 8px;">
+            <span style="font-family: var(--font-display); font-weight: 800; font-size: clamp(34px, 4vw, 46px); color: var(--slate-800); line-height: 1;">$79</span>
+            <span style="font-size: 13.5px; font-weight: 600; color: var(--slate-400);">/ dev / mo</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <a href="/v2/pricing" style="background: #7fd234; color: #16223a; font-size: 15px; font-weight: 800; padding: 13px 26px; border-radius: 999px; white-space: nowrap; box-shadow: 0 10px 26px rgba(127,210,52,.3); transition: background 180ms ease, transform 180ms ease;" style-hover="background: #8ede40; color: #16223a; transform: translateY(-2px);">Compare plans</a>
+            <a href="/v2/contact" style="background: #fff; border: 1px solid var(--gray-300); color: var(--slate-700); font-size: 15px; font-weight: 700; padding: 13px 24px; border-radius: 999px; white-space: nowrap; transition: color 180ms ease, transform 180ms ease;" style-hover="color: var(--blue-600); transform: translateY(-2px);">Request a demo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq" data-screen-label="FAQ" style="padding: clamp(56px, 8vw, 100px) 24px; background: linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%);">
+    <div style="max-width: 760px; margin: 0 auto;">
+      <div style="text-align: center;">
+        <div data-reveal="" style="font-size: 12px; font-weight: 700; letter-spacing: .16em; color: #5c8f1c; text-transform: uppercase;">FAQ</div>
+        <h2 data-reveal="" data-reveal-delay="0.06" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 3.6vw, 48px); line-height: 1.1; letter-spacing: -0.02em; color: var(--slate-800); margin: 14px 0 0;">Before you ask for a demo.</h2>
+      </div>
+      <div data-reveal="" data-reveal-delay="0.1" style="display: flex; flex-direction: column; gap: 12px; margin-top: clamp(32px, 4vw, 48px);">
+        <sc-for list="{{ faqs }}" as="item" hint-placeholder-count="3">
+          <div style="background: #fff; border: 1px solid var(--gray-300); border-radius: 18px; overflow: hidden;">
+            <button onClick="{{ item.toggle }}" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 14px; width: 100%; padding: 18px 22px; cursor: pointer; font-family: var(--font-sans);">
+              <span style="flex: 1; font-weight: 700; font-size: 15.5px; color: var(--slate-800); line-height: 1.4;">{{ item.q }}</span>
+              <span style="flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--blue-100); color: var(--blue-600); display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600; transition: transform 220ms ease; transform: rotate({{ item.rot }});">+</span>
+            </button>
+            <div style="display: grid; grid-template-rows: {{ item.rows }}; transition: grid-template-rows 260ms ease;">
+              <div style="overflow: hidden;">
+                <p style="margin: 0; padding: 0 22px 20px; font-size: 14.5px; line-height: 1.65; color: var(--slate-500);">{{ item.a }}</p>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div data-reveal data-reveal-delay="0.16" style="text-align: center; margin-top: 26px;">
+        <a href="/v2/faq" style="display: inline-flex; align-items: center; gap: 8px; color: var(--blue-600); font-size: 14.5px; font-weight: 800;" style-hover="color: var(--blue-700);">
+          <span>See all questions</span>
+          <span class="iconify" data-icon="icon-park-outline:arrow-right" style="font-size: 15px;"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA BAND ============ -->
+  <section id="demo" data-screen-label="CTA" style="background: var(--slate-900); padding: clamp(80px, 11vw, 140px) 24px; position: relative; overflow: clip;">
+    <div style="position: absolute; top: 22px; right: 22px; width: 52px; opacity: .45; animation: fsFloat 8s ease-in-out infinite; pointer-events: none;"><img src="/v2/assets/logo-mark.png" alt="" style="width: 100%;"></div>
+    <div style="position: absolute; bottom: 20px; left: 22px; width: 40px; opacity: .3; animation: fsFloat2 10s ease-in-out infinite; pointer-events: none;"><img src="/v2/assets/logo-mark.png" alt="" style="width: 100%;"></div>
+    <div style="max-width: 760px; margin: 0 auto; text-align: center; position: relative;">
+      <h2 data-reveal="" style="font-family: var(--font-display); font-weight: 800; font-size: clamp(34px, 4.6vw, 60px); line-height: 1.06; letter-spacing: -0.02em; color: #fff; margin: 0;">Ready to build your next bestseller?</h2>
+      <p data-reveal="" data-reveal-delay="0.08" style="font-size: 17px; line-height: 1.65; color: var(--slate-300); margin: 20px auto 0; max-width: 46ch;">See Flavor Studio and its AI Agent on your own formulas. A 30-minute demo, tailored to your category.</p>
+      <div data-reveal="" data-reveal-delay="0.16" style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 34px;">
+        <a href="/v2/contact" style="background: var(--blue-500); color: #fff; font-size: 16px; font-weight: 700; padding: 15px 32px; border-radius: 14px; white-space: nowrap; box-shadow: 0 12px 30px rgba(89,163,235,.4); transition: background 180ms ease, transform 180ms ease;" style-hover="background: var(--blue-600); color: #fff; transform: translateY(-2px);">Request a demo</a>
+        <a href="mailto:info@senspirellc.com" style="border: 1px solid rgba(255,255,255,.28); color: #fff; font-size: 16px; font-weight: 700; padding: 15px 32px; border-radius: 14px; white-space: nowrap; transition: background 180ms ease;" style-hover="background: rgba(255,255,255,.1); color: #fff;">Talk to sales</a>
+      </div>
+      <div data-reveal="" data-reveal-delay="0.24" style="font-size: 13px; color: var(--slate-500); margin-top: 22px;">No credit card. No 40-page onboarding doc. Just food science.</div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background: var(--slate-900); border-top: 1px solid rgba(255,255,255,.08); padding: 48px 24px 36px;">
+    <div style="max-width: 1180px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between;">
+      <div style="max-width: 280px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <img src="/v2/uploads/flovour studio logo.svg" alt="Flavor Studio" style="height: 28px; width: auto; display: block;">
+        </div>
+        <div style="font-size: 13px; line-height: 1.6; color: var(--slate-400); margin-top: 14px;">1547 Palos Verdes, Suite 221<br>Walnut Creek, CA 94597<br><a href="tel:+16502514429" style="color: var(--slate-300);">(650) 251-4429</a></div>
+      </div>
+      <div style="display: flex; gap: clamp(32px, 6vw, 80px); flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--slate-500);">Product</div>
+          <a href="/v2/Features.dc.html" style="color: var(--slate-300); font-size: 13.5px;" style-hover="color: #ffffff;">Recipes</a>
+          <a href="#sous" style="color: var(--slate-300); font-size: 13.5px;" style-hover="color: #ffffff;">AI Agent</a>
+          <a href="#labels" style="color: var(--slate-300); font-size: 13.5px;" style-hover="color: #ffffff;">Labeling</a>
+          <a href="/v2/pricing" style="color: var(--slate-300); font-size: 13.5px;" style-hover="color: #ffffff;">Pricing</a>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--slate-500);">Company</div>
+          <a href="/v2/customers" style="color: var(--slate-300); font-size: 13.5px;" style-hover="color: #ffffff;">Customers</a>
+          <a href="/v2/success-stories" style="color: var(--slate-300); font-size: 13.5px;" style-hover="color: #ffffff;">Success stories</a>
+          <a href="/v2/faq" style="color: var(--slate-300); font-size: 13.5px;" style-hover="color: #ffffff;">FAQ</a>
+          <a href="/v2/contact" style="color: var(--slate-300); font-size: 13.5px;" style-hover="color: #ffffff;">Contact</a>
+          <a href="mailto:info@senspirellc.com" style="color: var(--slate-300); font-size: 13.5px;" style-hover="color: #ffffff;">info@senspirellc.com</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width: 1180px; margin: 36px auto 0; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.08); display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; font-size: 12.5px; color: var(--slate-500);">
+      <span>© {{ year }} Senspire Co. All rights reserved. A Senspire solution.</span>
+      <span>Privacy · Terms · Support</span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;showAnnouncement&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Header&quot;, &quot;description&quot;: &quot;Show the IFT / AI Agent announcement bar&quot; },
+  &quot;pauseLoops&quot;: { &quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: false, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Motion&quot;, &quot;description&quot;: &quot;Play the hero walkthrough once instead of looping&quot; }
+}">
+class Component extends DCLogic {
+  state = { faqOpen: 0, isDesktop: true, isWide: true, menuOpen: false, chat: [], chatInput: '', chatLoading: false, chatError: '', platTab: 0, platAuto: true, tstIdx: 0, tstAuto: true };
+
+  componentDidMount() {
+    this._alive = true;
+    this._mq = window.matchMedia('(max-width: 960px)');
+    this._mqWide = window.matchMedia('(min-width: 1040px)');
+    this._onMq = () => this.setState({ isDesktop: !this._mq.matches, isWide: this._mqWide.matches, menuOpen: this._mq.matches ? this.state.menuOpen : false });
+    this._mq.addEventListener('change', this._onMq);
+    this._mqWide.addEventListener('change', this._onMq);
+    this._onMq();
+    this._setupPlatform();
+    this._setupTestimonials();
+    this._poll = setInterval(() => {
+      if (window.gsap && window.ScrollTrigger) {
+        clearInterval(this._poll);
+        try { this._setup(); } catch (err) { console.error('reveal setup failed', err); }
+      }
+    }, 80);
+  }
+
+  componentDidUpdate() {
+    const el = document.querySelector('[data-chatscroll]');
+    if (el) el.scrollTop = el.scrollHeight;
+    if (this._lastPlatTab !== this.state.platTab) {
+      this._lastPlatTab = this.state.platTab;
+      this._animPlatform();
+    }
+    if (this._lastTstIdx !== this.state.tstIdx) {
+      this._lastTstIdx = this.state.tstIdx;
+      this._animTestimonial();
+    }
+  }
+
+  _animPlatform() {
+    const g = window.gsap;
+    const panel = document.querySelector('[data-platpanel]');
+    const bars = [].slice.call(document.querySelectorAll('[data-platbar]'));
+    const prog = document.querySelector('[data-platprog]');
+    // Never leave a hidden from-state behind: with no animation frames the
+    // tween would never run and the panel would stay invisible forever.
+    if (!g) {
+      if (panel) { panel.style.opacity = '1'; panel.style.transform = 'none'; }
+      document.querySelectorAll('[data-platitem],[data-platmock],[data-platmetric]').forEach(el => {
+        el.style.opacity = '1'; el.style.transform = 'none';
+      });
+      bars.forEach(b => { b.style.transform = 'scaleX(1)'; });
+      return;
+    }
+    const items = [].slice.call(document.querySelectorAll('[data-platitem]'));
+    const mock = document.querySelector('[data-platmock]');
+    const metric = document.querySelector('[data-platmetric]');
+    if (panel) g.fromTo(panel, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'none' });
+    if (items.length) g.fromTo(items, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out', stagger: 0.07, delay: 0.06 });
+    if (mock) g.fromTo(mock, { opacity: 0, x: 28, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.65, ease: 'power3.out', delay: 0.12 });
+    if (metric) g.fromTo(metric, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: 0.34 });
+    if (bars.length) g.fromTo(bars, { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: 'power3.out', stagger: 0.09, delay: 0.42 });
+    if (prog) {
+      g.killTweensOf(prog);
+      if (this.state.platAuto) g.fromTo(prog, { scaleX: 0 }, { scaleX: 1, duration: this._platDwell / 1000, ease: 'none' });
+      else g.set(prog, { scaleX: 0 });
+    }
+    // Self-heal on every tab change: if the tween never advanced, snap final.
+    clearTimeout(this._platHeal);
+    this._platHeal = setTimeout(() => {
+      if (!this._alive || !panel) return;
+      const stuck = [].slice.call(document.querySelectorAll('[data-platpanel],[data-platitem],[data-platmock],[data-platmetric]'))
+        .filter(el => parseFloat(getComputedStyle(el).opacity) < 0.9);
+      if (stuck.length) {
+        g.killTweensOf(stuck);
+        g.set(stuck, { clearProps: 'opacity,transform,translate,rotate,scale,x,y' });
+      }
+      const flat = bars.filter(b => /matrix\(0/.test(getComputedStyle(b).transform));
+      if (flat.length) { g.killTweensOf(flat); g.set(flat, { scaleX: 1 }); }
+    }, 1600);
+  }
+
+  _animTestimonial() {
+    const g = window.gsap;
+    const card = document.querySelector('[data-tstcard]');
+    if (!card) return;
+    const items = [].slice.call(document.querySelectorAll('[data-tstitem]'));
+    if (!g) {
+      card.style.opacity = '1'; card.style.transform = 'none';
+      items.forEach(i => { i.style.opacity = '1'; i.style.transform = 'none'; });
+      return;
+    }
+    // Slide the whole track left by one card: the clipped right-hand card
+    // travels into full view rather than popping.
+    const step = items.length ? items[0].getBoundingClientRect().width + 20 : 0;
+    const dir = this._tstBack ? -1 : 1;
+    this._tstBack = false;
+    g.fromTo(card, { x: dir * step }, { x: 0, duration: 0.55, ease: 'power3.out' });
+    clearTimeout(this._tstHeal);
+    this._tstHeal = setTimeout(() => {
+      if (!this._alive || !card) return;
+      const stuck = [].slice.call(document.querySelectorAll('[data-tstcard],[data-tstitem]'))
+        .filter(el => parseFloat(getComputedStyle(el).opacity) < 0.9);
+      if (stuck.length) {
+        g.killTweensOf(stuck);
+        g.set(stuck, { clearProps: 'opacity,transform,translate,rotate,scale,x,y' });
+      }
+      // the track must never be left mid-slide
+      const tr = getComputedStyle(card).transform;
+      if (tr && tr !== 'none' && !/matrix\(1, 0, 0, 1, 0, 0\)/.test(tr)) {
+        g.killTweensOf(card);
+        g.set(card, { x: 0 });
+      }
+    }, 1100);
+  }
+
+  _setupTestimonials() {
+    const wrap = document.querySelector('[data-tstwrap]');
+    if (!wrap) {
+      this._tstTries = (this._tstTries || 0) + 1;
+      if (this._tstTries < 60) this._tstRetry = setTimeout(() => this._setupTestimonials(), 120);
+      return;
+    }
+    const inView = () => {
+      const r = wrap.getBoundingClientRect();
+      return r.bottom > 0 && r.top < (window.innerHeight || 800);
+    };
+    this._tstTimer = setInterval(() => {
+      if (!this._alive || !this.state.tstAuto || !inView()) return;
+      this.setState({ tstIdx: (this.state.tstIdx + 1) % this._tstCount });
+    }, 4200);
+    wrap.addEventListener('mouseenter', () => { this._tstHover = true; });
+    wrap.addEventListener('mouseleave', () => { this._tstHover = false; });
+  }
+
+  _setupPlatform() {
+    // The template renders progressively, so #features may not exist at mount.
+    const sec = document.querySelector('#features');
+    if (!sec) {
+      this._platTries = (this._platTries || 0) + 1;
+      if (this._platTries < 60) this._platRetry = setTimeout(() => this._setupPlatform(), 120);
+      return;
+    }
+    this._platDwell = 4600;
+    // Measure visibility directly instead of via IntersectionObserver: IO
+    // callbacks are delivered on animation frames, so a throttled/offscreen
+    // render would never start the rotation.
+    const inView = () => {
+      const r = sec.getBoundingClientRect();
+      return r.bottom > 0 && r.top < (window.innerHeight || 800);
+    };
+    this._animPlatform();
+    this._platTimer = setInterval(() => {
+      if (!this._alive || !this.state.platAuto || !inView()) return;
+      this.setState({ platTab: (this.state.platTab + 1) % 6 });
+    }, this._platDwell);
+  }
+
+  async _ask(question) {
+    const q = (question || '').trim();
+    if (!q || this.state.chatLoading) return;
+    const history = this.state.chat.concat([{ role: 'user', text: q }]);
+    this.setState({ chat: history, chatInput: '', chatLoading: true, chatError: '' });
+    try {
+      if (!window.claude || !window.claude.complete) throw new Error('offline');
+      const messages = history.map(m => ({ role: m.role === 'agent' ? 'assistant' : 'user', content: m.text }));
+      const system = "You are the AI Agent inside Flavor Studio, a food R&D and recipe-formulation platform for product developers and food scientists. Answer questions about recipe formulation, ingredient substitutions, nutrition, allergens (big-9), FDA/CFIA labeling and nutrient content claims, yield and costing. Be concise (usually 2-5 sentences or a short list), precise and operational — talk like a food technologist, not marketing. Use explicit units ($, g, %, mg). When a claim would reference a regulation or data source, end with a short 'Sources:' line naming plausible references (e.g. 21 CFR 101.61, USDA FoodData Central, ingredient library). This is a public demo, so invent reasonable illustrative figures rather than asking for the user's data, but keep them realistic. No emoji.";
+      const raw = await window.claude.complete({ system, messages, max_tokens: 700 });
+      if (!this._alive) return;
+      const clean = (raw || '')
+        .replace(/\*\*(.*?)\*\*/g, '$1')
+        .replace(/(^|\s)\*(?!\s)(.*?)\*/g, '$1$2')
+        .replace(/^#{1,6}\s+/gm, '')
+        .replace(/^\s*[-*]\s+/gm, '• ')
+        .trim();
+      this.setState({ chat: this.state.chat.concat([{ role: 'agent', text: clean || 'Sorry, I could not generate a response — try rephrasing.' }]), chatLoading: false });
+    } catch (e) {
+      if (!this._alive) return;
+      this.setState({ chatLoading: false, chatError: "The Agent is unavailable right now — this live demo needs a connection. Request a demo to see it on your own data." });
+    }
+  }
+
+  componentWillUnmount() {
+    this._alive = false;
+    clearInterval(this._poll);
+    clearInterval(this._platTimer);
+    clearTimeout(this._platHeal);
+    clearTimeout(this._platRetry);
+    clearInterval(this._revealTimer);
+    clearInterval(this._tstTimer);
+    clearTimeout(this._tstHeal);
+    clearTimeout(this._tstRetry);
+    clearTimeout(this._tstResume);
+    clearTimeout(this._lastResort);
+    if (this._revealSweep) {
+      window.removeEventListener('scroll', this._revealSweep);
+      window.removeEventListener('resize', this._revealSweep);
+    }
+    if (this._mq) this._mq.removeEventListener('change', this._onMq);
+    if (this._mqWide) this._mqWide.removeEventListener('change', this._onMq);
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach(t => t.kill());
+    if (this._tl) this._tl.kill();
+  }
+
+  _setup() {
+    const g = window.gsap;
+    // Reveal queue driven by measured geometry, not IntersectionObserver:
+    // IO callbacks are not delivered in every embedding, which would leave
+    // everything below the fold permanently hidden.
+    const _queue = [];
+    const _io = (el, cb) => {
+      if (!el) return;
+      _queue.push({ el: el, cb: cb, done: false });
+    };
+    const _sweepQueue = () => {
+      const vh = window.innerHeight || 800;
+      let pending = 0;
+      _queue.forEach(item => {
+        if (item.done) return;
+        const r = item.el.getBoundingClientRect();
+        if (r.top < vh * 0.94 && r.bottom > 0) { item.done = true; item.cb(item.el); }
+        else pending++;
+      });
+      return pending;
+    };
+    this._revealSweep = _sweepQueue;
+    window.addEventListener('scroll', _sweepQueue, { passive: true });
+    window.addEventListener('resize', _sweepQueue, { passive: true });
+    this._revealTimer = setInterval(() => {
+      if (!this._alive) { clearInterval(this._revealTimer); return; }
+      _sweepQueue();
+    }, 400);
+    // Failsafe: if animation frames never run (non-composited/hidden render),
+    // apply the final resting state synchronously so nothing stays hidden.
+    const _finalize = () => {
+      const cp = { clearProps: 'opacity,transform,translate,rotate,scale,x,y' };
+      g.utils.toArray('[data-reveal]').forEach(el => g.set(el, cp));
+      g.utils.toArray('[data-bar]').forEach(el => g.set(el, { scaleX: 1 }));
+      g.utils.toArray('[data-platbar]').forEach(el => g.set(el, { scaleX: 1 }));
+      g.utils.toArray('[data-platpanel],[data-platitem],[data-platmock],[data-platmetric]').forEach(el => g.set(el, cp));
+      ['[data-srow]','[data-kcard]','[data-icard]','[data-crow]','[data-trow]','[data-lrow]','[data-smsg]'].forEach(sel =>
+        g.utils.toArray(sel).forEach(el => g.set(el, cp)));
+      g.utils.toArray('[data-count]').forEach(el => {
+        const end = parseFloat(el.getAttribute('data-count'));
+        const dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        const suf = el.getAttribute('data-suffix') || '';
+        const pre = el.getAttribute('data-prefix') || '';
+        el.textContent = pre + end.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+      });
+    };
+    // Anything in view that is still transparent after its tween should have
+    // run means the animation pipeline is not advancing — snap everything.
+    const _stalled = () => g.utils.toArray('[data-reveal],[data-platpanel]').some(el => {
+      const r = el.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > (window.innerHeight || 800)) return false;
+      return parseFloat(getComputedStyle(el).opacity) < 0.9;
+    });
+    setTimeout(() => { if (_stalled()) _finalize(); }, 1800);
+    setTimeout(() => { if (_stalled()) _finalize(); }, 3600);
+    // Last-resort sweep: nothing may stay permanently invisible, even if it
+    // never entered the viewport while the page was open.
+    this._lastResort = setTimeout(() => {
+      const hidden = g.utils.toArray('[data-reveal],[data-platpanel],[data-platitem],[data-platmock],[data-platmetric],[data-tstcard],[data-tstitem]')
+        .filter(el => parseFloat(getComputedStyle(el).opacity) < 0.9);
+      const flat = g.utils.toArray('[data-bar],[data-platbar]')
+        .filter(el => /matrix\(0/.test(getComputedStyle(el).transform));
+      if (hidden.length) {
+        g.killTweensOf(hidden);
+        g.set(hidden, { clearProps: 'opacity,transform,translate,rotate,scale,x,y' });
+      }
+      if (flat.length) { g.killTweensOf(flat); g.set(flat, { scaleX: 1 }); }
+    }, 6000);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches || (this.props.pauseLoops === true);
+
+    // Scroll reveals
+    g.utils.toArray('[data-reveal]').forEach(el => {
+      g.set(el, { y: 30, opacity: 0 });
+      _io(el, t => g.to(t, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', delay: parseFloat(t.getAttribute('data-reveal-delay') || '0') }));
+    });
+
+    // Count-ups
+    g.utils.toArray('[data-count]').forEach(el => {
+      const end = parseFloat(el.getAttribute('data-count'));
+      const dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+      const suf = el.getAttribute('data-suffix') || '';
+      const pre = el.getAttribute('data-prefix') || '';
+      _io(el, () => {
+        const obj = { v: 0 };
+        g.to(obj, {
+          v: end, duration: 1.8, ease: 'power2.out',
+          onUpdate: () => {
+            el.textContent = pre + obj.v.toLocaleString('en-US', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + suf;
+          }
+        });
+      });
+    });
+
+    // Formulation table rows
+    _io(document.querySelector('[data-formula]'), () => g.from('[data-trow]', {
+      x: -26, opacity: 0, duration: 0.55, ease: 'power2.out', stagger: 0.12
+    }));
+
+    // Nutrition label rows draw in
+    _io(document.querySelector('[data-label]'), () => g.from('[data-lrow]', {
+      opacity: 0, x: -14, duration: 0.4, ease: 'power2.out', stagger: 0.09
+    }));
+
+    // AI Agent conversation reveal
+    _io(document.querySelector('[data-schat]'), () => g.from('[data-smsg]', {
+      y: 18, opacity: 0, duration: 0.6, ease: 'power2.out', stagger: 0.35
+    }));
+
+    // Hero: live walkthrough card
+    if (document.querySelector('[data-walk]')) this._walkthrough(g, reduce);
+  }
+
+  _walkthrough(g, reduce) {
+    const q = s => document.querySelector(s);
+    const panels = [0, 1, 2, 3].map(i => q('[data-wpanel="' + i + '"]'));
+    const bars = [0, 1, 2, 3].map(i => q('[data-wbar="' + i + '"]'));
+    const dots = [0, 1, 2, 3].map(i => q('[data-wdot="' + i + '"]'));
+    if (panels.some(p => !p) || bars.some(b => !b)) return;
+    const D = 4.4;
+    const costEl = q('[data-wcost]');
+    const c1 = q('[data-wc1]'), c2 = q('[data-wc2]'), c3 = q('[data-wc3]');
+    const cmp = q('[data-wcmp]');
+    const tl = g.timeline({ repeat: reduce ? 0 : -1, repeatDelay: 1.6, delay: 0.8 });
+    this._tl = tl;
+    tl.set(panels, { autoAlpha: 0 }, 0);
+    [0, 1, 2, 3].forEach(i => {
+      const pos = 0.01 + i * D;
+      tl.set(dots[i], { backgroundColor: '#59a3eb', color: '#fff' }, pos);
+      tl.fromTo(bars[i], { scaleX: 0 }, { scaleX: 1, duration: D - 0.15, ease: 'none' }, pos);
+      tl.fromTo(panels[i], { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.35 }, pos);
+      if (i === 0) {
+        tl.fromTo('[data-wrow]', { x: -18, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 0.35, stagger: 0.16, ease: 'power2.out' }, pos + 0.4);
+        const total = { v: 0 };
+        tl.to(total, { v: 7.21, duration: 1.8, ease: 'power1.inOut', onUpdate: () => { if (costEl) costEl.textContent = '$' + total.v.toFixed(2); } }, pos + 0.6);
+      }
+      if (i === 1) {
+        const o = { a: 0, b: 0, c: 0 };
+        tl.to(o, { a: 0.34, b: 210, c: 12, duration: 1.6, ease: 'power2.out', onUpdate: () => {
+          if (c1) c1.textContent = '$' + o.a.toFixed(2);
+          if (c2) c2.textContent = String(Math.round(o.b));
+          if (c3) c3.textContent = Math.round(o.c) + ' g';
+        } }, pos + 0.5);
+      }
+      if (i === 2) {
+        tl.fromTo('[data-wq]', { autoAlpha: 0, x: 18 }, { autoAlpha: 1, x: 0, duration: 0.4 }, pos + 0.4);
+        tl.fromTo('[data-wa]', { autoAlpha: 0, y: 12 }, { autoAlpha: 1, y: 0, duration: 0.45 }, pos + 1.0);
+        tl.fromTo('[data-wcmpwrap]', { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 0.4 }, pos + 1.6);
+        const p = { v: 7.21 };
+        tl.to(p, { v: 6.62, duration: 1.0, ease: 'power2.out', onUpdate: () => { if (cmp) cmp.textContent = '$' + p.v.toFixed(2); } }, pos + 1.9);
+      }
+      if (i === 3) {
+        tl.fromTo('[data-wlrow]', { autoAlpha: 0, x: -10 }, { autoAlpha: 1, x: 0, duration: 0.3, stagger: 0.1 }, pos + 0.4);
+        tl.fromTo('[data-wbadge]', { autoAlpha: 0, scale: 0.85 }, { autoAlpha: 1, scale: 1, duration: 0.45, ease: 'back.out(1.7)' }, pos + 1.6);
+      }
+      if (i < 3) tl.to(panels[i], { autoAlpha: 0, duration: 0.3 }, pos + D - 0.3);
+      tl.set(dots[i], { backgroundColor: '#18bc9c' }, pos + D - 0.05);
+    });
+    tl.set(dots, { backgroundColor: 'rgba(255,255,255,.14)', color: '#c4cedd' }, 4 * D + 0.5);
+  }
+
+  renderVals() {
+    const open = this.state.faqOpen;
+    const faqData = [
+      { q: 'Is our data secure, and who owns the recipes?', a: 'Formulas are trade secrets and we treat them that way: SOC 2 Type II, encryption at rest and in transit, role-based permissions and a full audit log on Enterprise plans. You own everything you create and can export it at any time.' },
+      { q: 'How hard is it to move off our spreadsheets?', a: 'Onboarding includes a guided import for recipes, ingredients and cost data from Excel or CSV. Most teams are formulating in Flavor Studio within their first week — you do not rebuild anything by hand.' },
+      { q: 'Can we trust what the AI Agent tells us?', a: 'It reads only your workspace, and every answer cites the recipe, regulation or test it came from. If it cannot source an answer it says so rather than guessing, and it only ever proposes draft versions for a developer to approve.' }
+    ];
+    // Published bundles inline these via <meta name="ext-resource-dependency">;
+    // window.__resources holds the blob URL for each id at runtime.
+    const TP = 'https://www.flavorstudio.com/gfx/senspire/testimonials/';
+    const RES = (typeof window !== 'undefined' && window.__resources) || {};
+    const tstImg = file => RES['tst-' + file.replace('.png', '').replace(/_/g, '-')] || (TP + file);
+    const tstData = [
+      { quote: '"This is bar none the best program I\u2019ve ever seen or worked with."', name: 'Andrew Hunter', tag: 'Chef Andrew Hunter', role: 'President at Chef Andrew Hunter', photo: tstImg('andrew_hunter.png') },
+      { quote: '"Today we communicate, collaborate and prioritize projects in an organized and highly visible fashion… We can not live without Flavor Studio!"', name: 'Charles Hayes', tag: 'Deli Star', role: 'VP Culinary Innovation, R&D Deli Star', photo: tstImg('charles_hayes.png') },
+      { quote: '"Flavor Studio has always provided unparalleled customer service and has been extremely patient in working with us…"', name: 'Stefan Czapalay', tag: 'Signature Culinary', role: 'CEO Signature Culinary Solutions', photo: tstImg('stefan_czapalay.png') },
+      { quote: '"It\u2019s a great organizing tool and keeps you on task — like an Outlook calendar for food."', name: 'Greg Grisanti', tag: 'Frisch\'s Big Boy', role: 'Director of R&D at Frischs Big Boy Inc.', photo: tstImg('greg_grisanti.png') },
+      { quote: '"We are loving Flavor Studio more than ever!"', name: 'Kari Baker', tag: 'Hope Foods', role: 'Product Developer at Hope Foods', photo: tstImg('kari_baker.png') },
+      { quote: '"…a very robust and full-featured software for ideation and product formulation."', name: 'Michael Cheng, PhD., CHE', tag: 'FIU', role: 'Director of Food and Beverage Program at FIU', photo: tstImg('michael_cheng.png') },
+      { quote: '"Flavor Studio has provided ATE with not only a valuable business tool… but a proactive, solution driven relationship."', name: 'Chef Rob Corliss', tag: 'ATE', role: 'Owner of ATE (All Things Epicurean)', photo: tstImg('chef_rob_corliss.png') }
+    ];
+    const tstLen = tstData.length;
+    this._tstCount = tstLen;
+    const tp = this.state.tstIdx % tstLen;
+    const tstGo = i => {
+      this.setState({ tstIdx: (i + tstLen) % tstLen, tstAuto: false });
+      clearTimeout(this._tstResume);
+      // keep it an autoplaying carousel: resume after the user stops touching it
+      this._tstResume = setTimeout(() => {
+        if (this._alive) this.setState({ tstAuto: true });
+      }, 11000);
+    };
+    const platData = [
+      { id: 'recipes', label: 'Recipes', icon: 'icon-park-outline:chef-hat-one',
+        badgeBg: 'var(--lime-100)', badgeColor: '#5c8f1c',
+        title: 'Formulate and cost in one live grid',
+        desc: 'Percentages, weight, yield and cost recompute on every keystroke. Branch versions and sub-recipes without losing the original.',
+        checks: ['Live cost, yield and margin roll-up', 'Unlimited versions with pill-tab switching', 'Sub-recipes nested to any depth'],
+        cta: 'Discover Recipes', href: 'Features v2.dc.html#recipes',
+        mockTitle: 'Yield / cost', mockBadge: 'V8', metric: '$7.21', metricCaption: 'Total cost · 32 servings',
+        bars: [ { label: 'Butter', width: '30%', color: 'var(--lime-500)' }, { label: 'Sugars, brown', width: '25%', color: 'var(--lime-400)' }, { label: 'Flour', width: '20%', color: 'var(--slate-300)' } ] },
+      { id: 'taste-tests', label: 'Taste Tests', icon: 'icon-park-outline:experiment',
+        badgeBg: 'var(--teal-100)', badgeColor: '#0e8b73',
+        title: 'Sensory data that flows back into the formula',
+        desc: 'Run internal panels or consumer surveys, score attributes side by side across versions, and let the winner carry its data into production.',
+        checks: ['Blind triangle and preference tests', 'Scores attached to the exact version', 'Consumer surveys with purchase intent'],
+        cta: 'Discover Taste Tests', href: 'Features v2.dc.html#taste-tests',
+        mockTitle: 'Panel #212', mockBadge: 'v4 wins', metric: '7.8 / 9', metricCaption: 'Overall liking · 48 panelists',
+        bars: [ { label: 'Overall liking', width: '87%', color: 'var(--teal-500)' }, { label: 'Texture', width: '80%', color: 'var(--blue-500)' }, { label: 'Purchase intent', width: '72%', color: 'var(--lime-500)' } ] },
+      { id: 'projects', label: 'Projects', icon: 'icon-park-outline:folder-open',
+        badgeBg: 'var(--blue-200)', badgeColor: 'var(--blue-700)',
+        title: 'Launches move through gates, not inboxes',
+        desc: 'Briefs, tasks and stage gates tied directly to the recipes they concern. Everyone sees where a launch stands — and what is blocking it.',
+        checks: ['Stage gates from concept to shelf', 'Tasks linked to recipes and versions', 'Timelines your whole team can read'],
+        cta: 'Discover Projects', href: 'Features v2.dc.html#projects',
+        mockTitle: 'Stage gates', mockBadge: 'On track', metric: '14 active', metricCaption: 'Launches in flight this quarter',
+        bars: [ { label: 'Concept', width: '42%', color: 'var(--blue-200)' }, { label: 'Bench', width: '68%', color: 'var(--blue-500)' }, { label: 'Launch', width: '28%', color: 'var(--blue-700)' } ] },
+      { id: 'crm', label: 'CRM', icon: 'icon-park-outline:peoples',
+        badgeBg: 'var(--blue-200)', badgeColor: 'var(--blue-700)',
+        title: 'Connect the front line to R&D',
+        desc: 'Link sales opportunities directly to development projects, manage sample requests, and track shipping status — on one system.',
+        checks: ['Opportunity pipeline & activity reports', 'Sample requests linked to recipes', 'Shipment tracking built in'],
+        cta: 'Discover CRM', href: 'Features v2.dc.html#crm',
+        mockTitle: 'Pipeline', mockBadge: '+18% MoM', metric: '$1.2M', metricCaption: 'Open pipeline · 12 deals',
+        bars: [ { label: 'Lead', width: '92%', color: 'var(--blue-200)' }, { label: 'Sampling', width: '58%', color: 'var(--blue-500)' }, { label: 'Won', width: '30%', color: 'var(--blue-700)' } ] },
+      { id: 'inspire', label: 'Inspire', icon: 'icon-park-outline:star',
+        badgeBg: 'var(--lime-100)', badgeColor: '#5c8f1c',
+        title: 'Start the next product before the trend peaks',
+        desc: 'A feed of ingredients, concepts and category trends your team can clip into briefs. One click turns an idea into a project with a starter formula.',
+        checks: ['Trend and ingredient feed', 'Clip concepts straight into briefs', 'Turn an idea into a project in one click'],
+        cta: 'Discover Inspire', href: 'Features v2.dc.html#inspire',
+        mockTitle: 'Trend feed', mockBadge: '37 new', metric: '128 concepts', metricCaption: 'Clipped by your team this quarter',
+        bars: [ { label: 'Fermented heat', width: '78%', color: 'var(--lime-500)' }, { label: 'Upcycled grains', width: '64%', color: 'var(--lime-400)' }, { label: 'Botanical sodas', width: '52%', color: 'var(--teal-500)' } ] },
+      { id: 'admin', label: 'Admin', icon: 'icon-park-outline:setting-two',
+        badgeBg: 'var(--gray-100)', badgeColor: 'var(--slate-700)',
+        title: 'One library, governed centrally',
+        desc: 'Cost assumptions, units, permissions and the ingredient library live in one place — so every recipe costs and labels from the same source of truth.',
+        checks: ['Shared cost assumptions and units', 'Role-based permissions and audit log', 'Ingredient library with supplier specs'],
+        cta: 'Explore all features', href: 'Features v2.dc.html',
+        mockTitle: 'Ingredient library', mockBadge: 'Synced', metric: '1,240', metricCaption: 'Ingredients under management',
+        bars: [ { label: 'Costed', width: '96%', color: 'var(--slate-700)' }, { label: "Spec'd", width: '88%', color: 'var(--blue-500)' }, { label: 'Allergen-tagged', width: '74%', color: 'var(--slate-300)' } ] }
+    ];
+    const pi = this.state.platTab % platData.length;
+    const act = platData[pi];
+    return {
+      platTabs: platData.map((d, i) => ({
+        label: d.label,
+        icon: d.icon,
+        isActive: i === pi,
+        bg: i === pi ? 'var(--blue-500)' : '#ffffff',
+        color: i === pi ? '#ffffff' : 'var(--slate-600, var(--slate-700))',
+        border: i === pi ? 'var(--blue-500)' : 'var(--gray-300)',
+        shadow: i === pi ? '0 8px 22px rgba(89,163,235,.34)' : '0 2px 8px rgba(43,59,83,.05)',
+        select: () => this.setState({ platTab: i, platAuto: false })
+      })),
+      act: {
+        label: act.label, icon: act.icon, badgeBg: act.badgeBg, badgeColor: act.badgeColor,
+        title: act.title, desc: act.desc, cta: act.cta, href: act.href,
+        checks: act.checks.map(text => ({ text })),
+        mockTitle: act.mockTitle, mockBadge: act.mockBadge, metric: act.metric, metricCaption: act.metricCaption,
+        bars: act.bars
+      },
+      tstCards: [0, 1, 2, 3].map(k => {
+        const d = tstData[(tp + k) % tstLen];
+        return { quote: d.quote, name: d.name, role: d.role, photo: d.photo, tag: d.tag };
+      }),
+      tstDots: Array.from({ length: tstLen }, (_, i) => ({
+        w: i === tp ? '22px' : '7px',
+        bg: i === tp ? 'var(--blue-500)' : 'var(--slate-200, #cdd5e0)',
+        go: () => tstGo(i)
+      })),
+      tstPrev: () => tstGo(tp - 1),
+      tstNext: () => tstGo(tp + 1),
+      year: new Date().getFullYear(),
+      showAnnouncement: this.props.showAnnouncement !== false,
+      isDesktop: this.state.isDesktop,
+      isMobile: !this.state.isDesktop,
+      isWide: this.state.isWide,
+      menuOpen: !this.state.isDesktop && this.state.menuOpen,
+      bar1: this.state.menuOpen ? 'translateY(6px) rotate(45deg)' : 'none',
+      bar2op: this.state.menuOpen ? '0' : '1',
+      bar3: this.state.menuOpen ? 'translateY(-6px) rotate(-45deg)' : 'none',
+      toggleMenu: () => this.setState({ menuOpen: !this.state.menuOpen }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      chat: this.state.chat.map(m => ({ text: m.text, isUser: m.role === 'user', isAgent: m.role === 'agent' })),
+      chatEmpty: this.state.chat.length === 0,
+      chatInput: this.state.chatInput,
+      chatLoading: this.state.chatLoading,
+      chatError: !!this.state.chatError,
+      chatErrorMsg: this.state.chatError,
+      sendBg: (this.state.chatInput.trim() && !this.state.chatLoading) ? 'var(--blue-500)' : 'var(--blue-200)',
+      sendIcon: (this.state.chatInput.trim() && !this.state.chatLoading) ? '#ffffff' : 'var(--blue-700)',
+      sendCursor: (this.state.chatInput.trim() && !this.state.chatLoading) ? 'pointer' : 'default',
+      onChatInput: e => this.setState({ chatInput: e.target.value }),
+      onChatKey: e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); this._ask(this.state.chatInput); } },
+      sendChat: () => this._ask(this.state.chatInput),
+      suggestions: [
+        { label: 'Soy-free starch under $2.10/kg?', use: () => this._ask('Find me a non-GMO starch with no soy cross-contact under $2.10/kg.') },
+        { label: 'Reduce sodium 20% — claim impact?', use: () => this._ask('If I cut sodium 20% in a chicken broth, what nutrient content claim could I make and what should I watch for?') },
+        { label: 'Swap butter to cut cost', use: () => this._ask('How can I swap butter in a cookie to cut cost 8% while keeping the sensory score?') }
+      ],
+      faqs: faqData.map((f, i) => ({
+        q: f.q,
+        a: f.a,
+        rows: open === i ? '1fr' : '0fr',
+        rot: open === i ? '45deg' : '0deg',
+        toggle: () => this.setState({ faqOpen: open === i ? -1 : i })
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
