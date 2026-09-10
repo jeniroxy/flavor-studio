@@ -18,13 +18,17 @@ import { prefersReducedMotion } from "@/lib/reveal";
  *
  * Top: the success story card (photo left, content right), autoplaying every
  * 6.5s. Bottom: the customer testimonials — a raised centre card flanked by two
- * dimmed peeking cards, autoplaying every 4.2s. Both pause on interaction and
- * resume once the reader stops touching them.
+ * dimmed peeking cards.
+ *
+ * Only the story carousel autoplays. The testimonials used to advance every
+ * 4.2s as well, which meant a reader part-way through a quote was carried off
+ * it — two auto-advancing carousels stacked in one section is one too many.
+ * The testimonials now move only when the reader asks, via the arrows or dots.
  */
 
 const STORY_INTERVAL = 6500;
 const STORY_RESUME = 12000;
-const TST_INTERVAL = 4200;
+const TST_INTERVAL = 0; // 0 = no autoplay; see the note above
 const TST_RESUME = 11000;
 
 /** Autoplay that only ticks while `ref` is on screen, and can be paused. */
@@ -47,7 +51,8 @@ function useCarousel(
   }, [ref]);
 
   useEffect(() => {
-    if (!auto || prefersReducedMotion()) return;
+    // intervalMs of 0 means this carousel is reader-driven only.
+    if (!intervalMs || !auto || prefersReducedMotion()) return;
     const id = setInterval(() => {
       if (inView()) setIndex((i) => (i + 1) % length);
     }, intervalMs);
@@ -218,18 +223,13 @@ export function SuccessStories() {
               </div>
 
               <div className="bg-gray-050 flex flex-col rounded-[20px] border border-gray-300 p-[clamp(26px,3.2vw,40px)]">
-                <div className="flex items-start justify-between gap-4">
-                  <div className="text-[12px] font-bold tracking-[.14em] text-[#5c8f1c] uppercase">
-                    {current.eyebrow}
-                  </div>
-                  <span className="flex-none rounded-full bg-blue-100 px-[13px] py-[5px] text-[12px] font-bold whitespace-nowrap text-blue-700">
-                    {current.tag}
-                  </span>
+                <div className="text-[12px] font-bold tracking-[.14em] text-[#5c8f1c] uppercase">
+                  {current.eyebrow}
                 </div>
                 <h3 className="font-display mt-4 text-[clamp(22px,2.5vw,31px)] leading-[1.18] font-extrabold tracking-[-0.02em] text-pretty text-slate-800">
                   {current.title}
                 </h3>
-                <p className="mt-[14px] text-[15.5px] leading-[1.65] text-pretty text-slate-500">
+                <p className="mt-[14px] text-[16px] leading-[1.65] text-pretty text-slate-500">
                   {current.blurb}
                 </p>
                 <div className="mt-auto pt-[clamp(22px,2.6vw,32px)]">
@@ -244,9 +244,7 @@ export function SuccessStories() {
                     </div>
                     <a
                       href={current.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="rounded-full border border-gray-300 bg-white px-6 py-3 text-[14.5px] font-bold whitespace-nowrap text-slate-800 transition-[background,color,transform] duration-[180ms] hover:-translate-y-0.5 hover:bg-blue-500 hover:text-white"
+                      className="rounded-full border border-gray-300 bg-white px-6 py-3 text-[14px] font-bold whitespace-nowrap text-slate-800 transition-[background,color] duration-[180ms] hover:bg-blue-500 hover:text-white"
                     >
                       View full case study
                     </a>
@@ -262,15 +260,20 @@ export function SuccessStories() {
                   type="button"
                   onClick={() => story.go(i, i < story.index)}
                   aria-label={`Show ${s.company}`}
-                  className="h-[7px] cursor-pointer rounded-full transition-[width,background] duration-[240ms]"
-                  style={{
-                    width: i === story.index ? "22px" : "7px",
-                    background:
-                      i === story.index
-                        ? "var(--color-blue-500)"
-                        : "var(--color-slate-200)",
-                  }}
-                />
+                  aria-current={i === story.index}
+                  className="flex min-h-[24px] min-w-[24px] cursor-pointer items-center justify-center"
+                >
+                  <span
+                    className="block h-[7px] rounded-full transition-[width,background] duration-[240ms]"
+                    style={{
+                      width: i === story.index ? "22px" : "7px",
+                      background:
+                        i === story.index
+                          ? "var(--color-blue-700)"
+                          : "var(--color-slate-300)",
+                    }}
+                  />
+                </button>
               ))}
             </div>
           </div>
@@ -285,7 +288,7 @@ export function SuccessStories() {
               delay={0.06}
               className="font-display mt-3 text-[clamp(24px,2.8vw,36px)] leading-[1.15] font-extrabold tracking-[-0.02em] text-slate-800"
             >
-              Teams ship more, retest less.
+              In their own words.
             </Reveal>
           </div>
 
@@ -303,7 +306,7 @@ export function SuccessStories() {
                 <div
                   data-tstitem=""
                   data-tstfeature=""
-                  className="flex max-w-[480px] flex-[1_1_420px] flex-col rounded-[20px] border border-gray-300 bg-white p-[clamp(28px,3vw,38px)] shadow-[0_22px_54px_rgba(43,59,83,.14)]"
+                  className="flex max-w-[480px] flex-[1_1_420px] flex-col rounded-[20px] border border-gray-300 bg-white p-[clamp(28px,3vw,38px)] shadow-float"
                 >
                   <div className="font-display text-[52px] leading-[.7] font-extrabold text-blue-400">
                     &ldquo;
@@ -336,7 +339,7 @@ export function SuccessStories() {
                 type="button"
                 onClick={() => tst.go(tst.index - 1, true)}
                 aria-label="Previous testimonial"
-                className={`${arrowClass} absolute top-1/2 left-0 z-4 h-12 w-12 -translate-y-1/2 shadow-[0_8px_24px_rgba(43,59,83,.14)]`}
+                className={`${arrowClass} absolute top-1/2 left-0 z-4 h-12 w-12 -translate-y-1/2 shadow-card`}
               >
                 <Icon name="left" className="text-[20px]" />
               </button>
@@ -344,7 +347,7 @@ export function SuccessStories() {
                 type="button"
                 onClick={() => tst.go(tst.index + 1)}
                 aria-label="Next testimonial"
-                className={`${arrowClass} absolute top-1/2 right-0 z-4 h-12 w-12 -translate-y-1/2 shadow-[0_8px_24px_rgba(43,59,83,.14)]`}
+                className={`${arrowClass} absolute top-1/2 right-0 z-4 h-12 w-12 -translate-y-1/2 shadow-card`}
               >
                 <Icon name="right" className="text-[20px]" />
               </button>
@@ -356,15 +359,20 @@ export function SuccessStories() {
                     type="button"
                     onClick={() => tst.go(i, i < tst.index)}
                     aria-label={`Show ${t.name}`}
-                    className="h-2 cursor-pointer rounded-full transition-[width,background] duration-[240ms]"
-                    style={{
-                      width: i === tst.index ? "22px" : "7px",
-                      background:
-                        i === tst.index
-                          ? "var(--color-blue-500)"
-                          : "var(--color-slate-200)",
-                    }}
-                  />
+                    aria-current={i === tst.index}
+                    className="flex min-h-[24px] min-w-[24px] cursor-pointer items-center justify-center"
+                  >
+                    <span
+                      className="block h-[7px] rounded-full transition-[width,background] duration-[240ms]"
+                      style={{
+                        width: i === tst.index ? "22px" : "7px",
+                        background:
+                          i === tst.index
+                            ? "var(--color-blue-700)"
+                            : "var(--color-slate-300)",
+                      }}
+                    />
+                  </button>
                 ))}
               </div>
             </div>
@@ -384,12 +392,12 @@ function SideCard({
   return (
     <div
       data-tstitem=""
-      className="flex-[0_1_300px] self-center rounded-[18px] border border-gray-300 bg-white p-6 opacity-55 shadow-[0_8px_22px_rgba(43,59,83,.06)]"
+      className="flex-[0_1_300px] self-center rounded-[18px] border border-gray-300 bg-white p-6 opacity-55 shadow-raised"
     >
       <div className="font-display text-[34px] leading-[.7] font-extrabold text-blue-300">
         &ldquo;
       </div>
-      <p className="mt-[14px] text-[13.5px] leading-[1.6] text-pretty text-slate-500">
+      <p className="mt-[14px] text-[14px] leading-[1.6] text-pretty text-slate-500">
         {testimonial.quote}
       </p>
       <div className="mt-[18px] flex items-center gap-[11px]">

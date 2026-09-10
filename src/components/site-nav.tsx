@@ -3,25 +3,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { routes, type NavKey } from "@/lib/routes";
+import { loginUrl, routes, type NavKey } from "@/lib/routes";
 
 /*
  * SiteNav v3 — light glass bar, links centred, logo left, Login + lime CTA
  * right. Sticky is applied here rather than on a wrapper: in the prototype the
  * header stuck to a 64px-tall mount and only travelled that far.
  *
- * FAQ was removed from the desktop row on request but kept in the mobile menu,
- * which is why the two link lists differ.
+ * Login is a plain <a> to the app subdomain, not a Link: authentication lives
+ * on app.flavorstudio.com because the session cookie is scoped there, so this
+ * site never renders a sign-in form of its own.
+ *
+ * News and FAQ stay out of the desktop row to keep it uncrowded, but both are
+ * in the mobile menu and the footer, which is why the two lists differ.
  */
 
 const DESKTOP_LINKS: { key: NavKey; label: string; href: string }[] = [
   { key: "features", label: "Features", href: routes.features },
   { key: "agent", label: "AI Agent", href: routes.agent },
+  { key: "developers", label: "Developers", href: routes.developers },
   { key: "pricing", label: "Pricing", href: routes.pricing },
 ];
 
 const MOBILE_LINKS: { key: NavKey; label: string; href: string }[] = [
   ...DESKTOP_LINKS,
+  { key: "news", label: "News", href: routes.news },
   { key: "faq", label: "FAQ", href: routes.faq },
 ];
 
@@ -48,7 +54,7 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
 
   return (
     <header className="sticky top-0 z-90 bg-[rgba(238,239,244,.86)] backdrop-blur-[16px] backdrop-saturate-150">
-      <div className="relative mx-auto flex h-[60px] max-w-[1180px] items-center gap-[28px] px-6">
+      <div className="relative mx-auto flex h-[var(--nav-height)] max-w-[1180px] items-center gap-[28px] px-6">
         <Link href={routes.home} className="flex items-center gap-[10px]">
           <Image
             src="/assets/logo-dark-text.svg"
@@ -56,7 +62,7 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
             width={196}
             height={38}
             priority
-            className="h-8 w-auto"
+            className="h-11 w-auto"
           />
         </Link>
 
@@ -76,16 +82,16 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
 
         <div className="ml-auto flex items-center gap-[18px]">
           {isDesktop && (
-            <Link
-              href={routes.login}
+            <a
+              href={loginUrl}
               className="text-[13px] font-bold whitespace-nowrap text-slate-800 transition-colors hover:text-blue-600"
             >
               Login
-            </Link>
+            </a>
           )}
           <Link
-            href={routes.contact}
-            className="rounded-[12px] bg-[#7fd234] px-[20px] py-[10px] text-[13px] font-extrabold whitespace-nowrap text-[#16223a] shadow-[0_8px_20px_rgba(127,210,52,.32)] transition-[background,transform] duration-[180ms] hover:-translate-y-px hover:bg-[#8ede40]"
+            href={routes.demo}
+            className="rounded-[12px] bg-[#7fd234] px-[20px] py-[10px] text-[13px] font-extrabold whitespace-nowrap text-[#16223a] shadow-lime transition-[background] duration-[180ms] hover:bg-[#8ede40]"
           >
             Request a demo
           </Link>
@@ -123,27 +129,30 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
       </div>
 
       {!isDesktop && menuOpen && (
-        <div className="border-t border-white/10 bg-[rgba(22,34,58,.98)] backdrop-blur-[16px]">
+        /* Matches the light bar it drops out of. This panel was near-black
+           navy left over from the earlier dark nav, with dark-on-dark dividers
+           at 7% opacity and a light-mode blue on the active link. */
+        <div className="border-t border-gray-300 bg-[rgba(238,239,244,.98)] backdrop-blur-[16px]">
           <nav className="flex flex-col px-6 pt-2 pb-[18px]">
             {MOBILE_LINKS.map((link) => (
               <Link
                 key={link.key}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`border-b border-[rgba(43,59,83,.07)] py-[13px] text-[14px] font-semibold tracking-[.04em] uppercase ${
-                  active === link.key ? "text-blue-600" : "text-white"
+                className={`min-h-[44px] border-b border-gray-300 py-[13px] text-[14px] font-semibold tracking-[.04em] uppercase ${
+                  active === link.key ? "text-blue-600" : "text-slate-800"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <Link
-              href={routes.login}
+            <a
+              href={loginUrl}
               onClick={() => setMenuOpen(false)}
-              className="py-[13px] text-[14px] font-semibold tracking-[.04em] text-slate-300 uppercase"
+              className="min-h-[44px] py-[13px] text-[14px] font-semibold tracking-[.04em] text-slate-600 uppercase"
             >
               Login
-            </Link>
+            </a>
           </nav>
         </div>
       )}

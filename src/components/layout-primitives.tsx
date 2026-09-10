@@ -69,7 +69,15 @@ export function BlockInner({
   );
 }
 
-/** The animated navy canvas every hero (and the two dark bands) sits on. */
+/*
+ * The navy canvas every hero (and the two dark bands) sits on.
+ *
+ * Two blurred, counter-drifting colour orbs used to float over this on every
+ * page. They were pure atmosphere, they ran forever on every subpage at once,
+ * and blurred gradient blobs are the most worn-out background in the category.
+ * The landing hero had already opted out and read better for it, so they are
+ * gone everywhere.
+ */
 export function HeroBackdrop({
   /** Landing's hero pans on a 165deg axis; subpages use 180deg. */
   angle = 180,
@@ -90,9 +98,11 @@ export function HeroBackdrop({
             angle === 165
               ? "linear-gradient(165deg, #253349 0%, #2b3d59 34%, #27374f 60%, #223047 82%, #1e2a3e 100%)"
               : "linear-gradient(180deg, #253349 0%, #2b3d59 30%, #27374f 55%, #223047 78%, #1e2a3e 100%)",
-          backgroundSize: "100% 220%",
+          // Shorter travel and a slower cycle than the prototype: the gradient
+          // should breathe, not visibly slide.
+          backgroundSize: "100% 145%",
           backgroundPosition: "50% 0%",
-          animation: "fsHeroPan 20s ease-in-out infinite",
+          animation: "fsHeroPan 34s ease-in-out infinite",
           willChange: "background-position",
         }}
       />
@@ -107,30 +117,6 @@ export function HeroBackdrop({
           }}
         />
       )}
-      {/* Blue orb, lower-left. Drifts on 17s so it never syncs with the green one. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-[34%] left-[-14%] h-[760px] w-[760px] rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(96,152,220,.22) 0%, rgba(96,152,220,0) 62%)",
-          filter: "blur(10px)",
-          animation: "fsOrbA 17s ease-in-out infinite",
-          willChange: "transform, opacity",
-        }}
-      />
-      {/* Green orb hugging the right edge, counter-drifting on 23s. */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute top-[-4%] right-[-16%] h-[820px] w-[820px] rounded-full"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(98,168,86,.2) 0%, rgba(74,132,90,.08) 44%, rgba(98,168,86,0) 66%)",
-          filter: "blur(12px)",
-          animation: "fsOrbB 23s ease-in-out infinite",
-          willChange: "transform, opacity",
-        }}
-      />
       {vignette && (
         <div
           aria-hidden="true"
@@ -166,7 +152,7 @@ export function SectionLabel({
   return (
     <Reveal
       delay={delay}
-      className={`inline-flex items-center rounded-full border px-[14px] py-[6px] text-[11.5px] font-extrabold tracking-[.14em] uppercase ${toneClass}`}
+      className={`inline-flex items-center rounded-full border px-[14px] py-[6px] text-[12px] font-extrabold tracking-[.14em] uppercase ${toneClass}`}
     >
       {children}
     </Reveal>
@@ -208,31 +194,17 @@ export function LimeButton({
   href,
   children,
   className = "",
-  sheen = false,
 }: {
   href: string;
   children: ReactNode;
   className?: string;
-  /** The hero's primary CTA carries a travelling highlight. */
-  sheen?: boolean;
 }) {
   return (
     <a
       href={href}
-      className={`relative inline-block overflow-hidden rounded-full bg-[#7fd234] px-[34px] py-[16px] text-[16px] font-extrabold whitespace-nowrap text-[#16223a] shadow-[0_12px_30px_rgba(127,210,52,.3)] transition-[background,transform,box-shadow] duration-[180ms] hover:-translate-y-0.5 hover:bg-[#8ede40] hover:shadow-[0_18px_40px_rgba(127,210,52,.42)] ${className}`}
+      className={`relative inline-block overflow-hidden rounded-full bg-[#7fd234] px-[34px] py-[16px] text-[16px] font-extrabold whitespace-nowrap text-[#16223a] shadow-lime transition-[background,box-shadow] duration-[180ms] hover:bg-[#8ede40] hover:shadow-lime-strong ${className}`}
     >
       {children}
-      {sheen && (
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute top-0 left-0 h-full w-2/5"
-          style={{
-            background:
-              "linear-gradient(105deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 100%)",
-            animation: "fsSheen 3.4s ease-in-out infinite",
-          }}
-        />
-      )}
     </a>
   );
 }
@@ -250,7 +222,7 @@ export function BlueButton({
   return (
     <a
       href={href}
-      className={`inline-block rounded-[14px] bg-blue-500 px-[32px] py-[15px] text-[16px] font-bold whitespace-nowrap text-white shadow-[0_12px_30px_rgba(89,163,235,.4)] transition-[background,transform] duration-[180ms] hover:-translate-y-0.5 hover:bg-blue-600 ${className}`}
+      className={`inline-block rounded-[14px] bg-blue-700 px-[32px] py-[15px] text-[16px] font-bold whitespace-nowrap text-white shadow-blue transition-[background,transform] duration-[180ms] hover:-translate-y-0.5 hover:bg-blue-600 ${className}`}
     >
       {children}
     </a>

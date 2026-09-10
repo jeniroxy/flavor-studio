@@ -52,8 +52,8 @@ export default function FaqPage() {
           {faqGroups.map((group) => (
             <div key={group.title}>
               <Reveal className="mb-4 flex items-center gap-[10px]">
-                <Icon name={group.icon} className="text-[19px] text-blue-500" />
-                <span className="font-display text-[19px] font-extrabold text-slate-800">
+                <Icon name={group.icon} className="text-[20px] text-blue-500" />
+                <span className="font-display text-[20px] font-extrabold text-slate-800">
                   {group.title}
                 </span>
               </Reveal>

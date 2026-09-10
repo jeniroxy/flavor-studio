@@ -3,15 +3,34 @@ export const routes = {
   home: "/",
   features: "/features",
   agent: "/ai-agent",
+  developers: "/developers",
   pricing: "/pricing",
   customers: "/customers",
   stories: "/success-stories",
+  news: "/news",
   contact: "/contact",
+  /*
+   * Demo requests get their own page rather than sharing /contact. Both render
+   * the same form, but the visitor's intent differs — and so do the heading,
+   * the submit label and the `intent` flag on the payload, so the team can tell
+   * a demo request from a general enquiry and track them separately.
+   */
+  demo: "/request-demo",
+  privacy: "/privacy",
   faq: "/faq",
-  login: "/login",
 } as const;
 
-export type NavKey = "features" | "agent" | "pricing" | "faq" | "";
+/*
+ * Login and Sign Up are NOT part of this site. Credentials are issued by the
+ * application and its session cookie is scoped to the app subdomain, so
+ * authentication has to happen there — the marketing site only links out.
+ */
+export const appUrl = "https://app.flavorstudio.com";
+export const loginUrl = appUrl;
+export const signupUrl = `${appUrl}/signup`;
+
+export type NavKey =
+  "features" | "agent" | "developers" | "pricing" | "news" | "faq" | "";
 
 export const contactEmail = "info@senspirellc.com";
 export const supportEmail = "support@senspirellc.com";

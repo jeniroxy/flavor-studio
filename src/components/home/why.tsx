@@ -64,20 +64,20 @@ export function Why() {
             delay={0.12}
             className="mt-[18px] max-w-[46ch] text-[16px] leading-[1.7] text-slate-300"
           >
-            Everything is seamlessly integrated in an intuitive, cloud-based
-            platform with 24/7 accessibility — so your team develops better food
-            and beverage products, faster.
+            One ingredient library sits behind every recipe, label and cost
+            sheet — so a supplier change lands in all of them at once, instead
+            of in a dozen spreadsheets that disagree by Friday.
           </Reveal>
           <Reveal delay={0.18} className="mt-[30px] flex flex-wrap gap-3">
             <LimeButton
-              href={routes.contact}
-              className="px-[30px] py-[14px] text-[15.5px]"
+              href={routes.demo}
+              className="px-[30px] py-[14px] text-[16px]"
             >
               Request a demo
             </LimeButton>
             <a
               href={routes.features}
-              className="rounded-full border border-white/[.14] bg-white/[.07] px-7 py-[14px] text-[15.5px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/[.14]"
+              className="rounded-full border border-white/[.14] bg-white/[.07] px-7 py-[14px] text-[16px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/[.14]"
             >
               Explore features
             </a>
@@ -99,10 +99,10 @@ export function Why() {
                 <Icon name={point.icon} className="text-[22px] text-lime-400" />
               </span>
               <div>
-                <div className="text-[17px] leading-[1.3] font-extrabold text-white">
+                <div className="text-[16px] leading-[1.3] font-extrabold text-white">
                   {point.title}
                 </div>
-                <p className="mt-[7px] text-[14.5px] leading-[1.65] text-pretty text-slate-300">
+                <p className="mt-[7px] text-[14px] leading-[1.65] text-pretty text-slate-300">
                   {point.body}
                 </p>
               </div>

@@ -8,7 +8,7 @@ const NAMES =
 caution chart-histogram check-one chef-hat-one click cloud-storage degree-hat doc-detail doc-search
 experiment factory-building folder-open funds hamburger headset-one home income key-one knife-fork
 leaves left lightning local-two lock mail mouse peoples phone-telephone protect quote right
-search send setting-two star mouth weight`
+search send setting-two star mouth weight checklist time history`
     .split(/\s+/)
     .filter(Boolean);
 

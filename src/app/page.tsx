@@ -28,15 +28,20 @@ export default function HomePage() {
     <div className="bg-canvas min-h-screen text-[color:var(--text-body)]">
       <SiteNav />
 
+      {/* Section order is deliberate: the core platform (formulation, the
+          module tour, labeling) is established before the AI Agent appears.
+          The client asked that visitors understand Flavor Studio first and
+          meet AI as a capability built on top of it, not the other way
+          around. */}
       <BlockStack>
         <Hero />
         <Stats />
         <LogoMarquee />
         <Formulation />
-        <AgentBand />
+        <PlatformTabs />
         <Labels />
         <Why />
-        <PlatformTabs />
+        <AgentBand />
         <SuccessStories />
 
         {/* FAQ — trimmed to the three objections that block a demo request.
@@ -60,7 +65,7 @@ export default function HomePage() {
             <Reveal delay={0.16} className="mt-[26px] text-center">
               <a
                 href={routes.faq}
-                className="inline-flex items-center gap-2 text-[14.5px] font-extrabold text-blue-600 hover:text-blue-700"
+                className="inline-flex items-center gap-2 text-[14px] font-extrabold text-blue-600 hover:text-blue-700"
               >
                 <span>See all questions</span>
                 <Icon name="arrow-right" className="text-[15px]" />
@@ -71,11 +76,11 @@ export default function HomePage() {
 
         <CtaBand
           id="demo"
-          title="Ready to build your next bestseller?"
-          body="See Flavor Studio and its AI Agent on your own formulas. A 30-minute demo, tailored to your category."
-          footnote="No credit card. No 40-page onboarding doc. Just food science."
+          title="See it on your own formula."
+          body="Thirty minutes, your category, your formulas — and the modules you would actually use. No slide deck."
+          footnote="14-day free trial, full functionality, no credit card."
         >
-          <BlueButton href={routes.contact}>Request a demo</BlueButton>
+          <BlueButton href={routes.demo}>Request a demo</BlueButton>
           <a
             href={`mailto:${contactEmail}`}
             className="rounded-[14px] border border-white/[.28] px-8 py-[15px] text-[16px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/10"

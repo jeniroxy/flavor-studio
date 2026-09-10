@@ -3,6 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { AssetFrame } from "@/components/asset-frame";
 import { Icon } from "@/components/icon";
 import {
   Block,
@@ -14,7 +15,7 @@ import { platformTabs } from "@/lib/data";
 import { prefersReducedMotion } from "@/lib/reveal";
 
 /*
- * "The Platform" — six studios as pill tabs with an auto-advancing panel.
+ * "The Platform" — six modules as pill tabs with an auto-advancing panel.
  * The rotation only runs while the section is on screen, and a manual tab
  * click stops it for good so it never fights the reader.
  */
@@ -44,16 +45,16 @@ export function PlatformTabs() {
     return () => clearInterval(id);
   }, [auto, inView]);
 
-  // Panel contents animate in on every tab change: copy staggers up, the mock
-  // slides in from the right, then its bars fill one after another.
+  // Panel contents animate in on every tab change: the copy staggers up and the
+  // screenshot slides in. (Two further tweens used to run here, aimed at the
+  // metric and bar nodes of the hand-drawn card this panel no longer contains —
+  // they were animating empty NodeLists on every tab change.)
   useGSAP(
     () => {
       const box = panel.current;
       if (!box || prefersReducedMotion()) return;
       const items = box.querySelectorAll("[data-platitem]");
       const mock = box.querySelector("[data-platmock]");
-      const metric = box.querySelector("[data-platmetric]");
-      const bars = box.querySelectorAll("[data-platbar]");
 
       gsap.fromTo(
         box,
@@ -85,23 +86,6 @@ export function PlatformTabs() {
             delay: 0.12,
           },
         );
-      if (metric)
-        gsap.fromTo(
-          metric,
-          { opacity: 0, y: 10 },
-          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", delay: 0.34 },
-        );
-      gsap.fromTo(
-        bars,
-        { scaleX: 0 },
-        {
-          scaleX: 1,
-          duration: 0.8,
-          ease: "power3.out",
-          stagger: 0.09,
-          delay: 0.42,
-        },
-      );
     },
     { scope: panel, dependencies: [index] },
   );
@@ -117,14 +101,16 @@ export function PlatformTabs() {
       >
         <div className="mx-auto max-w-[640px] text-center">
           <SectionLabel>The platform</SectionLabel>
-          <SectionHeading>Everything R&amp;D, one workspace.</SectionHeading>
+          <SectionHeading>
+            Recipes, labels, sensory, projects, CRM.
+          </SectionHeading>
           <Reveal
             as="p"
             delay={0.12}
             className="mt-4 text-[16px] leading-[1.65] text-slate-500"
           >
-            Six connected studios replace the spreadsheet sprawl — from first
-            idea to production-ready formula.
+            Six modules, one ingredient library and one cost model. Every number
+            below recomputes from the same source.
           </Reveal>
         </div>
 
@@ -140,19 +126,20 @@ export function PlatformTabs() {
                   setAuto(false);
                 }}
                 aria-pressed={isActive}
-                className="relative inline-flex cursor-pointer items-center gap-[9px] overflow-hidden rounded-full border px-5 py-[11px] text-[14px] font-bold whitespace-nowrap transition-[background,color,border-color,transform] duration-[180ms] hover:-translate-y-px"
+                className="relative inline-flex min-h-[44px] cursor-pointer items-center gap-[9px] overflow-hidden rounded-full border px-5 py-[11px] text-[14px] font-bold whitespace-nowrap transition-[background,color,border-color,transform] duration-[180ms] hover:-translate-y-px"
                 style={{
-                  background: isActive ? "var(--color-blue-500)" : "#ffffff",
+                  // blue-700, not blue-500: white on #59a3eb measures 2.67:1.
+                  background: isActive ? "var(--color-blue-700)" : "#ffffff",
                   color: isActive ? "#ffffff" : "var(--color-slate-600)",
                   borderColor: isActive
-                    ? "var(--color-blue-500)"
+                    ? "var(--color-blue-700)"
                     : "var(--color-gray-300)",
                   boxShadow: isActive
-                    ? "0 8px 22px rgba(89,163,235,.34)"
+                    ? "0 8px 22px rgba(32,96,166,.3)"
                     : "0 2px 8px rgba(43,59,83,.05)",
                 }}
               >
-                <Icon name={tab.icon} className="text-[17px]" />
+                <Icon name={tab.icon} className="text-[16px]" />
                 <span>{tab.label}</span>
                 {isActive && auto && (
                   <span
@@ -170,7 +157,7 @@ export function PlatformTabs() {
 
         <Reveal
           delay={0.1}
-          className="mt-[clamp(24px,3vw,36px)] overflow-hidden rounded-[20px] border border-gray-300 bg-white p-[clamp(24px,3.4vw,44px)] shadow-[0_18px_46px_rgba(43,59,83,.1)]"
+          className="mt-[clamp(24px,3vw,36px)] overflow-hidden rounded-[20px] border border-gray-300 bg-white p-[clamp(24px,3.4vw,44px)] shadow-card"
         >
           <div
             ref={panel}
@@ -193,7 +180,7 @@ export function PlatformTabs() {
               </h3>
               <p
                 data-platitem=""
-                className="mt-3 max-w-[46ch] text-[15.5px] leading-[1.65] text-slate-500"
+                className="mt-3 max-w-[46ch] text-[16px] leading-[1.65] text-slate-500"
               >
                 {active.desc}
               </p>
@@ -202,11 +189,11 @@ export function PlatformTabs() {
                   <div
                     key={check}
                     data-platitem=""
-                    className="flex items-center gap-[10px] text-[14.5px] leading-[1.5] text-slate-700"
+                    className="flex items-center gap-[10px] text-[14px] leading-[1.5] text-slate-700"
                   >
                     <Icon
                       name="check-one"
-                      className="flex-none text-[17px] text-teal-500"
+                      className="flex-none text-[16px] text-[#0e8b73]"
                     />
                     <span>{check}</span>
                   </div>
@@ -215,55 +202,22 @@ export function PlatformTabs() {
               <a
                 data-platitem=""
                 href={active.href}
-                className="mt-6 inline-flex items-center gap-2 text-[14.5px] font-extrabold text-blue-600 hover:text-blue-700"
+                className="mt-6 inline-flex items-center gap-2 text-[14px] font-extrabold text-blue-600 hover:text-blue-700"
               >
                 <span>{active.cta}</span>
                 <Icon name="arrow-right" className="text-[15px]" />
               </a>
             </div>
 
-            <div
-              data-platmock=""
-              className="overflow-hidden rounded-[14px] border border-gray-300 shadow-[0_10px_28px_rgba(43,59,83,.08)]"
-            >
-              <div className="flex items-center gap-[10px] bg-blue-500 px-4 py-[11px] text-white">
-                <span className="text-[12px] font-extrabold tracking-[.12em] uppercase">
-                  {active.mockTitle}
-                </span>
-                <span className="ml-auto rounded-full bg-lime-400 px-[10px] py-[3px] text-[11px] font-extrabold whitespace-nowrap text-slate-900">
-                  {active.mockBadge}
-                </span>
-              </div>
-              <div className="px-[18px] pt-[18px] pb-5">
-                <div
-                  data-platmetric=""
-                  className="font-display text-[26px] leading-[1.1] font-extrabold text-slate-800 tabular-nums"
-                >
-                  {active.metric}
-                </div>
-                <div className="mt-[3px] text-[12.5px] font-semibold text-slate-400">
-                  {active.metricCaption}
-                </div>
-                <div className="mt-[18px] flex flex-col gap-3">
-                  {active.bars.map((bar) => (
-                    <div
-                      key={bar.label}
-                      className="grid grid-cols-[minmax(80px,36%)_1fr] items-center gap-3"
-                    >
-                      <span className="text-[12.5px] font-bold text-slate-700">
-                        {bar.label}
-                      </span>
-                      <span className="block h-[9px] overflow-hidden rounded-full bg-gray-100">
-                        <span
-                          data-platbar=""
-                          className="block h-full origin-left rounded-full"
-                          style={{ width: bar.width, background: bar.color }}
-                        />
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+            {/* The real module screenshot. This slot used to hold a
+                hand-drawn metric card, which showed the visitor an
+                illustration of Flavor Studio rather than Flavor Studio. */}
+            <div data-platmock="">
+              <AssetFrame
+                key={active.id}
+                {...active.shot}
+                sizes="(max-width: 960px) 100vw, 46vw"
+              />
             </div>
           </div>
         </Reveal>

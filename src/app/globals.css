@@ -21,7 +21,9 @@
 
   /* ---- Primary: sky blue (actions, links, selection) ---- */
   --color-blue-700: #2060a6;
-  --color-blue-600: #3da4f1;
+  /* Darkened from #3da4f1, which rendered links at 2.7:1 on white.
+     5.28:1 — the colour that carries every text link on the site. */
+  --color-blue-600: #1f6fb2;
   --color-blue-500: #59a3eb;
   --color-blue-400: #74a9e0;
   --color-blue-300: #b5d5f4;
@@ -73,8 +75,17 @@
   --radius-xl: 14px;
   --radius-2xl: 20px;
 
-  /* ---- Shadows ---- */
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.05), 0 4px 12px rgba(0, 0, 0, 0.03);
+  /* ---- Elevation ----
+     Three neutral steps and one for the dark product windows, replacing 23
+     hand-written recipes that mostly differed from each other by 2px. */
+  --shadow-raised: 0 4px 14px rgba(43, 59, 83, 0.07);
+  --shadow-card: 0 12px 32px rgba(43, 59, 83, 0.1);
+  --shadow-float: 0 24px 60px rgba(43, 59, 83, 0.16);
+  --shadow-window: 0 32px 80px rgba(6, 12, 24, 0.45);
+  /* The two CTA glows keep their colour; they are a deliberate accent. */
+  --shadow-lime: 0 12px 30px rgba(127, 210, 52, 0.3);
+  --shadow-lime-strong: 0 18px 40px rgba(127, 210, 52, 0.42);
+  --shadow-blue: 0 12px 30px rgba(32, 96, 166, 0.34);
 
   /* ---- Motion ---- */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
@@ -87,12 +98,13 @@
   --text-strong: var(--color-slate-800);
   --text-body: var(--color-slate-700);
   --text-muted: var(--color-slate-300);
-  --focus-ring: 0 0 0 3px rgba(89, 163, 235, 0.35);
 
   /* The gutter between page "box blocks", and the sticky nav height.
      The hero uses both to fill exactly one viewport. */
   --block-gap: clamp(16px, 2.2vw, 34px);
-  --nav-height: 61px;
+  /* Grew with the logo: the mark was reported as too small, so the bar was
+     re-cut around a 44px logo instead of a 32px one. */
+  --nav-height: 72px;
 }
 
 /* Base resets belong in @layer base. Declared outside a layer they would
@@ -143,9 +155,14 @@
     max-width: 100%;
   }
 
+  /* A real outline, not a box-shadow. The shadow ring was declared in
+     @layer base, which Tailwind ranks below utilities, so every `shadow-[...]`
+     utility silently overwrote it — the site's primary buttons had no visible
+     focus state at all. An outline also composites outside the element, so
+     `overflow-clip` on the section blocks cannot clip it. */
   :focus-visible {
-    outline: none;
-    box-shadow: var(--focus-ring);
+    outline: 3px solid var(--color-blue-600);
+    outline-offset: 2px;
   }
 }
 
@@ -166,7 +183,7 @@
     transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-18px) rotate(6deg);
+    transform: translateY(-8px) rotate(2deg);
   }
 }
 @keyframes fsFloat2 {
@@ -175,7 +192,7 @@
     transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(14px) rotate(-8deg);
+    transform: translateY(6px) rotate(-3deg);
   }
 }
 @keyframes fsPulse {
@@ -201,30 +218,6 @@
     opacity: 1;
   }
 }
-@keyframes fsScan {
-  0% {
-    top: 4%;
-    opacity: 0;
-  }
-  8% {
-    opacity: 1;
-  }
-  92% {
-    opacity: 1;
-  }
-  100% {
-    top: 94%;
-    opacity: 0;
-  }
-}
-@keyframes fsSheen {
-  0% {
-    transform: translateX(-120%);
-  }
-  100% {
-    transform: translateX(220%);
-  }
-}
 /* Fills the thin bar under the active platform tab over its dwell. */
 @keyframes fsTabProgress {
   from {
@@ -243,6 +236,8 @@
     background-position: 50% 100%;
   }
 }
+/* Orb drift is deliberately below the threshold of a reader's attention — it
+   should only be noticeable if you stare at the backdrop. */
 @keyframes fsOrbA {
   0%,
   100% {
@@ -250,26 +245,26 @@
     opacity: 0.85;
   }
   33% {
-    transform: translate3d(9%, -6%, 0) scale(1.14);
-    opacity: 1;
+    transform: translate3d(4%, -3%, 0) scale(1.06);
+    opacity: 0.95;
   }
   66% {
-    transform: translate3d(-5%, 7%, 0) scale(0.94);
-    opacity: 0.7;
+    transform: translate3d(-2%, 3%, 0) scale(0.97);
+    opacity: 0.8;
   }
 }
 @keyframes fsOrbB {
   0%,
   100% {
-    transform: translate3d(0, 0, 0) scale(1.04);
-    opacity: 0.7;
+    transform: translate3d(0, 0, 0) scale(1.02);
+    opacity: 0.75;
   }
   40% {
-    transform: translate3d(-8%, 8%, 0) scale(0.9);
-    opacity: 1;
+    transform: translate3d(-4%, 4%, 0) scale(0.95);
+    opacity: 0.9;
   }
   70% {
-    transform: translate3d(4%, -5%, 0) scale(1.16);
+    transform: translate3d(2%, -2%, 0) scale(1.07);
     opacity: 0.8;
   }
 }
@@ -281,26 +276,28 @@
    a data attribute so a stagger group can release its children
    one at a time without re-rendering React state.
    ============================================================ */
+/* Travel and duration were both halved after the client reported the motion as
+   excessive: the reveal should register as the content settling, not as an
+   animation the reader has to wait out. */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(14px);
   transition:
-    opacity 0.9s var(--ease-out-soft),
-    transform 0.9s var(--ease-out-soft);
+    opacity 0.5s var(--ease-out-soft),
+    transform 0.5s var(--ease-out-soft);
   transition-delay: var(--reveal-delay, 0s);
 }
 [data-reveal="shown"] {
   opacity: 1;
   transform: none;
 }
-/* Stagger children shift a shorter distance, matching the prototype's
-   `{ y: 26 }` group tween versus `{ y: 30 }` for single elements. */
+/* Stagger children shift a shorter distance than single elements. */
 [data-reveal-child] {
   opacity: 0;
-  transform: translateY(26px);
+  transform: translateY(11px);
   transition:
-    opacity 0.7s var(--ease-out-soft),
-    transform 0.7s var(--ease-out-soft);
+    opacity 0.42s var(--ease-out-soft),
+    transform 0.42s var(--ease-out-soft);
   transition-delay: var(--reveal-delay, 0s);
 }
 [data-reveal-child="shown"] {

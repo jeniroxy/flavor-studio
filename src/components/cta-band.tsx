@@ -75,7 +75,7 @@ export function CtaBand({
           <Reveal
             as="p"
             delay={0.08}
-            className="mx-auto mt-5 max-w-[46ch] text-[17px] leading-[1.65] text-slate-300"
+            className="mx-auto mt-5 max-w-[46ch] text-[16px] leading-[1.65] text-slate-300"
           >
             {body}
           </Reveal>
@@ -87,7 +87,7 @@ export function CtaBand({
           {children}
         </Reveal>
         {footnote && (
-          <Reveal delay={0.24} className="mt-[22px] text-[13px] text-slate-500">
+          <Reveal delay={0.24} className="mt-[22px] text-[13px] text-slate-300">
             {footnote}
           </Reveal>
         )}

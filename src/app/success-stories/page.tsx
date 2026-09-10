@@ -43,7 +43,7 @@ function StoryMedia({ index }: { index: number }) {
         width={story.imgW}
         height={story.imgH}
         sizes="(max-width: 960px) 100vw, 50vw"
-        className="aspect-[4/3] w-full rounded-[20px] object-cover shadow-[0_20px_50px_rgba(43,59,83,.16)]"
+        className="aspect-[4/3] w-full rounded-[20px] object-cover shadow-float"
       />
       <div className="absolute bottom-[18px] left-[18px] rounded-[14px] bg-white/90 px-4 py-[10px] backdrop-blur-[6px]">
         <Image
@@ -73,16 +73,15 @@ function StoryCopy({ index }: { index: number }) {
       <Reveal
         as="p"
         delay={0.12}
-        className="mt-4 max-w-[52ch] text-[15.5px] leading-[1.65] text-slate-500"
+        className="mt-4 max-w-[52ch] text-[16px] leading-[1.65] text-slate-500"
       >
         {BLURBS[index]}
       </Reveal>
+      {/* On-site detail page — no longer a redirect to the legacy site. */}
       <Reveal
         as="a"
         delay={0.18}
         href={story.href}
-        target="_blank"
-        rel="noopener noreferrer"
         className="mt-[22px] inline-flex items-center gap-2 text-[15px] font-bold text-blue-600"
       >
         Read their story
@@ -145,7 +144,7 @@ export default function SuccessStoriesPage() {
         className="py-[clamp(60px,7vw,100px)]"
         secondMark={false}
       >
-        <BlueButton href={routes.contact}>Request a demo</BlueButton>
+        <BlueButton href={routes.demo}>Request a demo</BlueButton>
       </CtaBand>
     </PageShell>
   );

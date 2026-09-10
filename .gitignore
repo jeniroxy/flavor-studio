@@ -44,3 +44,7 @@ yarn-error.log*
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Internal client correspondence — drafts and PDFs meant for the client only,
+# never for this public repository.
+/client-response/

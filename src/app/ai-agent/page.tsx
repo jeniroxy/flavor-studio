@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { AgentHeroChat } from "@/components/agent/hero-chat";
-import { ChatDemo } from "@/components/chat-demo";
 import { CtaBand } from "@/components/cta-band";
+import { AssetFrame } from "@/components/asset-frame";
 import { Icon, SparkIcon } from "@/components/icon";
 import {
   Block,
@@ -12,6 +12,7 @@ import {
 } from "@/components/layout-primitives";
 import { PageShell } from "@/components/page-shell";
 import { Reveal } from "@/components/reveal";
+import { productAssets } from "@/lib/assets";
 import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = {
@@ -74,6 +75,16 @@ const STEPS = [
   },
 ];
 
+/* The kinds of question the Agent is built for. Questions only: the site does
+   not publish answers to them, because a marketing page is not where food-law
+   guidance should come from. */
+const ASKS = [
+  "Which of my starches are non-GMO with no soy cross-contact?",
+  "What changes on the label if I cut sodium in this broth?",
+  "Compare v3 and v4 on protein, sugar and cost per serving.",
+  "Which allergens does this granola bar have to declare?",
+];
+
 export default function AiAgentPage() {
   return (
     <PageShell active="agent">
@@ -82,7 +93,7 @@ export default function AiAgentPage() {
         <HeroBackdrop />
         <div className="relative mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] items-center gap-[clamp(28px,3.4vw,52px)] text-left">
           <div>
-            <Reveal className="inline-flex items-center gap-[9px] rounded-full border border-white/[.22] px-[14px] py-[6px] text-[11.5px] font-extrabold tracking-[.14em] text-white uppercase">
+            <Reveal className="inline-flex items-center gap-[9px] rounded-full border border-white/[.22] px-[14px] py-[6px] text-[12px] font-extrabold tracking-[.14em] text-white uppercase">
               <SparkIcon size={14} gradientId="agentHeroSpark" />
               The AI Agent
             </Reveal>
@@ -91,7 +102,7 @@ export default function AiAgentPage() {
               delay={0.06}
               className="font-display mt-5 max-w-[18ch] text-[clamp(38px,5vw,68px)] leading-[1.05] font-extrabold tracking-[-0.025em] text-white"
             >
-              A food scientist that never sleeps.
+              It reads your workspace. It shows its sources.
             </Reveal>
             <Reveal
               as="p"
@@ -104,9 +115,9 @@ export default function AiAgentPage() {
               colleague, with a citation on every claim.
             </Reveal>
             <Reveal delay={0.2} className="mt-[30px] flex flex-wrap gap-[14px]">
-              <BlueButton href="#try">Try it live</BlueButton>
+              <BlueButton href="#try">See it in the product</BlueButton>
               <a
-                href={routes.contact}
+                href={routes.demo}
                 className="rounded-[14px] border border-white/[.28] px-8 py-[15px] text-[16px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/10"
               >
                 Request a demo
@@ -134,10 +145,10 @@ export default function AiAgentPage() {
               <Reveal
                 key={cap.title}
                 delay={i * 0.06}
-                className="rounded-[18px] border border-gray-300 bg-white px-6 py-[26px] transition-[transform,box-shadow] duration-[180ms] hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(43,59,83,.12)]"
+                className="rounded-[18px] border border-gray-300 bg-white px-6 py-[26px] transition-[transform,box-shadow] duration-[180ms] hover:-translate-y-1 hover:shadow-card"
               >
                 <Icon name={cap.icon} className={`text-[26px] ${cap.color}`} />
-                <div className="mt-[14px] text-[17px] font-extrabold text-slate-800">
+                <div className="mt-[14px] text-[16px] font-extrabold text-slate-800">
                   {cap.title}
                 </div>
                 <div className="mt-[7px] text-[14px] leading-[1.6] text-slate-500">
@@ -149,58 +160,66 @@ export default function AiAgentPage() {
         </div>
       </Block>
 
-      {/* live chat */}
+      {/* What the Agent actually looks like.
+          This block used to hold a scripted chat headed "Ask the AI Agent
+          yourself". It was removed for two reasons: the canned answers asserted
+          specific regulatory thresholds, CFR citations, supplier prices and
+          panel scores that were all invented — food-law guidance a real company
+          cannot publish — and a fixed script dressed as a live product is
+          exactly the "AI-generated" impression the client objected to. The real
+          screenshot and the real question set say more, and every word of both
+          is true. */}
       <Block
         id="try"
-        className="relative px-[clamp(28px,3.6vw,64px)] py-[clamp(64px,9vw,120px)]"
-        style={{
-          background:
-            "linear-gradient(160deg, var(--color-slate-800) 0%, #1b2942 60%, var(--color-slate-900) 100%)",
-        }}
+        className="relative bg-[#223047] px-[clamp(28px,3.6vw,64px)] py-[clamp(64px,9vw,120px)]"
       >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute top-[8%] left-[-60px] h-[340px] w-[340px] rounded-full"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(24,188,156,.12) 0%, rgba(24,188,156,0) 70%)",
-          }}
-        />
-        <div className="relative mx-auto max-w-[860px]">
-          <div className="mx-auto max-w-[620px] text-center">
-            <Reveal className="inline-flex items-center gap-2 rounded-full bg-[rgba(24,188,156,.16)] px-[14px] py-[7px] text-[12px] font-bold tracking-[.08em] text-[#4fd8bd] uppercase">
-              <span
-                className="h-[7px] w-[7px] rounded-full bg-teal-500"
-                style={{ animation: "fsPulse 2s ease infinite" }}
-              />
-              Live demo
-            </Reveal>
-            {/* White, not slate: the prototype left this heading at the slate
-                token, which is invisible against the navy behind it. */}
-            <Reveal
-              as="h2"
-              delay={0.06}
-              className="font-display mt-[14px] text-[clamp(30px,3.6vw,48px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-white"
+        <div className="relative mx-auto max-w-[1080px]">
+          <div className="mx-auto max-w-[640px] text-center">
+            <SectionLabel tone="dark">In the product</SectionLabel>
+            <SectionHeading
+              tone="dark"
+              className="text-[clamp(28px,3.4vw,44px)]"
             >
-              Ask the AI Agent yourself.
-            </Reveal>
+              It answers in the recipe you are already in.
+            </SectionHeading>
             <Reveal
               as="p"
               delay={0.12}
-              className="mt-4 text-[16px] leading-[1.6] text-slate-300"
+              className="mt-4 text-[16px] leading-[1.6] text-slate-200"
             >
-              Ask a food-science question and watch it answer.
+              The Agent opens beside your work, reads the recipes you point it
+              at with <code className="text-[15px] text-lime-300">@</code>, and
+              answers with the panel, the numbers and the sources attached.
             </Reveal>
           </div>
 
           <Reveal delay={0.16} className="mt-[clamp(32px,4vw,48px)]">
-            <ChatDemo skin="dark" starters={4} />
+            <AssetFrame
+              {...productAssets.aiAgent}
+              tone="dark"
+              caption="Comparing two recipes side by side, in the Recipes module, with four cited sources behind the answer."
+              sizes="(max-width: 1080px) 100vw, 1080px"
+            />
           </Reveal>
 
-          <div className="mt-[14px] text-center text-[11.5px] text-slate-500">
-            Responses in this demo are scripted for illustration. In the
-            product, the Agent answers from your own recipes, library and
-            supplier data — with real citations.
+          <div className="mx-auto mt-[clamp(36px,4.5vw,56px)] max-w-[860px]">
+            <div className="text-center text-[12px] font-bold tracking-[.14em] text-slate-300 uppercase">
+              What teams ask it
+            </div>
+            <ul className="mt-5 grid list-none grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-3 p-0">
+              {ASKS.map((ask) => (
+                <li
+                  key={ask}
+                  className="rounded-2xl border border-white/10 bg-white/[.04] px-5 py-4 text-[15px] leading-[1.55] text-slate-200"
+                >
+                  {ask}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-5 text-center text-[13px] leading-[1.6] text-slate-300">
+              Answers draw only on your own recipes, ingredient library and
+              supplier data — never on the open internet.
+            </p>
           </div>
         </div>
       </Block>
@@ -231,7 +250,7 @@ export default function AiAgentPage() {
                 <div className="mt-[14px] text-[16px] font-extrabold text-slate-800">
                   {step.title}
                 </div>
-                <div className="mt-[6px] text-[13.5px] leading-[1.6] text-slate-500">
+                <div className="mt-[6px] text-[14px] leading-[1.6] text-slate-500">
                   {step.body}
                 </div>
               </Reveal>
@@ -253,7 +272,7 @@ export default function AiAgentPage() {
         className="py-[clamp(64px,9vw,110px)]"
         secondMark={false}
       >
-        <BlueButton href={routes.contact}>Request a demo</BlueButton>
+        <BlueButton href={routes.demo}>Request a demo</BlueButton>
         <a
           href={routes.pricing}
           className="rounded-full border border-white/30 px-[30px] py-[15px] text-[16px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/10"

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { DemoForm } from "@/components/contact/demo-form";
-import { Icon, LinkedInIcon, SparkIcon } from "@/components/icon";
+import { Icon, LinkedInIcon } from "@/components/icon";
 import {
   Block,
   HeroBackdrop,
@@ -13,29 +14,15 @@ import {
   linkedin,
   phone,
   phoneHref,
+  routes,
   supportEmail,
 } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Request a demo of Flavor Studio, or reach the team directly by email, phone or LinkedIn.",
+    "Get in touch with the Flavor Studio team by form, email, phone or LinkedIn.",
 };
-
-const STEPS = [
-  {
-    title: "Intro call",
-    body: "15 minutes on your category, team and current tools.",
-  },
-  {
-    title: "Live demo",
-    body: "we formulate one of your recipes, label and all, in 30 minutes.",
-  },
-  {
-    title: "Guided pilot",
-    body: "30 days on your own data, onboarding included.",
-  },
-];
 
 const contactLink =
   "flex items-center gap-[10px] text-slate-700 transition-colors hover:text-blue-600";
@@ -60,37 +47,37 @@ export default function ContactPage() {
             className="mx-auto mt-[18px] max-w-[50ch] text-[clamp(16px,1.5vw,18px)] leading-[1.65] text-[#aebdd0]"
           >
             Need additional information? Complete the following form and we will
-            contact you regarding your request.
+            contact you regarding your request. To see the platform on your own
+            formulas, request a demo instead.
           </Reveal>
         </div>
       </Block>
 
       <Block className="flex-1 bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(48px,5.5vw,76px)]">
         <div className="mx-auto grid max-w-[1080px] grid-cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] items-start gap-[clamp(28px,4vw,56px)]">
-          <Reveal className="rounded-[20px] border border-gray-300 bg-white p-[clamp(24px,3vw,36px)] shadow-[0_14px_40px_rgba(43,59,83,.08)]">
-            <DemoForm />
+          <Reveal className="rounded-[20px] border border-gray-300 bg-white p-[clamp(24px,3vw,36px)] shadow-card">
+            <DemoForm intent="contact" />
           </Reveal>
 
           <div className="flex flex-col gap-4">
+            {/* Demo requests have their own page; a visitor who landed here by
+                accident should not have to guess which form they want. */}
             <Reveal className="rounded-[20px] border border-gray-300 bg-white px-[26px] py-6">
-              <div className="mb-[14px] text-[11px] font-bold tracking-[.12em] text-slate-400 uppercase">
-                What to expect
+              <div className="mb-[10px] text-[11px] font-bold tracking-[.12em] text-slate-400 uppercase">
+                Looking for a demo?
               </div>
-              <div className="flex flex-col gap-[14px]">
-                {STEPS.map((step, i) => (
-                  <div key={step.title} className="flex items-start gap-3">
-                    <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-blue-200 text-[12px] font-extrabold text-blue-700">
-                      {i + 1}
-                    </span>
-                    <div className="text-[14px] leading-[1.55] text-slate-700">
-                      <strong className="font-bold text-slate-800">
-                        {step.title}
-                      </strong>{" "}
-                      — {step.body}
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <p className="text-[14px] leading-[1.6] text-slate-500">
+                If you want to see Flavor Studio running on your own formulas,
+                use the demo request instead — we&rsquo;ll schedule a 30-minute
+                walkthrough rather than reply by email.
+              </p>
+              <Link
+                href={routes.demo}
+                className="mt-[14px] inline-flex items-center gap-2 text-[14px] font-bold text-blue-600 hover:text-blue-700"
+              >
+                Request a demo
+                <Icon name="arrow-right" className="text-[15px]" />
+              </Link>
             </Reveal>
 
             <Reveal
@@ -102,27 +89,27 @@ export default function ContactPage() {
               </div>
               <div className="flex flex-col gap-3 text-[14px] text-slate-700">
                 <a href={`mailto:${contactEmail}`} className={contactLink}>
-                  <Icon name="mail" className="text-[17px] text-blue-500" />
+                  <Icon name="mail" className="text-[16px] text-blue-500" />
                   Info — {contactEmail}
                 </a>
                 <a href={`mailto:${supportEmail}`} className={contactLink}>
                   <Icon
                     name="headset-one"
-                    className="text-[17px] text-blue-500"
+                    className="text-[16px] text-blue-500"
                   />
                   Technical Support — {supportEmail}
                 </a>
                 <a href={phoneHref} className={contactLink}>
                   <Icon
                     name="phone-telephone"
-                    className="text-[17px] text-blue-500"
+                    className="text-[16px] text-blue-500"
                   />
                   {phone}
                 </a>
                 <div className="flex items-start gap-[10px]">
                   <Icon
                     name="local-two"
-                    className="mt-[2px] text-[17px] text-blue-500"
+                    className="mt-[2px] text-[16px] text-blue-500"
                   />
                   <span className="leading-[1.5]">
                     Senspire Co, 1547 Palos Verdes Suite 221
@@ -136,7 +123,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className={contactLink}
                 >
-                  <LinkedInIcon className="text-[17px] text-blue-500" />
+                  <LinkedInIcon className="text-[16px] text-blue-500" />
                   linkedin.com/company/senspire
                 </a>
               </div>
@@ -150,13 +137,18 @@ export default function ContactPage() {
                   "linear-gradient(135deg, var(--color-slate-900), var(--color-slate-800))",
               }}
             >
-              <span className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[14px] bg-linear-to-br from-blue-500 to-teal-500">
-                <SparkIcon size={18} />
+              <span className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[14px] bg-blue-500/20">
+                <Icon
+                  name="headset-one"
+                  className="text-[20px] text-blue-400"
+                />
               </span>
-              <div className="text-[13.5px] leading-[1.55] text-slate-300">
-                At IFT this year? See the{" "}
-                <strong className="font-bold text-white">AI Agent</strong> live
-                at <strong className="font-bold text-white">booth #315</strong>.
+              <div className="text-[14px] leading-[1.55] text-slate-300">
+                Already a customer?{" "}
+                <strong className="font-bold text-white">
+                  Support is available 24/7
+                </strong>{" "}
+                by phone, email and the chat built into the application.
               </div>
             </Reveal>
           </div>

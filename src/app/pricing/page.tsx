@@ -11,7 +11,9 @@ import {
 import { PageShell } from "@/components/page-shell";
 import { Reveal } from "@/components/reveal";
 import { pricingFaqs } from "@/lib/data";
-import { routes, salesEmail } from "@/lib/routes";
+// "Get Started!" begins a trial, and sign-up lives on the app subdomain, so
+// these CTAs leave the marketing site rather than routing to a form here.
+import { routes, salesEmail, signupUrl } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "Pricing",
@@ -20,7 +22,7 @@ export const metadata: Metadata = {
 };
 
 const outlineCta =
-  "mt-auto rounded-[14px] border border-blue-500 py-3 text-center text-[14.5px] font-bold whitespace-nowrap text-blue-600 transition-[background] duration-[180ms] hover:bg-blue-100 hover:text-blue-700";
+  "mt-auto rounded-[14px] border border-blue-500 py-3 text-center text-[14px] font-bold whitespace-nowrap text-blue-600 transition-[background] duration-[180ms] hover:bg-blue-100 hover:text-blue-700";
 
 const PROFESSIONAL_FEATURES = [
   "Unlimited Project Repository Storage",
@@ -79,7 +81,7 @@ function FeatureList({ items }: { items: string[] }) {
         <div key={item} className="flex items-center gap-[9px]">
           <Icon
             name="check-one"
-            className="flex-none text-[16px] text-teal-500"
+            className="flex-none text-[16px] text-[#0e8b73]"
           />
           {item}
         </div>
@@ -125,14 +127,14 @@ export default function PricingPage() {
                 $0
               </span>
             </div>
-            <div className="mt-1 text-[13.5px] font-bold text-slate-700">
+            <div className="mt-1 text-[14px] font-bold text-slate-700">
               14 days
             </div>
             <div className="mt-3 text-[14px] leading-[1.6] text-slate-500">
               Enjoy Premium plan access for a limited time. No credit card
               needed to sign up.
             </div>
-            <a href={routes.contact} className={outlineCta}>
+            <a href={signupUrl} className={outlineCta}>
               Get Started!
             </a>
           </Reveal>
@@ -148,23 +150,23 @@ export default function PricingPage() {
               <span className="font-display text-[44px] font-extrabold text-slate-800">
                 $100
               </span>
-              <span className="text-[13.5px] font-semibold text-slate-400">
+              <span className="text-[14px] font-semibold text-slate-400">
                 {" "}
                 USD per user / month
               </span>
             </div>
-            <div className="mt-1 text-[12.5px] text-slate-400">
+            <div className="mt-1 text-[13px] text-slate-400">
               Billed annually, or $110 month-to-month
             </div>
             <FeatureList items={PROFESSIONAL_FEATURES} />
-            <a href={routes.contact} className={outlineCta}>
+            <a href={signupUrl} className={outlineCta}>
               Get Started!
             </a>
           </Reveal>
 
           <Reveal
             delay={0.12}
-            className="relative flex flex-col rounded-[20px] border-2 border-blue-500 bg-white px-7 py-[30px] shadow-[0_20px_50px_rgba(89,163,235,.2)]"
+            className="relative flex flex-col rounded-[20px] border-2 border-blue-500 bg-white px-7 py-[30px] shadow-blue"
           >
             <div className="absolute top-[-13px] left-1/2 -translate-x-1/2 rounded-full bg-blue-500 px-[14px] py-[5px] text-[11px] font-extrabold tracking-[.08em] whitespace-nowrap text-white uppercase">
               Best choice
@@ -176,18 +178,18 @@ export default function PricingPage() {
               <span className="font-display text-[44px] font-extrabold text-slate-800">
                 $150
               </span>
-              <span className="text-[13.5px] font-semibold text-slate-400">
+              <span className="text-[14px] font-semibold text-slate-400">
                 {" "}
                 USD per user / month
               </span>
             </div>
-            <div className="mt-1 text-[12.5px] text-slate-400">
+            <div className="mt-1 text-[13px] text-slate-400">
               Billed annually, or $165 month-to-month
             </div>
             <FeatureList items={PREMIUM_FEATURES} />
             <a
-              href={routes.contact}
-              className="mt-auto rounded-[14px] bg-blue-500 py-[13px] text-center text-[14.5px] font-bold whitespace-nowrap text-white shadow-[0_8px_20px_rgba(89,163,235,.35)] transition-[background] duration-[180ms] hover:bg-blue-600"
+              href={signupUrl}
+              className="mt-auto rounded-[14px] bg-blue-500 py-[13px] text-center text-[14px] font-bold whitespace-nowrap text-white shadow-blue transition-[background] duration-[180ms] hover:bg-blue-600"
             >
               Get Started!
             </a>
@@ -207,7 +209,7 @@ export default function PricingPage() {
               <div className="font-display mt-[14px] text-[30px] leading-[1.2] font-extrabold text-white">
                 More than 30 users?
               </div>
-              <div className="mt-[10px] max-w-[52ch] text-[14.5px] leading-[1.65] text-slate-300">
+              <div className="mt-[10px] max-w-[52ch] text-[14px] leading-[1.65] text-slate-300">
                 Email us at{" "}
                 <a
                   href={`mailto:${salesEmail}`}
@@ -222,7 +224,7 @@ export default function PricingPage() {
             <div className="flex justify-end">
               <a
                 href={`mailto:${salesEmail}`}
-                className="inline-block rounded-[14px] border border-white/[.16] bg-white/[.08] px-8 py-[13px] text-center text-[14.5px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/[.16]"
+                className="inline-block rounded-[14px] border border-white/[.16] bg-white/[.08] px-8 py-[13px] text-center text-[14px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/[.16]"
               >
                 Email sales
               </a>
@@ -248,7 +250,7 @@ export default function PricingPage() {
             <div className="font-display mt-4 text-[clamp(19px,1.9vw,23px)] leading-[1.25] font-extrabold tracking-[-0.01em] text-slate-800">
               {prop.title}
             </div>
-            <div className="mt-[7px] text-[13.5px] leading-[1.6] text-slate-500">
+            <div className="mt-[7px] text-[14px] leading-[1.6] text-slate-500">
               {prop.body}
             </div>
           </Reveal>
@@ -282,7 +284,7 @@ export default function PricingPage() {
         body="Full Premium access, as many users as you need, and nothing you build is lost when you become a customer."
         className="py-[clamp(60px,7vw,100px)]"
       >
-        <BlueButton href={routes.contact}>Get Started!</BlueButton>
+        <BlueButton href={signupUrl}>Get Started!</BlueButton>
       </CtaBand>
     </PageShell>
   );

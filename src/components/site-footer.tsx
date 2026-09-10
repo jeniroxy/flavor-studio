@@ -10,30 +10,33 @@ import { contactEmail, phone, phoneHref, routes } from "@/lib/routes";
  * the footer rather than stacked to the right.
  *
  * `labelingHref` differs by page: the landing page has a #labels section to
- * jump to, subpages route to the Features nutrition anchor instead.
+ * jump to, subpages route to the Features labeling anchor instead.
  */
 
 const productLinks = (labelingHref: string) => [
-  { label: "Recipes", href: routes.features },
-  { label: "AI Agent", href: routes.agent },
+  { label: "Features", href: routes.features },
   { label: "Labeling", href: labelingHref },
+  { label: "AI Agent", href: routes.agent },
+  { label: "Developers & API", href: routes.developers },
   { label: "Pricing", href: routes.pricing },
 ];
 
 const companyLinks = [
   { label: "Customers", href: routes.customers },
   { label: "Success stories", href: routes.stories },
+  { label: "News", href: routes.news },
   { label: "FAQ", href: routes.faq },
   { label: "Contact", href: routes.contact },
+  { label: "Request a demo", href: routes.demo },
 ];
 
 const linkClass =
-  "text-[13.5px] text-slate-300 transition-colors hover:text-white";
+  "text-[14px] text-slate-300 transition-colors hover:text-white";
 const headingClass =
-  "text-[11px] font-bold tracking-[.12em] uppercase text-slate-500";
+  "text-[11px] font-bold tracking-[.12em] uppercase text-slate-300";
 
 export function SiteFooter({
-  labelingHref = `${routes.features}#nutrition`,
+  labelingHref = `${routes.features}#labeling`,
 }: {
   labelingHref?: string;
 }) {
@@ -74,7 +77,7 @@ export function SiteFooter({
 
           <div className="flex flex-col items-start gap-[10px]">
             <div className={headingClass}>Office</div>
-            <div className="text-[13px] leading-[1.6] text-slate-400">
+            <div className="text-[13px] leading-[1.6] text-slate-300">
               1547 Palos Verdes, Suite 221
               <br />
               Walnut Creek, CA 94597
@@ -82,21 +85,29 @@ export function SiteFooter({
           </div>
         </RevealStagger>
 
-        <Reveal className="mt-[clamp(26px,3vw,40px)] flex flex-wrap items-center gap-4 border-t border-white/[.08] pt-[clamp(18px,2vw,24px)] text-[12.5px] text-slate-500">
+        <Reveal className="mt-[clamp(26px,3vw,40px)] flex flex-wrap items-center gap-4 border-t border-white/[.08] pt-[clamp(18px,2vw,24px)] text-[13px] text-slate-300">
           <Link href={routes.home} className="flex items-center">
             <Image
               src="/assets/logo-light-text.svg"
               alt="Flavor Studio"
               width={196}
               height={38}
-              className="h-[26px] w-auto"
+              className="h-[36px] w-auto"
             />
           </Link>
           <span>
             © {new Date().getFullYear()} Senspire Co. All rights reserved. A
             Senspire solution.
           </span>
-          <span className="ml-auto">Privacy · Terms · Support</span>
+          <span className="ml-auto flex items-center gap-2">
+            <Link
+              href={routes.privacy}
+              className="transition-colors hover:text-slate-300"
+            >
+              Privacy
+            </Link>
+            · Terms · Support
+          </span>
         </Reveal>
       </div>
     </footer>

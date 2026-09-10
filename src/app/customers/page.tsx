@@ -93,7 +93,7 @@ export default function CustomersPage() {
                         {t.name}
                       </div>
                       <div
-                        className={`text-[12.5px] ${dark ? "text-slate-300" : "text-slate-400"}`}
+                        className={`text-[13px] ${dark ? "text-slate-300" : "text-slate-400"}`}
                       >
                         {t.role}
                       </div>
@@ -151,7 +151,7 @@ export default function CustomersPage() {
         className="py-[clamp(60px,7vw,100px)]"
         secondMark={false}
       >
-        <BlueButton href={routes.contact}>Request a demo</BlueButton>
+        <BlueButton href={routes.demo}>Request a demo</BlueButton>
         <a
           href={routes.stories}
           className="rounded-[14px] border border-white/[.28] px-8 py-[15px] text-[16px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/10"

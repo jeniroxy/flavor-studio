@@ -38,12 +38,12 @@ export function FaqAccordion({
               aria-expanded={isOpen}
               className="flex w-full cursor-pointer items-center gap-[14px] px-[22px] py-[18px] text-left"
             >
-              <span className="flex-1 text-[15.5px] leading-[1.4] font-bold text-slate-800">
+              <span className="flex-1 text-[16px] leading-[1.4] font-bold text-slate-800">
                 {item.q}
               </span>
               <span
                 aria-hidden="true"
-                className="flex h-[26px] w-[26px] flex-none items-center justify-center rounded-full bg-blue-100 text-[17px] font-semibold text-blue-600 transition-transform duration-[220ms]"
+                className="flex h-[26px] w-[26px] flex-none items-center justify-center rounded-full bg-blue-100 text-[16px] font-semibold text-blue-600 transition-transform duration-[220ms]"
                 style={{ transform: `rotate(${isOpen ? "45deg" : "0deg"})` }}
               >
                 +
@@ -54,7 +54,7 @@ export function FaqAccordion({
               style={{ gridTemplateRows: isOpen ? "1fr" : "0fr" }}
             >
               <div className="overflow-hidden">
-                <p className="px-[22px] pb-5 text-[14.5px] leading-[1.65] text-slate-500">
+                <p className="px-[22px] pb-5 text-[14px] leading-[1.65] text-slate-500">
                   {item.a}
                 </p>
               </div>

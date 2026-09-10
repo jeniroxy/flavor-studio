@@ -1,3 +1,4 @@
+import { productAssets, type AssetSpec } from "@/lib/assets";
 import { routes } from "@/lib/routes";
 
 /*
@@ -103,9 +104,10 @@ export const testimonials: Testimonial[] = [
  */
 export type Story = {
   company: string;
+  /** URL segment for the on-site detail page: /success-stories/<slug>. */
+  slug: string;
   meta: string;
   eyebrow: string;
-  tag: string;
   title: string;
   blurb: string;
   img: string;
@@ -115,15 +117,27 @@ export type Story = {
   logo: string;
   logoW: number;
   logoH: number;
+  /** On-site detail page. The old external flavorstudio.com links are gone —
+      the client flagged that these used to redirect to the legacy site. */
   href: string;
+  /**
+   * The full case-study narrative, ported from the legacy story pages.
+   * Sections render in order; `quote` is optional pull-quote material.
+   * Empty `sections` = the detail page shows a marked "content being ported"
+   * state rather than invented copy.
+   */
+  detail: {
+    sections: { heading: string; paragraphs: string[] }[];
+    quote?: { text: string; name: string; role: string };
+  };
 };
 
 export const stories: Story[] = [
   {
     company: "Deli Star",
+    slug: "deli-star",
     meta: "Fayetteville, Illinois · Meat processing",
     eyebrow: "Meat processing · Innovation",
-    tag: "Recipes + Projects",
     title:
       "Flavor Studio drives innovation and collaboration to accelerate product launches",
     blurb:
@@ -135,13 +149,22 @@ export const stories: Story[] = [
     logo: "/stories/deli-star-logo.png",
     logoW: 160,
     logoH: 21,
-    href: "https://www.flavorstudio.com/success-stories/deli-star-success-story",
+    href: "/success-stories/deli-star",
+    detail: {
+      // Full narrative to be ported from the legacy story page.
+      sections: [],
+      quote: {
+        text: "Today we communicate, collaborate and prioritize projects in an organized and highly visible fashion… We can not live without Flavor Studio!",
+        name: "Charles Hayes",
+        role: "VP Culinary Innovation, R&D Deli Star",
+      },
+    },
   },
   {
     company: "Good Foods Group",
+    slug: "good-foods",
     meta: "Pleasant Prairie, Wisconsin · Fresh produce",
     eyebrow: "Fresh produce · Family-owned",
-    tag: "Formulation + Costing",
     title: "Making good food from everywhere, with one shared source of truth",
     blurb:
       "From small-town Pleasant Prairie, Wisconsin, family-owned Good Foods turns fresh produce into guacamoles, dips, dressings, salsas and salads — convinced that good food makes the world go around.",
@@ -152,13 +175,16 @@ export const stories: Story[] = [
     logo: "/stories/good-foods-logo.png",
     logoW: 600,
     logoH: 337,
-    href: "https://www.flavorstudio.com/success-stories/good-foods-success-story",
+    href: "/success-stories/good-foods",
+    detail: {
+      sections: [],
+    },
   },
   {
     company: "Ripple Foods",
+    slug: "ripple-foods",
     meta: "Berkeley, California · Plant-based",
     eyebrow: "Plant-based · Dairy-free",
-    tag: "Nutrition + Labeling",
     title:
       "An enhanced cloud-based experience with up-to-date, accurate nutritional analysis",
     blurb:
@@ -170,11 +196,25 @@ export const stories: Story[] = [
     logo: "/stories/ripple-foods-logo.png",
     logoW: 260,
     logoH: 89,
-    href: "https://www.flavorstudio.com/success-stories/ripple-foods-success-story",
+    href: "/success-stories/ripple-foods",
+    detail: {
+      sections: [],
+    },
   },
 ];
 
 /* ------------------------------------------------------ the platform (tabs) */
+
+/*
+ * The module tour on the landing page.
+ *
+ * Each tab used to carry a hand-drawn "mock" — a fake metric and three bar
+ * charts — which is precisely what the client objected to: a visitor could not
+ * see the product, only an illustration of it. Every tab now carries a real
+ * screenshot of the module instead, and the six tabs were re-picked so that all
+ * six can show one (Inspire and Admin keep their entries in the full catalogue
+ * on the Features page).
+ */
 
 export type PlatformTab = {
   id: string;
@@ -187,11 +227,8 @@ export type PlatformTab = {
   checks: string[];
   cta: string;
   href: string;
-  mockTitle: string;
-  mockBadge: string;
-  metric: string;
-  metricCaption: string;
-  bars: { label: string; width: string; color: string }[];
+  /** The real screenshot of this module. */
+  shot: AssetSpec;
 };
 
 export const platformTabs: PlatformTab[] = [
@@ -202,23 +239,49 @@ export const platformTabs: PlatformTab[] = [
     badgeBg: "var(--color-lime-100)",
     badgeColor: "#5c8f1c",
     title: "Formulate and cost in one live grid",
-    desc: "Percentages, weight, yield and cost recompute on every keystroke. Branch versions and sub-recipes without losing the original.",
+    desc: "Percentages, weight, yield and cost recompute on every keystroke. Branch versions and nest sub-recipes without losing the original.",
     checks: [
-      "Live cost, yield and margin roll-up",
-      "Unlimited versions with pill-tab switching",
-      "Sub-recipes nested to any depth",
+      "Live yield, batch cost, container cost and retail price",
+      "Named versions — V1, Testing, Final — switched from the header",
+      "Sub-levels nested to any depth, costed through to the parent",
     ],
     cta: "Discover Recipes",
     href: `${routes.features}#recipes`,
-    mockTitle: "Yield / cost",
-    mockBadge: "V8",
-    metric: "$7.21",
-    metricCaption: "Total cost · 32 servings",
-    bars: [
-      { label: "Butter", width: "30%", color: "var(--color-lime-500)" },
-      { label: "Sugars, brown", width: "25%", color: "var(--color-lime-400)" },
-      { label: "Flour", width: "20%", color: "var(--color-slate-300)" },
+    shot: productAssets.recipeGrid,
+  },
+  {
+    id: "labeling",
+    label: "Labeling",
+    icon: "doc-detail",
+    badgeBg: "var(--color-blue-200)",
+    badgeColor: "var(--color-blue-700)",
+    title: "Publish a compliant label from the formula",
+    desc: "Pick the content, the layout and the region, and the panel is generated from the recipe's own analysed values — print-ready, in the format your market requires.",
+    checks: [
+      "Vertical, tabular, side-by-side, linear, dual column and aggregate layouts",
+      "Nutrition Panel or Supplement Facts, US or Canadian",
+      "Ingredient statement, allergens and %Daily Values controlled per panel",
     ],
+    cta: "Discover Labeling",
+    href: `${routes.features}#labeling`,
+    shot: productAssets.nutritionLabelFormats,
+  },
+  {
+    id: "designer",
+    label: "Publish Designer",
+    icon: "setting-two",
+    badgeBg: "var(--color-violet-100)",
+    badgeColor: "var(--color-violet-500)",
+    title: "Design the documents that leave your building",
+    desc: "A real layout canvas for spec sheets and published recipes. Drop in the elements you need, style them, save the template, and reuse it across products.",
+    checks: [
+      "Elements for recipe, procedure, label, allergens, composition and analytics",
+      "Position, typography, layout and box-style inspector",
+      "Named templates, headers and footers, print or publish",
+    ],
+    cta: "Discover Publish Designer",
+    href: `${routes.features}#designer`,
+    shot: productAssets.labelDesigner,
   },
   {
     id: "taste-tests",
@@ -230,166 +293,85 @@ export const platformTabs: PlatformTab[] = [
     desc: "Run internal panels or consumer surveys, score attributes side by side across versions, and let the winner carry its data into production.",
     checks: [
       "Blind triangle and preference tests",
-      "Scores attached to the exact version",
-      "Consumer surveys with purchase intent",
+      "Scores attached to the exact version tested",
+      "Filtering across tests, tags and verified tags",
     ],
     cta: "Discover Taste Tests",
     href: `${routes.features}#taste-tests`,
-    mockTitle: "Panel #212",
-    mockBadge: "v4 wins",
-    metric: "7.8 / 9",
-    metricCaption: "Overall liking · 48 panelists",
-    bars: [
-      { label: "Overall liking", width: "87%", color: "var(--color-teal-500)" },
-      { label: "Texture", width: "80%", color: "var(--color-blue-500)" },
-      {
-        label: "Purchase intent",
-        width: "72%",
-        color: "var(--color-lime-500)",
-      },
-    ],
+    shot: productAssets.tasteTests,
   },
   {
-    id: "projects",
-    label: "Projects",
-    icon: "folder-open",
-    badgeBg: "var(--color-blue-200)",
-    badgeColor: "var(--color-blue-700)",
-    title: "Launches move through gates, not inboxes",
-    desc: "Briefs, tasks and stage gates tied directly to the recipes they concern. Everyone sees where a launch stands — and what is blocking it.",
+    id: "timesheet",
+    label: "Projects & time",
+    icon: "time",
+    badgeBg: "var(--color-amber-100)",
+    badgeColor: "#a97d17",
+    title: "Development time, logged against the project",
+    desc: "Stage-gated projects with a timeline and a board — plus a timesheet, so the hours and expenses a launch actually consumed are a number rather than a guess.",
     checks: [
-      "Stage gates from concept to shelf",
-      "Tasks linked to recipes and versions",
-      "Timelines your whole team can read",
+      "Weekly and day views, running timer or manual entry",
+      "Activity typed, logged to a project, with expenses attached",
+      "Detailed and weekly reports, filterable and exportable",
     ],
     cta: "Discover Projects",
-    href: `${routes.features}#projects`,
-    mockTitle: "Stage gates",
-    mockBadge: "On track",
-    metric: "14 active",
-    metricCaption: "Launches in flight this quarter",
-    bars: [
-      { label: "Concept", width: "42%", color: "var(--color-blue-200)" },
-      { label: "Bench", width: "68%", color: "var(--color-blue-500)" },
-      { label: "Launch", width: "28%", color: "var(--color-blue-700)" },
-    ],
+    href: `${routes.features}#timesheet`,
+    shot: productAssets.timesheet,
   },
   {
     id: "crm",
     label: "CRM",
     icon: "peoples",
-    badgeBg: "var(--color-blue-200)",
-    badgeColor: "var(--color-blue-700)",
+    badgeBg: "var(--color-gray-100)",
+    badgeColor: "var(--color-slate-700)",
     title: "Connect the front line to R&D",
-    desc: "Link sales opportunities directly to development projects, manage sample requests, and track shipping status — on one system.",
+    desc: "Customers, opportunities, contracts and purchase orders in the same system as the development work — including a builder for the requirements forms your customers send you.",
     checks: [
-      "Opportunity pipeline & activity reports",
-      "Sample requests linked to recipes",
-      "Shipment tracking built in",
+      "Opportunities linked to the development project",
+      "Customer Requirements Builder — sections, question types, nested options",
+      "Sample requests tied to the recipe being sampled",
     ],
     cta: "Discover CRM",
     href: `${routes.features}#crm`,
-    mockTitle: "Pipeline",
-    mockBadge: "+18% MoM",
-    metric: "$1.2M",
-    metricCaption: "Open pipeline · 12 deals",
-    bars: [
-      { label: "Lead", width: "92%", color: "var(--color-blue-200)" },
-      { label: "Sampling", width: "58%", color: "var(--color-blue-500)" },
-      { label: "Won", width: "30%", color: "var(--color-blue-700)" },
-    ],
-  },
-  {
-    id: "inspire",
-    label: "Inspire",
-    icon: "star",
-    badgeBg: "var(--color-lime-100)",
-    badgeColor: "#5c8f1c",
-    title: "Start the next product before the trend peaks",
-    desc: "A feed of ingredients, concepts and category trends your team can clip into briefs. One click turns an idea into a project with a starter formula.",
-    checks: [
-      "Trend and ingredient feed",
-      "Clip concepts straight into briefs",
-      "Turn an idea into a project in one click",
-    ],
-    cta: "Discover Inspire",
-    href: `${routes.features}#inspire`,
-    mockTitle: "Trend feed",
-    mockBadge: "37 new",
-    metric: "128 concepts",
-    metricCaption: "Clipped by your team this quarter",
-    bars: [
-      { label: "Fermented heat", width: "78%", color: "var(--color-lime-500)" },
-      {
-        label: "Upcycled grains",
-        width: "64%",
-        color: "var(--color-lime-400)",
-      },
-      {
-        label: "Botanical sodas",
-        width: "52%",
-        color: "var(--color-teal-500)",
-      },
-    ],
-  },
-  {
-    id: "admin",
-    label: "Admin",
-    icon: "setting-two",
-    badgeBg: "var(--color-gray-100)",
-    badgeColor: "var(--color-slate-700)",
-    title: "One library, governed centrally",
-    desc: "Cost assumptions, units, permissions and the ingredient library live in one place — so every recipe costs and labels from the same source of truth.",
-    checks: [
-      "Shared cost assumptions and units",
-      "Role-based permissions and audit log",
-      "Ingredient library with supplier specs",
-    ],
-    cta: "Explore all features",
-    href: routes.features,
-    mockTitle: "Ingredient library",
-    mockBadge: "Synced",
-    metric: "1,240",
-    metricCaption: "Ingredients under management",
-    bars: [
-      { label: "Costed", width: "96%", color: "var(--color-slate-700)" },
-      { label: "Spec'd", width: "88%", color: "var(--color-blue-500)" },
-      {
-        label: "Allergen-tagged",
-        width: "74%",
-        color: "var(--color-slate-300)",
-      },
-    ],
+    shot: productAssets.crBuilder,
   },
 ];
 
 /* -------------------------------------------------------- why flavor studio */
 
+/*
+ * Why teams choose Flavor Studio.
+ *
+ * These were five stacked clichés — "one-stop shop for all product development
+ * needs", "hit the ground running and be productive from the get-go",
+ * "best-in-class customer service". Nothing in them was falsifiable, so nothing
+ * in them was persuasive, and every line would have read the same under a
+ * different company's logo. Each is now a specific mechanism.
+ */
 export const whyPoints = [
   {
+    icon: "leaves",
+    title: "9,000 USDA ingredients, plus yours",
+    body: "The SR28 database is built in. Custom ingredients sit beside it, and most teams import theirs from a vendor spec sheet — the tool reads the PDF and pulls the nutrient values in.",
+  },
+  {
+    icon: "branch-one",
+    title: "Change it once, everywhere",
+    body: "Update a cost, a supplier or an allergen on the ingredient itself. Every recipe, label and spec sheet that uses it follows — including the ones you have already published.",
+  },
+  {
+    icon: "doc-detail",
+    title: "Labels that hold up",
+    body: "US FDA and Health Canada panels generated by the label engine from the formula's own analysed values, print-ready in six layouts, with the ingredient statement and allergen declaration alongside.",
+  },
+  {
     icon: "all-application",
-    title: "Comprehensive, cost-effective suite",
-    body: "One-stop shop for all product development needs. Do away with multiple, disparate spreadsheets and solutions that do not work well with one another and are not cost effective.",
-  },
-  {
-    icon: "click",
-    title: "Easy and intuitive to use",
-    body: "User-friendly interface allows teams to hit the ground running and be productive from the get-go. The result is accelerated product development and time to market.",
-  },
-  {
-    icon: "peoples",
-    title: "Enhance collaboration",
-    body: "Integrated solution and team-based focus facilitates collaboration and visibility to every team member.",
-  },
-  {
-    icon: "cloud-storage",
-    title: "Anytime, anywhere access",
-    body: "Cloud technology allows easy web-based access and ensures users are using the most up-to-date version at all times.",
+    title: "Use one module or all eighteen",
+    body: "Unlike an ERP, nothing here demands a full rollout. Teams usually start with recipes and labels, then add taste tests, projects or CRM when they are ready.",
   },
   {
     icon: "headset-one",
-    title: "Best-in-class customer service",
-    body: "Get the best industry support, from sign up to ramp up to on-going use through Flavor Studio’s phone and online channels.",
+    title: "Support from people who know food",
+    body: "Phone, email and in-app chat, from a team that has been building product-development tools for food and beverage manufacturers since 2011.",
   },
 ];
 
