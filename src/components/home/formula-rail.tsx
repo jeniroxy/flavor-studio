@@ -3,6 +3,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useRef } from "react";
+import { Caption } from "@/components/layout-primitives";
 import { observeOnce, prefersReducedMotion } from "@/lib/reveal";
 
 /*
@@ -96,19 +97,19 @@ export function FormulaRail({
   return (
     <div ref={root} className={className}>
       <div
-        className={`flex items-center justify-between text-[11px] font-extrabold tracking-[.13em] uppercase ${
-          dark ? "text-[#8fa3bd]" : "text-slate-400"
+        className={`flex items-center justify-between text-[12px] font-extrabold tracking-[.12em] uppercase ${
+          dark ? "text-slate-300" : "text-slate-500"
         }`}
       >
         <span>Formula</span>
-        <span className={dark ? "text-lime-300" : "text-slate-700"}>
+        <span className={dark ? "text-white" : "text-slate-800"}>
           100.000&thinsp;%
         </span>
       </div>
 
       {/* The bar itself */}
       <div
-        className={`mt-[10px] flex h-[14px] w-full overflow-hidden rounded-full ${
+        className={`mt-[10px] flex h-[12px] w-full overflow-hidden rounded-full ${
           dark ? "bg-white/[.08]" : "bg-gray-100"
         }`}
       >
@@ -129,7 +130,7 @@ export function FormulaRail({
           <li
             key={seg.name}
             className={`flex items-center gap-[7px] text-[13px] leading-none ${
-              dark ? "text-[#c4cedd]" : "text-slate-700"
+              dark ? "text-slate-200" : "text-slate-700"
             }`}
           >
             <span
@@ -154,13 +155,9 @@ export function FormulaRail({
       </ul>
 
       {caption && (
-        <p
-          className={`mt-[14px] text-[13px] leading-[1.55] ${
-            dark ? "text-[#8fa3bd]" : "text-slate-400"
-          }`}
-        >
+        <Caption tone={dark ? "dark" : "light"} className="mt-[14px]">
           {caption}
-        </p>
+        </Caption>
       )}
     </div>
   );

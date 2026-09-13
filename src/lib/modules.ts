@@ -1,4 +1,6 @@
 import { productAssets, type AssetSpec } from "@/lib/assets";
+import { flows } from "@/lib/flows";
+import type { Flow } from "@/components/flow-player";
 
 /*
  * The full module catalogue.
@@ -36,6 +38,8 @@ export type Module = {
   /** The detail the old page was missing. */
   capabilities: string[];
   asset: AssetSpec;
+  /** The feature as a sequence of real screens, when the design file has one. */
+  flow?: Flow;
 };
 
 export const modules: Module[] = [
@@ -60,6 +64,7 @@ export const modules: Module[] = [
       "Per-user and per-group sharing with separate edit and read rights",
     ],
     asset: productAssets.recipeGrid,
+    flow: flows.recipeImages,
   },
   {
     id: "ingredients",
@@ -82,6 +87,7 @@ export const modules: Module[] = [
       "Supplier and cost data attached to the ingredient, not the recipe",
     ],
     asset: productAssets.ingredientLibrary,
+    flow: flows.newIngredient,
   },
   {
     id: "costing",
@@ -100,6 +106,7 @@ export const modules: Module[] = [
       "Margin against a target retail price",
     ],
     asset: productAssets.costAssumptions,
+    flow: flows.costAssumptions,
   },
   {
     id: "versions",
@@ -137,6 +144,7 @@ export const modules: Module[] = [
       "PNG export for internal drafts, high-resolution vector PDF for packaging",
     ],
     asset: productAssets.nutritionLabelFormats,
+    flow: flows.publishAggregate,
   },
   {
     id: "claims",
@@ -153,6 +161,7 @@ export const modules: Module[] = [
       "Claims published alongside the label or on their own",
     ],
     asset: productAssets.nutrientClaims,
+    flow: flows.claims,
   },
   {
     id: "designer",
@@ -188,6 +197,7 @@ export const modules: Module[] = [
       "Results tied to the exact recipe version tested",
     ],
     asset: productAssets.tasteTests,
+    flow: flows.tasteTestPublish,
   },
   {
     id: "projects",
@@ -253,6 +263,7 @@ export const modules: Module[] = [
       "Export the report for circulation outside Flavor Studio",
     ],
     asset: productAssets.timesheet,
+    flow: flows.timesheet,
   },
   {
     id: "reports",
@@ -306,6 +317,7 @@ export const modules: Module[] = [
       "Duplicate or delete a section without touching the rest",
     ],
     asset: productAssets.crBuilder,
+    flow: flows.crBuilder,
   },
   {
     id: "publishing",
@@ -362,7 +374,8 @@ export const modules: Module[] = [
       "Subscription, billing and account suspension handled in-product",
       "Inactive users excluded from the next billing count",
     ],
-    asset: productAssets.ingredientNutrients,
+    asset: productAssets.adminUsers,
+    flow: flows.twoFactor,
   },
 ];
 

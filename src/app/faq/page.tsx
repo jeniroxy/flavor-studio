@@ -52,7 +52,7 @@ export default function FaqPage() {
           {faqGroups.map((group) => (
             <div key={group.title}>
               <Reveal className="mb-4 flex items-center gap-[10px]">
-                <Icon name={group.icon} className="text-[20px] text-blue-500" />
+                <Icon name={group.icon} className="text-[20px] text-blue-600" />
                 <span className="font-display text-[20px] font-extrabold text-slate-800">
                   {group.title}
                 </span>
@@ -65,11 +65,7 @@ export default function FaqPage() {
         </div>
       </Block>
 
-      <CtaBand
-        title="More questions?"
-        className="py-[clamp(56px,6.5vw,92px)]"
-        secondMark={false}
-      >
+      <CtaBand title="More questions?" className="py-[clamp(56px,6.5vw,92px)]">
         <BlueButton href={routes.contact}>Contact us today</BlueButton>
       </CtaBand>
     </PageShell>

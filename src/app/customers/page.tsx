@@ -5,6 +5,8 @@ import { Icon } from "@/components/icon";
 import {
   Block,
   BlueButton,
+  CARD_LIGHT,
+  GhostButton,
   HeroBackdrop,
   SectionHeading,
   SectionLabel,
@@ -19,9 +21,6 @@ export const metadata: Metadata = {
   description:
     "Praise from Flavor Studio customers — and the industry segments that use it, from CPG manufacturers to culinology programs.",
 };
-
-/* Two cards in the grid invert to navy, breaking up the wall of white. */
-const DARK_CARDS = new Set([0, 4]);
 
 export default function CustomersPage() {
   return (
@@ -58,24 +57,16 @@ export default function CustomersPage() {
             Clients say …
           </Reveal>
           <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-5">
-            {testimonials.map((t, i) => {
-              const dark = DARK_CARDS.has(i);
+            {/* Seven identical cards. Two used to invert to navy "to break up
+                the wall of white", which read as two random dark tiles. */}
+            {testimonials.map((t) => {
               return (
                 <Reveal
                   key={t.name}
-                  className={`flex flex-col gap-[18px] rounded-[18px] border px-[26px] py-7 ${
-                    dark
-                      ? "border-slate-800 bg-slate-800"
-                      : "border-gray-300 bg-white"
-                  }`}
+                  className={`flex flex-col gap-[18px] px-[26px] py-7 ${CARD_LIGHT}`}
                 >
-                  <Icon
-                    name="quote"
-                    className={`text-2xl ${dark ? "text-lime-400" : "text-blue-400"}`}
-                  />
-                  <p
-                    className={`text-[15px] leading-[1.65] ${dark ? "text-[#dfe5ee]" : "text-slate-700"}`}
-                  >
+                  <Icon name="quote" className="text-2xl text-blue-300" />
+                  <p className="text-[15px] leading-[1.65] text-slate-700">
                     {t.quote}
                   </p>
                   <div className="mt-auto flex items-center gap-3">
@@ -87,16 +78,10 @@ export default function CustomersPage() {
                       className="h-[46px] w-[46px] rounded-full bg-gray-100 object-cover"
                     />
                     <div>
-                      <div
-                        className={`text-[14px] font-bold ${dark ? "text-white" : "text-slate-800"}`}
-                      >
+                      <div className="text-[14px] font-bold text-slate-800">
                         {t.name}
                       </div>
-                      <div
-                        className={`text-[13px] ${dark ? "text-slate-300" : "text-slate-400"}`}
-                      >
-                        {t.role}
-                      </div>
+                      <div className="text-[13px] text-slate-500">{t.role}</div>
                     </div>
                   </div>
                 </Reveal>
@@ -126,15 +111,11 @@ export default function CustomersPage() {
             {industrySegments.map((seg) => (
               <Reveal
                 key={seg.name}
-                className="flex items-center gap-3 rounded-[14px] border border-gray-300 px-[18px] py-4"
-                style={{
-                  background:
-                    "linear-gradient(180deg, #f8fafd 0%, #eef4fb 100%)",
-                }}
+                className={`flex items-center gap-3 px-[18px] py-4 ${CARD_LIGHT}`}
               >
                 <Icon
                   name={seg.icon}
-                  className="flex-none text-[20px] text-blue-500"
+                  className="flex-none text-[20px] text-blue-600"
                 />
                 <span className="text-[14px] font-bold text-slate-700">
                   {seg.name}
@@ -149,15 +130,9 @@ export default function CustomersPage() {
         title="Join them."
         body="See how their stories started — or start your own with a free 14-day trial."
         className="py-[clamp(60px,7vw,100px)]"
-        secondMark={false}
       >
         <BlueButton href={routes.demo}>Request a demo</BlueButton>
-        <a
-          href={routes.stories}
-          className="rounded-[14px] border border-white/[.28] px-8 py-[15px] text-[16px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/10"
-        >
-          Read success stories
-        </a>
+        <GhostButton href={routes.stories}>Read success stories</GhostButton>
       </CtaBand>
     </PageShell>
   );

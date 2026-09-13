@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icon";
+import { Caption } from "@/components/layout-primitives";
+import { ProductShot } from "@/components/product-shot";
 import { productAssets } from "@/lib/assets";
 import { prefersReducedMotion } from "@/lib/reveal";
 
@@ -43,13 +44,14 @@ const STEPS = [
   },
   {
     icon: "experiment",
-    label: "Taste tests",
-    caption: "Panels and results, filtered across tests and verified tags.",
+    label: "Sensory",
+    caption:
+      "Publishing a panel report, filtered by product version and taster.",
     shot: productAssets.tasteTests,
   },
   {
     icon: "time",
-    label: "Projects",
+    label: "Timesheet",
     caption: "Activity logged against the project, with expenses attached.",
     shot: productAssets.timesheet,
   },
@@ -85,7 +87,7 @@ export function FeaturesWalkthrough() {
 
   return (
     <div ref={root} className="relative">
-      <div className="overflow-hidden rounded-[18px] bg-white shadow-window">
+      <div className="overflow-hidden rounded-xl border border-white/10 bg-white shadow-window">
         <div className="grid grid-cols-3 gap-1 bg-slate-900 px-3 pt-3 pb-[10px] sm:grid-cols-6">
           {STEPS.map((step, i) => {
             const isActive = i === index;
@@ -98,13 +100,13 @@ export function FeaturesWalkthrough() {
                   setAuto(false);
                 }}
                 aria-current={isActive}
-                className={`relative flex min-h-[44px] items-center justify-center gap-[6px] overflow-hidden rounded-[10px] px-2 text-[13px] font-bold whitespace-nowrap transition-colors duration-150 ${
+                className={`relative flex min-h-[44px] items-center justify-center gap-[6px] overflow-hidden rounded-lg px-2 text-[13px] font-bold whitespace-nowrap transition-colors duration-150 ${
                   isActive
                     ? "bg-blue-700 text-white"
-                    : "text-[#c4cedd] hover:bg-white/10"
+                    : "text-slate-200 hover:bg-white/10"
                 }`}
               >
-                <Icon name={step.icon} className="text-[16px]" />
+                <Icon name={step.icon} className="text-[16px] shrink-0" />
                 <span>{step.label}</span>
                 {isActive && auto && (
                   <span
@@ -120,20 +122,20 @@ export function FeaturesWalkthrough() {
           })}
         </div>
 
-        <Image
+        <ProductShot
           key={active.label}
           src={active.shot.src as string}
           alt={active.shot.alt}
           width={active.shot.width}
           height={active.shot.height}
+          focus={active.shot.focus}
           priority
           sizes="(max-width: 1024px) 100vw, 56vw"
-          className="w-full"
+          className="rounded-none border-0 shadow-none"
+          delay={0.5}
         />
       </div>
-      <p className="mt-[10px] text-[13px] leading-[1.5] text-[#8fa3bd]">
-        {active.caption}
-      </p>
+      <Caption tone="dark">{active.caption}</Caption>
     </div>
   );
 }

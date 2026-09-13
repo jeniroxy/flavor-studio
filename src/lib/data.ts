@@ -1,4 +1,6 @@
 import { productAssets, type AssetSpec } from "@/lib/assets";
+import { flows } from "@/lib/flows";
+import type { Flow } from "@/components/flow-player";
 import { routes } from "@/lib/routes";
 
 /*
@@ -220,8 +222,6 @@ export type PlatformTab = {
   id: string;
   label: string;
   icon: string;
-  badgeBg: string;
-  badgeColor: string;
   title: string;
   desc: string;
   checks: string[];
@@ -229,6 +229,8 @@ export type PlatformTab = {
   href: string;
   /** The real screenshot of this module. */
   shot: AssetSpec;
+  /** When the design file holds the feature as a sequence, play it instead. */
+  flow?: Flow;
 };
 
 export const platformTabs: PlatformTab[] = [
@@ -236,8 +238,6 @@ export const platformTabs: PlatformTab[] = [
     id: "recipes",
     label: "Recipes",
     icon: "chef-hat-one",
-    badgeBg: "var(--color-lime-100)",
-    badgeColor: "#5c8f1c",
     title: "Formulate and cost in one live grid",
     desc: "Percentages, weight, yield and cost recompute on every keystroke. Branch versions and nest sub-recipes without losing the original.",
     checks: [
@@ -247,14 +247,12 @@ export const platformTabs: PlatformTab[] = [
     ],
     cta: "Discover Recipes",
     href: `${routes.features}#recipes`,
-    shot: productAssets.recipeGrid,
+    shot: productAssets.recipeCost,
   },
   {
     id: "labeling",
     label: "Labeling",
     icon: "doc-detail",
-    badgeBg: "var(--color-blue-200)",
-    badgeColor: "var(--color-blue-700)",
     title: "Publish a compliant label from the formula",
     desc: "Pick the content, the layout and the region, and the panel is generated from the recipe's own analysed values — print-ready, in the format your market requires.",
     checks: [
@@ -265,13 +263,12 @@ export const platformTabs: PlatformTab[] = [
     cta: "Discover Labeling",
     href: `${routes.features}#labeling`,
     shot: productAssets.nutritionLabelFormats,
+    flow: flows.publishAggregate,
   },
   {
     id: "designer",
     label: "Publish Designer",
     icon: "setting-two",
-    badgeBg: "var(--color-violet-100)",
-    badgeColor: "var(--color-violet-500)",
     title: "Design the documents that leave your building",
     desc: "A real layout canvas for spec sheets and published recipes. Drop in the elements you need, style them, save the template, and reuse it across products.",
     checks: [
@@ -287,25 +284,24 @@ export const platformTabs: PlatformTab[] = [
     id: "taste-tests",
     label: "Taste Tests",
     icon: "experiment",
-    badgeBg: "var(--color-teal-100)",
-    badgeColor: "#0e8b73",
     title: "Sensory data that flows back into the formula",
     desc: "Run internal panels or consumer surveys, score attributes side by side across versions, and let the winner carry its data into production.",
+    // The export we have is the report-publishing step, so the checks describe
+    // that step rather than claiming scores the frame does not show.
     checks: [
-      "Blind triangle and preference tests",
-      "Scores attached to the exact version tested",
-      "Filtering across tests, tags and verified tags",
+      "Summary, comprehensive and shelf-life reports",
+      "Filtered by product version and by taster",
+      "Print, or download as PDF",
     ],
     cta: "Discover Taste Tests",
     href: `${routes.features}#taste-tests`,
     shot: productAssets.tasteTests,
+    flow: flows.tasteTestPublish,
   },
   {
     id: "timesheet",
     label: "Projects & time",
     icon: "time",
-    badgeBg: "var(--color-amber-100)",
-    badgeColor: "#a97d17",
     title: "Development time, logged against the project",
     desc: "Stage-gated projects with a timeline and a board — plus a timesheet, so the hours and expenses a launch actually consumed are a number rather than a guess.",
     checks: [
@@ -315,14 +311,13 @@ export const platformTabs: PlatformTab[] = [
     ],
     cta: "Discover Projects",
     href: `${routes.features}#timesheet`,
-    shot: productAssets.timesheet,
+    shot: productAssets.timesheetWeek,
+    flow: flows.timesheet,
   },
   {
     id: "crm",
     label: "CRM",
     icon: "peoples",
-    badgeBg: "var(--color-gray-100)",
-    badgeColor: "var(--color-slate-700)",
     title: "Connect the front line to R&D",
     desc: "Customers, opportunities, contracts and purchase orders in the same system as the development work — including a builder for the requirements forms your customers send you.",
     checks: [
@@ -333,6 +328,7 @@ export const platformTabs: PlatformTab[] = [
     cta: "Discover CRM",
     href: `${routes.features}#crm`,
     shot: productAssets.crBuilder,
+    flow: flows.crBuilder,
   },
 ];
 

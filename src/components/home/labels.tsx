@@ -5,6 +5,7 @@ import {
   Block,
   SectionHeading,
   SectionLabel,
+  TextLink,
 } from "@/components/layout-primitives";
 import { Reveal, RevealStagger } from "@/components/reveal";
 import { productAssets } from "@/lib/assets";
@@ -26,11 +27,11 @@ import { routes } from "@/lib/routes";
  */
 
 const FORMATS = [
-  { text: "FDA 2016 format", cls: "bg-blue-200 text-blue-700" },
-  { text: "Canadian bilingual", cls: "bg-teal-100 text-[#0e8b73]" },
-  { text: "Supplement Facts", cls: "bg-violet-100 text-violet-500" },
-  { text: "Big-9 allergen rules", cls: "bg-amber-100 text-[#a97d17]" },
-  { text: "Nutrient content claims", cls: "bg-gray-100 text-slate-700" },
+  "FDA 2016 format",
+  "Canadian bilingual",
+  "Supplement Facts",
+  "Big-9 allergen rules",
+  "Nutrient content claims",
 ];
 
 const LAYOUTS = [
@@ -56,8 +57,8 @@ export function Labels() {
           />
           <FormulaRail
             tone="light"
-            className="mt-7 w-full max-w-[420px]"
-            caption="The formula the panel above was generated from. Change a percentage and the panel follows."
+            className="mt-8 w-full max-w-[420px]"
+            caption="A formula as Flavor Studio holds it. Change a percentage and the panel regenerates."
           />
         </Reveal>
 
@@ -77,24 +78,25 @@ export function Labels() {
             print-ready and to spec.
           </Reveal>
 
+          {/* One neutral chip, not five pastel ones: the colours carried no
+              meaning, they were just five colours. */}
           <RevealStagger
-            stagger={0.06}
+            stagger={0.05}
             delay={0.16}
-            className="mt-6 flex flex-wrap gap-[10px]"
+            className="mt-6 flex flex-wrap gap-[8px]"
           >
             {FORMATS.map((chip) => (
               <span
-                key={chip.text}
-                className={`inline-flex items-center gap-[7px] rounded-full px-[15px] py-2 text-[13px] font-bold ${chip.cls}`}
+                key={chip}
+                className="inline-flex items-center rounded-full border border-gray-300 bg-gray-050 px-[13px] py-[7px] text-[13px] font-semibold text-slate-700"
               >
-                <Icon name="check-one" className="text-[14px]" />
-                {chip.text}
+                {chip}
               </span>
             ))}
           </RevealStagger>
 
           <RevealStagger
-            stagger={0.06}
+            stagger={0.05}
             delay={0.2}
             className="mt-6 flex flex-col gap-[10px]"
           >
@@ -113,20 +115,18 @@ export function Labels() {
           </RevealStagger>
 
           <Reveal delay={0.26} className="mt-[22px]">
-            <a
-              href={`${routes.features}#labeling`}
-              className="inline-flex items-center gap-2 text-[14px] font-extrabold text-blue-600 hover:text-blue-700"
-            >
-              <span>See every label format and export option</span>
-              <Icon name="arrow-right" className="text-[15px]" />
-            </a>
+            <TextLink href={`${routes.features}#labeling`}>
+              See every label format and export option
+            </TextLink>
           </Reveal>
         </div>
       </div>
 
       {/* The publish options themselves — the client asked that a visitor be
-          able to see what they actually get, not just be told about it. */}
-      <div className="mx-auto mt-[clamp(44px,5vw,72px)] max-w-[1180px]">
+          able to see what they actually get, not just be told about it. The
+          dialog is 948px wide; it is shown at that size rather than stretched
+          to the column. */}
+      <div className="mx-auto mt-[clamp(48px,6vw,88px)] max-w-[880px]">
         <Reveal
           as="h3"
           className="font-display text-center text-[clamp(21px,2.3vw,28px)] leading-[1.2] font-extrabold tracking-[-0.02em] text-slate-800"
@@ -146,7 +146,7 @@ export function Labels() {
           <AssetFrame
             {...productAssets.publishExport}
             caption="Publish Recipe in Flavor Studio, with the generated panel previewing live as the options change."
-            sizes="(max-width: 1180px) 100vw, 1180px"
+            sizes="(max-width: 960px) 100vw, 880px"
           />
         </Reveal>
       </div>

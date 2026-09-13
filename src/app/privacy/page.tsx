@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Icon } from "@/components/icon";
 import {
   Block,
+  Eyebrow,
   HeroBackdrop,
   SectionLabel,
 } from "@/components/layout-primitives";
@@ -93,11 +94,8 @@ export default function PrivacyPage() {
               ))}
             </div>
           ) : (
-            <Reveal className="rounded-[20px] border-2 border-dashed border-gray-300 bg-gray-050 px-[clamp(24px,3vw,40px)] py-[clamp(28px,3.4vw,44px)]">
-              <div className="flex items-center gap-2 text-[11px] font-bold tracking-[.14em] text-slate-400 uppercase">
-                <Icon name="doc-search" className="text-[16px]" />
-                Awaiting canonical text
-              </div>
+            <Reveal className="rounded-2xl border border-dashed border-gray-300 bg-gray-050 px-[clamp(24px,3vw,40px)] py-[clamp(28px,3.4vw,44px)]">
+              <Eyebrow>Awaiting canonical text</Eyebrow>
               <p className="mt-4 text-[15px] leading-[1.75] text-slate-600">
                 The authoritative Privacy Policy is the one published on the
                 current flavorstudio.com, and it will be carried over verbatim —

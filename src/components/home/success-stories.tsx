@@ -6,6 +6,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icon";
 import {
   Block,
+  CARD_LIGHT,
+  Eyebrow,
   SectionHeading,
   SectionLabel,
 } from "@/components/layout-primitives";
@@ -152,7 +154,7 @@ export function SuccessStories() {
   const nextCard = testimonials[(tst.index + 1) % len];
 
   const arrowClass =
-    "flex cursor-pointer items-center justify-center rounded-full border border-gray-300 bg-white text-slate-700 transition-[background,color,transform] duration-[180ms] hover:bg-blue-500 hover:text-white";
+    "flex cursor-pointer items-center justify-center rounded-full border border-gray-300 bg-white text-slate-700 transition-[background] duration-[180ms] hover:bg-gray-100";
 
   return (
     <Block
@@ -181,7 +183,7 @@ export function SuccessStories() {
               type="button"
               onClick={() => story.go(story.index - 1, true)}
               aria-label="Previous story"
-              className={`${arrowClass} h-[46px] w-[46px] hover:-translate-y-0.5`}
+              className={`${arrowClass} h-[46px] w-[46px]`}
             >
               <Icon name="left" className="text-[20px]" />
             </button>
@@ -189,7 +191,7 @@ export function SuccessStories() {
               type="button"
               onClick={() => story.go(story.index + 1)}
               aria-label="Next story"
-              className={`${arrowClass} h-[46px] w-[46px] hover:-translate-y-0.5`}
+              className={`${arrowClass} h-[46px] w-[46px]`}
             >
               <Icon name="right" className="text-[20px]" />
             </button>
@@ -203,16 +205,16 @@ export function SuccessStories() {
               ref={storyCard}
               className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,340px),1fr))] items-stretch gap-[clamp(24px,3vw,40px)]"
             >
-              <div className="relative overflow-clip rounded-[20px]">
+              <div className="relative overflow-clip rounded-2xl">
                 {/* Background images rather than <img src>: an unresolved src
                     would fire a request for a placeholder string. */}
                 <span
                   role="img"
                   aria-label={current.imgAlt}
-                  className="block h-full min-h-[300px] w-full rounded-[20px] bg-gray-100 bg-cover bg-center"
+                  className="block h-full min-h-[300px] w-full rounded-2xl bg-gray-100 bg-cover bg-center"
                   style={{ backgroundImage: `url('${current.img}')` }}
                 />
-                <div className="absolute bottom-[18px] left-[18px] rounded-[14px] bg-white/95 px-4 py-[10px] backdrop-blur-[6px]">
+                <div className="absolute bottom-[18px] left-[18px] rounded-lg bg-white/95 px-4 py-[10px]">
                   <span
                     role="img"
                     aria-label={current.company}
@@ -222,10 +224,10 @@ export function SuccessStories() {
                 </div>
               </div>
 
-              <div className="bg-gray-050 flex flex-col rounded-[20px] border border-gray-300 p-[clamp(26px,3.2vw,40px)]">
-                <div className="text-[12px] font-bold tracking-[.14em] text-[#5c8f1c] uppercase">
-                  {current.eyebrow}
-                </div>
+              <div
+                className={`flex flex-col p-[clamp(26px,3.2vw,40px)] ${CARD_LIGHT}`}
+              >
+                <Eyebrow>{current.eyebrow}</Eyebrow>
                 <h3 className="font-display mt-4 text-[clamp(22px,2.5vw,31px)] leading-[1.18] font-extrabold tracking-[-0.02em] text-pretty text-slate-800">
                   {current.title}
                 </h3>
@@ -244,7 +246,7 @@ export function SuccessStories() {
                     </div>
                     <a
                       href={current.href}
-                      className="rounded-full border border-gray-300 bg-white px-6 py-3 text-[14px] font-bold whitespace-nowrap text-slate-800 transition-[background,color] duration-[180ms] hover:bg-blue-500 hover:text-white"
+                      className="rounded-full border border-gray-300 bg-white px-6 py-3 text-[14px] font-bold whitespace-nowrap text-slate-800 transition-[background] duration-[180ms] hover:bg-gray-100"
                     >
                       View full case study
                     </a>
@@ -306,9 +308,9 @@ export function SuccessStories() {
                 <div
                   data-tstitem=""
                   data-tstfeature=""
-                  className="flex max-w-[480px] flex-[1_1_420px] flex-col rounded-[20px] border border-gray-300 bg-white p-[clamp(28px,3vw,38px)] shadow-float"
+                  className="flex max-w-[480px] flex-[1_1_420px] flex-col rounded-2xl border border-gray-300 bg-white p-[clamp(28px,3vw,38px)] shadow-card"
                 >
-                  <div className="font-display text-[52px] leading-[.7] font-extrabold text-blue-400">
+                  <div className="font-display text-[52px] leading-[.7] font-extrabold text-blue-300">
                     &ldquo;
                   </div>
                   <p className="mt-[18px] text-[clamp(15.5px,1.5vw,17px)] leading-[1.65] text-pretty text-slate-700">
@@ -339,7 +341,7 @@ export function SuccessStories() {
                 type="button"
                 onClick={() => tst.go(tst.index - 1, true)}
                 aria-label="Previous testimonial"
-                className={`${arrowClass} absolute top-1/2 left-0 z-4 h-12 w-12 -translate-y-1/2 shadow-card`}
+                className={`${arrowClass} absolute top-1/2 left-0 z-4 h-12 w-12 -translate-y-1/2`}
               >
                 <Icon name="left" className="text-[20px]" />
               </button>
@@ -347,7 +349,7 @@ export function SuccessStories() {
                 type="button"
                 onClick={() => tst.go(tst.index + 1)}
                 aria-label="Next testimonial"
-                className={`${arrowClass} absolute top-1/2 right-0 z-4 h-12 w-12 -translate-y-1/2 shadow-card`}
+                className={`${arrowClass} absolute top-1/2 right-0 z-4 h-12 w-12 -translate-y-1/2`}
               >
                 <Icon name="right" className="text-[20px]" />
               </button>
@@ -392,7 +394,7 @@ function SideCard({
   return (
     <div
       data-tstitem=""
-      className="flex-[0_1_300px] self-center rounded-[18px] border border-gray-300 bg-white p-6 opacity-55 shadow-raised"
+      className="flex-[0_1_300px] self-center rounded-2xl border border-gray-300 bg-white p-6 opacity-55"
     >
       <div className="font-display text-[34px] leading-[.7] font-extrabold text-blue-300">
         &ldquo;

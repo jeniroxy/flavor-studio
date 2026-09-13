@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { DemoForm } from "@/components/contact/demo-form";
 import { Icon, LinkedInIcon } from "@/components/icon";
 import {
   Block,
+  CARD_LIGHT,
+  Eyebrow,
   HeroBackdrop,
   SectionLabel,
+  TextLink,
 } from "@/components/layout-primitives";
 import { PageShell } from "@/components/page-shell";
 import { Reveal } from "@/components/reveal";
@@ -55,61 +57,50 @@ export default function ContactPage() {
 
       <Block className="flex-1 bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(48px,5.5vw,76px)]">
         <div className="mx-auto grid max-w-[1080px] grid-cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] items-start gap-[clamp(28px,4vw,56px)]">
-          <Reveal className="rounded-[20px] border border-gray-300 bg-white p-[clamp(24px,3vw,36px)] shadow-card">
+          <Reveal className="rounded-2xl border border-gray-300 bg-white p-[clamp(24px,3vw,36px)]">
             <DemoForm intent="contact" />
           </Reveal>
 
           <div className="flex flex-col gap-4">
             {/* Demo requests have their own page; a visitor who landed here by
                 accident should not have to guess which form they want. */}
-            <Reveal className="rounded-[20px] border border-gray-300 bg-white px-[26px] py-6">
-              <div className="mb-[10px] text-[11px] font-bold tracking-[.12em] text-slate-400 uppercase">
-                Looking for a demo?
-              </div>
+            <Reveal className={`px-[26px] py-6 ${CARD_LIGHT}`}>
+              <Eyebrow className="mb-[10px]">Looking for a demo?</Eyebrow>
               <p className="text-[14px] leading-[1.6] text-slate-500">
                 If you want to see Flavor Studio running on your own formulas,
                 use the demo request instead — we&rsquo;ll schedule a 30-minute
                 walkthrough rather than reply by email.
               </p>
-              <Link
-                href={routes.demo}
-                className="mt-[14px] inline-flex items-center gap-2 text-[14px] font-bold text-blue-600 hover:text-blue-700"
-              >
+              <TextLink href={routes.demo} className="mt-[14px]">
                 Request a demo
-                <Icon name="arrow-right" className="text-[15px]" />
-              </Link>
+              </TextLink>
             </Reveal>
 
-            <Reveal
-              delay={0.08}
-              className="rounded-[20px] border border-gray-300 bg-white px-[26px] py-6"
-            >
-              <div className="mb-[14px] text-[11px] font-bold tracking-[.12em] text-slate-400 uppercase">
-                Reach us directly
-              </div>
+            <Reveal delay={0.08} className={`px-[26px] py-6 ${CARD_LIGHT}`}>
+              <Eyebrow className="mb-[14px]">Reach us directly</Eyebrow>
               <div className="flex flex-col gap-3 text-[14px] text-slate-700">
                 <a href={`mailto:${contactEmail}`} className={contactLink}>
-                  <Icon name="mail" className="text-[16px] text-blue-500" />
+                  <Icon name="mail" className="text-[16px] text-blue-600" />
                   Info — {contactEmail}
                 </a>
                 <a href={`mailto:${supportEmail}`} className={contactLink}>
                   <Icon
                     name="headset-one"
-                    className="text-[16px] text-blue-500"
+                    className="text-[16px] text-blue-600"
                   />
                   Technical Support — {supportEmail}
                 </a>
                 <a href={phoneHref} className={contactLink}>
                   <Icon
                     name="phone-telephone"
-                    className="text-[16px] text-blue-500"
+                    className="text-[16px] text-blue-600"
                   />
                   {phone}
                 </a>
                 <div className="flex items-start gap-[10px]">
                   <Icon
                     name="local-two"
-                    className="mt-[2px] text-[16px] text-blue-500"
+                    className="mt-[2px] text-[16px] text-blue-600"
                   />
                   <span className="leading-[1.5]">
                     Senspire Co, 1547 Palos Verdes Suite 221
@@ -123,7 +114,7 @@ export default function ContactPage() {
                   rel="noopener noreferrer"
                   className={contactLink}
                 >
-                  <LinkedInIcon className="text-[16px] text-blue-500" />
+                  <LinkedInIcon className="text-[16px] text-blue-600" />
                   linkedin.com/company/senspire
                 </a>
               </div>
@@ -131,18 +122,12 @@ export default function ContactPage() {
 
             <Reveal
               delay={0.16}
-              className="flex items-center gap-[14px] rounded-[20px] px-[26px] py-[22px]"
-              style={{
-                background:
-                  "linear-gradient(135deg, var(--color-slate-900), var(--color-slate-800))",
-              }}
+              className="flex items-center gap-[14px] rounded-2xl bg-slate-900 px-[26px] py-[22px]"
             >
-              <span className="flex h-[38px] w-[38px] flex-none items-center justify-center rounded-[14px] bg-blue-500/20">
-                <Icon
-                  name="headset-one"
-                  className="text-[20px] text-blue-400"
-                />
-              </span>
+              <Icon
+                name="headset-one"
+                className="flex-none text-[22px] text-lime-400"
+              />
               <div className="text-[14px] leading-[1.55] text-slate-300">
                 Already a customer?{" "}
                 <strong className="font-bold text-white">

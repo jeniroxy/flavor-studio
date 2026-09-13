@@ -91,7 +91,7 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
           )}
           <Link
             href={routes.demo}
-            className="rounded-[12px] bg-[#7fd234] px-[20px] py-[10px] text-[13px] font-extrabold whitespace-nowrap text-[#16223a] shadow-lime transition-[background] duration-[180ms] hover:bg-[#8ede40]"
+            className="rounded-full bg-[#7fd234] px-[20px] py-[10px] text-[13px] font-extrabold whitespace-nowrap text-[#16223a] transition-[background] duration-[180ms] hover:bg-[#8ede40]"
           >
             Request a demo
           </Link>

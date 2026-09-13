@@ -1,59 +1,29 @@
-"use client";
-
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { useRef } from "react";
+import { HexTile } from "@/components/hex";
 import { Icon } from "@/components/icon";
 import {
   Block,
+  GhostButton,
   LimeButton,
   SectionHeading,
   SectionLabel,
 } from "@/components/layout-primitives";
 import { Reveal, RevealStagger } from "@/components/reveal";
-import { observeOnce, prefersReducedMotion } from "@/lib/reveal";
 import { whyPoints } from "@/lib/data";
 import { routes } from "@/lib/routes";
 
 /*
  * "Why Flavor Studio" — the five points from flavorstudio.com, laid out
  * Corsearch-style: pitch on the left, points stacked on the right, hairline
- * between each. Icons bounce in one at a time.
+ * between each. Flat navy, hexagon icon tiles (the site's one icon chip),
+ * and the rows simply reveal — the icons used to bounce in on a spring.
  */
 export function Why() {
-  const section = useRef<HTMLDivElement>(null);
-
-  useGSAP(
-    () => {
-      const box = section.current;
-      if (!box || prefersReducedMotion()) return;
-      const icons = box.querySelectorAll("[data-whyicon]");
-      observeOnce(box, () => {
-        gsap.from(icons, {
-          scale: 0.55,
-          duration: 0.6,
-          ease: "back.out(2.2)",
-          stagger: 0.11,
-          delay: 0.12,
-        });
-      });
-    },
-    { scope: section },
-  );
-
   return (
     <Block
       id="why"
-      className="px-[clamp(28px,3.6vw,64px)] py-[clamp(48px,5.5vw,80px)]"
-      style={{
-        background:
-          "linear-gradient(165deg, #253349 0%, #2b3d59 38%, #223047 78%, #1e2a3e 100%)",
-      }}
+      className="bg-slate-900 px-[clamp(28px,3.6vw,64px)] py-[clamp(48px,5.5vw,80px)]"
     >
-      <div
-        ref={section}
-        className="mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] items-start gap-[clamp(32px,4vw,64px)]"
-      >
+      <div className="mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] items-start gap-[clamp(32px,4vw,64px)]">
         <div>
           <SectionLabel tone="dark">Why Flavor Studio</SectionLabel>
           <SectionHeading tone="dark">
@@ -69,35 +39,25 @@ export function Why() {
             of in a dozen spreadsheets that disagree by Friday.
           </Reveal>
           <Reveal delay={0.18} className="mt-[30px] flex flex-wrap gap-3">
-            <LimeButton
-              href={routes.demo}
-              className="px-[30px] py-[14px] text-[16px]"
-            >
-              Request a demo
-            </LimeButton>
-            <a
-              href={routes.features}
-              className="rounded-full border border-white/[.14] bg-white/[.07] px-7 py-[14px] text-[16px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/[.14]"
-            >
-              Explore features
-            </a>
+            <LimeButton href={routes.demo}>Request a demo</LimeButton>
+            <GhostButton href={routes.features}>Explore features</GhostButton>
           </Reveal>
         </div>
 
-        <RevealStagger stagger={0.11}>
+        <RevealStagger stagger={0.09}>
           {whyPoints.map((point, i) => (
             <div
               key={point.title}
-              className={`mx-[clamp(-16px,-1.2vw,-10px)] flex items-start gap-[18px] rounded-2xl px-[clamp(10px,1.2vw,16px)] py-[clamp(22px,2.6vw,32px)] transition-[background] duration-200 hover:bg-white/[.045] ${
+              className={`flex items-start gap-[18px] py-[clamp(20px,2.4vw,28px)] ${
                 i > 0 ? "border-t border-white/10" : ""
               }`}
             >
-              <span
-                data-whyicon=""
-                className="flex h-[46px] w-[46px] flex-none items-center justify-center rounded-[13px] border border-white/10 bg-white/[.07]"
+              <HexTile
+                size={44}
+                style={{ background: "rgba(255,255,255,.08)" }}
               >
                 <Icon name={point.icon} className="text-[22px] text-lime-400" />
-              </span>
+              </HexTile>
               <div>
                 <div className="text-[16px] leading-[1.3] font-extrabold text-white">
                   {point.title}

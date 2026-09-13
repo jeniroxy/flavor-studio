@@ -1,5 +1,12 @@
 import Image from "next/image";
 import { Icon } from "@/components/icon";
+import {
+  Caption,
+  Eyebrow,
+  FRAME_DARK,
+  FRAME_LIGHT,
+} from "@/components/layout-primitives";
+import { ProductShot, type ShotFocus } from "@/components/product-shot";
 
 /*
  * A slot for a real product asset — a screenshot of a module, or a label
@@ -21,6 +28,8 @@ import { Icon } from "@/components/icon";
 export type AssetFrameProps = {
   /** Path under /public once the real asset is dropped in. */
   src?: string;
+  /** Region the copy is about; turns the image into a spotlighted ProductShot. */
+  focus?: ShotFocus;
   alt: string;
   /** Intrinsic size of the real asset; also sets the placeholder's shape. */
   width: number;
@@ -40,6 +49,7 @@ export type AssetFrameProps = {
 
 export function AssetFrame({
   src,
+  focus,
   alt,
   width,
   height,
@@ -50,56 +60,61 @@ export function AssetFrame({
   sizes = "(max-width: 960px) 100vw, 50vw",
   priority = false,
 }: AssetFrameProps) {
-  // slate-400 measured 3.16:1 on white and 3.59:1 on the navy blocks. This
-  // caption sits under every screenshot on the site, so it has to pass.
-  const captionClass =
-    tone === "dark"
-      ? "mt-[10px] text-[13px] leading-[1.5] text-slate-300"
-      : "mt-[10px] text-[13px] leading-[1.5] text-slate-500";
-
   if (src) {
     return (
       <figure className={className}>
-        <Image
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          sizes={sizes}
-          priority={priority}
-          className={`w-full rounded-[16px] object-cover ${
-            tone === "dark"
-              ? "border border-white/10"
-              : "border border-gray-300 shadow-card"
-          }`}
-        />
-        {caption && <figcaption className={captionClass}>{caption}</figcaption>}
+        {focus ? (
+          <ProductShot
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            focus={focus}
+            tone={tone}
+            sizes={sizes}
+            priority={priority}
+          />
+        ) : (
+          <Image
+            src={src}
+            alt={alt}
+            width={width}
+            height={height}
+            sizes={sizes}
+            priority={priority}
+            className={`w-full object-cover ${
+              tone === "dark" ? FRAME_DARK : FRAME_LIGHT
+            }`}
+          />
+        )}
+        {caption && (
+          <Caption as="figcaption" tone={tone}>
+            {caption}
+          </Caption>
+        )}
       </figure>
     );
   }
 
   const shell =
     tone === "dark"
-      ? "border-white/[.18] bg-white/[.04] text-slate-300"
+      ? "border-white/20 bg-white/[.04] text-slate-300"
       : "border-gray-300 bg-gray-050 text-slate-500";
-  const label = tone === "dark" ? "text-slate-300" : "text-slate-500";
   const strong = tone === "dark" ? "text-white" : "text-slate-800";
 
   return (
     <figure className={className}>
       <div
-        className={`flex flex-col items-center justify-center gap-[10px] rounded-[16px] border-2 border-dashed px-6 py-8 text-center ${shell}`}
+        className={`flex flex-col items-center justify-center gap-[10px] rounded-xl border border-dashed px-6 py-8 text-center ${shell}`}
         style={{ aspectRatio: `${width} / ${height}` }}
       >
         <Icon
           name={kind === "label" ? "doc-detail" : "all-application"}
           className="text-[26px] opacity-70"
         />
-        <div
-          className={`text-[11px] font-bold tracking-[.14em] uppercase ${label}`}
-        >
+        <Eyebrow tone={tone}>
           {kind === "label" ? "Generated label" : "Product screenshot"}
-        </div>
+        </Eyebrow>
         <div className={`max-w-[38ch] text-[14px] font-bold ${strong}`}>
           {alt}
         </div>
@@ -112,7 +127,11 @@ export function AssetFrame({
           A screenshot of this module is on its way.
         </div>
       </div>
-      {caption && <figcaption className={captionClass}>{caption}</figcaption>}
+      {caption && (
+        <Caption as="figcaption" tone={tone}>
+          {caption}
+        </Caption>
+      )}
     </figure>
   );
 }

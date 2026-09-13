@@ -1,13 +1,14 @@
-import { AssetFrame } from "@/components/asset-frame";
+import { FlowPlayer } from "@/components/flow-player";
 import { HexTile } from "@/components/hex";
 import { Icon } from "@/components/icon";
 import {
   Block,
   SectionHeading,
   SectionLabel,
+  TextLink,
 } from "@/components/layout-primitives";
 import { Reveal, RevealStagger } from "@/components/reveal";
-import { productAssets } from "@/lib/assets";
+import { flows } from "@/lib/flows";
 import { routes } from "@/lib/routes";
 
 /*
@@ -19,34 +20,30 @@ import { routes } from "@/lib/routes";
  * carries the real Recipe page — and this section moves on to the layer
  * underneath it, the ingredient library, illustrated with the application's own
  * New Ingredient screen.
+ *
+ * The four points are a hairline list, not four cards: each used to sit in its
+ * own bordered, shadowed, hover-lifting box with a differently coloured icon
+ * tile, which made a short list read as a dashboard.
  */
 
 const POINTS = [
   {
     icon: "leaves",
-    badge: "var(--color-lime-100)",
-    iconColor: "text-[#5c8f1c]",
     title: "9,000+ ingredients, plus your own",
     body: "the USDA SR28 database is built in, and custom ingredients sit beside it in the same library.",
   },
   {
     icon: "doc-search",
-    badge: "var(--color-blue-200)",
-    iconColor: "text-blue-700",
     title: "Vendor spec sheets, read for you",
     body: "point the importer at a supplier PDF and it pulls the nutrient values straight in.",
   },
   {
     icon: "caution",
-    badge: "var(--color-amber-100)",
-    iconColor: "text-[#a97d17]",
     title: "Allergens tagged at the source",
     body: "tag once on the ingredient and every recipe that uses it declares it on the label.",
   },
   {
     icon: "calculator-one",
-    badge: "var(--color-teal-100)",
-    iconColor: "text-[#0e8b73]",
     title: "Your fields, your calculations",
     body: "choose which columns the grid carries and define custom calculations over them.",
   },
@@ -72,20 +69,22 @@ export function Formulation() {
             of being retyped into a dozen spreadsheets.
           </Reveal>
 
-          <RevealStagger
-            stagger={0.1}
-            delay={0.18}
-            className="mt-7 flex flex-col gap-3"
-          >
-            {POINTS.map((point) => (
+          <RevealStagger stagger={0.08} delay={0.16} className="mt-6">
+            {POINTS.map((point, i) => (
               <div
                 key={point.title}
-                className="flex items-center gap-[14px] rounded-2xl border border-gray-300 bg-white px-[18px] py-4 shadow-raised transition-[transform,box-shadow] duration-[180ms] hover:-translate-y-0.5 hover:shadow-card"
+                className={`flex items-start gap-[14px] py-4 ${
+                  i > 0 ? "border-t border-gray-300" : ""
+                }`}
               >
-                <HexTile size={38} style={{ background: point.badge }}>
+                <HexTile
+                  size={36}
+                  className="mt-[1px]"
+                  style={{ background: "var(--color-lime-100)" }}
+                >
                   <Icon
                     name={point.icon}
-                    className={`text-[20px] ${point.iconColor}`}
+                    className="text-[18px] text-[#5c8f1c]"
                   />
                 </HexTile>
                 <div className="text-[14px] leading-[1.55] text-slate-700">
@@ -98,21 +97,16 @@ export function Formulation() {
             ))}
           </RevealStagger>
 
-          <Reveal delay={0.26} className="mt-[22px]">
-            <a
-              href={`${routes.features}#ingredients`}
-              className="inline-flex items-center gap-2 text-[14px] font-extrabold text-blue-600 hover:text-blue-700"
-            >
-              <span>See everything an ingredient carries</span>
-              <Icon name="arrow-right" className="text-[15px]" />
-            </a>
+          <Reveal delay={0.24} className="mt-[18px]">
+            <TextLink href={`${routes.features}#ingredients`}>
+              See everything an ingredient carries
+            </TextLink>
           </Reveal>
         </div>
 
         <Reveal delay={0.1}>
-          <AssetFrame
-            {...productAssets.ingredientLibrary}
-            caption="New Ingredient in Flavor Studio — basic information, nutrients and allergens, ingredient statement, certifications, procurement and validation, with a separate Canadian label and French statement."
+          <FlowPlayer
+            flow={flows.ingredientFields}
             sizes="(max-width: 960px) 100vw, 50vw"
           />
         </Reveal>

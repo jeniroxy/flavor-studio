@@ -1,10 +1,13 @@
-"use client";
-
-import { AssetFrame } from "@/components/asset-frame";
-import { Icon, SparkIcon } from "@/components/icon";
-import { Block } from "@/components/layout-primitives";
-import { Reveal } from "@/components/reveal";
-import { productAssets } from "@/lib/assets";
+import { FlowPlayer } from "@/components/flow-player";
+import { Icon } from "@/components/icon";
+import {
+  Block,
+  SectionHeading,
+  SectionLabel,
+  TextLink,
+} from "@/components/layout-primitives";
+import { Reveal, RevealStagger } from "@/components/reveal";
+import { flows } from "@/lib/flows";
 import { routes } from "@/lib/routes";
 
 /*
@@ -16,24 +19,24 @@ import { routes } from "@/lib/routes";
  * for less of it — "the current design gives AI too much emphasis compared with
  * the core functionality". What is left is the real thing: what the Agent does,
  * a screenshot of it doing it, and a link to see it on your own data.
+ *
+ * It sits on a white block like the other product sections, with the same
+ * section label as they have — not its own violet badge on a second navy band.
  */
 
 const CAPABILITIES = [
   {
     icon: "doc-search",
-    color: "text-blue-400",
     title: "Cited answers",
     body: "Every response links to the recipe, regulation or test it came from. No hallucinated food science.",
   },
   {
     icon: "chart-histogram",
-    color: "text-teal-500",
     title: "What-if costing",
     body: "Model ingredient swaps, supplier changes and batch scaling before you touch the formula.",
   },
   {
     icon: "weight",
-    color: "text-lime-400",
     title: "Nutrition compare",
     body: "Side-by-side nutrient panels across versions — see exactly what a reformulation changes.",
   },
@@ -43,74 +46,59 @@ export function AgentBand() {
   return (
     <Block
       id="sous"
-      className="relative bg-[#223047] px-[clamp(28px,3.6vw,64px)] pt-[clamp(62px,7.5vw,104px)] pb-[clamp(66px,8vw,110px)]"
+      className="bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(60px,7vw,100px)]"
     >
-      <div className="relative mx-auto max-w-[1180px]">
-        <div className="max-w-[640px]">
-          <Reveal className="inline-flex items-center gap-2 rounded-full bg-[rgba(123,97,255,.18)] px-[14px] py-[7px] text-[12px] font-bold tracking-[.08em] text-[#b9a8ff] uppercase">
-            <SparkIcon size={13} gradientId="agentBandSpark" />
-            AI Agent — built in
-          </Reveal>
-          <Reveal
-            as="h2"
-            delay={0.06}
-            className="font-display mt-[14px] text-[clamp(30px,3.6vw,48px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-white"
-          >
-            Ask your formula anything.
-          </Reveal>
+      <div className="mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] items-center gap-[clamp(40px,5vw,72px)]">
+        <div>
+          <SectionLabel>AI Agent</SectionLabel>
+          <SectionHeading>Ask your formula anything.</SectionHeading>
           <Reveal
             as="p"
             delay={0.12}
-            className="mt-[18px] text-[16px] leading-[1.65] text-slate-300"
+            className="mt-[18px] max-w-[50ch] text-[16px] leading-[1.65] text-slate-500"
           >
             The AI Agent reads your recipes, ingredient library and supplier
             data — and every answer it gives cites the recipe, regulation or
             test it came from.
           </Reveal>
-        </div>
 
-        <div className="mt-[clamp(36px,5vw,56px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] items-start gap-[clamp(28px,4vw,56px)]">
-          <Reveal>
-            <AssetFrame
-              {...productAssets.aiAgent}
-              tone="dark"
-              caption="The AI Agent inside Flavor Studio, comparing two recipes on request — with the sources behind the answer one click away."
-              sizes="(max-width: 960px) 100vw, 50vw"
-            />
-          </Reveal>
-
-          <div className="grid gap-[14px]">
+          <RevealStagger stagger={0.08} delay={0.16} className="mt-6">
             {CAPABILITIES.map((cap, i) => (
-              <Reveal
+              <div
                 key={cap.title}
-                delay={0.05 + i * 0.07}
-                className="flex items-start gap-[14px] rounded-[20px] border border-white/10 bg-white/[.04] px-5 py-[18px]"
+                className={`flex items-start gap-[14px] py-4 ${
+                  i > 0 ? "border-t border-gray-300" : ""
+                }`}
               >
                 <Icon
                   name={cap.icon}
-                  className={`mt-[2px] flex-none text-[22px] ${cap.color}`}
+                  className="mt-[1px] flex-none text-[22px] text-blue-600"
                 />
                 <div>
-                  <div className="text-[15px] font-bold text-white">
+                  <div className="text-[15px] font-bold text-slate-800">
                     {cap.title}
                   </div>
-                  <div className="mt-1 text-[14px] leading-[1.55] text-slate-300">
+                  <div className="mt-1 text-[14px] leading-[1.55] text-slate-500">
                     {cap.body}
                   </div>
                 </div>
-              </Reveal>
+              </div>
             ))}
-            <Reveal
-              as="a"
-              delay={0.26}
-              href={routes.demo}
-              className="inline-flex w-fit items-center gap-2 rounded-[14px] border border-blue-500/55 bg-blue-500/[.22] px-5 py-[13px] text-[14px] font-bold text-white transition-[background] duration-[180ms] hover:bg-blue-500/40"
-            >
-              See the AI Agent on your own data
-              <Icon name="arrow-right" className="text-[15px]" />
-            </Reveal>
-          </div>
+          </RevealStagger>
+
+          <Reveal delay={0.24} className="mt-[18px]">
+            <TextLink href={routes.agent}>
+              See what the AI Agent can do
+            </TextLink>
+          </Reveal>
         </div>
+
+        <Reveal delay={0.1} className="mx-auto w-full max-w-[520px]">
+          <FlowPlayer
+            flow={flows.aiAgent}
+            sizes="(max-width: 960px) 100vw, 520px"
+          />
+        </Reveal>
       </div>
     </Block>
   );

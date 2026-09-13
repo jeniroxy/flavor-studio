@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CARD_LIGHT } from "@/components/layout-primitives";
 
 /*
  * The accordion used on the landing page, the pricing page and the FAQ page.
@@ -30,7 +31,7 @@ export function FaqAccordion({
         return (
           <div
             key={`${groupKey}-${item.q}`}
-            className="overflow-hidden rounded-[18px] border border-gray-300 bg-white"
+            className={`overflow-hidden ${CARD_LIGHT}`}
           >
             <button
               type="button"
@@ -43,7 +44,7 @@ export function FaqAccordion({
               </span>
               <span
                 aria-hidden="true"
-                className="flex h-[26px] w-[26px] flex-none items-center justify-center rounded-full bg-blue-100 text-[16px] font-semibold text-blue-600 transition-transform duration-[220ms]"
+                className="flex h-[26px] w-[26px] flex-none items-center justify-center rounded-full border border-gray-300 bg-white text-[16px] font-semibold text-slate-700 transition-transform duration-[220ms]"
                 style={{ transform: `rotate(${isOpen ? "45deg" : "0deg"})` }}
               >
                 +

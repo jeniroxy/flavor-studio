@@ -7,8 +7,11 @@ import { Icon } from "@/components/icon";
 import {
   Block,
   BlueButton,
+  CARD_LIGHT,
+  Eyebrow,
   HeroBackdrop,
   SectionLabel,
+  TextLink,
 } from "@/components/layout-primitives";
 import { PageShell } from "@/components/page-shell";
 import { Reveal } from "@/components/reveal";
@@ -105,9 +108,9 @@ export default async function StoryDetailPage({
               height={story.imgH}
               sizes="(max-width: 960px) 100vw, 900px"
               priority
-              className="aspect-[16/9] w-full rounded-[20px] object-cover shadow-float"
+              className="aspect-[16/9] w-full rounded-2xl object-cover"
             />
-            <div className="absolute bottom-[18px] left-[18px] rounded-[14px] bg-white/90 px-4 py-[10px] backdrop-blur-[6px]">
+            <div className="absolute bottom-[18px] left-[18px] rounded-lg bg-white/95 px-4 py-[10px]">
               <Image
                 src={story.logo}
                 alt={story.company}
@@ -121,9 +124,9 @@ export default async function StoryDetailPage({
           {story.detail.quote && (
             <Reveal
               delay={0.1}
-              className="bg-gray-050 mt-8 rounded-[20px] px-[clamp(24px,3vw,40px)] py-[clamp(24px,3vw,36px)]"
+              className={`mt-8 px-[clamp(24px,3vw,40px)] py-[clamp(24px,3vw,36px)] ${CARD_LIGHT}`}
             >
-              <Icon name="quote" className="text-[28px] text-blue-500" />
+              <Icon name="quote" className="text-[28px] text-blue-300" />
               <blockquote className="font-display mt-3 text-[clamp(19px,2.2vw,26px)] leading-[1.4] font-bold tracking-[-0.01em] text-slate-800">
                 &ldquo;{story.detail.quote.text}&rdquo;
               </blockquote>
@@ -164,33 +167,23 @@ export default async function StoryDetailPage({
                 how the rollout went, and what changed afterwards — is being
                 prepared with their team.
               </p>
-              <a
-                href={routes.demo}
-                className="mt-6 inline-flex items-center gap-2 text-[15px] font-extrabold text-blue-600 hover:text-blue-700"
-              >
-                <span>
-                  Ask us how {story.company} uses it, on a 30-minute call
-                </span>
-                <Icon name="arrow-right" className="text-[15px]" />
-              </a>
+              <TextLink href={routes.demo} className="mt-6">
+                Ask us how {story.company} uses it, on a 30-minute call
+              </TextLink>
             </Reveal>
           )}
 
           {/* Cross-links to the other stories. */}
-          <div className="mt-12 border-t border-gray-200 pt-8">
-            <div className="text-[11px] font-bold tracking-[.12em] text-slate-400 uppercase">
-              More success stories
-            </div>
+          <div className="mt-12 border-t border-gray-300 pt-8">
+            <Eyebrow>More success stories</Eyebrow>
             <div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-4">
               {others.map((other) => (
                 <Link
                   key={other.slug}
                   href={other.href}
-                  className="group bg-gray-050 flex flex-col rounded-[18px] px-6 py-5 transition-shadow hover:shadow-card"
+                  className={`group flex flex-col px-6 py-5 transition-[background] hover:bg-gray-100 ${CARD_LIGHT}`}
                 >
-                  <span className="text-[12px] font-bold tracking-[.08em] text-blue-600 uppercase">
-                    {other.eyebrow}
-                  </span>
+                  <Eyebrow>{other.eyebrow}</Eyebrow>
                   <span className="mt-2 text-[16px] leading-[1.4] font-bold text-slate-800">
                     {other.company}
                   </span>
@@ -215,7 +208,6 @@ export default async function StoryDetailPage({
         title="Your story could be next."
         body="Tell us what you're building — we'll show you how similar teams run it in Flavor Studio."
         className="py-[clamp(60px,7vw,100px)]"
-        secondMark={false}
       >
         <BlueButton href={routes.demo}>Request a demo</BlueButton>
       </CtaBand>

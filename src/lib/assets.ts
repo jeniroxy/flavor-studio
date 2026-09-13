@@ -1,3 +1,5 @@
+import type { ShotFocus } from "@/components/product-shot";
+
 /*
  * Real product assets, in one place.
  *
@@ -6,21 +8,39 @@
  * itself — and that the simplified label markup did not follow the official
  * formatting rules those panels are held to.
  *
- * These are now real: every entry below with a `src` is exported straight from
- * the Flavor Studio application design file (Figma "Flavor Studio Application"),
- * including the Nutrition Facts panel, which comes from the label engine's own
- * output rather than being redrawn in HTML.
+ * Every entry below with a `src` is exported straight from the Flavor Studio
+ * application design file (Figma "Flavor Studio Application"), including the
+ * Nutrition Facts panel, which is the label engine's own output rather than a
+ * redraw in HTML.
  *
- * A handful of modules have no design coverage in that file yet — Projects
- * (Timeline/Board), the CRM pipeline and the API reference. Those keep a `spec`
- * and no `src`, so AssetFrame renders a marked placeholder naming exactly what
- * is still needed. Drop the file into /public, add the `src`, and the
- * placeholder becomes the real thing.
+ * Two things were done to the exports after a fit review:
+ *
+ * - They are CROPPED. A 1440px application window shrunk into a half-width
+ *   column turns the interface into texture, and most exports carried a large
+ *   empty canvas under the cards. Each file is now cut to the region the copy
+ *   is about, with the application chrome kept where it helps orientation.
+ * - Each carries a FOCUS region — the part of the frame the copy beside it
+ *   discusses — which ProductShot spotlights once the frame scrolls into view.
+ *
+ * Two exports were retouched, and only in these ways: real names and e-mail
+ * addresses in the taste-test export were replaced with placeholders (the
+ * client's own spec says "no personal data"), and a one-letter typo in the AI
+ * comparison caption ("Recipe A is … Recipe A is") became "Recipe B is".
+ *
+ * Modules with no design coverage yet keep a `spec` and no `src`, so AssetFrame
+ * renders a marked placeholder. Drop the file into /public, add `src`, `width`
+ * and `height`, and the placeholder becomes the real thing.
  */
 
 export type AssetSpec = {
   /** Path under /public. Absent = still outstanding, renders as a placeholder. */
   src?: string;
+  /**
+   * The region of the screenshot the surrounding copy is about, in % of the
+   * image. When present, the frame spotlights it once it scrolls into view —
+   * see ProductShot. Omit for images that are the point in their entirety.
+   */
+  focus?: ShotFocus;
   /** What the asset shows. Doubles as the alt text. */
   alt: string;
   /** What we still need from the client, stated concretely. Placeholders only. */
@@ -38,16 +58,24 @@ export const productAssets = {
   recipeGrid: {
     src: "/product/recipe-view.png",
     alt: "The Recipe page — formulation grid with the live Yield / Cost sidebar",
+    focus: { x: 72, y: 22.7, w: 23, h: 77, label: "Yield / Cost sidebar" },
     spec: "",
     width: 1440,
-    height: 1060,
+    height: 606,
+  },
+  recipeCost: {
+    /* The grid and sidebar without the page header, for the narrower slots. */
+    src: "/product/recipe-grid.png",
+    alt: "The formulation grid beside the Yield / Cost sidebar, with batch cost, container cost and retail price",
+    focus: { x: 73.1, y: 28.6, w: 24.7, h: 15.2, label: "Live cost roll-up" },
+    spec: "",
+    width: 1339,
+    height: 498,
   },
   recipeVersions: {
-    /* Cropped from the Recipe page rather than reusing the whole window: at
-       half-column width a 1440px screenshot reduces the interface to texture,
-       and the catalogue was showing the identical image for two modules. */
     src: "/product/recipe-versions.png",
     alt: "Recipe versions — V1, Testing and Final switched from the recipe header",
+    focus: { x: 1.5, y: 6, w: 21, h: 13, label: "Named versions" },
     spec: "",
     width: 963,
     height: 392,
@@ -55,16 +83,30 @@ export const productAssets = {
   ingredientLibrary: {
     src: "/product/new-ingredient.png",
     alt: "New Ingredient — basic information, with a separate Canadian label and French ingredient statement",
+    focus: {
+      x: 41.4,
+      y: 40,
+      w: 53.1,
+      h: 22,
+      label: "Canadian label & French statement",
+    },
     spec: "",
-    width: 1440,
+    width: 840,
     height: 900,
   },
   ingredientNutrients: {
     src: "/product/ingredient-nutrients.png",
-    alt: "Ingredient nutrients and allergens",
+    alt: "New Ingredient — nutrients imported from a supplier PDF, with the allergens section beneath",
+    focus: {
+      x: 40.6,
+      y: 10.4,
+      w: 54,
+      h: 3.8,
+      label: "Import from a supplier PDF",
+    },
     spec: "",
-    width: 1440,
-    height: 1362,
+    width: 840,
+    height: 1075,
   },
 
   /* ------------------------------------------------------------- labeling */
@@ -77,10 +119,11 @@ export const productAssets = {
     kind: "label" as const,
   },
   nutritionLabelFormats: {
-    /* The layout picker beside the panel it generates, cropped so both are
-       actually readable. The full dialog is `publishExport`. */
+    /* The layout picker beside the panel it generates. The full dialog is
+       `publishExport`. */
     src: "/product/label-layouts.png",
     alt: "Label layouts — vertical, tabular, side-by-side, linear, dual column and aggregate — beside the generated panel",
+    focus: { x: 2, y: 2, w: 22, h: 41, label: "Six layouts" },
     spec: "",
     width: 677,
     height: 535,
@@ -88,38 +131,47 @@ export const productAssets = {
   },
   nutrientClaims: {
     src: "/product/nutrient-content-claims.png",
-    alt: "Nutrient Content Claims checked against the formula",
+    alt: "Nutrient Content Claims — the actual value beside each claim's threshold",
+    focus: { x: 32, y: 24.7, w: 66.7, h: 52.7, label: "Actual vs threshold" },
     spec: "",
-    width: 1440,
-    height: 941,
+    width: 1360,
+    height: 339,
   },
   labelDesigner: {
     src: "/product/publish-designer.png",
-    alt: "Publish Designer — template canvas, element palette and the design inspector",
+    alt: "Publish Designer — template list, element palette, the canvas and the design inspector",
+    focus: { x: 1, y: 36.3, w: 15, h: 63.7, label: "Element palette" },
     spec: "",
     width: 1440,
-    height: 820,
+    height: 520,
   },
 
   /* --------------------------------------------------------------- costing */
   costAssumptions: {
     src: "/product/cost-assumptions.png",
-    alt: "Cost sidebar and the shared cost assumptions behind it",
+    alt: "The Cost panel — packaging, tolling and freight assumptions rolling up to cost delivered, margin and retail price",
+    focus: {
+      x: 4,
+      y: 28.1,
+      w: 91.6,
+      h: 42.9,
+      label: "Assumptions by category",
+    },
     spec: "",
-    width: 1440,
-    height: 1131,
+    width: 346,
+    height: 922,
   },
 
   /* ------------------------------------------------------------- projects */
-  projectTimeline: {
-    alt: "Project Timeline — Gantt view of a launch",
-    spec: `Timeline with stage gates, dependencies and dates across a real-looking launch. ${SHOT}`,
-    width: 1600,
-    height: 1000,
-  },
   projectsOverview: {
     alt: "Projects — a launch and its stage gates",
     spec: `A project with its brief, stage gates and the recipes attached to it. ${SHOT}`,
+    width: 1600,
+    height: 1000,
+  },
+  projectTimeline: {
+    alt: "Project Timeline — Gantt view of a launch",
+    spec: `Timeline with stage gates, dependencies and dates across a real-looking launch. ${SHOT}`,
     width: 1600,
     height: 1000,
   },
@@ -132,34 +184,54 @@ export const productAssets = {
   timesheet: {
     src: "/product/timesheet.png",
     alt: "Timesheet — activity logged against projects on a weekly calendar",
+    focus: { x: 11, y: 43.7, w: 23, h: 37, label: "Logged to a project" },
     spec: "",
     width: 1448,
-    height: 953,
+    height: 850,
+  },
+  timesheetWeek: {
+    /* Monday to Thursday only — the empty back half of the week was most of
+       the frame in the half-width slots. */
+    src: "/product/timesheet-week.png",
+    alt: "Timesheet — activities typed, logged to a project code, with expenses attached",
+    focus: { x: 18.8, y: 44.2, w: 39.3, h: 37.4, label: "Logged to a project" },
+    spec: "",
+    width: 847,
+    height: 840,
   },
   reports: {
     src: "/product/reports.png",
     alt: "Reports — logged time by activity type, project, expense and hours, ready to export",
+    focus: { x: 64, y: 23.2, w: 31, h: 5.8, label: "Detailed or weekly" },
     spec: "",
     width: 1448,
-    height: 929,
+    height: 800,
   },
 
   /* -------------------------------------------------------------- sensory */
   tasteTests: {
     src: "/product/taste-tests.png",
-    alt: "Taste Tests — filtering panels and results",
+    alt: "Taste Tests — publishing a panel report, filtered by product version and taster",
+    focus: {
+      x: 51.7,
+      y: 27.3,
+      w: 44.3,
+      h: 51.3,
+      label: "Filter by product & taster",
+    },
     spec: "",
-    width: 1432,
-    height: 873,
+    width: 840,
+    height: 800,
   },
 
   /* ------------------------------------------------------------------ crm */
   crBuilder: {
     src: "/product/cr-builder.png",
     alt: "Customer Requirements Builder — sections, question types and the configure panel",
+    focus: { x: 30, y: 40.5, w: 41, h: 24.6, label: "Nested sub-level" },
     spec: "",
     width: 1440,
-    height: 1349,
+    height: 932,
   },
   crmPipeline: {
     alt: "CRM — opportunity pipeline and sample requests",
@@ -180,8 +252,15 @@ export const productAssets = {
   aiAgent: {
     src: "/product/ai-agent-compare.png",
     alt: "AI Agent comparing two recipes side by side, with its sources cited",
+    focus: {
+      x: 47.6,
+      y: 36,
+      w: 50.6,
+      h: 32,
+      label: "Side-by-side comparison",
+    },
     spec: "",
-    width: 1440,
+    width: 769,
     height: 960,
   },
 
@@ -194,10 +273,25 @@ export const productAssets = {
   },
   publishExport: {
     src: "/product/publish-recipe.png",
-    alt: "Publishing and export options — content, quantities, style, region, method and file type",
+    alt: "Publish Recipe — content, quantities, style, region, method and file type, with the panel previewing live",
+    focus: {
+      x: 4.4,
+      y: 26.9,
+      w: 21.3,
+      h: 46,
+      label: "Content · quantities · style",
+    },
     spec: "",
-    width: 1440,
-    height: 941,
+    width: 948,
+    height: 840,
+  },
+
+  /* ---------------------------------------------------------------- admin */
+  adminUsers: {
+    alt: "Administration — users, roles and two-factor setup",
+    spec: `The user list with roles and groups, or the authenticator-app setup screen. ${SHOT}`,
+    width: 1600,
+    height: 1000,
   },
 } satisfies Record<string, AssetSpec>;
 

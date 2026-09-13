@@ -4,13 +4,12 @@ import { Block, BlueButton } from "@/components/layout-primitives";
 import { Reveal } from "@/components/reveal";
 
 /*
- * The closing band every page ends on: near-black slate, two drifting hexagon
- * marks, centred copy and the blue CTA.
+ * The closing band every page ends on: navy, centred copy, the blue CTA, and
+ * the hexagon mark sitting quietly in the top-right corner.
  *
- * The hexagons are anchored in fixed px inside the section's padding band
- * (22 + 52 = 74px, under the 80px minimum padding), so they can never reach the
- * centred text column at any viewport width — the fix for the collision the
- * percentage-anchored version had at mid-range widths.
+ * There used to be two marks, both bobbing on their own float loops. One
+ * static mark is the same identity with none of the motion; it is anchored in
+ * fixed px inside the padding band so it can never reach the text column.
  */
 export function CtaBand({
   id,
@@ -19,7 +18,6 @@ export function CtaBand({
   children,
   footnote,
   className = "py-[clamp(68px,8vw,112px)]",
-  secondMark = true,
 }: {
   id?: string;
   title: ReactNode;
@@ -28,7 +26,6 @@ export function CtaBand({
   children: ReactNode;
   footnote?: ReactNode;
   className?: string;
-  secondMark?: boolean;
 }) {
   return (
     <Block
@@ -37,8 +34,7 @@ export function CtaBand({
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute top-[22px] right-[22px] w-[52px] opacity-45"
-        style={{ animation: "fsFloat 8s ease-in-out infinite" }}
+        className="pointer-events-none absolute top-[24px] right-[24px] w-[48px] opacity-35"
       >
         <Image
           src="/assets/logo-mark.png"
@@ -48,21 +44,6 @@ export function CtaBand({
           className="w-full"
         />
       </div>
-      {secondMark && (
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute bottom-5 left-[22px] w-10 opacity-30"
-          style={{ animation: "fsFloat2 10s ease-in-out infinite" }}
-        >
-          <Image
-            src="/assets/logo-mark.png"
-            alt=""
-            width={116}
-            height={125}
-            className="w-full"
-          />
-        </div>
-      )}
 
       <div className="relative mx-auto max-w-[760px] text-center">
         <Reveal

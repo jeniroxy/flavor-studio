@@ -2,9 +2,13 @@ import type { Metadata } from "next";
 import { CtaBand } from "@/components/cta-band";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { Icon } from "@/components/icon";
+import { HexTile } from "@/components/hex";
 import {
   Block,
   BlueButton,
+  CARD_LIGHT,
+  Eyebrow,
+  GhostButton,
   HeroBackdrop,
   SectionLabel,
 } from "@/components/layout-primitives";
@@ -22,7 +26,7 @@ export const metadata: Metadata = {
 };
 
 const outlineCta =
-  "mt-auto rounded-[14px] border border-blue-500 py-3 text-center text-[14px] font-bold whitespace-nowrap text-blue-600 transition-[background] duration-[180ms] hover:bg-blue-100 hover:text-blue-700";
+  "mt-auto rounded-full border border-gray-300 bg-white py-3 text-center text-[14px] font-bold whitespace-nowrap text-slate-800 transition-[background] duration-[180ms] hover:bg-gray-100";
 
 const PROFESSIONAL_FEATURES = [
   "Unlimited Project Repository Storage",
@@ -46,29 +50,21 @@ const PREMIUM_FEATURES = [
 const VALUE_PROPS = [
   {
     icon: "calculator-one",
-    badge: "bg-blue-100 border-blue-200",
-    color: "text-blue-500",
     title: "Simple Pricing",
     body: "One solution for all of your food and beverage product development activities — no complex software licenses. Billing as easy to understand as the software is to use.",
   },
   {
     icon: "calendar-three",
-    badge: "bg-teal-100 border-[rgba(24,188,156,.28)]",
-    color: "text-[#0e8b73]",
     title: "Flexible Terms",
     body: "No setup fees or annual maintenance costs. Start today with just a credit card.",
   },
   {
     icon: "income",
-    badge: "bg-amber-100 border-[rgba(233,178,45,.32)]",
-    color: "text-[#a97d17]",
     title: "Only Pay For Actual Usage",
     body: "Real-time costing shows individual ingredient costs, total batch cost, and estimated retail pricing.",
   },
   {
     icon: "protect",
-    badge: "bg-violet-100 border-[rgba(123,97,255,.24)]",
-    color: "text-violet-500",
     title: "No Hidden Fees",
     body: "What you see on the table is what you get. Only a monthly licensing fee — that's it.",
   },
@@ -118,10 +114,8 @@ export default function PricingPage() {
       {/* plans */}
       <Block className="bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(52px,6vw,84px)]">
         <div className="mx-auto grid max-w-[1240px] grid-cols-[repeat(auto-fit,minmax(min(100%,265px),1fr))] items-stretch gap-5">
-          <Reveal className="flex flex-col rounded-[20px] border border-gray-300 bg-white px-7 py-[30px]">
-            <div className="text-[15px] font-extrabold tracking-[.1em] text-slate-800">
-              TRIAL
-            </div>
+          <Reveal className={`flex flex-col px-7 py-[30px] ${CARD_LIGHT}`}>
+            <Eyebrow>Trial</Eyebrow>
             <div className="mt-[14px]">
               <span className="font-display text-[44px] font-extrabold text-slate-800">
                 $0
@@ -141,11 +135,9 @@ export default function PricingPage() {
 
           <Reveal
             delay={0.06}
-            className="flex flex-col rounded-[20px] border border-gray-300 bg-white px-7 py-[30px]"
+            className={`flex flex-col px-7 py-[30px] ${CARD_LIGHT}`}
           >
-            <div className="text-[15px] font-extrabold tracking-[.1em] text-slate-800">
-              PROFESSIONAL
-            </div>
+            <Eyebrow>Professional</Eyebrow>
             <div className="mt-[14px]">
               <span className="font-display text-[44px] font-extrabold text-slate-800">
                 $100
@@ -166,14 +158,12 @@ export default function PricingPage() {
 
           <Reveal
             delay={0.12}
-            className="relative flex flex-col rounded-[20px] border-2 border-blue-500 bg-white px-7 py-[30px] shadow-blue"
+            className="relative flex flex-col rounded-2xl border border-blue-700 bg-white px-7 py-[30px] shadow-card"
           >
-            <div className="absolute top-[-13px] left-1/2 -translate-x-1/2 rounded-full bg-blue-500 px-[14px] py-[5px] text-[11px] font-extrabold tracking-[.08em] whitespace-nowrap text-white uppercase">
+            <div className="absolute top-[-13px] left-1/2 -translate-x-1/2 rounded-full bg-blue-700 px-[14px] py-[5px] text-[11px] font-extrabold tracking-[.08em] whitespace-nowrap text-white uppercase">
               Best choice
             </div>
-            <div className="text-[15px] font-extrabold tracking-[.1em] text-slate-800">
-              PREMIUM
-            </div>
+            <Eyebrow>Premium</Eyebrow>
             <div className="mt-[14px]">
               <span className="font-display text-[44px] font-extrabold text-slate-800">
                 $150
@@ -189,7 +179,7 @@ export default function PricingPage() {
             <FeatureList items={PREMIUM_FEATURES} />
             <a
               href={signupUrl}
-              className="mt-auto rounded-[14px] bg-blue-500 py-[13px] text-center text-[14px] font-bold whitespace-nowrap text-white shadow-blue transition-[background] duration-[180ms] hover:bg-blue-600"
+              className="mt-auto rounded-full bg-blue-700 py-3 text-center text-[14px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-blue-600"
             >
               Get Started!
             </a>
@@ -200,12 +190,10 @@ export default function PricingPage() {
         <div className="mx-auto max-w-[1240px]">
           <Reveal
             delay={0.06}
-            className="mt-[clamp(16px,1.8vw,26px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] items-center gap-[clamp(20px,2.4vw,36px)] rounded-[20px] bg-slate-800 p-[clamp(28px,3vw,40px)]"
+            className="mt-[clamp(16px,1.8vw,26px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] items-center gap-[clamp(20px,2.4vw,36px)] rounded-2xl bg-slate-900 p-[clamp(28px,3vw,40px)]"
           >
             <div className="min-w-0">
-              <div className="text-[12px] font-extrabold tracking-[.14em] text-lime-400">
-                ENTERPRISE
-              </div>
+              <Eyebrow tone="dark">Enterprise</Eyebrow>
               <div className="font-display mt-[14px] text-[30px] leading-[1.2] font-extrabold text-white">
                 More than 30 users?
               </div>
@@ -213,7 +201,7 @@ export default function PricingPage() {
                 Email us at{" "}
                 <a
                   href={`mailto:${salesEmail}`}
-                  className="font-bold text-lime-400"
+                  className="font-bold text-white underline decoration-white/40 underline-offset-[3px]"
                 >
                   {salesEmail}
                 </a>{" "}
@@ -221,13 +209,10 @@ export default function PricingPage() {
                 size.
               </div>
             </div>
-            <div className="flex justify-end">
-              <a
-                href={`mailto:${salesEmail}`}
-                className="inline-block rounded-[14px] border border-white/[.16] bg-white/[.08] px-8 py-[13px] text-center text-[14px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/[.16]"
-              >
+            <div className="flex md:justify-end">
+              <GhostButton href={`mailto:${salesEmail}`}>
                 Email sales
-              </a>
+              </GhostButton>
             </div>
           </Reveal>
         </div>
@@ -242,11 +227,9 @@ export default function PricingPage() {
             delay={i * 0.06}
             className="rounded-[clamp(20px,2vw,30px)] bg-white p-[clamp(26px,2.8vw,34px)]"
           >
-            <span
-              className={`flex h-[46px] w-[46px] flex-none items-center justify-center rounded-[13px] border ${prop.badge}`}
-            >
-              <Icon name={prop.icon} className={`text-[22px] ${prop.color}`} />
-            </span>
+            <HexTile size={44} style={{ background: "var(--color-lime-100)" }}>
+              <Icon name={prop.icon} className="text-[22px] text-[#5c8f1c]" />
+            </HexTile>
             <div className="font-display mt-4 text-[clamp(19px,1.9vw,23px)] leading-[1.25] font-extrabold tracking-[-0.01em] text-slate-800">
               {prop.title}
             </div>
@@ -271,7 +254,7 @@ export default function PricingPage() {
           </Reveal>
           <Reveal className="mt-6 text-center text-[14px] text-slate-500">
             More questions? See the full{" "}
-            <a href={routes.faq} className="font-bold text-blue-500">
+            <a href={routes.faq} className="font-bold text-blue-600">
               FAQ
             </a>
             .

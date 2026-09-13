@@ -6,6 +6,7 @@ import { ModuleMosaic } from "@/components/features/module-mosaic";
 import {
   Block,
   BlueButton,
+  GhostButton,
   HeroBackdrop,
   SectionLabel,
 } from "@/components/layout-primitives";
@@ -62,12 +63,7 @@ export default function FeaturesPage() {
         className="py-[clamp(60px,7vw,100px)]"
       >
         <BlueButton href={routes.demo}>Request a demo</BlueButton>
-        <a
-          href={routes.pricing}
-          className="rounded-full border border-white/30 px-[30px] py-[15px] text-[16px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/10"
-        >
-          View pricing
-        </a>
+        <GhostButton href={routes.pricing}>View pricing</GhostButton>
       </CtaBand>
     </PageShell>
   );

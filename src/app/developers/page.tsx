@@ -4,6 +4,8 @@ import { Icon } from "@/components/icon";
 import {
   Block,
   BlueButton,
+  CARD_LIGHT,
+  Eyebrow,
   GhostButton,
   HeroBackdrop,
   SectionHeading,
@@ -108,11 +110,8 @@ const WEBHOOK_USES = [
  */
 function PendingReference({ title, needs }: { title: string; needs: string }) {
   return (
-    <div className="rounded-[16px] border-2 border-dashed border-gray-300 bg-gray-050 px-[clamp(20px,2.4vw,30px)] py-[clamp(20px,2.4vw,28px)]">
-      <div className="flex items-center gap-2 text-[11px] font-bold tracking-[.14em] text-slate-400 uppercase">
-        <Icon name="doc-search" className="text-[15px]" />
-        Awaiting source material
-      </div>
+    <div className="rounded-2xl border border-dashed border-gray-300 bg-gray-050 px-[clamp(20px,2.4vw,30px)] py-[clamp(20px,2.4vw,28px)]">
+      <Eyebrow>Awaiting source material</Eyebrow>
       <div className="mt-[10px] text-[15px] font-bold text-slate-800">
         {title}
       </div>
@@ -151,7 +150,7 @@ export default function DevelopersPage() {
             <BlueButton href={`mailto:${supportEmail}`}>
               Request API access
             </BlueButton>
-            <GhostButton href="#integrations" radius="14px">
+            <GhostButton href="#integrations">
               See integration options
             </GhostButton>
           </Reveal>
@@ -187,9 +186,9 @@ export default function DevelopersPage() {
             {RESOURCES.map((res) => (
               <div
                 key={res.title}
-                className="bg-gray-050 rounded-[18px] px-[22px] py-[20px]"
+                className={`px-[22px] py-[20px] ${CARD_LIGHT}`}
               >
-                <Icon name={res.icon} className="text-[22px] text-blue-500" />
+                <Icon name={res.icon} className="text-[22px] text-blue-600" />
                 <div className="mt-3 text-[16px] font-bold text-slate-800">
                   {res.title}
                 </div>
@@ -286,11 +285,11 @@ export default function DevelopersPage() {
             {WEBHOOK_USES.map((use) => (
               <div
                 key={use}
-                className="bg-gray-050 flex items-start gap-[10px] rounded-[16px] px-5 py-4 text-[14px] leading-[1.55] text-slate-700"
+                className={`flex items-start gap-[10px] px-5 py-4 text-[14px] leading-[1.55] text-slate-700 ${CARD_LIGHT}`}
               >
                 <Icon
                   name="lightning"
-                  className="mt-[2px] flex-none text-[16px] text-blue-500"
+                  className="mt-[2px] flex-none text-[16px] text-blue-600"
                 />
                 {use}
               </div>
@@ -325,9 +324,9 @@ export default function DevelopersPage() {
             {INTEGRATIONS.map((item) => (
               <div
                 key={item.title}
-                className="bg-gray-050 rounded-[18px] px-[24px] py-[22px]"
+                className={`px-[24px] py-[22px] ${CARD_LIGHT}`}
               >
-                <Icon name={item.icon} className="text-[24px] text-blue-500" />
+                <Icon name={item.icon} className="text-[24px] text-blue-600" />
                 <div className="mt-3 text-[16px] font-bold text-slate-800">
                   {item.title}
                 </div>
@@ -358,15 +357,11 @@ export default function DevelopersPage() {
         title="Integrating Flavor Studio?"
         body="Tell us what you need to connect and we will walk your developers through the API on a call."
         className="py-[clamp(60px,7vw,100px)]"
-        secondMark={false}
       >
         <BlueButton href={routes.demo}>Request a demo</BlueButton>
-        <a
-          href={`mailto:${supportEmail}`}
-          className="rounded-[14px] border border-white/[.28] px-8 py-[15px] text-[16px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/10"
-        >
+        <GhostButton href={`mailto:${supportEmail}`}>
           Email technical support
-        </a>
+        </GhostButton>
       </CtaBand>
     </PageShell>
   );

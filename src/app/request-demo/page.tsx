@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DemoForm } from "@/components/contact/demo-form";
+import { HexTile } from "@/components/hex";
 import { Icon } from "@/components/icon";
 import {
   Block,
+  CARD_LIGHT,
+  Eyebrow,
   HeroBackdrop,
   SectionLabel,
 } from "@/components/layout-primitives";
@@ -74,21 +77,23 @@ export default function RequestDemoPage() {
 
       <Block className="flex-1 bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(48px,5.5vw,76px)]">
         <div className="mx-auto grid max-w-[1080px] grid-cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] items-start gap-[clamp(28px,4vw,56px)]">
-          <Reveal className="rounded-[20px] border border-gray-300 bg-white p-[clamp(24px,3vw,36px)] shadow-card">
+          <Reveal className="rounded-2xl border border-gray-300 bg-white p-[clamp(24px,3vw,36px)]">
             <DemoForm intent="demo" />
           </Reveal>
 
           <div className="flex flex-col gap-4">
-            <Reveal className="rounded-[20px] border border-gray-300 bg-white px-[26px] py-6">
-              <div className="mb-[14px] text-[11px] font-bold tracking-[.12em] text-slate-400 uppercase">
-                What to expect
-              </div>
+            <Reveal className={`px-[26px] py-6 ${CARD_LIGHT}`}>
+              <Eyebrow className="mb-[14px]">What to expect</Eyebrow>
               <div className="flex flex-col gap-[14px]">
                 {STEPS.map((step, i) => (
                   <div key={step.title} className="flex items-start gap-3">
-                    <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-blue-200 text-[12px] font-extrabold text-blue-700">
+                    <HexTile
+                      size={26}
+                      className="text-[12px] font-extrabold text-[#5c8f1c]"
+                      style={{ background: "var(--color-lime-100)" }}
+                    >
                       {i + 1}
-                    </span>
+                    </HexTile>
                     <div className="text-[14px] leading-[1.55] text-slate-700">
                       <strong className="font-bold text-slate-800">
                         {step.title}
@@ -100,13 +105,8 @@ export default function RequestDemoPage() {
               </div>
             </Reveal>
 
-            <Reveal
-              delay={0.08}
-              className="rounded-[20px] border border-gray-300 bg-white px-[26px] py-6"
-            >
-              <div className="mb-[14px] text-[11px] font-bold tracking-[.12em] text-slate-400 uppercase">
-                What we can cover
-              </div>
+            <Reveal delay={0.08} className={`px-[26px] py-6 ${CARD_LIGHT}`}>
+              <Eyebrow className="mb-[14px]">What we can cover</Eyebrow>
               <div className="flex flex-col gap-[10px] text-[14px] text-slate-700">
                 {COVERED.map((item) => (
                   <div key={item} className="flex items-start gap-[10px]">
@@ -118,19 +118,14 @@ export default function RequestDemoPage() {
                   </div>
                 ))}
               </div>
-              <p className="mt-4 text-[13px] leading-[1.6] text-slate-400">
+              <p className="mt-4 text-[13px] leading-[1.6] text-slate-500">
                 Tell us which of these matter most in the form and we&rsquo;ll
                 build the session around them.
               </p>
             </Reveal>
 
-            <Reveal
-              delay={0.16}
-              className="rounded-[20px] border border-gray-300 bg-white px-[26px] py-6"
-            >
-              <div className="mb-[10px] text-[11px] font-bold tracking-[.12em] text-slate-400 uppercase">
-                Prefer to talk first?
-              </div>
+            <Reveal delay={0.16} className={`px-[26px] py-6 ${CARD_LIGHT}`}>
+              <Eyebrow className="mb-[10px]">Prefer to talk first?</Eyebrow>
               <div className="flex flex-col gap-3 text-[14px] text-slate-700">
                 <a
                   href={phoneHref}
@@ -138,7 +133,7 @@ export default function RequestDemoPage() {
                 >
                   <Icon
                     name="phone-telephone"
-                    className="text-[16px] text-blue-500"
+                    className="text-[16px] text-blue-600"
                   />
                   {phone}
                 </a>
@@ -146,7 +141,7 @@ export default function RequestDemoPage() {
                   href={`mailto:${contactEmail}`}
                   className="flex items-center gap-[10px] transition-colors hover:text-blue-600"
                 >
-                  <Icon name="mail" className="text-[16px] text-blue-500" />
+                  <Icon name="mail" className="text-[16px] text-blue-600" />
                   {contactEmail}
                 </a>
                 <Link

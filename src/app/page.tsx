@@ -9,13 +9,14 @@ import { PlatformTabs } from "@/components/home/platform-tabs";
 import { Stats } from "@/components/home/stats";
 import { SuccessStories } from "@/components/home/success-stories";
 import { Why } from "@/components/home/why";
-import { Icon } from "@/components/icon";
 import {
   Block,
   BlockStack,
   BlueButton,
+  GhostButton,
   SectionHeading,
   SectionLabel,
+  TextLink,
 } from "@/components/layout-primitives";
 import { Reveal, RevealStagger } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
@@ -63,13 +64,7 @@ export default function HomePage() {
               <FaqAccordion items={homeFaqs} defaultOpen={0} groupKey="home" />
             </RevealStagger>
             <Reveal delay={0.16} className="mt-[26px] text-center">
-              <a
-                href={routes.faq}
-                className="inline-flex items-center gap-2 text-[14px] font-extrabold text-blue-600 hover:text-blue-700"
-              >
-                <span>See all questions</span>
-                <Icon name="arrow-right" className="text-[15px]" />
-              </a>
+              <TextLink href={routes.faq}>See all questions</TextLink>
             </Reveal>
           </div>
         </Block>
@@ -81,12 +76,9 @@ export default function HomePage() {
           footnote="14-day free trial, full functionality, no credit card."
         >
           <BlueButton href={routes.demo}>Request a demo</BlueButton>
-          <a
-            href={`mailto:${contactEmail}`}
-            className="rounded-[14px] border border-white/[.28] px-8 py-[15px] text-[16px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/10"
-          >
+          <GhostButton href={`mailto:${contactEmail}`}>
             Talk to sales
-          </a>
+          </GhostButton>
         </CtaBand>
       </BlockStack>
 

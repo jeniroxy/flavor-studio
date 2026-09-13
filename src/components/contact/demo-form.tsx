@@ -62,7 +62,7 @@ const COPY: Record<
 };
 
 const fieldClass =
-  "rounded-[6px] border border-gray-300 bg-white px-3 py-[10px] font-sans text-[14px] text-slate-800 outline-none focus:border-blue-600";
+  "rounded-md border border-gray-300 bg-white px-3 py-[10px] font-sans text-[14px] text-slate-800 outline-none focus:border-blue-600";
 const labelClass =
   "flex flex-col gap-[6px] text-[13px] font-semibold text-slate-700";
 
@@ -212,7 +212,7 @@ export function DemoForm({ intent = "demo" }: { intent?: FormIntent }) {
       {error && (
         <div
           role="alert"
-          className="rounded-lg bg-red-100 px-[14px] py-[10px] text-[13px] font-semibold text-red-500"
+          className="rounded-md bg-red-100 px-[14px] py-[10px] text-[13px] font-semibold text-red-500"
         >
           {error}
         </div>
@@ -220,11 +220,11 @@ export function DemoForm({ intent = "demo" }: { intent?: FormIntent }) {
 
       <button
         type="submit"
-        className="cursor-pointer rounded-[14px] bg-blue-500 py-[13px] text-center text-[15px] font-bold text-white shadow-blue transition-[background] duration-[180ms] hover:bg-blue-600"
+        className="cursor-pointer rounded-full bg-blue-700 py-[14px] text-center text-[15px] font-bold text-white transition-[background] duration-[180ms] hover:bg-blue-600"
       >
         {copy.submit}
       </button>
-      <div className="text-center text-[13px] text-slate-400">
+      <div className="text-center text-[13px] text-slate-500">
         {copy.footnote}
       </div>
     </form>

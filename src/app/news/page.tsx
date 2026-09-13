@@ -1,30 +1,22 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { CtaBand } from "@/components/cta-band";
-import { Icon } from "@/components/icon";
 import {
   Block,
   BlueButton,
+  CARD_LIGHT,
+  GhostButton,
   HeroBackdrop,
   SectionLabel,
 } from "@/components/layout-primitives";
 import { PageShell } from "@/components/page-shell";
 import { Reveal, RevealStagger } from "@/components/reveal";
-import { formatNewsDate, newsEntries, type NewsCategory } from "@/lib/news";
+import { formatNewsDate, newsEntries } from "@/lib/news";
 import { routes } from "@/lib/routes";
 
 export const metadata: Metadata = {
   title: "News",
   description:
     "What's new in Flavor Studio — new modules, improvements, integrations and announcements, as they ship.",
-};
-
-const CATEGORY_STYLE: Record<NewsCategory, string> = {
-  "New module": "bg-lime-100 text-[#5c8f1c]",
-  Improvement: "bg-blue-200 text-blue-700",
-  Integration: "bg-teal-100 text-[#0e8b73]",
-  Announcement: "bg-violet-100 text-violet-500",
-  Event: "bg-amber-100 text-[#a97d17]",
 };
 
 export default function NewsPage() {
@@ -63,18 +55,17 @@ export default function NewsPage() {
               <article
                 key={entry.slug}
                 id={entry.slug}
-                className="scroll-mt-[90px] rounded-[20px] border border-gray-300 bg-white px-[clamp(22px,2.8vw,34px)] py-[clamp(20px,2.6vw,30px)]"
+                className={`scroll-mt-[90px] px-[clamp(22px,2.8vw,34px)] py-[clamp(20px,2.6vw,30px)] ${CARD_LIGHT}`}
               >
-                <div className="flex flex-wrap items-center gap-3">
-                  <span
-                    className={`rounded-full px-3 py-[5px] text-[12px] font-bold ${CATEGORY_STYLE[entry.category]}`}
-                  >
-                    {entry.category}
+                {/* Category and date in one line of small caps. The five
+                    pastel category pills carried no information the word
+                    itself does not. */}
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] font-extrabold tracking-[.12em] text-slate-500 uppercase">
+                  <span>{entry.category}</span>
+                  <span aria-hidden="true" className="text-slate-300">
+                    ·
                   </span>
-                  <time
-                    dateTime={entry.date}
-                    className="text-[13px] font-semibold text-slate-400"
-                  >
+                  <time dateTime={entry.date} className="font-bold">
                     {formatNewsDate(entry.date)}
                   </time>
                 </div>
@@ -84,7 +75,7 @@ export default function NewsPage() {
                 <p className="mt-2 text-[15px] leading-[1.65] text-slate-500">
                   {entry.summary}
                 </p>
-                <div className="mt-4 flex flex-col gap-3 border-t border-gray-200 pt-4">
+                <div className="mt-4 flex flex-col gap-3 border-t border-gray-300 pt-4">
                   {entry.body.map((para, i) => (
                     <p
                       key={i}
@@ -100,7 +91,7 @@ export default function NewsPage() {
 
           <Reveal
             delay={0.1}
-            className="mt-8 rounded-[16px] bg-gray-050 px-6 py-5 text-[14px] leading-[1.65] text-slate-500"
+            className={`mt-8 px-6 py-5 text-[14px] leading-[1.65] text-slate-500 ${CARD_LIGHT}`}
           >
             <span className="font-bold text-slate-700">
               Following along as a customer?
@@ -116,16 +107,9 @@ export default function NewsPage() {
         title="See the newest capabilities live."
         body="A 30-minute demo covers what's shipped recently alongside the core platform."
         className="py-[clamp(60px,7vw,100px)]"
-        secondMark={false}
       >
         <BlueButton href={routes.demo}>Request a demo</BlueButton>
-        <Link
-          href={routes.features}
-          className="inline-flex items-center gap-2 rounded-[14px] border border-white/[.28] px-8 py-[15px] text-[16px] font-bold whitespace-nowrap text-white transition-[background] duration-[180ms] hover:bg-white/10"
-        >
-          Explore all modules
-          <Icon name="arrow-right" className="text-[15px]" />
-        </Link>
+        <GhostButton href={routes.features}>Explore all modules</GhostButton>
       </CtaBand>
     </PageShell>
   );

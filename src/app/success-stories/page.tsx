@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaBand } from "@/components/cta-band";
-import { Icon } from "@/components/icon";
 import {
   Block,
   BlueButton,
   HeroBackdrop,
   SectionLabel,
+  TextLink,
 } from "@/components/layout-primitives";
 import { PageShell } from "@/components/page-shell";
 import { Reveal } from "@/components/reveal";
@@ -43,9 +43,9 @@ function StoryMedia({ index }: { index: number }) {
         width={story.imgW}
         height={story.imgH}
         sizes="(max-width: 960px) 100vw, 50vw"
-        className="aspect-[4/3] w-full rounded-[20px] object-cover shadow-float"
+        className="aspect-[4/3] w-full rounded-2xl object-cover"
       />
-      <div className="absolute bottom-[18px] left-[18px] rounded-[14px] bg-white/90 px-4 py-[10px] backdrop-blur-[6px]">
+      <div className="absolute bottom-[18px] left-[18px] rounded-lg bg-white/95 px-4 py-[10px]">
         <Image
           src={story.logo}
           alt={story.company}
@@ -78,14 +78,8 @@ function StoryCopy({ index }: { index: number }) {
         {BLURBS[index]}
       </Reveal>
       {/* On-site detail page — no longer a redirect to the legacy site. */}
-      <Reveal
-        as="a"
-        delay={0.18}
-        href={story.href}
-        className="mt-[22px] inline-flex items-center gap-2 text-[15px] font-bold text-blue-600"
-      >
-        Read their story
-        <Icon name="arrow-right" className="text-[15px]" />
+      <Reveal delay={0.18} className="mt-[22px]">
+        <TextLink href={story.href}>Read their story</TextLink>
       </Reveal>
     </div>
   );
@@ -142,7 +136,6 @@ export default function SuccessStoriesPage() {
         title="Your story could be next."
         body="Tell us what you're building — we'll show you how similar teams run it in Flavor Studio."
         className="py-[clamp(60px,7vw,100px)]"
-        secondMark={false}
       >
         <BlueButton href={routes.demo}>Request a demo</BlueButton>
       </CtaBand>
