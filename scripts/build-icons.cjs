@@ -8,7 +8,16 @@ const NAMES =
 caution chart-histogram check-one chef-hat-one click cloud-storage degree-hat doc-detail doc-search
 experiment factory-building folder-open funds hamburger headset-one home income key-one knife-fork
 leaves left lightning local-two lock mail mouse peoples phone-telephone protect quote right
-search send setting-two star mouth weight checklist time history`
+search send setting-two star mouth weight checklist time history
+form-one api shield robot brain magic-wand tag-one order plug link grid-nine list-two pie-one
+bar-code fork-spoon bowl cup milk noodles down up close play sun translate globe earth refresh
+sort filter like check close-one minus plus arrow-down down-one up-one percentage formula flag
+inbox message comment book notebook newspaper-folding bookmark alarm-clock timer stopwatch
+dashboard-one analysis chart-line chart-pie chart-proportion table-file layers copy edit
+file-pdf-one file-text download upload printer target certificate audit truck delivery
+shopping-bag wallet coupon bank-card user user-business people-plus waterfalls-v block-one
+components layout-four data-sheet excel-one microscope test-tube scale-one measuring-cup
+config tool arrow-left more hamburger-button application-two menu-fold-one`
     .split(/\s+/)
     .filter(Boolean);
 

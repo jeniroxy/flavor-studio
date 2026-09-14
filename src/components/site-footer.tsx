@@ -1,114 +1,195 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Reveal, RevealStagger } from "@/components/reveal";
-import { contactEmail, phone, phoneHref, routes } from "@/lib/routes";
+import { Icon, LinkedInIcon } from "@/components/icon";
+import { securityMarks } from "@/components/ui";
+import { modules } from "@/lib/modules";
+import {
+  contactEmail,
+  linkedin,
+  phone,
+  phoneHref,
+  routes,
+  supportEmail,
+} from "@/lib/routes";
 
 /*
- * SiteFooter v3 — full-width dark band. The user reverted an experimental
- * Corsearch-style restyle back to the original content and design-system
- * colours, keeping only the layout change: four groups spread evenly across
- * the footer rather than stacked to the right.
- *
- * `labelingHref` differs by page: the landing page has a #labels section to
- * jump to, subpages route to the Features labeling anchor instead.
+ * The v2 footer, on clickup.com's plan: logo top-left, five link columns on
+ * the page grid, a social row with the security marks opposite, then a
+ * hairline and the legal line. White ground — the dark footer band is gone.
  */
 
-const productLinks = (labelingHref: string) => [
-  { label: "Features", href: routes.features },
-  { label: "Labeling", href: labelingHref },
-  { label: "AI Agent", href: routes.agent },
-  { label: "Developers & API", href: routes.developers },
-  { label: "Pricing", href: routes.pricing },
+const columns: { title: string; href?: string; links: { label: string; href: string }[] }[] = [
+  {
+    title: "AI Agent",
+    href: routes.agent,
+    links: [
+      { label: "Overview", href: routes.agent },
+      { label: "Side-by-side compare", href: `${routes.agent}#compare` },
+      { label: "Skills", href: `${routes.agent}#skills` },
+      { label: "Trust & data", href: `${routes.agent}#trust` },
+    ],
+  },
+  {
+    title: "Product",
+    href: routes.features,
+    links: [
+      ...modules
+        .filter((m) =>
+          [
+            "recipes",
+            "ingredients",
+            "costing",
+            "labeling",
+            "claims",
+            "designer",
+            "taste-tests",
+            "projects",
+            "timesheet",
+            "crm",
+          ].includes(m.id),
+        )
+        .map((m) => ({ label: m.label, href: routes.feature(m.id) })),
+      { label: "All features", href: routes.features },
+      { label: "Integrations & API", href: routes.developers },
+    ],
+  },
+  {
+    title: "Solutions",
+    href: routes.solutions,
+    links: [
+      { label: "R&D and formulation", href: routes.solution("rd") },
+      { label: "Regulatory and labeling", href: routes.solution("regulatory") },
+      { label: "Costing and procurement", href: routes.solution("costing") },
+      { label: "Sales and account teams", href: routes.solution("sales") },
+      { label: "CPG manufacturers", href: routes.solution("cpg") },
+      { label: "Ingredient suppliers", href: routes.solution("suppliers") },
+      { label: "Restaurant chains", href: routes.solution("restaurants") },
+      { label: "Food science programs", href: routes.solution("education") },
+      { label: "Enterprise", href: routes.enterprise },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "Customers", href: routes.customers },
+      { label: "Success stories", href: routes.stories },
+      { label: "News", href: routes.news },
+      { label: "Pricing", href: routes.pricing },
+      { label: "Contact us", href: routes.contact },
+      { label: "Privacy", href: routes.privacy },
+    ],
+  },
+  {
+    title: "Help",
+    links: [
+      { label: "Request a demo", href: routes.demo },
+      { label: "FAQ", href: routes.faq },
+      { label: "Developers", href: routes.developers },
+      { label: supportEmail, href: `mailto:${supportEmail}` },
+      { label: contactEmail, href: `mailto:${contactEmail}` },
+      { label: phone, href: phoneHref },
+    ],
+  },
 ];
 
-const companyLinks = [
-  { label: "Customers", href: routes.customers },
-  { label: "Success stories", href: routes.stories },
-  { label: "News", href: routes.news },
-  { label: "FAQ", href: routes.faq },
-  { label: "Contact", href: routes.contact },
-  { label: "Request a demo", href: routes.demo },
-];
-
-const linkClass =
-  "text-[14px] text-slate-300 transition-colors hover:text-white";
-const headingClass =
-  "text-[11px] font-bold tracking-[.12em] uppercase text-slate-300";
-
-export function SiteFooter({
-  labelingHref = `${routes.features}#labeling`,
-}: {
-  labelingHref?: string;
-}) {
+export function SiteFooter() {
   return (
-    <footer className="bg-slate-900 px-[clamp(24px,3vw,48px)] pt-[clamp(36px,4vw,56px)] pb-[clamp(24px,2.4vw,34px)]">
-      <div className="mx-auto max-w-[1180px]">
-        <RevealStagger
-          stagger={0.09}
-          className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,180px),1fr))] items-start gap-x-[clamp(20px,2.4vw,36px)] gap-y-[clamp(24px,3vw,40px)]"
-        >
-          <div className="flex flex-col items-start gap-[10px]">
-            <div className={headingClass}>Product</div>
-            {productLinks(labelingHref).map((link) => (
-              <Link key={link.label} href={link.href} className={linkClass}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
+    <footer className="border-t border-hairline bg-white pt-[clamp(40px,5vw,64px)] pb-8">
+      <div className="container-wide">
+        <Image
+          src="/assets/logo-dark-text.svg"
+          alt="Flavor Studio"
+          width={196}
+          height={38}
+          className="h-9 w-auto"
+        />
 
-          <div className="flex flex-col items-start gap-[10px]">
-            <div className={headingClass}>Company</div>
-            {companyLinks.map((link) => (
-              <Link key={link.label} href={link.href} className={linkClass}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          <div className="flex flex-col items-start gap-[10px]">
-            <div className={headingClass}>Get in touch</div>
-            <a href={`mailto:${contactEmail}`} className={linkClass}>
-              {contactEmail}
-            </a>
-            <a href={phoneHref} className={linkClass}>
-              {phone}
-            </a>
-          </div>
-
-          <div className="flex flex-col items-start gap-[10px]">
-            <div className={headingClass}>Office</div>
-            <div className="text-[13px] leading-[1.6] text-slate-300">
-              1547 Palos Verdes, Suite 221
-              <br />
-              Walnut Creek, CA 94597
+        <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
+          {columns.map((col) => (
+            <div key={col.title}>
+              {col.href ? (
+                <Link
+                  href={col.href}
+                  className="text-[16px] font-semibold text-ink hover:text-blue-700"
+                >
+                  {col.title}
+                </Link>
+              ) : (
+                <div className="text-[16px] font-semibold text-ink">{col.title}</div>
+              )}
+              <ul className="mt-4 flex list-none flex-col gap-[10px] p-0">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    {link.href.startsWith("mailto:") || link.href.startsWith("tel:") ? (
+                      <a
+                        href={link.href}
+                        className="text-[15px] text-[#292d34] transition-colors hover:text-blue-700"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="text-[15px] text-[#292d34] transition-colors hover:text-blue-700"
+                      >
+                        {link.label}
+                      </Link>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-        </RevealStagger>
+          ))}
+        </div>
 
-        <Reveal className="mt-[clamp(26px,3vw,40px)] flex flex-wrap items-center gap-4 border-t border-white/[.08] pt-[clamp(18px,2vw,24px)] text-[13px] text-slate-300">
-          <Link href={routes.home} className="flex items-center">
-            <Image
-              src="/assets/logo-light-text.svg"
-              alt="Flavor Studio"
-              width={196}
-              height={38}
-              className="h-[36px] w-auto"
-            />
-          </Link>
-          <span>
-            © {new Date().getFullYear()} Senspire Co. All rights reserved. A
-            Senspire solution.
-          </span>
-          <span className="ml-auto flex items-center gap-2">
-            <Link
-              href={routes.privacy}
-              className="transition-colors hover:text-slate-300"
+        <div className="mt-14 flex flex-wrap items-center justify-between gap-6">
+          <div className="flex items-center gap-4">
+            <a
+              href={linkedin}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Flavor Studio on LinkedIn"
+              className="text-ink-3 transition-colors hover:text-ink"
             >
+              <LinkedInIcon className="h-5 w-5" />
+            </a>
+            <a
+              href={`mailto:${contactEmail}`}
+              aria-label="Email Flavor Studio"
+              className="text-[20px] text-ink-3 transition-colors hover:text-ink"
+            >
+              <Icon name="mail" />
+            </a>
+          </div>
+          <div className="flex flex-wrap items-center gap-6">
+            {securityMarks.map((m) => (
+              <span key={m.label} className="flex items-center gap-2">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full border border-hairline text-[14px] text-ink">
+                  <Icon name={m.icon} />
+                </span>
+                <span className="eyebrow eyebrow-muted text-[10px]">{m.desc}</span>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-hairline pt-6 text-[13px] text-ink-2">
+          <div>© {new Date().getFullYear()} Senspire LLC · Flavor Studio</div>
+          <div className="flex flex-wrap gap-5">
+            <Link href={routes.privacy} className="hover:text-ink">
               Privacy
             </Link>
-            · Terms · Support
-          </span>
-        </Reveal>
+            <Link href={routes.faq} className="hover:text-ink">
+              FAQ
+            </Link>
+            <Link href={routes.contact} className="hover:text-ink">
+              Contact
+            </Link>
+            <a href={`mailto:${supportEmail}`} className="hover:text-ink">
+              Support
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );

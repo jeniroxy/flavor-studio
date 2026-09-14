@@ -1,27 +1,28 @@
 import type { ReactNode } from "react";
-import { BlockStack } from "@/components/layout-primitives";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import type { NavKey } from "@/lib/routes";
 
 /**
- * Every subpage: sticky nav, a stack of box blocks on the gray canvas, then the
- * full-width footer. `fill` makes the stack grow so short pages (Login, FAQ,
- * Contact) still push the footer to the bottom of the viewport.
+ * Every page: announcement bar + sticky nav, the page's sections stacked with
+ * the shared section rhythm, then the footer. `fill` pushes the footer to the
+ * bottom of short pages.
  */
 export function PageShell({
   active = "",
   children,
   fill = false,
+  className = "",
 }: {
   active?: NavKey;
   children: ReactNode;
   fill?: boolean;
+  className?: string;
 }) {
   return (
-    <div className="bg-canvas flex min-h-screen flex-col text-[color:var(--text-body)]">
+    <div className="flex min-h-screen flex-col bg-white text-[color:var(--text-body)]">
       <SiteNav active={active} />
-      <BlockStack className={fill ? "flex-1" : ""}>{children}</BlockStack>
+      <main className={`${fill ? "flex-1" : ""} ${className}`}>{children}</main>
       <SiteFooter />
     </div>
   );

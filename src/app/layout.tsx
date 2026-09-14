@@ -1,41 +1,55 @@
 import type { Metadata } from "next";
-import { Manrope, Mulish } from "next/font/google";
+import { Inter, JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { SmoothScroll } from "@/components/smooth-scroll";
 import "./globals.css";
 
 /*
- * Mulish stands in for Avenir Next (licensed, not web-distributable) and
- * Manrope is the display companion — the substitution the design system
- * documents in tokens/fonts.css.
+ * v2 type: Plus Jakarta Sans for display (the clickup.com headline face),
+ * Inter for body and UI, JetBrains Mono for the uppercase eyebrows, column
+ * headings and stat labels that ClickUp sets in Sometype Mono.
  */
-const mulish = Mulish({
+const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-mulish",
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-jakarta",
   display: "swap",
 });
 
-const manrope = Manrope({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
-  variable: "--font-manrope",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Flavor Studio — Own your formula, from idea to shelf",
+    default: "Flavor Studio — Software to replace the spreadsheets",
     template: "%s · Flavor Studio",
   },
   description:
-    "The unified platform for food & beverage product development — recipes, nutrition, labeling, projects and CRM, with an AI Agent that does the heavy lifting alongside you.",
+    "The everything platform for food & beverage product development — recipes, ingredients, costing, nutrition labels, taste tests, projects, CRM and an AI Agent that knows your formulas.",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${mulish.variable} ${manrope.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="en"
+      className={`${jakarta.variable} ${inter.variable} ${jetbrains.variable}`}
+    >
+      <body>
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,14 +1,18 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Flavor Studio — design tokens
-   Ported verbatim from the handoff design system:
-   _ds/flavor-studio-design-system-.../tokens/*.css
-   Exposed through @theme so every token is also a Tailwind
-   utility (bg-slate-800, text-blue-500, rounded-lg …).
+   Flavor Studio v2 — design tokens
+
+   The v2 layout language is modelled on clickup.com (see
+   docs/research/): a white ground, #f7f7f9 panels, 1px hairline
+   grids as layout, near-black primary buttons, mono uppercase
+   eyebrows, display headlines whose last words fade to grey, one
+   dark "AI act", gradient CTA bands. The brand colours are the
+   ones the application itself uses (navy #324561, sky #59a3eb,
+   lime #8cd135), so the site still reads as Flavor Studio.
    ============================================================ */
 @theme {
-  /* ---- Brand: slate (structure, text, headers) ---- */
+  /* ---- Brand: slate (the app's module bar) ---- */
   --color-slate-900: #2b3b53;
   --color-slate-800: #324561;
   --color-slate-700: #3e5a7f;
@@ -19,10 +23,8 @@
   --color-slate-200: #c4cedd;
   --color-slate-100: #dfe5ee;
 
-  /* ---- Primary: sky blue (actions, links, selection) ---- */
+  /* ---- Primary: sky blue (the app's sub-nav) ---- */
   --color-blue-700: #2060a6;
-  /* Darkened from #3da4f1, which rendered links at 2.7:1 on white.
-     5.28:1 — the colour that carries every text link on the site. */
   --color-blue-600: #1f6fb2;
   --color-blue-500: #59a3eb;
   --color-blue-400: #74a9e0;
@@ -31,14 +33,15 @@
   --color-blue-100: #eef6fd;
   --color-blue-050: #f8fbfe;
 
-  /* ---- Brand accent: lime citrus (logo, highlights) ---- */
+  /* ---- Accent: lime citrus (the logo) ---- */
+  --color-lime-600: #7fd234;
   --color-lime-500: #8cd135;
   --color-lime-400: #a8dd5e;
   --color-lime-300: #d0f16b;
   --color-lime-200: #efff84;
   --color-lime-100: #f1f8e2;
 
-  /* ---- Semantic accents ---- */
+  /* ---- Semantic ---- */
   --color-teal-500: #18bc9c;
   --color-teal-100: #e3f7f2;
   --color-amber-500: #efc051;
@@ -47,84 +50,95 @@
   --color-violet-100: #eee9ff;
   --color-red-500: #e5484d;
   --color-red-100: #fdebec;
+  --color-green-600: #078d3b;
 
-  /* ---- Neutrals ---- */
-  --color-gray-050: #f9f9fb;
-  --color-gray-100: #f3f3f6;
-  --color-gray-150: #f7f7fa;
-  --color-gray-200: #eeeeee;
-  --color-gray-300: #e9e9e9;
-  --color-gray-400: #d9d9d9;
+  /* ---- Neutrals (ClickUp's ramp, verbatim) ---- */
+  --color-ink: #202020;
+  --color-ink-2: #646464;
+  --color-ink-3: #838383;
+  --color-ink-4: #bbbbbb;
+  --color-panel: #f7f7f9;
+  --color-panel-2: #f0f0f0;
+  --color-panel-3: #dedede;
+  --color-hairline: #e8e8e8;
+  --color-hairline-dark: #2a2a2a;
 
-  /* ---- Page canvas the v3 "box block" layout sits on ---- */
-  --color-canvas: #eeeff4;
+  /* ---- The dark act ---- */
+  --color-night: #0a0c10;
+  --color-night-2: #111318;
+  --color-night-3: #1c1f26;
 
   /* ---- Typography ---- */
   --font-sans:
-    var(--font-mulish), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   --font-display:
-    var(--font-manrope), var(--font-mulish), -apple-system, BlinkMacSystemFont,
+    var(--font-jakarta), var(--font-inter), -apple-system, BlinkMacSystemFont,
     sans-serif;
+  --font-mono:
+    var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 
   /* ---- Radii ---- */
   --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 10px;
-  --radius-xl: 14px;
-  --radius-2xl: 20px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-3xl: 40px;
+  --radius-pill: 54px;
 
-  /* ---- Elevation ----
-     One resting shadow for media frames, one for the single elevated card
-     (the featured testimonial), one for product windows on navy. The blue CTA
-     glow and the "float" step are gone: a page had up to four shadow depths
-     competing on one screen. */
-  --shadow-raised: 0 4px 14px rgba(43, 59, 83, 0.07);
-  --shadow-card: 0 12px 32px rgba(43, 59, 83, 0.1);
-  --shadow-window: 0 32px 80px rgba(6, 12, 24, 0.45);
-  /* The lime CTA keeps its glow; it is the one deliberate accent. */
-  --shadow-lime: 0 12px 30px rgba(127, 210, 52, 0.3);
+  /* ---- Elevation: near zero on light, one for floating chrome ---- */
+  --shadow-menu:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-float: 0 12px 32px rgba(32, 32, 32, 0.12);
+  --shadow-window: 0 32px 80px rgba(6, 12, 24, 0.35);
 
   /* ---- Motion ---- */
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-natural: cubic-bezier(0.5, 0, 0.5, 1);
+  --ease-out: cubic-bezier(0.165, 0.84, 0.44, 1);
   --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* Semantic aliases kept as plain custom properties — these are referenced by
-   name in a handful of places rather than as Tailwind utilities. */
 :root {
-  --text-strong: var(--color-slate-800);
-  --text-body: var(--color-slate-700);
-  --text-muted: var(--color-slate-300);
+  --text-strong: var(--color-ink);
+  --text-body: #292d34;
+  --text-muted: var(--color-ink-2);
+  --nav-height: 60px;
+  --announce-height: 40px;
+  --container: 1080px;
+  --container-wide: 1240px;
+  --section-gap: clamp(72px, 10vw, 150px);
 
-  /* The gutter between page "box blocks", and the sticky nav height.
-     The hero uses both to fill exactly one viewport. */
-  --block-gap: clamp(16px, 2.2vw, 34px);
-  /* Grew with the logo: the mark was reported as too small, so the bar was
-     re-cut around a 44px logo instead of a 32px one. */
-  --nav-height: 72px;
+  /* Brand gradients. ClickUp's are blue→pink→orange→purple; ours run the
+     app's own hues: navy → sky → teal → lime. */
+  --grad-rainbow: linear-gradient(100deg, #2060a6, #59a3eb 40%, #18bc9c 70%, #8cd135);
+  --grad-conic: conic-gradient(from 0deg, #59a3eb, #18bc9c, #8cd135, #2060a6, #59a3eb);
+  --grad-banner: linear-gradient(105deg, #0a0c10 0%, #1a2a44 38%, #2060a6 70%, #59a3eb 100%);
+  --grad-cta: radial-gradient(ellipse 132% 74% at 96% 1%, #8cd135 12%, #18bc9c 42%, #2f8ee0 72%, #2060a6 100%);
+  --grad-fade: linear-gradient(98deg, #202020 0%, #202020 38%, #8f8f8f 100%);
+  --grad-fade-dark: linear-gradient(98deg, #ffffff 0%, #ffffff 34%, #8f8f8f 100%);
 }
 
-/* Base resets belong in @layer base. Declared outside a layer they would
-   outrank every Tailwind utility — `h1 { color }` beating `text-white`, and
-   `a { color: inherit }` beating `text-blue-600`. */
 @layer base {
   * {
     box-sizing: border-box;
   }
 
   html {
-    scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
 
   body {
     margin: 0;
-    background: var(--color-canvas);
+    background: #fff;
     color: var(--text-body);
     font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -137,7 +151,10 @@
   h6 {
     margin: 0;
     color: var(--text-strong);
-    line-height: 1.25;
+    font-family: var(--font-display);
+    font-feature-settings: "calt" 0;
+    text-wrap: balance;
+    line-height: 1.15;
   }
 
   p {
@@ -154,21 +171,406 @@
     max-width: 100%;
   }
 
-  /* A real outline, not a box-shadow. The shadow ring was declared in
-     @layer base, which Tailwind ranks below utilities, so every `shadow-[...]`
-     utility silently overwrote it — the site's primary buttons had no visible
-     focus state at all. An outline also composites outside the element, so
-     `overflow-clip` on the section blocks cannot clip it. */
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
   :focus-visible {
-    outline: 3px solid var(--color-blue-600);
+    outline: 3px solid var(--color-blue-500);
     outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-lime-200);
+    color: var(--color-ink);
   }
 }
 
 /* ============================================================
-   Keyframes. Two remain: the logo marquee and the progress fill under an
-   active tab / flow step. The floating hexagons, the typing dots, the panning
-   hero gradient and the drifting orbs were all decorative motion and are gone.
+   Utilities the pages compose. Kept as plain classes rather than
+   Tailwind utilities so a page reads as vocabulary, not soup.
+   ============================================================ */
+@layer components {
+  .container-fs {
+    width: 100%;
+    max-width: var(--container);
+    margin-inline: auto;
+    padding-inline: clamp(20px, 3vw, 32px);
+  }
+  .container-wide {
+    width: 100%;
+    max-width: var(--container-wide);
+    margin-inline: auto;
+    padding-inline: clamp(20px, 3vw, 32px);
+  }
+
+  /* Mono uppercase eyebrow — the ClickUp column heading / section label. */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-blue-700);
+  }
+  .eyebrow-muted {
+    color: var(--color-ink-3);
+  }
+  .eyebrow-dark {
+    color: var(--color-lime-400);
+  }
+
+  /* Headline whose tail fades to grey. Wrap the last words in .tail. */
+  .tail {
+    color: #8f8f8f;
+  }
+  .tail-grad {
+    background: var(--grad-fade);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .dark .tail,
+  .on-dark .tail {
+    color: #8f8f8f;
+  }
+
+  /* 1px hairline grid: cells paint white over an #e8e8e8 gap. */
+  .hairline-grid {
+    display: grid;
+    gap: 1px;
+    background: var(--color-hairline);
+    border: 1px solid var(--color-hairline);
+  }
+  .hairline-grid > * {
+    background: #fff;
+    min-width: 0;
+  }
+  .hairline-grid-dark {
+    display: grid;
+    gap: 1px;
+    background: var(--color-hairline-dark);
+    border: 1px solid var(--color-hairline-dark);
+  }
+  .hairline-grid-dark > * {
+    background: var(--color-night);
+    min-width: 0;
+  }
+
+  /* Edge fades for walls and marquees. */
+  .mask-x {
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  }
+  .mask-xy {
+    mask-image:
+      linear-gradient(90deg, transparent 2%, #000 12%, #000 88%, transparent 98%),
+      linear-gradient(180deg, transparent 4%, #000 16%, #000 86%, transparent 96%);
+    -webkit-mask-image:
+      linear-gradient(90deg, transparent 2%, #000 12%, #000 88%, transparent 98%),
+      linear-gradient(180deg, transparent 4%, #000 16%, #000 86%, transparent 96%);
+    mask-composite: intersect;
+    -webkit-mask-composite: source-in;
+  }
+
+  /* Buttons. Primary is near-black, secondary is the grey pill, inverse is
+     white on gradients. One radius (12px), one hover (colour only). */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-size: 16px;
+    line-height: 1.2;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 0;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      box-shadow 0.2s ease;
+  }
+  .btn-lg {
+    padding: 14px 22px;
+    font-size: 18px;
+    border-radius: 15px;
+  }
+  .btn-sm {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: var(--radius-sm);
+  }
+  .btn-primary {
+    background: var(--color-ink);
+    color: #fff;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+  }
+  .btn-primary:hover {
+    background: #3a3a3a;
+  }
+  .btn-secondary {
+    background: var(--color-panel-2);
+    color: var(--color-ink);
+  }
+  .btn-secondary:hover {
+    background: var(--color-panel-3);
+  }
+  .btn-tertiary {
+    background: transparent;
+    color: var(--color-ink);
+  }
+  .btn-tertiary:hover {
+    background: var(--color-panel-2);
+  }
+  .btn-inverse {
+    background: #fff;
+    color: var(--color-ink);
+  }
+  .btn-inverse:hover {
+    background: #eaeaea;
+  }
+  .btn-lime {
+    background: var(--color-lime-600);
+    color: #16223a;
+  }
+  .btn-lime:hover {
+    background: #8ede40;
+  }
+  .btn-ghost-dark {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  }
+  .btn-ghost-dark:hover {
+    background: rgba(255, 255, 255, 0.14);
+  }
+
+  /* The rainbow ring: a conic gradient rotating behind a 1px border. */
+  .ring-rainbow {
+    position: relative;
+    isolation: isolate;
+  }
+  .ring-rainbow::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: var(--grad-conic);
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    z-index: -1;
+  }
+  .ring-rainbow-spin::before {
+    background: var(--grad-conic);
+    animation: fsSpinHue 3s linear infinite;
+  }
+
+  /* Panels. */
+  .panel {
+    background: var(--color-panel);
+    border-radius: var(--radius-lg);
+  }
+  .card {
+    background: var(--color-panel);
+    border-radius: var(--radius-sm);
+    transition: background-color 0.2s ease;
+  }
+  .card:hover {
+    background: #f0f0f3;
+  }
+  .frame {
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+    background: #fff;
+    overflow: hidden;
+  }
+  .frame-dark {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+    background: #fff;
+    overflow: hidden;
+  }
+
+  /* The vignette on a cropped product shot. */
+  .vignette {
+    position: relative;
+  }
+  .vignette::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 40px 24px var(--color-panel);
+  }
+
+  /* Pill tab (teams tabs, label formats). */
+  .pill-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-ink-2);
+    border: 1px dashed #d9d9d9;
+    background: #fff;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-standard);
+  }
+  .pill-tab:hover {
+    border-style: solid;
+    color: var(--color-ink);
+  }
+  .pill-tab[aria-selected="true"],
+  .pill-tab[data-active="true"] {
+    border: 1px solid var(--color-blue-600);
+    background: var(--color-blue-100);
+    color: var(--color-blue-700);
+  }
+
+  /* Sticky right rail (features index, deep-dive sections). */
+  .rail-item {
+    display: block;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-ink-2);
+    transition: all 0.2s ease;
+  }
+  .rail-item:hover {
+    color: var(--color-ink);
+  }
+  .rail-item[data-active="true"] {
+    background: #fff;
+    color: var(--color-ink);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Check and cross bullets. */
+  .check-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .check-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .check-list li > svg,
+  .check-list li > .tick {
+    flex: none;
+    margin-top: 3px;
+  }
+
+  /* Chip (skill / prompt / capability). */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border: 1px solid var(--color-hairline);
+    background: #fff;
+    color: var(--color-ink-2);
+  }
+  .chip-dark {
+    border-color: var(--color-hairline-dark);
+    background: var(--color-night-2);
+    color: #b4b4b4;
+  }
+
+  /* Stat cell. */
+  .stat-value {
+    font-family: var(--font-display);
+    font-weight: 650;
+    font-size: clamp(30px, 3vw, 40px);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-ink);
+  }
+
+  /* Marquee track. Duplicate the content once; the track moves -50%. */
+  .marquee {
+    display: flex;
+    width: max-content;
+    animation: fsMarquee var(--marquee-duration, 60s) linear infinite;
+  }
+  .marquee-reverse {
+    animation-direction: reverse;
+  }
+  .marquee-paused:hover .marquee {
+    animation-play-state: paused;
+  }
+
+  /* Dark act helpers. */
+  .on-dark {
+    color: #b4b4b4;
+  }
+  .on-dark h1,
+  .on-dark h2,
+  .on-dark h3,
+  .on-dark h4 {
+    color: #fff;
+  }
+  .on-dark .eyebrow {
+    color: var(--color-lime-400);
+  }
+  .on-dark .card {
+    background: var(--color-night-2);
+  }
+  .on-dark .card:hover {
+    background: #16191f;
+  }
+  .on-dark .chip {
+    border-color: var(--color-hairline-dark);
+    background: var(--color-night-2);
+    color: #b4b4b4;
+  }
+  .on-dark .tail-grad {
+    background: var(--grad-fade-dark);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Noise texture for gradient cards. */
+  .noise::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.18;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+/* ============================================================
+   Keyframes
    ============================================================ */
 @keyframes fsMarquee {
   from {
@@ -178,7 +580,14 @@
     transform: translateX(-50%);
   }
 }
-/* Fills the thin bar under the active platform tab over its dwell. */
+@keyframes fsSpinHue {
+  from {
+    filter: hue-rotate(0deg);
+  }
+  to {
+    filter: hue-rotate(360deg);
+  }
+}
 @keyframes fsTabProgress {
   from {
     transform: scaleX(0);
@@ -187,17 +596,101 @@
     transform: scaleX(1);
   }
 }
+@keyframes fsCurtainDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fsColumnFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fsLogoEnter {
+  from {
+    opacity: 0;
+    filter: blur(5px);
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: none;
+  }
+}
+@keyframes fsPopIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fsShimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+@keyframes fsCaret {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fsPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes fsGlowDrift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(6%, -4%);
+  }
+}
+@keyframes fsDrawLine {
+  from {
+    stroke-dashoffset: 400;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes fsSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 
 /* ============================================================
-   Scroll reveal
-   The element starts shifted + transparent and is released when
-   its IntersectionObserver entry fires (see useReveal). Driven by
-   a data attribute so a stagger group can release its children
-   one at a time without re-rendering React state.
+   Scroll reveal (IntersectionObserver + rect sweep, see lib/reveal.ts)
    ============================================================ */
-/* Travel and duration were both halved after the client reported the motion as
-   excessive: the reveal should register as the content settling, not as an
-   animation the reader has to wait out. */
 [data-reveal] {
   opacity: 0;
   transform: translateY(14px);
@@ -210,7 +703,6 @@
   opacity: 1;
   transform: none;
 }
-/* Stagger children shift a shorter distance than single elements. */
 [data-reveal-child] {
   opacity: 0;
   transform: translateY(11px);
@@ -222,6 +714,21 @@
 [data-reveal-child="shown"] {
   opacity: 1;
   transform: none;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
