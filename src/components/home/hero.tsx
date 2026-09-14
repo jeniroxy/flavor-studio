@@ -1,106 +1,68 @@
-import { FormulaRail } from "@/components/home/formula-rail";
-import { ProductShot } from "@/components/product-shot";
-import {
-  Caption,
-  GhostButton,
-  HeroBackdrop,
-  LimeButton,
-} from "@/components/layout-primitives";
+import Link from "next/link";
+import { HeroTabs } from "@/components/home/hero-tabs";
+import { LogoBar } from "@/components/home/logo-bar";
+import { Icon } from "@/components/icon";
 import { Reveal } from "@/components/reveal";
-import { productAssets } from "@/lib/assets";
-import { routes } from "@/lib/routes";
+import { Button } from "@/components/ui";
+import { routes, signupUrl, trialLine } from "@/lib/routes";
 
 /*
- * The landing hero.
+ * The landing hero, on clickup.com's plan: a left-aligned copy block on the
+ * page grid — pill eyebrow, a two-line H1 whose second line is grey, one
+ * primary CTA with the trial microcopy beside it — then the full-width
+ * product tab strip and the logo bar.
  *
- * Rebuilt against two pieces of client feedback. First, that the page did not
- * show the product: the hero's centrepiece was an animated card we drew
- * ourselves, so it is now the actual Recipe page, exported from the Flavor
- * Studio application. Second, that the design read as generic — so the stock
- * dot grid is replaced by the hexagon lattice taken from the logo, and the
- * copy sits above the 100% formula rail, which is the one graphic device only
- * this product can own.
- *
- * The clean-up pass then took things away: a module-list badge above the
- * headline, a lime highlight bar under it, a lime bloom in the corner and a
- * second caption under the rail. Headline, one paragraph, two buttons, the
- * rail, the product — that is the whole hero.
- *
- * Height is still budgeted so the hero and the customer logo row below it both
- * land inside the first screen.
+ * The pill points at product news, not AI: the client asked that visitors
+ * meet the platform first.
  */
 export function Hero() {
-  const shot = productAssets.recipeGrid;
-
   return (
-    <section
-      id="top"
-      className="relative flex items-center overflow-clip rounded-[clamp(20px,2vw,30px)]"
-      style={{
-        minHeight:
-          "calc(100vh - var(--nav-height) - clamp(32px, 4.4vw, 68px) - clamp(96px, 10vh, 132px))",
-      }}
-    >
-      <HeroBackdrop angle={165} />
-
-      <div className="relative mx-auto grid w-full max-w-[1240px] grid-cols-1 items-center gap-[clamp(36px,4.6vw,56px)] px-[clamp(28px,3.6vw,64px)] pt-[clamp(52px,6vw,86px)] pb-[clamp(52px,6vw,84px)] lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
-        <div>
-          <Reveal
-            as="h1"
-            className="font-display text-[clamp(40px,5vw,66px)] leading-[1.04] font-extrabold tracking-[-0.025em] text-white"
+    <section className="pt-[clamp(40px,6vw,80px)]">
+      <div className="container-wide">
+        <Reveal>
+          <Link
+            href={routes.feature("claims")}
+            className="ring-rainbow-spin ring-rainbow inline-flex items-center gap-2 rounded-full bg-white py-1.5 pr-3 pl-1.5 text-[14px] font-semibold text-ink"
           >
-            Own your formula, from idea to shelf.
-          </Reveal>
-
-          <Reveal
-            as="p"
-            delay={0.08}
-            className="mt-[20px] max-w-[52ch] text-[clamp(15.5px,1.4vw,18px)] leading-[1.62] text-[#aebdd0]"
-          >
-            The platform food &amp; beverage teams develop in: formulate and
-            cost recipes, generate compliant labels, run taste tests, log
-            project time, and manage customers — all from one shared ingredient
-            library.
-          </Reveal>
-
-          <Reveal
-            delay={0.16}
-            className="mt-7 flex flex-wrap items-center gap-[14px]"
-          >
-            <LimeButton href={routes.demo}>Request a demo</LimeButton>
-            <GhostButton href="#product">Explore the platform</GhostButton>
-          </Reveal>
-
-          {/* The signature element: a real formula, resolving to 100.000%. */}
-          <Reveal delay={0.24} className="mt-[clamp(32px,3.8vw,48px)]">
-            <FormulaRail className="max-w-[520px]" />
-          </Reveal>
-        </div>
-
-        {/* The product shot runs off the right edge of the block. It buys the
-            screenshot roughly 40% more width than a boxed column would, which
-            is the difference between the UI reading as a picture of software
-            and reading as software. The section clips the overflow. */}
-        <Reveal delay={0.15} className="relative lg:-mr-[clamp(16px,3vw,56px)]">
-          <figure className="m-0">
-            <ProductShot
-              src={shot.src as string}
-              alt={shot.alt}
-              width={shot.width}
-              height={shot.height}
-              focus={shot.focus}
-              tone="dark"
-              priority
-              sizes="(max-width: 1024px) 100vw, 62vw"
-              className="shadow-window"
-              delay={1.1}
-            />
-            <Caption as="figcaption" tone="dark" className="max-w-[62ch]">
-              The Recipe page in Flavor Studio — ingredient grid, sub-levels,
-              versions and the live Yield&nbsp;/&nbsp;Cost sidebar.
-            </Caption>
-          </figure>
+            <span className="rounded-full bg-lime-500 px-2 py-0.5 text-[11px] font-bold tracking-[.06em] uppercase">
+              New
+            </span>
+            Nutrient content claims, checked against the formula
+            <Icon name="right" className="text-[14px]" />
+          </Link>
         </Reveal>
+
+        <Reveal
+          as="h1"
+          delay={0.05}
+          className="font-display mt-6 max-w-[22ch] text-[clamp(38px,5.2vw,64px)] leading-[1.06] font-bold tracking-[-0.035em] text-ink"
+        >
+          Software to replace the spreadsheets.
+          <span className="mt-1 block text-[clamp(22px,3.2vw,40px)] text-ink-2">
+            Formulate. Cost. Label. Launch.
+          </span>
+        </Reveal>
+
+        <Reveal delay={0.12} className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+          <Button href={routes.demo} size="lg" arrow>
+            Request a demo
+          </Button>
+          <span className="max-w-[150px] text-[12px] leading-[1.4] text-ink-2">
+            {trialLine}
+          </span>
+          <a
+            href={signupUrl}
+            className="ml-2 inline-flex items-center gap-1 text-[14px] font-semibold text-ink hover:text-blue-700"
+          >
+            Start your trial
+            <Icon name="arrow-right" className="text-[14px]" />
+          </a>
+        </Reveal>
+      </div>
+
+      <div className="mt-[clamp(36px,5vw,64px)]">
+        <HeroTabs />
+        <LogoBar />
       </div>
     </section>
   );
