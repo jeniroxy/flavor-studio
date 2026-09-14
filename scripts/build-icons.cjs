@@ -17,7 +17,10 @@ dashboard-one analysis chart-line chart-pie chart-proportion table-file layers c
 file-pdf-one file-text download upload printer target certificate audit truck delivery
 shopping-bag wallet coupon bank-card user user-business people-plus waterfalls-v block-one
 components layout-four data-sheet excel-one microscope test-tube scale-one measuring-cup
-config tool arrow-left more hamburger-button application-two menu-fold-one`
+config tool arrow-left more hamburger-button application-two menu-fold-one
+pic fingerprint tree-diagram timeline table-report id-card file-code api-app file-excel file-word
+drag layout-one tree export share ranking thumbs-up agreement category-management code view-list
+dollar trending-up history-query calendar-dot chart-graph contrast distribute-horizontally`
     .split(/\s+/)
     .filter(Boolean);
 
