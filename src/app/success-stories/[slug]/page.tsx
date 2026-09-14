@@ -1,33 +1,40 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { CtaBand } from "@/components/cta-band";
+import { PendingAct } from "@/components/customers/pending-narrative";
+import { PullQuote } from "@/components/customers/pull-quote";
+import { StoryGrid } from "@/components/customers/story-card";
 import { Icon } from "@/components/icon";
-import {
-  Block,
-  BlueButton,
-  CARD_LIGHT,
-  Eyebrow,
-  HeroBackdrop,
-  SectionLabel,
-  TextLink,
-} from "@/components/layout-primitives";
 import { PageShell } from "@/components/page-shell";
 import { Reveal } from "@/components/reveal";
+import { StickyRail } from "@/components/sticky-rail";
+import {
+  Button,
+  Container,
+  Eyebrow,
+  Headline,
+  RainbowCta,
+  Section,
+} from "@/components/ui";
 import { stories } from "@/lib/data";
 import { routes } from "@/lib/routes";
 
 /*
- * Per-company success story pages.
+ * Per-company case study, on ClickUp's story template (research §5): eyebrow
+ * CUSTOMER STORY, hero photo, company-overview card with a mono fact strip,
+ * then the long-form body with a sticky Challenge / Solution / Impact rail.
  *
- * The first design round linked "Read their story" out to the legacy
- * flavorstudio.com pages, which the client flagged. These pages bring the
- * stories on-site. The intro, photography, quote and module list are real
- * today; the full narrative (`detail.sections` in data.ts) is ported from the
- * legacy pages — until an entry has it, that area shows a marked pending state
- * instead of invented case-study copy.
+ * `detail.sections` in data.ts is empty for every story today, so the body
+ * renders the marked pending state in place of narrative. Filling `sections`
+ * lights up numbered H3s + paragraphs and the rail follows the headings —
+ * nothing on this page is invented case-study copy.
  */
+
+const ACTS = [
+  { id: "challenge", label: "The challenge" },
+  { id: "solution", label: "The solution" },
+  { id: "impact", label: "The impact" },
+];
 
 export function generateStaticParams() {
   return stories.map((story) => ({ slug: story.slug }));
@@ -42,7 +49,7 @@ export async function generateMetadata({
   const story = stories.find((s) => s.slug === slug);
   if (!story) return {};
   return {
-    title: `${story.company} — Success Story`,
+    title: `${story.company} — Customer Story`,
     description: story.blurb,
   };
 }
@@ -57,160 +64,163 @@ export default async function StoryDetailPage({
   if (!story) notFound();
 
   const others = stories.filter((s) => s.slug !== slug);
+  const sections = story.detail.sections;
+  const hasBody = sections.length > 0;
+  const railItems = hasBody
+    ? sections.map((s, i) => ({ id: `section-${i + 1}`, label: s.heading }))
+    : ACTS;
+
+  // "Fayetteville, Illinois · Meat processing" → two overview facts.
+  const [location, category] = story.meta.split(" · ");
+  const facts = [
+    { icon: "local-two", label: "Location", value: location },
+    { icon: "tag-one", label: "Category", value: category },
+  ].filter((f) => !!f.value);
+
+  const quote = story.detail.quote;
 
   return (
-    <PageShell>
-      <Block className="relative px-[clamp(28px,3.6vw,64px)] py-[clamp(56px,7vw,96px)]">
-        <HeroBackdrop />
-        <div className="relative mx-auto max-w-[1180px]">
-          <Reveal>
-            <Link
-              href={routes.stories}
-              className="inline-flex items-center gap-2 text-[14px] font-bold text-slate-300 transition-colors hover:text-white"
-            >
-              <Icon name="left" className="text-[14px]" />
-              All success stories
-            </Link>
-          </Reveal>
-          <div className="mt-5">
-            <SectionLabel tone="dark">{story.eyebrow}</SectionLabel>
+    <PageShell active="resources">
+      {/* Hero */}
+      <Section className="pt-[clamp(40px,6vw,80px)]">
+        <Container>
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            <div>
+              <Reveal>
+                <Eyebrow>Customer story</Eyebrow>
+              </Reveal>
+              <Headline as="h1" size="lg" className="mt-4" delay={0.05}>
+                {story.title}
+              </Headline>
+              <Reveal
+                delay={0.1}
+                className="eyebrow eyebrow-muted mt-5 flex flex-wrap items-center gap-2 text-[12px]"
+              >
+                <Icon name="local-two" className="text-[15px]" />
+                {story.meta}
+              </Reveal>
+              <Reveal delay={0.14} className="mt-7 flex flex-wrap gap-3">
+                <Button href={routes.demo} arrow>
+                  Get these results for your team
+                </Button>
+                <Button href={routes.stories} variant="secondary">
+                  See all stories
+                </Button>
+              </Reveal>
+            </div>
+            <Reveal delay={0.1} className="frame">
+              <Image
+                src={story.img}
+                alt={story.imgAlt}
+                width={story.imgW}
+                height={story.imgH}
+                sizes="(max-width: 1024px) 100vw, 540px"
+                priority
+                className="aspect-[4/3] w-full object-cover"
+              />
+            </Reveal>
           </div>
-          <Reveal
-            as="h1"
-            delay={0.06}
-            className="font-display mt-[14px] max-w-[26ch] text-[clamp(32px,4vw,52px)] leading-[1.1] font-extrabold tracking-[-0.02em] text-white"
-          >
-            {story.title}
-          </Reveal>
-          <Reveal
-            as="p"
-            delay={0.12}
-            className="mt-[18px] max-w-[58ch] text-[clamp(16px,1.5vw,18px)] leading-[1.65] text-[#aebdd0]"
-          >
-            {story.blurb}
-          </Reveal>
-          <Reveal
-            delay={0.16}
-            className="mt-5 text-[14px] font-semibold text-slate-400"
-          >
-            {story.meta}
-          </Reveal>
-        </div>
-      </Block>
 
-      <Block className="bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(48px,5.5vw,80px)]">
-        <div className="mx-auto max-w-[900px]">
-          <Reveal className="relative">
-            <Image
-              src={story.img}
-              alt={story.imgAlt}
-              width={story.imgW}
-              height={story.imgH}
-              sizes="(max-width: 960px) 100vw, 900px"
-              priority
-              className="aspect-[16/9] w-full rounded-2xl object-cover"
-            />
-            <div className="absolute bottom-[18px] left-[18px] rounded-lg bg-white/95 px-4 py-[10px]">
+          {/* Company overview */}
+          <Reveal className="panel mt-[clamp(48px,6vw,80px)] grid overflow-hidden lg:grid-cols-[1.4fr_1fr]">
+            <div className="p-[clamp(24px,3vw,40px)]">
+              <h2 className="font-display text-[18px] font-bold tracking-[-0.01em]">
+                Company overview
+              </h2>
+              <p className="mt-3 max-w-[60ch] text-[15px] leading-[1.7] text-ink-2">
+                {story.blurb}
+              </p>
+              <dl className="hairline-grid mt-6 sm:grid-cols-2">
+                {facts.map((f) => (
+                  <div key={f.label} className="flex items-center gap-3 px-4 py-3">
+                    <Icon name={f.icon} className="shrink-0 text-[18px] text-blue-700" />
+                    <div className="eyebrow eyebrow-muted text-[11px]">
+                      <dt className="inline">{f.label}: </dt>
+                      <dd className="inline text-ink">{f.value}</dd>
+                    </div>
+                  </div>
+                ))}
+              </dl>
+            </div>
+            <div
+              className="flex min-h-[200px] items-center justify-center p-10"
+              style={{
+                background: "linear-gradient(160deg, #eef6fd 0%, #dfe5ee 100%)",
+              }}
+            >
               <Image
                 src={story.logo}
                 alt={story.company}
                 width={story.logoW}
                 height={story.logoH}
-                className="h-[34px] w-auto max-w-[140px] object-contain"
+                className="h-auto max-h-[110px] w-auto max-w-[220px] object-contain"
               />
             </div>
           </Reveal>
+        </Container>
+      </Section>
 
-          {story.detail.quote && (
-            <Reveal
-              delay={0.1}
-              className={`mt-8 px-[clamp(24px,3vw,40px)] py-[clamp(24px,3vw,36px)] ${CARD_LIGHT}`}
-            >
-              <Icon name="quote" className="text-[28px] text-blue-300" />
-              <blockquote className="font-display mt-3 text-[clamp(19px,2.2vw,26px)] leading-[1.4] font-bold tracking-[-0.01em] text-slate-800">
-                &ldquo;{story.detail.quote.text}&rdquo;
-              </blockquote>
-              <div className="mt-4 text-[14px] text-slate-500">
-                <strong className="font-bold text-slate-800">
-                  {story.detail.quote.name}
-                </strong>{" "}
-                — {story.detail.quote.role}
-              </div>
-            </Reveal>
-          )}
-
-          {story.detail.sections.length > 0 ? (
-            <div className="mt-10 flex flex-col gap-8">
-              {story.detail.sections.map((section) => (
-                <section key={section.heading}>
-                  <h2 className="font-display text-[clamp(20px,2.2vw,26px)] font-extrabold tracking-[-0.01em] text-slate-800">
-                    {section.heading}
-                  </h2>
-                  <div className="mt-3 flex flex-col gap-3">
-                    {section.paragraphs.map((para, i) => (
-                      <p
-                        key={i}
-                        className="text-[16px] leading-[1.75] text-slate-600"
-                      >
-                        {para}
-                      </p>
-                    ))}
-                  </div>
-                </section>
-              ))}
+      {/* Body with sticky rail */}
+      <Section className="pt-[clamp(48px,6vw,80px)]">
+        <Container>
+          <StickyRail items={railItems}>
+            <div className="flex flex-col gap-12">
+              {hasBody
+                ? sections.map((section, i) => (
+                    <div key={section.heading} className="contents">
+                      <section id={`section-${i + 1}`} className="scroll-mt-[120px]">
+                        <Reveal
+                          as="h3"
+                          className="font-display max-w-[24ch] text-[clamp(24px,2.6vw,32px)] leading-[1.2] font-bold tracking-[-0.02em]"
+                        >
+                          {i + 1}. {section.heading}
+                        </Reveal>
+                        <div className="mt-5 flex flex-col gap-4">
+                          {section.paragraphs.map((para, j) => (
+                            <Reveal
+                              as="p"
+                              key={j}
+                              delay={0.04 * Math.min(j, 4)}
+                              className="max-w-[64ch] text-[16px] leading-[1.75] text-ink-2"
+                            >
+                              {para}
+                            </Reveal>
+                          ))}
+                        </div>
+                      </section>
+                      {i === 0 && quote ? <PullQuote quote={quote} /> : null}
+                    </div>
+                  ))
+                : ACTS.map((act, i) => (
+                    <div key={act.id} className="contents">
+                      <PendingAct
+                        id={act.id}
+                        label={act.label}
+                        company={story.company}
+                        lead={i === 0}
+                      />
+                      {i === 0 && quote ? <PullQuote quote={quote} /> : null}
+                    </div>
+                  ))}
             </div>
-          ) : (
-            <Reveal delay={0.12} className="mt-10">
-              <p className="max-w-[64ch] text-[16px] leading-[1.75] text-slate-600">
-                {story.company} runs on Flavor Studio day to day. The full
-                write-up of how they got there — what they were fighting before,
-                how the rollout went, and what changed afterwards — is being
-                prepared with their team.
-              </p>
-              <TextLink href={routes.demo} className="mt-6">
-                Ask us how {story.company} uses it, on a 30-minute call
-              </TextLink>
-            </Reveal>
-          )}
+          </StickyRail>
+        </Container>
+      </Section>
 
-          {/* Cross-links to the other stories. */}
-          <div className="mt-12 border-t border-gray-300 pt-8">
-            <Eyebrow>More success stories</Eyebrow>
-            <div className="mt-4 grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-4">
-              {others.map((other) => (
-                <Link
-                  key={other.slug}
-                  href={other.href}
-                  className={`group flex flex-col px-6 py-5 transition-[background] hover:bg-gray-100 ${CARD_LIGHT}`}
-                >
-                  <Eyebrow>{other.eyebrow}</Eyebrow>
-                  <span className="mt-2 text-[16px] leading-[1.4] font-bold text-slate-800">
-                    {other.company}
-                  </span>
-                  <span className="mt-1 line-clamp-2 text-[14px] leading-[1.55] text-slate-500">
-                    {other.blurb}
-                  </span>
-                  <span className="mt-3 inline-flex items-center gap-2 text-[14px] font-bold text-blue-600">
-                    Read their story
-                    <Icon
-                      name="arrow-right"
-                      className="text-[14px] transition-transform group-hover:translate-x-1"
-                    />
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </div>
-      </Block>
+      {/* More stories */}
+      <Section className="pt-[var(--section-gap)] pb-[var(--section-gap)]">
+        <Container>
+          <Headline size="md" tail="stories.">
+            More
+          </Headline>
+          <StoryGrid stories={others} className="mt-8" />
+        </Container>
+      </Section>
 
-      <CtaBand
+      <RainbowCta
         title="Your story could be next."
-        body="Tell us what you're building — we'll show you how similar teams run it in Flavor Studio."
-        className="py-[clamp(60px,7vw,100px)]"
-      >
-        <BlueButton href={routes.demo}>Request a demo</BlueButton>
-      </CtaBand>
+        cta={{ label: "Request a demo", href: routes.demo }}
+      />
     </PageShell>
   );
 }
