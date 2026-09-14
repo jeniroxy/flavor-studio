@@ -1,97 +1,74 @@
 # Flavor Studio
 
 Marketing site for Flavor Studio — a food R&D and recipe-formulation platform.
-Built from the Claude Design handoff bundle in `project/` (the v3 design set).
+
+**v2 (branch `v2`)** rebuilds the site on the layout, content structure, motion
+and page templates of clickup.com, translated to Flavor Studio's product and
+brand. Start with `docs/v2-blueprint.md`; the two teardowns that drive it are
+in `docs/research/`.
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
+npm run dev      # http://localhost:3005  (3000 belongs to another project)
 npm run build && npm start
 npm run export   # static site into out/, servable without Node
 npm run lint
 npm run typecheck
-npm run format
+npm run icons    # rebuild the Icon Park subset after adding a name to scripts/build-icons.cjs
+node scripts/qa-shot.mjs /pricing pricing 1440   # full-page screenshot against the dev server
+node scripts/qa-overflow.mjs / 390               # list elements wider than the viewport
 ```
-
-## Opening in VS Code
-
-```bash
-code .
-```
-
-Accept the recommended extensions prompt (`.vscode/extensions.json`) — Tailwind
-CSS IntelliSense, ESLint and Prettier. `.vscode/settings.json` pins the
-workspace TypeScript version, turns on format-on-save, and silences the CSS
-language server's "unknown at rule" warnings, which would otherwise flag every
-Tailwind v4 `@theme` / `@layer` directive in `globals.css`.
-
-`F5` runs the dev server under the debugger and attaches Chrome
-(`.vscode/launch.json`).
 
 ## Pages
 
-| Route              | Source design            |
-| ------------------ | ------------------------ |
-| `/`                | Flavor Studio Landing v3 |
-| `/features`        | Features v3              |
-| `/ai-agent`        | AI Agent v3              |
-| `/pricing`         | Pricing v3               |
-| `/customers`       | Customers v3             |
-| `/success-stories` | Success Stories v3       |
-| `/contact`         | Contact v3               |
-| `/faq`             | FAQ v3                   |
-| `/login`           | Login v3                 |
+| Route                     | Template                                                   |
+| ------------------------- | ---------------------------------------------------------- |
+| `/`                       | Home — hero tab strip, feature wall, teams tabs, AI act     |
+| `/features`               | Features index — bento, sticky category rail, card wall     |
+| `/features/[id]`          | One page per module (`src/lib/feature-pages.ts`)           |
+| `/ai-agent`               | The AI Agent — dark cinematic page                          |
+| `/solutions`, `/solutions/[slug]` | By team / company / industry (`src/lib/solutions.ts`) |
+| `/enterprise`             | Enterprise                                                  |
+| `/developers`             | Integrations & API                                          |
+| `/pricing`                | Plan table, feature comparison, FAQ                         |
+| `/customers`, `/success-stories`, `/success-stories/[slug]` | Testimonials and stories |
+| `/request-demo`, `/contact` | Split-screen form (same form, distinct intent)            |
+| `/news`, `/faq`, `/privacy` | Simple templates                                          |
 
-`SiteNav v3` and `SiteFooter v3` are `src/components/site-nav.tsx` and
-`site-footer.tsx`, composed by `page-shell.tsx` for every subpage.
+`SiteNav` (mega menu; items in `src/lib/nav.ts`) and `SiteFooter` are composed
+by `page-shell.tsx` on every page.
 
 ## Layout language
 
-The v3 design is a single light-gray canvas (`--color-canvas`, `#eeeff4`) with
-each section rendered as a rounded "box block" inset from the page edge by one
-shared gutter. `layout-primitives.tsx` holds that vocabulary — `BlockStack`,
-`Block`, `HeroBackdrop`, `SectionLabel`, `SectionHeading`, and the three button
-styles. Heroes are navy blocks with an animated gradient pan and two
-counter-drifting glow orbs.
+White ground, `#f7f7f9` panels, 1px hairline grids as layout, near-black
+primary buttons, mono uppercase eyebrows, display headlines whose last words
+fade to grey, one dark "AI act", gradient CTA bands. Primitives live in
+`src/components/ui.tsx`; tokens and the class vocabulary (`.btn`, `.eyebrow`,
+`.hairline-grid`, `.panel`, `.card`, `.chip`, `.pill-tab`, `.rail-item`,
+`.marquee`, `.on-dark`) in `src/app/globals.css`. Shared devices:
+`chat-mock.tsx` (AI transcript with citations), `sticky-rail.tsx` (scroll-spy
+side nav), `pill-tabs.tsx`, `flow-player.tsx` (real screens as a recording),
+`product-shot.tsx` (spotlighted screenshot).
 
 ## Design tokens
 
-`src/app/globals.css` ports the handoff design system
-(`project/_ds/.../tokens/*.css`) into a Tailwind v4 `@theme` block, so every
-token is also a utility (`bg-slate-800`, `text-blue-500`, …). Colour, type,
-radius and shadow values are unchanged from the source.
-
-Base resets live inside `@layer base`. This matters: declared outside a layer
-they outrank every Tailwind utility, which silently breaks `text-white` on
-headings and `text-blue-600` on links.
-
-Fonts are Mulish (UI) and Manrope (display), loaded via `next/font`. The design
-system documents these as substitutes for Avenir Next, which is licensed and
-not web-distributable.
+Brand colours are the ones the application uses (navy `#324561`, sky
+`#59a3eb`, lime `#8cd135`); neutrals follow clickup.com's ramp. Fonts are Plus
+Jakarta Sans (display), Inter (UI) and JetBrains Mono (eyebrows), via
+`next/font`.
 
 ## Motion
 
-Scroll reveals are CSS transitions released by `src/lib/reveal.ts`
-(`Reveal`, `RevealStagger`, `CountUp`). IntersectionObserver drives the common
-case, backed by a rect-based sweep on scroll/resize — IO callbacks are delivered
-per rendered frame, so a fast fling or an anchor jump can otherwise carry an
-element past the viewport and leave it hidden permanently. Elements at the foot
-of the document are released outright once the page bottom is reached.
-
-Timeline animations use GSAP via `@gsap/react`:
-
-- the hero walkthrough card (landing and Features)
-- the AI Agent hero's typing loop
-- the six looping product vignettes on Features
-- the platform tab panel transitions
-
-Everything respects `prefers-reduced-motion`, settling on the finished state
-rather than animating.
+Scroll reveals are CSS transitions released by `src/lib/reveal.ts`. Lenis
+smooth scroll runs from `components/smooth-scroll.tsx` (off under reduced
+motion and on touch). GSAP + ScrollTrigger drive the clip-path bleed of the AI
+act and any pinned sections; everything else is CSS keyframes (marquees,
+pop-ins, caret, shimmer). Hovers are colour-only.
 
 ## Icons
 
 Icon Park – Outline, per the design system. `scripts/build-icons.cjs` extracts
-only the ~44 glyphs this site uses into `src/lib/icon-park-subset.json`, so the
+only the glyphs this site uses into `src/lib/icon-park-subset.json`, so the
 client ships no CDN dependency and no unused icons. Re-run with `npm run icons`
 after adding an icon name to the script's list.
 
@@ -116,14 +93,3 @@ Two exceptions: LinkedIn has no Icon Park glyph, so the brand mark is inlined in
 - **Forms do not submit.** The demo request form and the sign-in form validate
   and show a confirmation state client-side only; there is no backend.
 
----
-
-## About this copy
-
-This archive is the full working tree with fresh git history (one commit).
-Two things were left out to keep the download small:
-
-- `node_modules/` — run `npm install`
-- `project/uploads/` — 69 MB of pasted reference images from the original
-  Claude Design conversation. Nothing in the build reads them; the design
-  files, design system and assets under `project/` are all present.
