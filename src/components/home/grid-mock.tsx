@@ -25,7 +25,13 @@ const ROWS = [
   { name: "Honey", code: "ING-0031", pct: 18.0, g: 180, cost: 0.62 },
   { name: "Almond pieces", code: "ING-0208", pct: 14.0, g: 140, cost: 1.12 },
   { name: "Brown rice syrup", code: "ING-0077", pct: 12.0, g: 120, cost: 0.31 },
-  { name: "Dried cranberries", code: "ING-0119", pct: 10.0, g: 100, cost: 0.54 },
+  {
+    name: "Dried cranberries",
+    code: "ING-0119",
+    pct: 10.0,
+    g: 100,
+    cost: 0.54,
+  },
   { name: "Sunflower oil", code: "ING-0055", pct: 8.0, g: 80, cost: 0.14 },
   { name: "Sea salt", code: "ING-0009", pct: 0.8, g: 8, cost: 0.01 },
 ];
@@ -57,7 +63,13 @@ export function GridMock() {
 
   useEffect(() => {
     if (still || phase === 0) return;
-    const wait: Record<number, number> = { 1: 1900, 2: 900, 3: 1100, 4: 1300, 5: 3200 };
+    const wait: Record<number, number> = {
+      1: 1900,
+      2: 900,
+      3: 1100,
+      4: 1300,
+      5: 3200,
+    };
     const id = window.setTimeout(() => {
       setPhase((p) => (p >= 5 ? 1 : p + 1));
     }, wait[phase] ?? 1500);
@@ -67,7 +79,8 @@ export function GridMock() {
   const edited = phase >= 3;
   const ticking = phase >= 4;
   const agent = phase >= 5;
-  const pct = (i: number) => (i === EDIT_ROW && edited ? EDITED_PCT : ROWS[i].pct);
+  const pct = (i: number) =>
+    i === EDIT_ROW && edited ? EDITED_PCT : ROWS[i].pct;
   const grams = (i: number) => Math.round(pct(i) * 10);
   const total = ticking ? TOTAL_AFTER : TOTAL_BEFORE;
   const cost = ticking ? COST_AFTER : COST_BEFORE;
@@ -81,7 +94,14 @@ export function GridMock() {
     >
       {/* app sidebar */}
       <div className="hidden w-[52px] shrink-0 flex-col items-center gap-4 bg-slate-800 py-4 text-slate-300 sm:flex">
-        {["home", "chef-hat-one", "leaves", "doc-detail", "experiment", "peoples"].map((n, i) => (
+        {[
+          "home",
+          "chef-hat-one",
+          "leaves",
+          "doc-detail",
+          "experiment",
+          "peoples",
+        ].map((n, i) => (
           <span
             key={n}
             className={`flex h-8 w-8 items-center justify-center rounded-[8px] text-[16px] ${i === 1 ? "bg-blue-500 text-white" : ""}`}
@@ -94,7 +114,9 @@ export function GridMock() {
       <div className="flex min-w-0 flex-1 flex-col">
         {/* header */}
         <div className="flex items-center gap-3 border-b border-hairline px-4 py-2.5">
-          <span className="font-display text-[14px] font-bold">Granola Bar</span>
+          <span className="font-display text-[14px] font-bold">
+            Granola Bar
+          </span>
           <span className="rounded-[6px] border border-hairline bg-panel px-2 py-0.5 text-[11px] font-semibold">
             V2 · Testing
           </span>
@@ -125,7 +147,9 @@ export function GridMock() {
                 <span className="flex min-w-0 items-center gap-2">
                   <span className="h-2 w-2 shrink-0 rounded-full bg-lime-500" />
                   <span className="truncate font-medium">{row.name}</span>
-                  <span className="hidden text-[10px] text-ink-3 md:inline">{row.code}</span>
+                  <span className="hidden text-[10px] text-ink-3 md:inline">
+                    {row.code}
+                  </span>
                 </span>
                 <span
                   className={`rounded-[4px] px-1.5 py-0.5 text-right tabular-nums transition-colors ${
@@ -142,16 +166,25 @@ export function GridMock() {
                     />
                   ) : null}
                 </span>
-                <span className="text-right tabular-nums text-ink-2">{grams(i)}</span>
-                <span className="text-right tabular-nums text-ink-2">${row.cost.toFixed(2)}</span>
+                <span className="text-right tabular-nums text-ink-2">
+                  {grams(i)}
+                </span>
+                <span className="text-right tabular-nums text-ink-2">
+                  ${row.cost.toFixed(2)}
+                </span>
               </div>
             ))}
             <div
               className="mt-2 flex items-center justify-between text-[11px] font-semibold"
-              style={{ opacity: phase >= 1 ? 1 : 0, transition: "opacity .3s 1.1s" }}
+              style={{
+                opacity: phase >= 1 ? 1 : 0,
+                transition: "opacity .3s 1.1s",
+              }}
             >
               <span className="text-ink-3">Total</span>
-              <span className={`tabular-nums ${total < 100 ? "text-amber-500" : "text-green-600"}`}>
+              <span
+                className={`tabular-nums ${total < 100 ? "text-amber-500" : "text-green-600"}`}
+              >
                 {total.toFixed(1)}% of 100
               </span>
             </div>
@@ -163,9 +196,21 @@ export function GridMock() {
               Yield / Cost
             </div>
             <Cell label="Batch" value="1,000 g" />
-            <Cell label="Batch cost" value={`$${cost.toFixed(2)}`} hot={ticking} />
-            <Cell label="Per serving" value={`$${(cost / 10).toFixed(3)}`} hot={ticking} />
-            <Cell label="Retail @ 40%" value={`$${(cost / 10 / 0.6).toFixed(2)}`} hot={ticking} />
+            <Cell
+              label="Batch cost"
+              value={`$${cost.toFixed(2)}`}
+              hot={ticking}
+            />
+            <Cell
+              label="Per serving"
+              value={`$${(cost / 10).toFixed(3)}`}
+              hot={ticking}
+            />
+            <Cell
+              label="Retail @ 40%"
+              value={`$${(cost / 10 / 0.6).toFixed(2)}`}
+              hot={ticking}
+            />
           </div>
         </div>
       </div>
@@ -187,7 +232,12 @@ export function GridMock() {
               "left .7s var(--ease-natural), top .7s var(--ease-natural), opacity .3s, transform .15s",
           }}
         >
-          <path d="M4 3l14 8-6 1.5L9 20z" fill="#202020" stroke="#fff" strokeWidth="1.5" />
+          <path
+            d="M4 3l14 8-6 1.5L9 20z"
+            fill="#202020"
+            stroke="#fff"
+            strokeWidth="1.5"
+          />
         </svg>
       ) : null}
 
@@ -197,7 +247,8 @@ export function GridMock() {
         style={{
           opacity: agent ? 1 : 0,
           transform: agent ? "none" : "translateY(8px)",
-          transition: "opacity .3s var(--ease-out), transform .3s var(--ease-out)",
+          transition:
+            "opacity .3s var(--ease-out), transform .3s var(--ease-out)",
         }}
       >
         <span className="flex h-7 w-7 items-center justify-center rounded-full bg-lime-500 text-[14px]">
@@ -214,7 +265,15 @@ export function GridMock() {
   );
 }
 
-function Cell({ label, value, hot = false }: { label: string; value: string; hot?: boolean }) {
+function Cell({
+  label,
+  value,
+  hot = false,
+}: {
+  label: string;
+  value: string;
+  hot?: boolean;
+}) {
   return (
     <div className="rounded-[8px] border border-hairline bg-white px-2.5 py-2">
       <div className="text-[10px] text-ink-3">{label}</div>

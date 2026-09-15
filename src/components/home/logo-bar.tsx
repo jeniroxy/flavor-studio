@@ -20,7 +20,11 @@ const fit = (w: number, h: number) => {
   return { width: Math.round(w * s), height: Math.round(h * s) };
 };
 
-export function LogoBar({ label = "Trusted by food & beverage teams" }: { label?: string }) {
+export function LogoBar({
+  label = "Trusted by food & beverage teams",
+}: {
+  label?: string;
+}) {
   const [offset, setOffset] = useState(0);
   const [gen, setGen] = useState(0);
 
@@ -33,7 +37,10 @@ export function LogoBar({ label = "Trusted by food & beverage teams" }: { label?
     return () => window.clearInterval(id);
   }, []);
 
-  const set = Array.from({ length: SHOW }, (_, i) => customerLogos[(offset + i) % customerLogos.length]);
+  const set = Array.from(
+    { length: SHOW },
+    (_, i) => customerLogos[(offset + i) % customerLogos.length],
+  );
 
   return (
     <div className="border-b border-hairline">

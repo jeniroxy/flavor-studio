@@ -1,45 +1,73 @@
 import type { Metadata } from "next";
-import { CtaBand } from "@/components/cta-band";
-import { Icon } from "@/components/icon";
-import {
-  Block,
-  BlueButton,
-  CARD_LIGHT,
-  Eyebrow,
-  GhostButton,
-  HeroBackdrop,
-  SectionHeading,
-  SectionLabel,
-} from "@/components/layout-primitives";
+import type { CSSProperties } from "react";
+import { IntegrationTabs } from "@/components/developers/integration-tabs";
 import { PageShell } from "@/components/page-shell";
 import { Reveal, RevealStagger } from "@/components/reveal";
+import {
+  Button,
+  CheckList,
+  Container,
+  Eyebrow,
+  Headline,
+  IconTile,
+  Lede,
+  RainbowCta,
+  Section,
+} from "@/components/ui";
 import { contactEmail, routes, supportEmail } from "@/lib/routes";
 
 /*
- * The Developers section, absent from the first design round.
+ * Integrations & API.
  *
  * The client called this "a very important part of the publicly available
  * website, especially for companies that want to integrate Flavor Studio with
- * their existing systems" — so it is a top-level page in the nav rather than a
- * link buried in the footer.
+ * their existing systems". Everything stated here is drawn from what Flavor
+ * Studio already publishes about its API (a full internet-based API exposing
+ * your data over industry standards; the supported route for bulk export).
  *
- * Everything stated here is drawn from what Flavor Studio already publishes
- * about its API (a full internet-based API exposing your data over industry
- * standards; the supported route for bulk export). Deliberately NOT invented:
- * endpoint paths, parameter names, auth scheme specifics, payload shapes and
- * rate limits. Those blocks are marked as awaiting the real reference — see
- * `PendingReference` below — because a plausible-looking but wrong API doc is
- * worse than an honest gap, and integrators will try to build against it.
- *
- * To publish the real thing: supply the OpenAPI/Swagger definition or the
- * current docs export, and these sections render from it.
+ * Deliberately NOT invented: endpoint paths, parameter names, the auth
+ * scheme, payload shapes, rate limits, the webhook event list. Those blocks
+ * are marked as awaiting the real reference (`PendingReference`), because a
+ * plausible-looking but wrong API doc is worse than an honest gap —
+ * integrators will build against it. Supply the OpenAPI/Swagger definition
+ * or the current docs export and these become real content.
  */
 
 export const metadata: Metadata = {
-  title: "Developers",
+  title: "Integrations & API",
   description:
-    "The Flavor Studio API, webhooks and integration options — connect recipes, ingredients, projects and CRM data to your ERP, plant systems and internal tools.",
+    "Connect your ERP, vendors and data to Flavor Studio — a REST API and webhooks over recipes, ingredients, projects and CRM, plus import and export in the formats your partners need.",
 };
+
+/* The systems teams connect. Text chips only: these are systems reached
+   through the API, webhooks and import/export, not logos we own. */
+const ROW_A = [
+  "ERP",
+  "Plex",
+  "NetSuite",
+  "SAP",
+  "QuickBooks",
+  "Microsoft Dynamics",
+  "Shopify",
+  "Zapier",
+  "Slack",
+  "Google Drive",
+  "Dropbox",
+  "OneDrive",
+];
+const ROW_B = [
+  "USDA SR28",
+  "Vendor spec sheets (PDF)",
+  "CSV / Excel",
+  "Word",
+  "Read-only PDF",
+  "JSON",
+  "Encrypted FS format",
+  "Webhooks",
+  "REST API",
+  "Print",
+  "Authenticator apps",
+];
 
 const RESOURCES = [
   {
@@ -74,34 +102,18 @@ const RESOURCES = [
   },
 ];
 
-const INTEGRATIONS = [
-  {
-    icon: "factory-building",
-    title: "ERP and plant systems",
-    body: "Push approved formulas and specs into the system that runs production, and pull cost or inventory data back the other way.",
-  },
-  {
-    icon: "funds",
-    title: "Accounting",
-    body: "Keep ingredient costs aligned with what your accounting package actually says, so margins are calculated off real numbers.",
-  },
-  {
-    icon: "branch-one",
-    title: "Plex and other external systems",
-    body: "Companies running Plex — or any other external system with an accessible interface — can integrate through the API rather than re-keying data.",
-  },
-  {
-    icon: "cloud-storage",
-    title: "Internal tools and data warehouses",
-    body: "The API is also the supported route for bulk export, so your own reporting stack can read from Flavor Studio directly.",
-  },
-];
-
 const WEBHOOK_USES = [
   "Notify your ERP when a formula is approved",
   "Kick off a downstream job when a project passes a stage gate",
   "Sync a costing change into an internal dashboard as it happens",
   "Trigger a document build when a label is regenerated",
+];
+
+const API_POINTS = [
+  "TLS encryption on all API traffic",
+  "Access scoped to your own workspace data",
+  "User privileges and groups respected by the API",
+  "Sign-on IP addresses logged",
 ];
 
 /*
@@ -110,259 +122,212 @@ const WEBHOOK_USES = [
  */
 function PendingReference({ title, needs }: { title: string; needs: string }) {
   return (
-    <div className="rounded-2xl border border-dashed border-gray-300 bg-gray-050 px-[clamp(20px,2.4vw,30px)] py-[clamp(20px,2.4vw,28px)]">
-      <Eyebrow>Awaiting source material</Eyebrow>
-      <div className="mt-[10px] text-[15px] font-bold text-slate-800">
-        {title}
+    <div className="rounded-[var(--radius-md)] border border-dashed border-panel-3 bg-white px-5 py-4">
+      <Eyebrow tone="muted" className="text-[11px]">
+        Awaiting source material
+      </Eyebrow>
+      <div className="mt-2 text-[14px] font-semibold text-ink">{title}</div>
+      <p className="mt-1 text-[13px] leading-[1.6] text-ink-2">{needs}</p>
+    </div>
+  );
+}
+
+/** One row of text chips sliding left (or right); content is doubled so the
+    -50% keyframe loops seamlessly. Pure CSS, paused for reduced motion. */
+function ChipMarquee({
+  items,
+  reverse = false,
+  duration = "60s",
+}: {
+  items: string[];
+  reverse?: boolean;
+  duration?: string;
+}) {
+  const doubled = [...items, ...items];
+  return (
+    <div className="mask-x overflow-hidden py-1.5">
+      <div
+        className={`marquee gap-3 ${reverse ? "marquee-reverse" : ""}`}
+        style={{ "--marquee-duration": duration } as CSSProperties}
+        aria-hidden="true"
+      >
+        {doubled.map((t, i) => (
+          <span key={`${t}-${i}`} className="chip">
+            {t}
+          </span>
+        ))}
       </div>
-      <p className="mt-2 max-w-[62ch] text-[14px] leading-[1.6] text-slate-500">
-        {needs}
-      </p>
     </div>
   );
 }
 
 export default function DevelopersPage() {
   return (
-    <PageShell active="developers">
-      <Block className="relative px-[clamp(28px,3.6vw,64px)] py-[clamp(56px,7vw,96px)]">
-        <HeroBackdrop />
-        <div className="relative mx-auto max-w-[1180px]">
-          <SectionLabel tone="dark">Developers</SectionLabel>
-          <Reveal
-            as="h1"
-            delay={0.06}
-            className="font-display mt-[14px] max-w-[18ch] text-[clamp(36px,4.6vw,60px)] leading-[1.08] font-extrabold tracking-[-0.02em] text-white"
-          >
-            Build Flavor Studio into your stack.
-          </Reveal>
-          <Reveal
-            as="p"
-            delay={0.12}
-            className="mt-[18px] max-w-[58ch] text-[clamp(16px,1.5vw,18px)] leading-[1.65] text-[#aebdd0]"
-          >
+    <PageShell active="product">
+      {/* ------------------------------------------------------------ hero */}
+      <Section className="pt-[clamp(48px,7vw,96px)] pb-[clamp(40px,5vw,64px)]">
+        <Container wide className="text-center">
+          <Headline as="h1" size="hero" className="mx-auto max-w-[18ch]">
+            Connect your ERP, vendors and data{" "}
+            <span className="tail">to Flavor Studio.</span>
+          </Headline>
+          <Lede className="mx-auto mt-5 max-w-[60ch]">
             A full internet-based API exposes your recipes, ingredients,
-            projects and CRM data over industry standards — so Flavor Studio
-            connects to the ERP, accounting package, plant system or internal
-            tool you already run.
+            projects and CRM data over industry standards — and webhooks call
+            your systems when something changes. Whatever you run, it does not
+            have to be re-keyed.
+          </Lede>
+          <Reveal delay={0.1} className="mt-8 flex justify-center">
+            <Button href={routes.contact} size="lg" arrow>
+              Talk to an integration engineer
+            </Button>
           </Reveal>
-          <Reveal delay={0.18} className="mt-8 flex flex-wrap gap-[14px]">
-            <BlueButton href={`mailto:${supportEmail}`}>
-              Request API access
-            </BlueButton>
-            <GhostButton href="#integrations">
-              See integration options
-            </GhostButton>
-          </Reveal>
-        </div>
-      </Block>
+        </Container>
+      </Section>
 
-      {/* ------------------------------------------------------- what it covers */}
-      <Block
-        id="api"
-        className="scroll-mt-[90px] bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(52px,6vw,84px)]"
-      >
-        <div className="mx-auto max-w-[1180px]">
-          <div className="max-w-[640px]">
-            <SectionLabel>The API</SectionLabel>
-            <SectionHeading>What the API exposes.</SectionHeading>
-            <Reveal
-              as="p"
-              delay={0.12}
-              className="mt-[18px] max-w-[60ch] text-[16px] leading-[1.65] text-slate-500"
-            >
-              Everything your team creates in Flavor Studio is reachable
-              programmatically. It is also the easiest route to get your data
-              out — including a one-click JSON download for an individual
-              recipe.
+      {/* --------------------------------------------------------- marquee */}
+      <Section className="pb-[clamp(56px,7vw,110px)]">
+        <Reveal>
+          <ChipMarquee items={ROW_A} duration="55s" />
+          <ChipMarquee items={ROW_B} reverse duration="65s" />
+          <p className="eyebrow eyebrow-muted mt-5 text-center text-[11px]">
+            Systems teams connect through the API, webhooks and import / export
+          </p>
+        </Reveal>
+      </Section>
+
+      {/* ------------------------------------------------------------ tabs */}
+      <Section className="pb-[clamp(64px,8vw,120px)]">
+        <Container wide>
+          <Reveal>
+            <IntegrationTabs />
+          </Reveal>
+        </Container>
+      </Section>
+
+      {/* ---------------------------------------------- custom integrations */}
+      <Section id="api" className="scroll-mt-[90px] pb-[clamp(64px,8vw,120px)]">
+        <Container wide>
+          <div className="mx-auto max-w-[780px] text-center">
+            <Reveal>
+              <Eyebrow className="mb-4">Custom integrations</Eyebrow>
             </Reveal>
+            <Headline size="lg" tail="Flavor Studio API.">
+              Build your own integration with the
+            </Headline>
+            <Lede className="mx-auto mt-4 max-w-[56ch]">
+              Read and write your data from the systems you already run, or have
+              Flavor Studio tell them when something changed.
+            </Lede>
           </div>
 
           <RevealStagger
-            stagger={0.06}
-            delay={0.14}
-            className="mt-[clamp(28px,3.4vw,42px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-[clamp(14px,1.8vw,22px)]"
+            stagger={0.1}
+            className="mt-12 grid gap-4 lg:grid-cols-2"
           >
-            {RESOURCES.map((res) => (
-              <div
-                key={res.title}
-                className={`px-[22px] py-[20px] ${CARD_LIGHT}`}
-              >
-                <Icon name={res.icon} className="text-[22px] text-blue-600" />
-                <div className="mt-3 text-[16px] font-bold text-slate-800">
-                  {res.title}
-                </div>
-                <div className="mt-[6px] text-[14px] leading-[1.55] text-slate-500">
-                  {res.body}
-                </div>
+            <div className="panel flex flex-col p-[clamp(24px,3vw,36px)]">
+              <div className="flex items-center justify-between gap-4">
+                <IconTile name="api" />
+                <span className="chip">Flavor Studio API</span>
               </div>
-            ))}
-          </RevealStagger>
-
-          <Reveal delay={0.2} className="mt-[clamp(26px,3vw,36px)]">
-            <PendingReference
-              title="Full endpoint reference"
-              needs="Resource paths, request and response shapes, query parameters, pagination and error codes are published from the existing API documentation rather than rewritten by hand. Send the OpenAPI/Swagger definition or an export of the current reference and this section becomes a browsable, versioned reference."
-            />
-          </Reveal>
-        </div>
-      </Block>
-
-      {/* ---------------------------------------------------------- auth */}
-      <Block className="bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(52px,6vw,84px)]">
-        <div className="mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] items-start gap-[clamp(30px,4vw,56px)]">
-          <div>
-            <SectionLabel>Authentication &amp; security</SectionLabel>
-            <SectionHeading>Access on your terms.</SectionHeading>
-            <Reveal
-              as="p"
-              delay={0.12}
-              className="mt-[18px] max-w-[54ch] text-[16px] leading-[1.65] text-slate-500"
-            >
-              Formulas are trade secrets, and API access is governed the same
-              way the application is. All traffic is TLS-encrypted, accounts use
-              two-step authentication, and sign-on IP addresses are logged for
-              traceability.
-            </Reveal>
-            <RevealStagger
-              stagger={0.05}
-              delay={0.16}
-              className="mt-5 flex flex-col gap-[10px]"
-            >
-              {[
-                "TLS encryption on all API traffic",
-                "Access scoped to your own workspace data",
-                "User privileges and groups respected by the API",
-                "Sign-on IP addresses logged",
-              ].map((item) => (
-                <div
-                  key={item}
-                  className="flex items-start gap-[10px] text-[14px] leading-[1.55] text-slate-700"
-                >
-                  <Icon
-                    name="check-one"
-                    className="mt-[3px] flex-none text-[15px] text-[#0e8b73]"
-                  />
-                  {item}
-                </div>
-              ))}
-            </RevealStagger>
-          </div>
-
-          <Reveal delay={0.1} className="mt-[clamp(0px,1vw,14px)]">
-            <PendingReference
-              title="Credentials, token flow and rate limits"
-              needs="The exact authentication scheme, how credentials are issued, token lifetime and any rate limiting are documented from the real implementation. We have deliberately not guessed at them here — integrators would build against the guess."
-            />
-          </Reveal>
-        </div>
-      </Block>
-
-      {/* -------------------------------------------------------- webhooks */}
-      <Block
-        id="webhooks"
-        className="scroll-mt-[90px] bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(52px,6vw,84px)]"
-      >
-        <div className="mx-auto max-w-[1180px]">
-          <div className="max-w-[640px]">
-            <SectionLabel>Webhooks</SectionLabel>
-            <SectionHeading>React to changes as they happen.</SectionHeading>
-            <Reveal
-              as="p"
-              delay={0.12}
-              className="mt-[18px] max-w-[60ch] text-[16px] leading-[1.65] text-slate-500"
-            >
-              Rather than polling the API on a schedule, have Flavor Studio call
-              your system when something changes.
-            </Reveal>
-          </div>
-
-          <RevealStagger
-            stagger={0.06}
-            delay={0.14}
-            className="mt-[clamp(24px,3vw,36px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] gap-[14px]"
-          >
-            {WEBHOOK_USES.map((use) => (
-              <div
-                key={use}
-                className={`flex items-start gap-[10px] px-5 py-4 text-[14px] leading-[1.55] text-slate-700 ${CARD_LIGHT}`}
-              >
-                <Icon
-                  name="lightning"
-                  className="mt-[2px] flex-none text-[16px] text-blue-600"
+              <h3 className="font-display mt-6 text-[22px] leading-[1.25] font-bold text-ink">
+                Everything your team creates, reachable programmatically
+              </h3>
+              <p className="mt-3 text-[15px] leading-[1.6] text-ink-2">
+                Formulas are trade secrets, and API access is governed the same
+                way the application is. It is also the easiest route to get your
+                data out — including a one-click JSON download for an individual
+                recipe.
+              </p>
+              <CheckList items={API_POINTS} className="mt-5" />
+              <div className="mt-6 flex flex-col gap-3">
+                <PendingReference
+                  title="Full endpoint reference"
+                  needs="Resource paths, request and response shapes, query parameters, pagination and error codes are published from the existing API documentation rather than rewritten by hand. Send the OpenAPI/Swagger definition or an export of the current reference and this becomes a browsable, versioned reference."
                 />
-                {use}
+                <PendingReference
+                  title="Credentials, token flow and rate limits"
+                  needs="The exact authentication scheme, how credentials are issued, token lifetime and any rate limiting are documented from the real implementation. We have deliberately not guessed at them — integrators would build against the guess."
+                />
               </div>
-            ))}
-          </RevealStagger>
+            </div>
 
-          <Reveal delay={0.2} className="mt-[clamp(24px,3vw,34px)]">
-            <PendingReference
-              title="Event catalogue and payload shapes"
-              needs="The list of subscribable events, their payloads, delivery guarantees, retry behaviour and signature verification come from the implementation. Supply those and this becomes a complete webhook reference."
-            />
-          </Reveal>
-        </div>
-      </Block>
-
-      {/* ---------------------------------------------------- integrations */}
-      <Block
-        id="integrations"
-        className="scroll-mt-[90px] bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(52px,6vw,84px)]"
-      >
-        <div className="mx-auto max-w-[1180px]">
-          <div className="max-w-[640px]">
-            <SectionLabel>Integrations</SectionLabel>
-            <SectionHeading>Fits the systems you already run.</SectionHeading>
-          </div>
-
-          <RevealStagger
-            stagger={0.07}
-            delay={0.12}
-            className="mt-[clamp(28px,3.4vw,42px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,320px),1fr))] gap-[clamp(14px,1.8vw,22px)]"
-          >
-            {INTEGRATIONS.map((item) => (
-              <div
-                key={item.title}
-                className={`px-[24px] py-[22px] ${CARD_LIGHT}`}
-              >
-                <Icon name={item.icon} className="text-[24px] text-blue-600" />
-                <div className="mt-3 text-[16px] font-bold text-slate-800">
-                  {item.title}
-                </div>
-                <div className="mt-2 text-[14px] leading-[1.6] text-slate-500">
-                  {item.body}
-                </div>
-              </div>
-            ))}
-          </RevealStagger>
-
-          <Reveal
-            delay={0.2}
-            className="mt-[clamp(24px,3vw,34px)] text-[14px] leading-[1.65] text-slate-500"
-          >
-            Building something specific? Write to{" "}
-            <a
-              href={`mailto:${contactEmail}`}
-              className="font-bold text-blue-600 hover:text-blue-700"
+            <div
+              id="webhooks"
+              className="panel flex scroll-mt-[90px] flex-col p-[clamp(24px,3vw,36px)]"
             >
-              {contactEmail}
-            </a>{" "}
-            and we will put you in touch with the team that maintains the API.
-          </Reveal>
-        </div>
-      </Block>
+              <div className="flex items-center justify-between gap-4">
+                <IconTile name="lightning" />
+                <span className="chip">Webhooks</span>
+              </div>
+              <h3 className="font-display mt-6 text-[22px] leading-[1.25] font-bold text-ink">
+                React to changes as they happen
+              </h3>
+              <p className="mt-3 text-[15px] leading-[1.6] text-ink-2">
+                Rather than polling the API on a schedule, have Flavor Studio
+                call your system when something changes.
+              </p>
+              <CheckList items={WEBHOOK_USES} className="mt-5" tone="blue" />
+              <div className="mt-6 flex flex-col gap-3">
+                <PendingReference
+                  title="Event catalogue and payload shapes"
+                  needs="The list of subscribable events, their payloads, delivery guarantees, retry behaviour and signature verification come from the implementation. Supply those and this becomes a complete webhook reference."
+                />
+              </div>
+            </div>
+          </RevealStagger>
+        </Container>
+      </Section>
 
-      <CtaBand
-        title="Integrating Flavor Studio?"
-        body="Tell us what you need to connect and we will walk your developers through the API on a call."
-        className="py-[clamp(60px,7vw,100px)]"
-      >
-        <BlueButton href={routes.demo}>Request a demo</BlueButton>
-        <GhostButton href={`mailto:${supportEmail}`}>
-          Email technical support
-        </GhostButton>
-      </CtaBand>
+      {/* ------------------------------------------------------- resources */}
+      <Section className="pb-[clamp(64px,8vw,120px)]">
+        <Container wide>
+          <div className="grid items-end gap-6 lg:grid-cols-[1fr_auto]">
+            <Headline size="md" className="max-w-[20ch]" tail="exposes.">
+              What the API
+            </Headline>
+            <Reveal className="text-[14px] text-ink-2 lg:max-w-[44ch]">
+              Building something specific? Write to{" "}
+              <a
+                href={`mailto:${contactEmail}`}
+                className="font-semibold text-ink"
+              >
+                {contactEmail}
+              </a>{" "}
+              and we will put you in touch with the team that maintains the API.
+            </Reveal>
+          </div>
+          <RevealStagger
+            stagger={0.06}
+            className="hairline-grid mt-10 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {RESOURCES.map((r) => (
+              <div key={r.title} className="p-6">
+                <IconTile name={r.icon} />
+                <h3 className="font-display mt-5 text-[17px] leading-[1.3] font-bold text-ink">
+                  {r.title}
+                </h3>
+                <p className="mt-2 text-[14px] leading-[1.6] text-ink-2">
+                  {r.body}
+                </p>
+              </div>
+            ))}
+          </RevealStagger>
+        </Container>
+      </Section>
+
+      <RainbowCta
+        title="One platform. Your systems. Connected."
+        cta={{ label: "Talk to an integration engineer", href: routes.contact }}
+        note={
+          <>
+            Or email technical support at{" "}
+            <a href={`mailto:${supportEmail}`} className="underline">
+              {supportEmail}
+            </a>
+          </>
+        }
+      />
     </PageShell>
   );
 }

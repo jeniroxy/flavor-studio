@@ -40,8 +40,8 @@ export function PendingAct({
             <p className="mt-4 max-w-[60ch] text-[15px] leading-[1.7] text-ink-2">
               {company} runs on Flavor Studio day to day. The full write-up of
               how they got there — what they were fighting before, how the
-              rollout went, and what changed afterwards — is being prepared
-              with their team.
+              rollout went, and what changed afterwards — is being prepared with
+              their team.
             </p>
             <TextLink href={routes.demo} className="mt-5">
               Ask us how {company} uses it, on a 30-minute call

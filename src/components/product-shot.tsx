@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import { FRAME_DARK, FRAME_LIGHT } from "@/components/layout-primitives";
+import { FRAME_DARK, FRAME_LIGHT } from "@/components/ui";
 import { observeOnce, prefersReducedMotion } from "@/lib/reveal";
 
 /*

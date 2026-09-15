@@ -10,7 +10,14 @@ import { TeamsTabs } from "@/components/home/teams-tabs";
 import { Testimonials } from "@/components/home/testimonials";
 import { PageShell } from "@/components/page-shell";
 import { Reveal } from "@/components/reveal";
-import { Container, FaqHeading, RainbowCta, Section, SecurityStrip, TextLink } from "@/components/ui";
+import {
+  Container,
+  FaqHeading,
+  RainbowCta,
+  Section,
+  SecurityStrip,
+  TextLink,
+} from "@/components/ui";
 import { productAssets } from "@/lib/assets";
 import { homeFaqs } from "@/lib/data";
 import { routes } from "@/lib/routes";
@@ -57,7 +64,12 @@ export default function HomePage() {
       <RainbowCta
         id="demo"
         title="All your formulas, all your people, one platform."
-        image={{ src: shot.src as string, alt: shot.alt, width: shot.width, height: shot.height }}
+        image={{
+          src: shot.src as string,
+          alt: shot.alt,
+          width: shot.width,
+          height: shot.height,
+        }}
       />
     </PageShell>
   );

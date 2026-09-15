@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
-import { CtaBand } from "@/components/cta-band";
-import {
-  Block,
-  BlueButton,
-  CARD_LIGHT,
-  GhostButton,
-  HeroBackdrop,
-  SectionLabel,
-} from "@/components/layout-primitives";
+import { NewsFeed } from "@/components/news/news-feed";
 import { PageShell } from "@/components/page-shell";
-import { Reveal, RevealStagger } from "@/components/reveal";
+import { Reveal } from "@/components/reveal";
+import {
+  Container,
+  Eyebrow,
+  Headline,
+  Lede,
+  RainbowCta,
+  Section,
+} from "@/components/ui";
 import { formatNewsDate, newsEntries } from "@/lib/news";
 import { routes } from "@/lib/routes";
 
@@ -21,96 +21,90 @@ export const metadata: Metadata = {
 
 export default function NewsPage() {
   const entries = [...newsEntries].sort((a, b) => b.date.localeCompare(a.date));
+  const [featured, ...rest] = entries;
 
   return (
-    <PageShell active="news" fill>
-      <Block className="relative px-[clamp(28px,3.6vw,64px)] py-[clamp(56px,7vw,96px)]">
-        <HeroBackdrop />
-        <div className="relative mx-auto max-w-[1180px]">
-          <SectionLabel tone="dark">News</SectionLabel>
-          <Reveal
-            as="h1"
-            delay={0.06}
-            className="font-display mt-[14px] max-w-[18ch] text-[clamp(36px,4.6vw,60px)] leading-[1.08] font-extrabold tracking-[-0.02em] text-white"
-          >
-            What&rsquo;s new in Flavor Studio.
+    <PageShell active="resources" fill>
+      <Section className="pt-[clamp(48px,7vw,96px)] pb-[clamp(32px,4vw,56px)]">
+        <Container wide>
+          <Reveal>
+            <Eyebrow className="mb-4">News</Eyebrow>
           </Reveal>
-          <Reveal
-            as="p"
-            delay={0.12}
-            className="mt-[18px] max-w-[58ch] text-[clamp(16px,1.5vw,18px)] leading-[1.65] text-[#aebdd0]"
+          <Headline
+            as="h1"
+            size="hero"
+            className="max-w-[16ch]"
+            tail="Flavor Studio."
           >
+            What&rsquo;s new in
+          </Headline>
+          <Lede className="mt-4 max-w-[60ch]">
             New modules, improvements to existing features, integrations and
             announcements — published here as they ship, not just the headline
-            releases. Hundreds of changes have landed since the platform
-            launched; this is where they get recorded from now on.
-          </Reveal>
-        </div>
-      </Block>
+            releases.
+          </Lede>
+        </Container>
+      </Section>
 
-      <Block className="flex-1 bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(48px,5.5vw,76px)]">
-        <div className="mx-auto max-w-[820px]">
-          <RevealStagger stagger={0.07} className="flex flex-col gap-[18px]">
-            {entries.map((entry) => (
-              <article
-                key={entry.slug}
-                id={entry.slug}
-                className={`scroll-mt-[90px] px-[clamp(22px,2.8vw,34px)] py-[clamp(20px,2.6vw,30px)] ${CARD_LIGHT}`}
-              >
-                {/* Category and date in one line of small caps. The five
-                    pastel category pills carried no information the word
-                    itself does not. */}
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[12px] font-extrabold tracking-[.12em] text-slate-500 uppercase">
-                  <span>{entry.category}</span>
-                  <span aria-hidden="true" className="text-slate-300">
-                    ·
+      {/* ---------------------------------------------- featured (latest) */}
+      {featured ? (
+        <Section className="pb-[clamp(48px,6vw,80px)]">
+          <Container wide>
+            <Reveal
+              as="article"
+              id={featured.slug}
+              className="panel grid scroll-mt-[90px] gap-8 p-[clamp(24px,3.5vw,48px)] lg:grid-cols-[1.1fr_1fr]"
+            >
+              <div>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span className="chip">{featured.category}</span>
+                  <span className="eyebrow eyebrow-muted text-[11px]">
+                    Latest ·{" "}
+                    <time dateTime={featured.date}>
+                      {formatNewsDate(featured.date)}
+                    </time>
                   </span>
-                  <time dateTime={entry.date} className="font-bold">
-                    {formatNewsDate(entry.date)}
-                  </time>
                 </div>
-                <h2 className="font-display mt-3 text-[clamp(20px,2.2vw,26px)] leading-[1.25] font-extrabold tracking-[-0.01em] text-slate-800">
-                  {entry.title}
+                <h2 className="font-display mt-5 text-[clamp(26px,2.9vw,40px)] leading-[1.15] font-bold tracking-[-0.03em] text-ink">
+                  {featured.title}
                 </h2>
-                <p className="mt-2 text-[15px] leading-[1.65] text-slate-500">
-                  {entry.summary}
+                <p className="mt-4 text-[clamp(16px,1.35vw,18px)] leading-[1.6] text-ink-2">
+                  {featured.summary}
                 </p>
-                <div className="mt-4 flex flex-col gap-3 border-t border-gray-300 pt-4">
-                  {entry.body.map((para, i) => (
-                    <p
-                      key={i}
-                      className="text-[14px] leading-[1.7] text-slate-600"
-                    >
-                      {para}
-                    </p>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </RevealStagger>
+              </div>
+              <div className="flex flex-col gap-4 border-t border-hairline pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+                {featured.body.map((para, i) => (
+                  <p key={i} className="text-[15px] leading-[1.7] text-ink-2">
+                    {para}
+                  </p>
+                ))}
+              </div>
+            </Reveal>
+          </Container>
+        </Section>
+      ) : null}
 
-          <Reveal
-            delay={0.1}
-            className={`mt-8 px-6 py-5 text-[14px] leading-[1.65] text-slate-500 ${CARD_LIGHT}`}
-          >
-            <span className="font-bold text-slate-700">
+      {/* ------------------------------------------------------ the feed */}
+      <Section className="pb-[clamp(64px,8vw,120px)]">
+        <Container wide>
+          <Reveal>
+            <NewsFeed entries={rest.length ? rest : entries} />
+          </Reveal>
+          <Reveal className="mt-8 text-[14px] leading-[1.65] text-ink-2">
+            <span className="font-semibold text-ink">
               Following along as a customer?
             </span>{" "}
             The updates we email to existing users are published here in the
             same structured form — check back, or ask about the changelog during
             your next support conversation.
           </Reveal>
-        </div>
-      </Block>
+        </Container>
+      </Section>
 
-      <CtaBand
-        title="See the newest capabilities live."
-        body="A 30-minute demo covers what's shipped recently alongside the core platform."
-        className="py-[clamp(60px,7vw,100px)]"
-      >
-        <BlueButton href={routes.demo}>Request a demo</BlueButton>
-        <GhostButton href={routes.features}>Explore all modules</GhostButton>
-      </CtaBand>
+      <RainbowCta
+        title="See the newest capabilities live"
+        cta={{ label: "Request a demo", href: routes.demo }}
+      />
     </PageShell>
   );
 }

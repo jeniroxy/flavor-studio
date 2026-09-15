@@ -54,7 +54,9 @@ export function StickyRail({
   }, [items]);
 
   return (
-    <div className={`grid gap-10 lg:grid-cols-[minmax(0,1fr)_200px] ${className}`}>
+    <div
+      className={`grid gap-10 lg:grid-cols-[minmax(0,1fr)_200px] ${className}`}
+    >
       <div className="min-w-0">{children}</div>
       <aside className="hidden lg:block">
         <nav

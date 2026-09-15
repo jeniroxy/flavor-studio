@@ -34,12 +34,36 @@ const TEAMS: Team[] = [
     tail: "without losing the original",
     body: "A live grid for the formula, sub-recipes nested to any depth, and named versions with history — so reformulation is iterative, not destructive.",
     replaces: ["Spreadsheets", "Shared drives", "Sticky notes"],
-    checks: ["Percentages, weight, yield and cost recompute as you type", "Versions compared side by side", "Taste-test results attached to the version they scored"],
+    checks: [
+      "Percentages, weight, yield and cost recompute as you type",
+      "Versions compared side by side",
+      "Taste-test results attached to the version they scored",
+    ],
     modules: [
-      { id: "recipes", label: "Recipes", icon: "chef-hat-one", desc: "The formulation grid" },
-      { id: "ingredients", label: "Ingredients", icon: "leaves", desc: "9,000+ USDA plus yours" },
-      { id: "versions", label: "Versions", icon: "branch-one", desc: "Compare and promote" },
-      { id: "taste-tests", label: "Taste Tests", icon: "experiment", desc: "Panels and surveys" },
+      {
+        id: "recipes",
+        label: "Recipes",
+        icon: "chef-hat-one",
+        desc: "The formulation grid",
+      },
+      {
+        id: "ingredients",
+        label: "Ingredients",
+        icon: "leaves",
+        desc: "9,000+ USDA plus yours",
+      },
+      {
+        id: "versions",
+        label: "Versions",
+        icon: "branch-one",
+        desc: "Compare and promote",
+      },
+      {
+        id: "taste-tests",
+        label: "Taste Tests",
+        icon: "experiment",
+        desc: "Panels and surveys",
+      },
     ],
     href: routes.solution("rd"),
   },
@@ -49,13 +73,41 @@ const TEAMS: Team[] = [
     title: "Labels generated",
     tail: "from the formula itself",
     body: "US FDA and Health Canada panels built from the recipe's own analysed values, with claims checked against the regulation's thresholds.",
-    replaces: ["Standalone label software", "Manual DV maths", "Email approvals"],
-    checks: ["Six layouts, Nutrition or Supplement Facts, US or Canadian", "Nutrient content claims marked qualifying or not", "Vector PDF for packaging, PNG for drafts"],
+    replaces: [
+      "Standalone label software",
+      "Manual DV maths",
+      "Email approvals",
+    ],
+    checks: [
+      "Six layouts, Nutrition or Supplement Facts, US or Canadian",
+      "Nutrient content claims marked qualifying or not",
+      "Vector PDF for packaging, PNG for drafts",
+    ],
     modules: [
-      { id: "labeling", label: "Nutrition labels", icon: "doc-detail", desc: "FDA and Health Canada" },
-      { id: "claims", label: "Content claims", icon: "check-one", desc: "Actual vs threshold" },
-      { id: "designer", label: "Publish Designer", icon: "layout-four", desc: "Spec sheet canvas" },
-      { id: "publishing", label: "Publish & export", icon: "file-pdf-one", desc: "PDF, PNG, print" },
+      {
+        id: "labeling",
+        label: "Nutrition labels",
+        icon: "doc-detail",
+        desc: "FDA and Health Canada",
+      },
+      {
+        id: "claims",
+        label: "Content claims",
+        icon: "check-one",
+        desc: "Actual vs threshold",
+      },
+      {
+        id: "designer",
+        label: "Publish Designer",
+        icon: "layout-four",
+        desc: "Spec sheet canvas",
+      },
+      {
+        id: "publishing",
+        label: "Publish & export",
+        icon: "file-pdf-one",
+        desc: "PDF, PNG, print",
+      },
     ],
     href: routes.solution("regulatory"),
   },
@@ -66,12 +118,36 @@ const TEAMS: Team[] = [
     tail: "not a guess",
     body: "Labour, overhead, packaging and waste defined once for the workspace; batch cost, container cost and retail price move with every edit to the formula.",
     replaces: ["A cost model nobody trusts", "Re-keyed supplier prices"],
-    checks: ["Assumptions grouped into categories you define", "Cost attached to the ingredient, not the recipe", "Margin against a target retail price"],
+    checks: [
+      "Assumptions grouped into categories you define",
+      "Cost attached to the ingredient, not the recipe",
+      "Margin against a target retail price",
+    ],
     modules: [
-      { id: "costing", label: "Costing", icon: "calculator-one", desc: "Assumptions you control" },
-      { id: "ingredients", label: "Ingredients", icon: "leaves", desc: "Supplier and cost data" },
-      { id: "reports", label: "Reports", icon: "chart-histogram", desc: "Costing across versions" },
-      { id: "integrations", label: "Integrations", icon: "plug", desc: "ERP and accounting" },
+      {
+        id: "costing",
+        label: "Costing",
+        icon: "calculator-one",
+        desc: "Assumptions you control",
+      },
+      {
+        id: "ingredients",
+        label: "Ingredients",
+        icon: "leaves",
+        desc: "Supplier and cost data",
+      },
+      {
+        id: "reports",
+        label: "Reports",
+        icon: "chart-histogram",
+        desc: "Costing across versions",
+      },
+      {
+        id: "integrations",
+        label: "Integrations",
+        icon: "plug",
+        desc: "ERP and accounting",
+      },
     ],
     href: routes.solution("costing"),
   },
@@ -81,13 +157,41 @@ const TEAMS: Team[] = [
     title: "The front line,",
     tail: "connected to R&D",
     body: "Opportunities linked to the development project they depend on, sample requests tied to the recipe being sampled, and a builder for the requirement forms customers send you.",
-    replaces: ["A separate CRM", "Requirements in email", "Sample spreadsheets"],
-    checks: ["Customers, contacts, opportunities and contracts in one module", "Customer Requirements Builder with nested question types", "Shipment tracking built in"],
+    replaces: [
+      "A separate CRM",
+      "Requirements in email",
+      "Sample spreadsheets",
+    ],
+    checks: [
+      "Customers, contacts, opportunities and contracts in one module",
+      "Customer Requirements Builder with nested question types",
+      "Shipment tracking built in",
+    ],
     modules: [
-      { id: "crm", label: "CRM", icon: "peoples", desc: "Opportunities to orders" },
-      { id: "cr-builder", label: "CR Builder", icon: "form-one", desc: "Customer requirements" },
-      { id: "projects", label: "Projects", icon: "folder-open", desc: "Stage-gated launches" },
-      { id: "reports", label: "Reports", icon: "chart-histogram", desc: "Opportunity reporting" },
+      {
+        id: "crm",
+        label: "CRM",
+        icon: "peoples",
+        desc: "Opportunities to orders",
+      },
+      {
+        id: "cr-builder",
+        label: "CR Builder",
+        icon: "form-one",
+        desc: "Customer requirements",
+      },
+      {
+        id: "projects",
+        label: "Projects",
+        icon: "folder-open",
+        desc: "Stage-gated launches",
+      },
+      {
+        id: "reports",
+        label: "Reports",
+        icon: "chart-histogram",
+        desc: "Opportunity reporting",
+      },
     ],
     href: routes.solution("sales"),
   },
@@ -98,12 +202,36 @@ const TEAMS: Team[] = [
     tail: "flows back into the formula",
     body: "Internal panels or consumer surveys, blind triangle and preference tests, attribute scores compared across versions — and the results attached to the version they belong to.",
     replaces: ["Paper score sheets", "Survey tools", "Results in a drawer"],
-    checks: ["Purchase intent captured with the scores", "Filtering across tests, tags and verified tags", "Summary, comprehensive and shelf-life reports"],
+    checks: [
+      "Purchase intent captured with the scores",
+      "Filtering across tests, tags and verified tags",
+      "Summary, comprehensive and shelf-life reports",
+    ],
     modules: [
-      { id: "taste-tests", label: "Taste Tests", icon: "experiment", desc: "Panels and surveys" },
-      { id: "versions", label: "Versions", icon: "branch-one", desc: "Tied to the score" },
-      { id: "reports", label: "Reports", icon: "chart-histogram", desc: "Print or PDF" },
-      { id: "projects", label: "Projects", icon: "folder-open", desc: "Tests inside the launch" },
+      {
+        id: "taste-tests",
+        label: "Taste Tests",
+        icon: "experiment",
+        desc: "Panels and surveys",
+      },
+      {
+        id: "versions",
+        label: "Versions",
+        icon: "branch-one",
+        desc: "Tied to the score",
+      },
+      {
+        id: "reports",
+        label: "Reports",
+        icon: "chart-histogram",
+        desc: "Print or PDF",
+      },
+      {
+        id: "projects",
+        label: "Projects",
+        icon: "folder-open",
+        desc: "Tests inside the launch",
+      },
     ],
     href: routes.solution("sensory"),
   },
@@ -114,12 +242,36 @@ const TEAMS: Team[] = [
     tail: "as a fact in the system",
     body: "Stage gates, timelines, logged development time and costing reports — so the questions management asks can be answered from the system instead of assembled by hand.",
     replaces: ["Status meetings", "Slide decks", "Hour estimates"],
-    checks: ["Gantt timeline and board on the same project", "Development time logged against the project", "Reporting templates that keep their shape between runs"],
+    checks: [
+      "Gantt timeline and board on the same project",
+      "Development time logged against the project",
+      "Reporting templates that keep their shape between runs",
+    ],
     modules: [
-      { id: "projects", label: "Projects", icon: "folder-open", desc: "Stage gates" },
-      { id: "timeline", label: "Timeline & board", icon: "calendar-three", desc: "Schedule and cards" },
-      { id: "timesheet", label: "Timesheet", icon: "time", desc: "Hours and expenses" },
-      { id: "admin", label: "Administration", icon: "setting-two", desc: "Roles and security" },
+      {
+        id: "projects",
+        label: "Projects",
+        icon: "folder-open",
+        desc: "Stage gates",
+      },
+      {
+        id: "timeline",
+        label: "Timeline & board",
+        icon: "calendar-three",
+        desc: "Schedule and cards",
+      },
+      {
+        id: "timesheet",
+        label: "Timesheet",
+        icon: "time",
+        desc: "Hours and expenses",
+      },
+      {
+        id: "admin",
+        label: "Administration",
+        icon: "setting-two",
+        desc: "Roles and security",
+      },
     ],
     href: routes.enterprise,
   },
@@ -152,7 +304,9 @@ export function TeamsTabs() {
                 <Headline as="h3" size="md" tail={team.tail} reveal={false}>
                   {team.title}
                 </Headline>
-                <p className="mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-ink-2">{team.body}</p>
+                <p className="mt-4 max-w-[52ch] text-[17px] leading-[1.6] text-ink-2">
+                  {team.body}
+                </p>
                 <div className="mt-6 flex flex-wrap items-center gap-2">
                   <span className="eyebrow eyebrow-muted mr-1">Replaces</span>
                   {team.replaces.map((r) => (
@@ -174,13 +328,23 @@ export function TeamsTabs() {
                       <Icon name={m.icon} />
                     </span>
                     <span className="min-w-0">
-                      <span className="block text-[15px] font-semibold text-ink">{m.label}</span>
-                      <span className="block text-[13px] text-ink-2">{m.desc}</span>
+                      <span className="block text-[15px] font-semibold text-ink">
+                        {m.label}
+                      </span>
+                      <span className="block text-[13px] text-ink-2">
+                        {m.desc}
+                      </span>
                     </span>
-                    <Icon name="arrow-right" className="ml-auto text-[16px] text-ink-3" />
+                    <Icon
+                      name="arrow-right"
+                      className="ml-auto text-[16px] text-ink-3"
+                    />
                   </Link>
                 ))}
-                <Link href={team.href} className="btn btn-primary btn-sm mt-1 self-start">
+                <Link
+                  href={team.href}
+                  className="btn btn-primary btn-sm mt-1 self-start"
+                >
                   Explore solution
                   <Icon name="arrow-right" />
                 </Link>

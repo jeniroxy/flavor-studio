@@ -100,9 +100,7 @@ export function FeaturedCarousel({
             gap: "var(--gap)",
             marginLeft: "calc(var(--cw) / -2)",
             transform: `translateX(calc(${-index} * (var(--cw) + var(--gap))))`,
-            transition: reduced
-              ? "none"
-              : "transform .6s var(--ease-out-soft)",
+            transition: reduced ? "none" : "transform .6s var(--ease-out-soft)",
           }}
         >
           {items.map((t, i) => {

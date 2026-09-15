@@ -30,7 +30,9 @@ export function FaqAccordion({
   const dark = tone === "dark";
 
   return (
-    <div className={`border-t ${dark ? "border-hairline-dark" : "border-hairline"} ${className}`}>
+    <div
+      className={`border-t ${dark ? "border-hairline-dark" : "border-hairline"} ${className}`}
+    >
       {items.map((item, i) => {
         const isOpen = open === i;
         return (

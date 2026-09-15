@@ -17,7 +17,7 @@ brand. The two teardowns that drive it are in `docs/research/`:
 2. **Real product only.** Screenshots come from `src/lib/assets.ts` and
    `src/lib/flows.ts` (exports from the application design file). Nutrition
    labels are the engine's own PNG. No hand-drawn mock UI that pretends to be
-   the app. DOM-built *animated* mocks are fine when they are clearly a motion
+   the app. DOM-built _animated_ mocks are fine when they are clearly a motion
    device (the hero list-view, the chat transcript), not a screenshot.
 3. **No invented numbers.** No ROI percentages, review counts, badges, hours
    saved, customer counts. The four facts we can state: **9,000+** USDA SR28
@@ -37,18 +37,18 @@ brand. The two teardowns that drive it are in `docs/research/`:
 
 ## Visual language (ClickUp → Flavor Studio)
 
-| ClickUp                              | Flavor Studio v2                                             |
-| ------------------------------------ | ------------------------------------------------------------ |
-| Plus Jakarta Sans / Inter / mono     | same: `font-display`, default sans, `.eyebrow` (JetBrains)   |
-| `#202020` text, `#646464` secondary  | `text-ink`, `text-ink-2`, `text-ink-3`                       |
-| `#f7f7f9` panels, `#e8e8e8` hairline | `.panel`, `.card`, `.hairline-grid`, `border-hairline`       |
-| Black primary button, grey secondary | `.btn.btn-primary`, `.btn-secondary`, `.btn-inverse`         |
-| Indigo eyebrow, green on dark        | blue-700 eyebrow, lime-400 on dark (`.on-dark`)              |
-| Headline tail in grey                | `<Headline tail="…">`                                        |
-| black→purple→pink banner             | navy→blue gradient `GradientBanner` (`--grad-banner`)        |
-| rainbow final CTA                    | lime→teal→blue `RainbowCta` (`--grad-cta`)                   |
-| Brain² pure-black act                | `bg-night` + `.on-dark`, lime mono accents                   |
-| Radix curtain mega menu              | `site-nav.tsx` (menus in `lib/nav.ts`)                       |
+| ClickUp                              | Flavor Studio v2                                           |
+| ------------------------------------ | ---------------------------------------------------------- |
+| Plus Jakarta Sans / Inter / mono     | same: `font-display`, default sans, `.eyebrow` (JetBrains) |
+| `#202020` text, `#646464` secondary  | `text-ink`, `text-ink-2`, `text-ink-3`                     |
+| `#f7f7f9` panels, `#e8e8e8` hairline | `.panel`, `.card`, `.hairline-grid`, `border-hairline`     |
+| Black primary button, grey secondary | `.btn.btn-primary`, `.btn-secondary`, `.btn-inverse`       |
+| Indigo eyebrow, green on dark        | blue-700 eyebrow, lime-400 on dark (`.on-dark`)            |
+| Headline tail in grey                | `<Headline tail="…">`                                      |
+| black→purple→pink banner             | navy→blue gradient `GradientBanner` (`--grad-banner`)      |
+| rainbow final CTA                    | lime→teal→blue `RainbowCta` (`--grad-cta`)                 |
+| Brain² pure-black act                | `bg-night` + `.on-dark`, lime mono accents                 |
+| Radix curtain mega menu              | `site-nav.tsx` (menus in `lib/nav.ts`)                     |
 
 All primitives: `src/components/ui.tsx`. Tokens and classes: `globals.css`.
 Reveal: `Reveal` / `RevealStagger` from `components/reveal.tsx`. GSAP +
@@ -57,22 +57,22 @@ Lenis; register ScrollTrigger in any client component that pins).
 
 ## Site map
 
-| Route                      | Template (research §)                | Nav key      |
-| -------------------------- | ------------------------------------ | ------------ |
-| `/`                        | home (home §2)                       | `""`         |
-| `/features`                | features index (pages §2)            | `product`    |
-| `/features/[id]`           | feature Template A (pages §1)        | `product`    |
-| `/ai-agent`                | Brain² dark page (pages §3a)         | `agent`      |
-| `/solutions`               | teams hub (pages §6)                 | `solutions`  |
-| `/solutions/[slug]`        | Template A with team copy + tab suite| `solutions`  |
-| `/enterprise`              | enterprise (pages §6)                | `enterprise` |
-| `/developers`              | integrations page (pages §6)         | `product`    |
-| `/pricing`                 | pricing (pages §4)                   | `pricing`    |
-| `/customers`               | customers index (pages §5)           | `resources`  |
-| `/success-stories`         | story grid                           | `resources`  |
-| `/success-stories/[slug]`  | case study (pages §5)                | `resources`  |
-| `/request-demo`, `/contact`| contact-sales split screen (pages §6)| `resources`  |
-| `/faq`, `/news`, `/privacy`| simple templates                     | `resources`  |
+| Route                       | Template (research §)                 | Nav key      |
+| --------------------------- | ------------------------------------- | ------------ |
+| `/`                         | home (home §2)                        | `""`         |
+| `/features`                 | features index (pages §2)             | `product`    |
+| `/features/[id]`            | feature Template A (pages §1)         | `product`    |
+| `/ai-agent`                 | Brain² dark page (pages §3a)          | `agent`      |
+| `/solutions`                | teams hub (pages §6)                  | `solutions`  |
+| `/solutions/[slug]`         | Template A with team copy + tab suite | `solutions`  |
+| `/enterprise`               | enterprise (pages §6)                 | `enterprise` |
+| `/developers`               | integrations page (pages §6)          | `product`    |
+| `/pricing`                  | pricing (pages §4)                    | `pricing`    |
+| `/customers`                | customers index (pages §5)            | `resources`  |
+| `/success-stories`          | story grid                            | `resources`  |
+| `/success-stories/[slug]`   | case study (pages §5)                 | `resources`  |
+| `/request-demo`, `/contact` | contact-sales split screen (pages §6) | `resources`  |
+| `/faq`, `/news`, `/privacy` | simple templates                      | `resources`  |
 
 Module ids (18): recipes, ingredients, costing, versions, labeling, claims,
 designer, taste-tests, projects, timeline, board, timesheet, reports, crm,

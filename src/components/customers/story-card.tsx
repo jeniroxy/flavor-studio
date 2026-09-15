@@ -39,14 +39,20 @@ export function StoryCard({
     >
       <div
         className={`relative overflow-hidden ${
-          wide ? "aspect-[16/10] md:aspect-auto md:min-h-[300px]" : "h-[200px] lg:h-[220px]"
+          wide
+            ? "aspect-[16/10] md:aspect-auto md:min-h-[300px]"
+            : "h-[200px] lg:h-[220px]"
         }`}
       >
         <Image
           src={story.img}
           alt={story.imgAlt}
           fill
-          sizes={wide ? "(max-width: 768px) 100vw, 600px" : "(max-width: 768px) 100vw, 540px"}
+          sizes={
+            wide
+              ? "(max-width: 768px) 100vw, 600px"
+              : "(max-width: 768px) 100vw, 540px"
+          }
           className="object-cover transition-transform duration-700 ease-[var(--ease-out-soft)]"
         />
         <div
@@ -68,7 +74,9 @@ export function StoryCard({
         </div>
       </div>
 
-      <div className={`relative flex flex-1 flex-col ${wide ? "p-[clamp(24px,3vw,40px)]" : "p-6"}`}>
+      <div
+        className={`relative flex flex-1 flex-col ${wide ? "p-[clamp(24px,3vw,40px)]" : "p-6"}`}
+      >
         <span
           aria-hidden="true"
           className="font-display pointer-events-none absolute top-3 right-5 text-[96px] leading-none font-bold text-ink/[.06] select-none"
@@ -78,7 +86,9 @@ export function StoryCard({
         <Eyebrow className="text-[12px]">{story.eyebrow}</Eyebrow>
         <h3
           className={`font-display mt-3 max-w-[30ch] font-bold tracking-[-0.02em] text-ink ${
-            wide ? "text-[clamp(22px,2.4vw,30px)] leading-[1.2]" : "text-[19px] leading-[1.3]"
+            wide
+              ? "text-[clamp(22px,2.4vw,30px)] leading-[1.2]"
+              : "text-[19px] leading-[1.3]"
           }`}
         >
           {story.title}
@@ -120,7 +130,10 @@ export function StoryGrid({
   className?: string;
 }) {
   return (
-    <RevealStagger stagger={0.08} className={`grid gap-6 md:grid-cols-2 ${className}`}>
+    <RevealStagger
+      stagger={0.08}
+      className={`grid gap-6 md:grid-cols-2 ${className}`}
+    >
       {stories.map((story) => (
         <div key={story.slug} className="flex">
           <StoryCard story={story} prefer={prefer} className="w-full" />

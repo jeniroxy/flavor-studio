@@ -132,8 +132,14 @@ export default async function StoryDetailPage({
               </p>
               <dl className="hairline-grid mt-6 sm:grid-cols-2">
                 {facts.map((f) => (
-                  <div key={f.label} className="flex items-center gap-3 px-4 py-3">
-                    <Icon name={f.icon} className="shrink-0 text-[18px] text-blue-700" />
+                  <div
+                    key={f.label}
+                    className="flex items-center gap-3 px-4 py-3"
+                  >
+                    <Icon
+                      name={f.icon}
+                      className="shrink-0 text-[18px] text-blue-700"
+                    />
                     <div className="eyebrow eyebrow-muted text-[11px]">
                       <dt className="inline">{f.label}: </dt>
                       <dd className="inline text-ink">{f.value}</dd>
@@ -168,7 +174,10 @@ export default async function StoryDetailPage({
               {hasBody
                 ? sections.map((section, i) => (
                     <div key={section.heading} className="contents">
-                      <section id={`section-${i + 1}`} className="scroll-mt-[120px]">
+                      <section
+                        id={`section-${i + 1}`}
+                        className="scroll-mt-[120px]"
+                      >
                         <Reveal
                           as="h3"
                           className="font-display max-w-[24ch] text-[clamp(24px,2.6vw,32px)] leading-[1.2] font-bold tracking-[-0.02em]"

@@ -21,19 +21,19 @@ node scripts/qa-overflow.mjs / 390               # list elements wider than the 
 
 ## Pages
 
-| Route                     | Template                                                   |
-| ------------------------- | ---------------------------------------------------------- |
-| `/`                       | Home — hero tab strip, feature wall, teams tabs, AI act     |
-| `/features`               | Features index — bento, sticky category rail, card wall     |
-| `/features/[id]`          | One page per module (`src/lib/feature-pages.ts`)           |
-| `/ai-agent`               | The AI Agent — dark cinematic page                          |
-| `/solutions`, `/solutions/[slug]` | By team / company / industry (`src/lib/solutions.ts`) |
-| `/enterprise`             | Enterprise                                                  |
-| `/developers`             | Integrations & API                                          |
-| `/pricing`                | Plan table, feature comparison, FAQ                         |
-| `/customers`, `/success-stories`, `/success-stories/[slug]` | Testimonials and stories |
-| `/request-demo`, `/contact` | Split-screen form (same form, distinct intent)            |
-| `/news`, `/faq`, `/privacy` | Simple templates                                          |
+| Route                                                       | Template                                                |
+| ----------------------------------------------------------- | ------------------------------------------------------- |
+| `/`                                                         | Home — hero tab strip, feature wall, teams tabs, AI act |
+| `/features`                                                 | Features index — bento, sticky category rail, card wall |
+| `/features/[id]`                                            | One page per module (`src/lib/feature-pages.ts`)        |
+| `/ai-agent`                                                 | The AI Agent — dark cinematic page                      |
+| `/solutions`, `/solutions/[slug]`                           | By team / company / industry (`src/lib/solutions.ts`)   |
+| `/enterprise`                                               | Enterprise                                              |
+| `/developers`                                               | Integrations & API                                      |
+| `/pricing`                                                  | Plan table, feature comparison, FAQ                     |
+| `/customers`, `/success-stories`, `/success-stories/[slug]` | Testimonials and stories                                |
+| `/request-demo`, `/contact`                                 | Split-screen form (same form, distinct intent)          |
+| `/news`, `/faq`, `/privacy`                                 | Simple templates                                        |
 
 `SiteNav` (mega menu; items in `src/lib/nav.ts`) and `SiteFooter` are composed
 by `page-shell.tsx` on every page.
@@ -92,4 +92,3 @@ Two exceptions: LinkedIn has no Icon Park glyph, so the brand mark is inlined in
   Everything under `public/assets` is the real artwork from the bundle.
 - **Forms do not submit.** The demo request form and the sign-in form validate
   and show a confirmation state client-side only; there is no backend.
-

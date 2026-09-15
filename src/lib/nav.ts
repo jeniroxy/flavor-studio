@@ -54,44 +54,112 @@ export const menus: Menu[] = [
       {
         heading: "Formulate",
         items: [
-          { label: "Recipes", href: routes.feature("recipes"), icon: "chef-hat-one" },
-          { label: "Ingredients", href: routes.feature("ingredients"), icon: "leaves" },
-          { label: "Costing", href: routes.feature("costing"), icon: "calculator-one" },
-          { label: "Versions", href: routes.feature("versions"), icon: "branch-one" },
+          {
+            label: "Recipes",
+            href: routes.feature("recipes"),
+            icon: "chef-hat-one",
+          },
+          {
+            label: "Ingredients",
+            href: routes.feature("ingredients"),
+            icon: "leaves",
+          },
+          {
+            label: "Costing",
+            href: routes.feature("costing"),
+            icon: "calculator-one",
+          },
+          {
+            label: "Versions",
+            href: routes.feature("versions"),
+            icon: "branch-one",
+          },
         ],
       },
       {
         heading: "Comply",
         items: [
-          { label: "Nutrition labels", href: routes.feature("labeling"), icon: "doc-detail" },
-          { label: "Nutrient content claims", href: routes.feature("claims"), icon: "check-one" },
-          { label: "Publish Designer", href: routes.feature("designer"), icon: "layout-four" },
-          { label: "Publishing & export", href: routes.feature("publishing"), icon: "file-pdf-one" },
+          {
+            label: "Nutrition labels",
+            href: routes.feature("labeling"),
+            icon: "doc-detail",
+          },
+          {
+            label: "Nutrient content claims",
+            href: routes.feature("claims"),
+            icon: "check-one",
+          },
+          {
+            label: "Publish Designer",
+            href: routes.feature("designer"),
+            icon: "layout-four",
+          },
+          {
+            label: "Publishing & export",
+            href: routes.feature("publishing"),
+            icon: "file-pdf-one",
+          },
         ],
       },
       {
         heading: "Run",
         items: [
-          { label: "Projects", href: routes.feature("projects"), icon: "folder-open" },
-          { label: "Timeline & board", href: routes.feature("timeline"), icon: "calendar-three" },
-          { label: "Taste Tests", href: routes.feature("taste-tests"), icon: "experiment" },
-          { label: "Timesheet & reports", href: routes.feature("timesheet"), icon: "time" },
+          {
+            label: "Projects",
+            href: routes.feature("projects"),
+            icon: "folder-open",
+          },
+          {
+            label: "Timeline & board",
+            href: routes.feature("timeline"),
+            icon: "calendar-three",
+          },
+          {
+            label: "Taste Tests",
+            href: routes.feature("taste-tests"),
+            icon: "experiment",
+          },
+          {
+            label: "Timesheet & reports",
+            href: routes.feature("timesheet"),
+            icon: "time",
+          },
         ],
       },
       {
         heading: "Sell",
         items: [
           { label: "CRM", href: routes.feature("crm"), icon: "peoples" },
-          { label: "Customer Requirements", href: routes.feature("cr-builder"), icon: "form-one" },
-          { label: "Reports", href: routes.feature("reports"), icon: "chart-histogram" },
-          { label: "Administration", href: routes.feature("admin"), icon: "setting-two" },
+          {
+            label: "Customer Requirements",
+            href: routes.feature("cr-builder"),
+            icon: "form-one",
+          },
+          {
+            label: "Reports",
+            href: routes.feature("reports"),
+            icon: "chart-histogram",
+          },
+          {
+            label: "Administration",
+            href: routes.feature("admin"),
+            icon: "setting-two",
+          },
         ],
       },
       {
         heading: "More",
         items: [
-          { label: "All features", href: routes.features, icon: "all-application" },
-          { label: "Integrations & API", href: routes.developers, icon: "plug" },
+          {
+            label: "All features",
+            href: routes.features,
+            icon: "all-application",
+          },
+          {
+            label: "Integrations & API",
+            href: routes.developers,
+            icon: "plug",
+          },
           { label: "AI Agent", href: routes.agent, icon: "robot" },
           { label: "Request a demo", href: routes.demo, icon: "play" },
         ],
@@ -177,8 +245,14 @@ export const menus: Menu[] = [
         heading: "Teams",
         items: [
           { label: "R&D and formulation", href: routes.solution("rd") },
-          { label: "Regulatory and labeling", href: routes.solution("regulatory") },
-          { label: "Costing and procurement", href: routes.solution("costing") },
+          {
+            label: "Regulatory and labeling",
+            href: routes.solution("regulatory"),
+          },
+          {
+            label: "Costing and procurement",
+            href: routes.solution("costing"),
+          },
           { label: "Sales and account teams", href: routes.solution("sales") },
           { label: "Sensory and QA", href: routes.solution("sensory") },
         ],
@@ -197,9 +271,18 @@ export const menus: Menu[] = [
         heading: "Industries",
         items: [
           { label: "Flavor and fragrance", href: routes.solution("flavor") },
-          { label: "Food science programs", href: routes.solution("education") },
-          { label: "Sensory and research agencies", href: routes.solution("research") },
-          { label: "Dieticians and nutritionists", href: routes.solution("nutrition") },
+          {
+            label: "Food science programs",
+            href: routes.solution("education"),
+          },
+          {
+            label: "Sensory and research agencies",
+            href: routes.solution("research"),
+          },
+          {
+            label: "Dieticians and nutritionists",
+            href: routes.solution("nutrition"),
+          },
         ],
         more: { label: "See all industries", href: routes.solutions },
       },

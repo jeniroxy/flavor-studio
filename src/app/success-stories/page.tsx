@@ -36,7 +36,13 @@ export default function SuccessStoriesPage() {
           <Reveal>
             <Eyebrow>Success stories</Eyebrow>
           </Reveal>
-          <Headline as="h1" size="hero" className="mt-4 max-w-[14ch]" tail="Flavor Studio." delay={0.05}>
+          <Headline
+            as="h1"
+            size="hero"
+            className="mt-4 max-w-[14ch]"
+            tail="Flavor Studio."
+            delay={0.05}
+          >
             Better products, built on
           </Headline>
           <Lede className="mt-5 max-w-[52ch]">
@@ -44,7 +50,10 @@ export default function SuccessStoriesPage() {
             with Flavor Studio.
           </Lede>
 
-          <RevealStagger stagger={0.1} className="mt-[clamp(40px,5vw,64px)] flex flex-col gap-6">
+          <RevealStagger
+            stagger={0.1}
+            className="mt-[clamp(40px,5vw,64px)] flex flex-col gap-6"
+          >
             {stories.map((story) => (
               <div key={story.slug}>
                 <StoryCard story={story} layout="wide" />

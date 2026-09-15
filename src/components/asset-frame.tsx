@@ -1,11 +1,6 @@
 import Image from "next/image";
 import { Icon } from "@/components/icon";
-import {
-  Caption,
-  Eyebrow,
-  FRAME_DARK,
-  FRAME_LIGHT,
-} from "@/components/layout-primitives";
+import { Caption, Eyebrow, FRAME_DARK, FRAME_LIGHT } from "@/components/ui";
 import { ProductShot, type ShotFocus } from "@/components/product-shot";
 
 /*
@@ -112,7 +107,7 @@ export function AssetFrame({
           name={kind === "label" ? "doc-detail" : "all-application"}
           className="text-[26px] opacity-70"
         />
-        <Eyebrow tone={tone}>
+        <Eyebrow tone={tone === "dark" ? "dark" : "muted"}>
           {kind === "label" ? "Generated label" : "Product screenshot"}
         </Eyebrow>
         <div className={`max-w-[38ch] text-[14px] font-bold ${strong}`}>

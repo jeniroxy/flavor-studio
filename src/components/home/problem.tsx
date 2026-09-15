@@ -49,11 +49,15 @@ export function Problem() {
             A formula lives in five places —
           </Headline>
           <Lede className="mx-auto mt-4 max-w-[560px]">
-            Spreadsheets, supplier PDFs, email threads and a label tool that never talks to costing.
+            Spreadsheets, supplier PDFs, email threads and a label tool that
+            never talks to costing.
           </Lede>
         </div>
 
-        <Reveal delay={0.1} className="mt-[clamp(32px,4vw,56px)] overflow-hidden rounded-[16px] border border-hairline bg-panel">
+        <Reveal
+          delay={0.1}
+          className="mt-[clamp(32px,4vw,56px)] overflow-hidden rounded-[16px] border border-hairline bg-panel"
+        >
           <div className="relative aspect-[1224/350] min-h-[260px]">
             <svg
               aria-hidden="true"
@@ -102,11 +106,18 @@ export function Problem() {
               </div>
             ))}
           </div>
-          <RevealStagger stagger={0.08} className="grid gap-px border-t border-hairline bg-hairline md:grid-cols-3">
+          <RevealStagger
+            stagger={0.08}
+            className="grid gap-px border-t border-hairline bg-hairline md:grid-cols-3"
+          >
             {COLUMNS.map((c) => (
               <div key={c.title} className="bg-panel p-6">
-                <div className="font-display text-[20px] font-bold text-ink">{c.title}</div>
-                <p className="mt-2 text-[14px] leading-[1.55] text-ink-2">{c.body}</p>
+                <div className="font-display text-[20px] font-bold text-ink">
+                  {c.title}
+                </div>
+                <p className="mt-2 text-[14px] leading-[1.55] text-ink-2">
+                  {c.body}
+                </p>
               </div>
             ))}
           </RevealStagger>

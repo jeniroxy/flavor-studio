@@ -114,12 +114,42 @@
 
   /* Brand gradients. ClickUp's are blue→pink→orange→purple; ours run the
      app's own hues: navy → sky → teal → lime. */
-  --grad-rainbow: linear-gradient(100deg, #2060a6, #59a3eb 40%, #18bc9c 70%, #8cd135);
-  --grad-conic: conic-gradient(from 0deg, #59a3eb, #18bc9c, #8cd135, #2060a6, #59a3eb);
-  --grad-banner: linear-gradient(105deg, #0a0c10 0%, #1a2a44 38%, #2060a6 70%, #59a3eb 100%);
-  --grad-cta: radial-gradient(ellipse 132% 74% at 96% 1%, #8cd135 12%, #18bc9c 42%, #2f8ee0 72%, #2060a6 100%);
+  --grad-rainbow: linear-gradient(
+    100deg,
+    #2060a6,
+    #59a3eb 40%,
+    #18bc9c 70%,
+    #8cd135
+  );
+  --grad-conic: conic-gradient(
+    from 0deg,
+    #59a3eb,
+    #18bc9c,
+    #8cd135,
+    #2060a6,
+    #59a3eb
+  );
+  --grad-banner: linear-gradient(
+    105deg,
+    #0a0c10 0%,
+    #1a2a44 38%,
+    #2060a6 70%,
+    #59a3eb 100%
+  );
+  --grad-cta: radial-gradient(
+    ellipse 132% 74% at 96% 1%,
+    #8cd135 12%,
+    #18bc9c 42%,
+    #2f8ee0 72%,
+    #2060a6 100%
+  );
   --grad-fade: linear-gradient(98deg, #202020 0%, #202020 38%, #8f8f8f 100%);
-  --grad-fade-dark: linear-gradient(98deg, #ffffff 0%, #ffffff 34%, #8f8f8f 100%);
+  --grad-fade-dark: linear-gradient(
+    98deg,
+    #ffffff 0%,
+    #ffffff 34%,
+    #8f8f8f 100%
+  );
 }
 
 @layer base {
@@ -259,16 +289,52 @@
 
   /* Edge fades for walls and marquees. */
   .mask-x {
-    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 10%,
+      #000 90%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      #000 10%,
+      #000 90%,
+      transparent
+    );
   }
   .mask-xy {
     mask-image:
-      linear-gradient(90deg, transparent 2%, #000 12%, #000 88%, transparent 98%),
-      linear-gradient(180deg, transparent 4%, #000 16%, #000 86%, transparent 96%);
+      linear-gradient(
+        90deg,
+        transparent 2%,
+        #000 12%,
+        #000 88%,
+        transparent 98%
+      ),
+      linear-gradient(
+        180deg,
+        transparent 4%,
+        #000 16%,
+        #000 86%,
+        transparent 96%
+      );
     -webkit-mask-image:
-      linear-gradient(90deg, transparent 2%, #000 12%, #000 88%, transparent 98%),
-      linear-gradient(180deg, transparent 4%, #000 16%, #000 86%, transparent 96%);
+      linear-gradient(
+        90deg,
+        transparent 2%,
+        #000 12%,
+        #000 88%,
+        transparent 98%
+      ),
+      linear-gradient(
+        180deg,
+        transparent 4%,
+        #000 16%,
+        #000 86%,
+        transparent 96%
+      );
     mask-composite: intersect;
     -webkit-mask-composite: source-in;
   }

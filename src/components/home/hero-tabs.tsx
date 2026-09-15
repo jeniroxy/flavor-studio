@@ -25,18 +25,89 @@ type Tab = {
 };
 
 const TABS: Tab[] = [
-  { id: "recipes", label: "Recipes", icon: "chef-hat-one", href: routes.feature("recipes") },
-  { id: "ingredients", label: "Ingredients", icon: "leaves", href: routes.feature("ingredients"), shot: productAssets.ingredientLibrary },
-  { id: "costing", label: "Costing", icon: "calculator-one", href: routes.feature("costing"), shot: productAssets.recipeCost },
-  { id: "labeling", label: "Nutrition labels", icon: "doc-detail", href: routes.feature("labeling"), shot: productAssets.nutritionLabelFormats },
-  { id: "claims", label: "Content claims", icon: "check-one", href: routes.feature("claims"), shot: productAssets.nutrientClaims },
-  { id: "designer", label: "Publish Designer", icon: "layout-four", href: routes.feature("designer"), shot: productAssets.labelDesigner },
-  { id: "taste-tests", label: "Taste Tests", icon: "experiment", href: routes.feature("taste-tests"), shot: productAssets.tasteTests },
-  { id: "timesheet", label: "Timesheet", icon: "time", href: routes.feature("timesheet"), shot: productAssets.timesheet },
-  { id: "reports", label: "Reports", icon: "chart-histogram", href: routes.feature("reports"), shot: productAssets.reports },
-  { id: "cr-builder", label: "CRM & requirements", icon: "form-one", href: routes.feature("cr-builder"), shot: productAssets.crBuilder },
-  { id: "publishing", label: "Publish & export", icon: "file-pdf-one", href: routes.feature("publishing"), shot: productAssets.publishExport },
-  { id: "agent", label: "AI Agent", icon: "robot", href: routes.agent, shot: productAssets.aiAgent },
+  {
+    id: "recipes",
+    label: "Recipes",
+    icon: "chef-hat-one",
+    href: routes.feature("recipes"),
+  },
+  {
+    id: "ingredients",
+    label: "Ingredients",
+    icon: "leaves",
+    href: routes.feature("ingredients"),
+    shot: productAssets.ingredientLibrary,
+  },
+  {
+    id: "costing",
+    label: "Costing",
+    icon: "calculator-one",
+    href: routes.feature("costing"),
+    shot: productAssets.recipeCost,
+  },
+  {
+    id: "labeling",
+    label: "Nutrition labels",
+    icon: "doc-detail",
+    href: routes.feature("labeling"),
+    shot: productAssets.nutritionLabelFormats,
+  },
+  {
+    id: "claims",
+    label: "Content claims",
+    icon: "check-one",
+    href: routes.feature("claims"),
+    shot: productAssets.nutrientClaims,
+  },
+  {
+    id: "designer",
+    label: "Publish Designer",
+    icon: "layout-four",
+    href: routes.feature("designer"),
+    shot: productAssets.labelDesigner,
+  },
+  {
+    id: "taste-tests",
+    label: "Taste Tests",
+    icon: "experiment",
+    href: routes.feature("taste-tests"),
+    shot: productAssets.tasteTests,
+  },
+  {
+    id: "timesheet",
+    label: "Timesheet",
+    icon: "time",
+    href: routes.feature("timesheet"),
+    shot: productAssets.timesheet,
+  },
+  {
+    id: "reports",
+    label: "Reports",
+    icon: "chart-histogram",
+    href: routes.feature("reports"),
+    shot: productAssets.reports,
+  },
+  {
+    id: "cr-builder",
+    label: "CRM & requirements",
+    icon: "form-one",
+    href: routes.feature("cr-builder"),
+    shot: productAssets.crBuilder,
+  },
+  {
+    id: "publishing",
+    label: "Publish & export",
+    icon: "file-pdf-one",
+    href: routes.feature("publishing"),
+    shot: productAssets.publishExport,
+  },
+  {
+    id: "agent",
+    label: "AI Agent",
+    icon: "robot",
+    href: routes.agent,
+    shot: productAssets.aiAgent,
+  },
 ];
 
 export function HeroTabs() {
@@ -64,12 +135,16 @@ export function HeroTabs() {
                   aria-selected={on}
                   onClick={() => setActive(tab.id)}
                   className={`flex shrink-0 items-center gap-2 rounded-[8px] px-3 py-2 text-left text-[14px] font-semibold whitespace-nowrap transition-colors ${
-                    on ? "bg-blue-100 text-blue-700" : "text-ink-2 hover:bg-panel hover:text-ink"
+                    on
+                      ? "bg-blue-100 text-blue-700"
+                      : "text-ink-2 hover:bg-panel hover:text-ink"
                   }`}
                 >
                   <span
                     className={`flex h-5 w-5 items-center justify-center rounded-full text-[12px] ${
-                      on ? "bg-blue-600 text-white" : "border border-hairline text-ink-3"
+                      on
+                        ? "bg-blue-600 text-white"
+                        : "border border-hairline text-ink-3"
                     }`}
                   >
                     <Icon name={on ? "check" : tab.icon} />
@@ -97,7 +172,11 @@ export function HeroTabs() {
                 role="tabpanel"
                 aria-hidden={!on}
                 className="absolute inset-0"
-                style={{ opacity: on ? 1 : 0, transition: "opacity .3s ease", pointerEvents: on ? "auto" : "none" }}
+                style={{
+                  opacity: on ? 1 : 0,
+                  transition: "opacity .3s ease",
+                  pointerEvents: on ? "auto" : "none",
+                }}
               >
                 {tab.shot ? (
                   <Image

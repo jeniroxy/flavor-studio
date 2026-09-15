@@ -14,6 +14,35 @@ import { trialLine } from "@/lib/routes";
  * security strip, one stat cell, one FAQ heading.
  */
 
+/* ------------------------------------------------------------ frames */
+
+/** Media frames for screenshots, flows and labels — one per tone. */
+export const FRAME_LIGHT = "frame";
+export const FRAME_DARK = "frame-dark";
+
+/** The one caption style, under every screenshot, flow and label. */
+export function Caption({
+  children,
+  tone = "light",
+  className = "",
+  as: Tag = "p",
+}: {
+  children: ReactNode;
+  tone?: "light" | "dark";
+  className?: string;
+  as?: "p" | "figcaption";
+}) {
+  return (
+    <Tag
+      className={`mt-[10px] text-[13px] leading-[1.5] ${
+        tone === "dark" ? "text-[#b4b4b4]" : "text-ink-2"
+      } ${className}`}
+    >
+      {children}
+    </Tag>
+  );
+}
+
 /* ------------------------------------------------------------ layout */
 
 export function Section({
@@ -207,7 +236,10 @@ export function SectionHead({
         {title}
       </Headline>
       {lede ? (
-        <Lede className={`mt-4 ${center ? "mx-auto max-w-[620px]" : ""}`} tone={tone}>
+        <Lede
+          className={`mt-4 ${center ? "mx-auto max-w-[620px]" : ""}`}
+          tone={tone}
+        >
           {lede}
         </Lede>
       ) : null}
@@ -218,12 +250,7 @@ export function SectionHead({
 /* ------------------------------------------------------------ buttons */
 
 type ButtonVariant =
-  | "primary"
-  | "secondary"
-  | "tertiary"
-  | "inverse"
-  | "lime"
-  | "ghost-dark";
+  "primary" | "secondary" | "tertiary" | "inverse" | "lime" | "ghost-dark";
 
 export function Button({
   href,
@@ -339,7 +366,9 @@ export function TextLink({
     <Link
       href={href}
       className={`inline-flex items-center gap-1.5 text-[14px] font-semibold ${
-        tone === "dark" ? "text-white hover:text-[#dedede]" : "text-blue-700 hover:text-blue-600"
+        tone === "dark"
+          ? "text-white hover:text-[#dedede]"
+          : "text-blue-700 hover:text-blue-600"
       } ${className}`}
     >
       {children}
@@ -432,7 +461,10 @@ export function LogoStrip({
       <Eyebrow tone={tone === "dark" ? "dark" : "muted"} className="shrink-0">
         {label}
       </Eyebrow>
-      <RevealStagger stagger={0.05} className="flex flex-wrap items-center gap-x-10 gap-y-4">
+      <RevealStagger
+        stagger={0.05}
+        className="flex flex-wrap items-center gap-x-10 gap-y-4"
+      >
         {logos.map((logo) => (
           <Image
             key={logo.name}
@@ -669,14 +701,24 @@ export function SecurityStrip({ className = "" }: { className?: string }) {
             24/7 support · phone, email, in-app
           </div>
         </div>
-        <RevealStagger stagger={0.06} className="hairline-grid grid-cols-2 sm:grid-cols-4">
+        <RevealStagger
+          stagger={0.06}
+          className="hairline-grid grid-cols-2 sm:grid-cols-4"
+        >
           {securityMarks.map((m) => (
-            <div key={m.label} className="flex flex-col items-center gap-3 px-3 py-6 text-center">
+            <div
+              key={m.label}
+              className="flex flex-col items-center gap-3 px-3 py-6 text-center"
+            >
               <span className="flex h-12 w-12 items-center justify-center rounded-full border border-hairline text-[22px] text-ink">
                 <Icon name={m.icon} />
               </span>
-              <span className="eyebrow eyebrow-muted text-[11px]">{m.label}</span>
-              <span className="text-[12px] leading-[1.4] text-ink-2">{m.desc}</span>
+              <span className="eyebrow eyebrow-muted text-[11px]">
+                {m.label}
+              </span>
+              <span className="text-[12px] leading-[1.4] text-ink-2">
+                {m.desc}
+              </span>
             </div>
           ))}
         </RevealStagger>

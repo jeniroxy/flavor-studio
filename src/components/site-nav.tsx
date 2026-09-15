@@ -107,10 +107,7 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
         onMouseLeave={scheduleClose}
         onMouseEnter={cancelClose}
       >
-        <div
-          ref={barRef}
-          className="relative bg-white/90 backdrop-blur-[6px]"
-        >
+        <div ref={barRef} className="relative bg-white/90 backdrop-blur-[6px]">
           <div className="container-wide flex h-[var(--nav-height)] items-center gap-2">
             <Link
               href={routes.home}
@@ -213,7 +210,11 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
         <div className="fixed inset-x-0 top-[var(--nav-height)] bottom-0 z-[99] flex flex-col bg-white">
           <nav className="flex-1 overflow-y-auto px-6 py-4" data-lenis-prevent>
             {menus.map((menu) => (
-              <MobileGroup key={menu.key} menu={menu} onNavigate={() => setSheet(false)} />
+              <MobileGroup
+                key={menu.key}
+                menu={menu}
+                onNavigate={() => setSheet(false)}
+              />
             ))}
             {plainLinks.map((link) => (
               <Link
@@ -335,7 +336,9 @@ function Curtain({ menu, onNavigate }: { menu: Menu; onNavigate: () => void }) {
           <div className="font-display mt-3 text-[16px] leading-[1.35] font-bold text-ink">
             {menu.card.title}
           </div>
-          <p className="mt-2 text-[13px] leading-[1.5] text-ink-2">{menu.card.body}</p>
+          <p className="mt-2 text-[13px] leading-[1.5] text-ink-2">
+            {menu.card.body}
+          </p>
           <Link
             href={menu.card.cta.href}
             onClick={onNavigate}
@@ -350,7 +353,13 @@ function Curtain({ menu, onNavigate }: { menu: Menu; onNavigate: () => void }) {
   );
 }
 
-function MobileGroup({ menu, onNavigate }: { menu: Menu; onNavigate: () => void }) {
+function MobileGroup({
+  menu,
+  onNavigate,
+}: {
+  menu: Menu;
+  onNavigate: () => void;
+}) {
   const [open, setOpen] = useState(false);
   return (
     <div className="border-b border-hairline">

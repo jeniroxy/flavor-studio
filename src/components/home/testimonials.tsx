@@ -21,7 +21,11 @@ export const PORTRAITS: Record<string, string> = {
   "Chef Rob Corliss": "/testimonials/chef_rob_corliss.png",
 };
 
-export function Testimonials({ names = ["Andrew Hunter", "Charles Hayes", "Kari Baker"] }: { names?: string[] }) {
+export function Testimonials({
+  names = ["Andrew Hunter", "Charles Hayes", "Kari Baker"],
+}: {
+  names?: string[];
+}) {
   const picks = names
     .map((n) => testimonials.find((t) => t.name === n))
     .filter((t): t is NonNullable<typeof t> => !!t);
@@ -36,7 +40,10 @@ export function Testimonials({ names = ["Andrew Hunter", "Charles Hayes", "Kari 
           <TextLink href={routes.customers}>Read customer stories</TextLink>
         </div>
 
-        <RevealStagger stagger={0.08} className="mt-[clamp(28px,3.5vw,44px)] grid gap-5 md:grid-cols-3">
+        <RevealStagger
+          stagger={0.08}
+          className="mt-[clamp(28px,3.5vw,44px)] grid gap-5 md:grid-cols-3"
+        >
           {picks.map((t) => (
             <figure
               key={t.name}
@@ -52,7 +59,10 @@ export function Testimonials({ names = ["Andrew Hunter", "Charles Hayes", "Kari 
               <div
                 aria-hidden="true"
                 className="absolute inset-0"
-                style={{ background: "linear-gradient(180deg, rgba(10,12,16,0) 35%, rgba(10,12,16,.92) 100%)" }}
+                style={{
+                  background:
+                    "linear-gradient(180deg, rgba(10,12,16,0) 35%, rgba(10,12,16,.92) 100%)",
+                }}
               />
               <figcaption className="absolute inset-x-0 bottom-0 p-6 text-white">
                 <blockquote className="font-display m-0 text-[19px] leading-[1.35] font-semibold">

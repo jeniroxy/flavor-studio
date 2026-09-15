@@ -43,7 +43,10 @@ export function Hero() {
           </span>
         </Reveal>
 
-        <Reveal delay={0.12} className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3">
+        <Reveal
+          delay={0.12}
+          className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3"
+        >
           <Button href={routes.demo} size="lg" arrow>
             Request a demo
           </Button>

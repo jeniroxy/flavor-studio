@@ -12,7 +12,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
  */
 export function SmoothScroll() {
   useEffect(() => {
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     const coarse = window.matchMedia("(pointer: coarse)").matches;
     if (reduce || coarse) return;
 

@@ -68,7 +68,12 @@ export function AgentAct() {
         {
           clipPath: "inset(0px 0px round 0px)",
           ease: "none",
-          scrollTrigger: { trigger: el, start: "top 85%", end: "top 25%", scrub: 0.6 },
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            end: "top 25%",
+            scrub: 0.6,
+          },
         },
       );
       gsap.fromTo(
@@ -78,7 +83,12 @@ export function AgentAct() {
           clipPath: "inset(0px 20px round 32px)",
           ease: "none",
           immediateRender: false,
-          scrollTrigger: { trigger: el, start: "bottom 75%", end: "bottom 15%", scrub: 0.6 },
+          scrollTrigger: {
+            trigger: el,
+            start: "bottom 75%",
+            end: "bottom 15%",
+            scrub: 0.6,
+          },
         },
       );
     },
@@ -99,7 +109,8 @@ export function AgentAct() {
           aria-hidden="true"
           className="pointer-events-none absolute inset-x-0 top-[38%] h-[260px] opacity-60 blur-[70px]"
           style={{
-            background: "linear-gradient(90deg, #2060a6, #59a3eb 35%, #18bc9c 65%, #8cd135)",
+            background:
+              "linear-gradient(90deg, #2060a6, #59a3eb 35%, #18bc9c 65%, #8cd135)",
             animation: "fsGlowDrift 16s ease-in-out infinite",
           }}
         />
@@ -117,12 +128,22 @@ export function AgentAct() {
               delay={0.05}
               className="font-display mt-6 text-[clamp(36px,5.6vw,76px)] leading-[1.05] font-bold tracking-[-0.04em]"
             >
-              <span className="tail-grad">The AI that actually knows your formulas</span>
+              <span className="tail-grad">
+                The AI that actually knows your formulas
+              </span>
             </Reveal>
-            <Reveal as="p" delay={0.1} className="mx-auto mt-5 max-w-[560px] text-[clamp(16px,1.4vw,20px)] leading-[1.55] text-[#b4b4b4]">
-              Already plugged into your recipes, your ingredient library and your test results — with a citation on every answer.
+            <Reveal
+              as="p"
+              delay={0.1}
+              className="mx-auto mt-5 max-w-[560px] text-[clamp(16px,1.4vw,20px)] leading-[1.55] text-[#b4b4b4]"
+            >
+              Already plugged into your recipes, your ingredient library and
+              your test results — with a citation on every answer.
             </Reveal>
-            <Reveal delay={0.14} className="eyebrow eyebrow-dark mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px]">
+            <Reveal
+              delay={0.14}
+              className="eyebrow eyebrow-dark mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px]"
+            >
               <span className="text-[#7b7b7b]">Works in</span>
               <span>Recipes</span>
               <span>Labels</span>
@@ -133,18 +154,29 @@ export function AgentAct() {
           </div>
 
           {/* pillars */}
-          <RevealStagger stagger={0.08} className="hairline-grid-dark mt-[clamp(40px,5vw,72px)] md:grid-cols-3">
+          <RevealStagger
+            stagger={0.08}
+            className="hairline-grid-dark mt-[clamp(40px,5vw,72px)] md:grid-cols-3"
+          >
             {PILLARS.map((p) => (
               <div key={p.label} className="flex flex-col gap-5 p-6">
                 <Eyebrow tone="dark" className="text-[12px] text-[#eee]">
                   {p.label}
                 </Eyebrow>
-                <p className="text-[15px] leading-[1.6] text-[#b4b4b4]">{p.body}</p>
+                <p className="text-[15px] leading-[1.6] text-[#b4b4b4]">
+                  {p.body}
+                </p>
                 <div className="mt-auto">
                   {p.visual === "context" ? (
                     <div className="frame-dark relative aspect-[4/3] overflow-hidden">
                       {shot.src ? (
-                        <Image src={shot.src} alt={shot.alt} fill sizes="400px" className="object-cover object-left-top" />
+                        <Image
+                          src={shot.src}
+                          alt={shot.alt}
+                          fill
+                          sizes="400px"
+                          className="object-cover object-left-top"
+                        />
                       ) : null}
                     </div>
                   ) : p.visual === "cite" ? (
@@ -152,7 +184,10 @@ export function AgentAct() {
                       tone="dark"
                       gap={1200}
                       lines={[
-                        { from: "user", text: "Does the Testing version qualify for “good source of fibre”?" },
+                        {
+                          from: "user",
+                          text: "Does the Testing version qualify for “good source of fibre”?",
+                        },
                         {
                           from: "agent",
                           text: "Yes — 3.1 g per RACC, above the 2.5 g threshold.",
@@ -162,9 +197,14 @@ export function AgentAct() {
                     />
                   ) : (
                     <div className="rounded-[12px] border border-hairline-dark bg-night-2 p-4 font-mono text-[12px]">
-                      <div className="mb-3 text-[10px] tracking-[.1em] text-[#7b7b7b] uppercase">workspace memory</div>
+                      <div className="mb-3 text-[10px] tracking-[.1em] text-[#7b7b7b] uppercase">
+                        workspace memory
+                      </div>
                       {MEMORY.map(([k, v]) => (
-                        <div key={k} className="flex justify-between gap-4 border-b border-hairline-dark py-1.5 last:border-0">
+                        <div
+                          key={k}
+                          className="flex justify-between gap-4 border-b border-hairline-dark py-1.5 last:border-0"
+                        >
                           <span className="text-[#b4b4b4]">{k}</span>
                           <span className="text-lime-400">{v}</span>
                         </div>
@@ -186,10 +226,16 @@ export function AgentAct() {
           }}
         >
           <Container className="py-[clamp(56px,8vw,112px)] text-center">
-            <Reveal as="h3" className="font-display mx-auto max-w-[18ch] text-[clamp(30px,4vw,56px)] leading-[1.06] font-bold tracking-[-0.03em] text-white">
+            <Reveal
+              as="h3"
+              className="font-display mx-auto max-w-[18ch] text-[clamp(30px,4vw,56px)] leading-[1.06] font-bold tracking-[-0.03em] text-white"
+            >
               The only AI that actually knows your work
             </Reveal>
-            <Reveal delay={0.08} className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <Reveal
+              delay={0.08}
+              className="mt-8 flex flex-wrap items-center justify-center gap-4"
+            >
               <Button href={routes.agent} variant="inverse" size="lg" arrow>
                 Meet the AI Agent
               </Button>

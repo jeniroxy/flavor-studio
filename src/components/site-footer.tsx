@@ -18,7 +18,11 @@ import {
  * hairline and the legal line. White ground — the dark footer band is gone.
  */
 
-const columns: { title: string; href?: string; links: { label: string; href: string }[] }[] = [
+const columns: {
+  title: string;
+  href?: string;
+  links: { label: string; href: string }[];
+}[] = [
   {
     title: "AI Agent",
     href: routes.agent,
@@ -115,12 +119,15 @@ export function SiteFooter() {
                   {col.title}
                 </Link>
               ) : (
-                <div className="text-[16px] font-semibold text-ink">{col.title}</div>
+                <div className="text-[16px] font-semibold text-ink">
+                  {col.title}
+                </div>
               )}
               <ul className="mt-4 flex list-none flex-col gap-[10px] p-0">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    {link.href.startsWith("mailto:") || link.href.startsWith("tel:") ? (
+                    {link.href.startsWith("mailto:") ||
+                    link.href.startsWith("tel:") ? (
                       <a
                         href={link.href}
                         className="text-[15px] text-[#292d34] transition-colors hover:text-blue-700"
@@ -167,7 +174,9 @@ export function SiteFooter() {
                 <span className="flex h-7 w-7 items-center justify-center rounded-full border border-hairline text-[14px] text-ink">
                   <Icon name={m.icon} />
                 </span>
-                <span className="eyebrow eyebrow-muted text-[10px]">{m.desc}</span>
+                <span className="eyebrow eyebrow-muted text-[10px]">
+                  {m.desc}
+                </span>
               </span>
             ))}
           </div>

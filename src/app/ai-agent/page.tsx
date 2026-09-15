@@ -1,292 +1,429 @@
 import type { Metadata } from "next";
-import { CtaBand } from "@/components/cta-band";
-import { FlowPlayer } from "@/components/flow-player";
-import { HexTile } from "@/components/hex";
+import Image from "next/image";
+import { HowItWorks } from "@/components/agent/how-it-works";
+import { Orbit } from "@/components/agent/orbit";
+import { PersonaTabs } from "@/components/agent/persona-tabs";
+import { SkillsBento } from "@/components/agent/skills-bento";
+import { FaqAccordion } from "@/components/faq-accordion";
 import { Icon } from "@/components/icon";
-import {
-  Block,
-  BlueButton,
-  CARD_DARK,
-  CARD_LIGHT,
-  Caption,
-  Eyebrow,
-  GhostButton,
-  HeroBackdrop,
-  SectionHeading,
-  SectionLabel,
-} from "@/components/layout-primitives";
 import { PageShell } from "@/components/page-shell";
-import { ProductShot } from "@/components/product-shot";
-import { Reveal } from "@/components/reveal";
-import { productAssets } from "@/lib/assets";
-import { flows } from "@/lib/flows";
+import { Reveal, RevealStagger } from "@/components/reveal";
+import {
+  Button,
+  Container,
+  Eyebrow,
+  Headline,
+  Section,
+  StatCells,
+  Tick,
+} from "@/components/ui";
+import { testimonials } from "@/lib/data";
 import { routes } from "@/lib/routes";
+
+/*
+ * The AI Agent page, on clickup.com's Brain² pattern (docs/research/
+ * clickup-pages-analysis.md §3a): dark, cinematic, one long act — but every
+ * claim here is one the product can back. No benchmarks, no model names we
+ * do not ship, no counters. The Agent answers with citations and proposes
+ * drafts; a developer approves.
+ */
 
 export const metadata: Metadata = {
   title: "AI Agent",
   description:
-    "The AI Agent reads your recipes, ingredient library and supplier data, then answers formulation, nutrition, allergen, labeling and costing questions — with a citation on every claim.",
+    "The AI Agent reads your recipes, ingredient library and supplier data, then answers formulation, nutrition, allergen, labeling and costing questions — with a citation on every claim, and drafts a developer approves.",
 };
 
-const CAPABILITIES = [
+const FACTS = [
   {
-    icon: "search",
-    title: "Ingredient sourcing",
-    body: '"Find a non-GMO starch with no soy under $2.10/kg." It searches your library and supplier feeds and ranks the matches.',
+    label: "Citations",
+    value: "Every answer",
+    desc: "Names the recipe, regulation or test it came from. If it cannot source an answer, it says so.",
   },
   {
-    icon: "doc-detail",
-    title: "Claim & label checks",
-    body: "Validates nutrient content claims against 21 CFR 101 and flags what you qualify for before you print the label.",
+    label: "Changes",
+    value: "Drafts only",
+    desc: "Reformulation ideas land as draft versions. A developer reviews and applies — nothing changes silently.",
   },
   {
-    icon: "chart-histogram",
-    title: "What-if costing",
-    body: "Model ingredient swaps, supplier changes and batch scaling — see the cost and margin impact before touching the formula.",
+    label: "Reads",
+    value: "18 modules",
+    desc: "Recipes, ingredients, costs, labels, claims, taste tests, projects, timesheets and CRM — scoped to your workspace.",
   },
   {
-    icon: "weight",
-    title: "Nutrition compare",
-    body: "Side-by-side nutrient panels across versions — see exactly what a reformulation changes, per serving and per 100 g.",
-  },
-  {
-    icon: "caution",
-    title: "Allergen watch",
-    body: 'Ask what the big-9 exposure is on any formula and get the mandatory "Contains" statement, cross-contact risks included.',
-  },
-  {
-    icon: "experiment",
-    title: "Reformulation ideas",
-    body: "Propose swaps to hit a sugar, sodium or cost target while holding the sensory score — as reviewable draft versions.",
+    label: "Included",
+    value: "Every plan",
+    desc: "Part of the trial, Professional, Premium and Enterprise. No add-on, no credits.",
   },
 ];
 
-const STEPS = [
+const SKILL_CHIPS = [
+  "Reformulate",
+  "Cost out",
+  "Check claims",
+  "Draft spec sheet",
+  "Compare versions",
+  "Scale batch",
+  "Find substitute",
+  "Flag allergens",
+  "Summarise taste test",
+  "Explain a label line",
+  "Convert units",
+  "Estimate margin",
+  "Find the cheapest version",
+  "List open stage gates",
+  "Which recipes use this ingredient",
+  "Hours logged this week",
+  "Compare per 100 g",
+  "Canadian statement",
+  "Sodium per RACC",
+];
+
+const TRUST = [
   {
-    title: "Reads your workspace",
-    body: "Recipes, versions, ingredient library, cost assumptions, taste tests and supplier specs — scoped to your org only.",
+    icon: "shield",
+    title: "No third-party training",
+    body: "Your recipes, ingredients and test results are never used to train third-party models.",
   },
   {
-    title: "Answers with sources",
-    body: "Every claim links to the recipe, regulation or test it came from. If it can't source an answer, it says so.",
+    icon: "lock",
+    title: "No third-party retention",
+    body: "Prompts and answers are not retained by model providers beyond the request.",
   },
   {
-    title: "Proposes, you approve",
-    body: "Reformulation ideas land as draft versions. A developer reviews and applies — nothing in production changes without a human.",
+    icon: "peoples",
+    title: "Same permissions as you",
+    body: "The Agent sees only what the logged-in user can see — per-user and per-group rights apply.",
   },
 ];
 
-/* The kinds of question the Agent is built for. Questions only: the site does
-   not publish answers to them, because a marketing page is not where food-law
-   guidance should come from. */
-const ASKS = [
-  "Which of my starches are non-GMO with no soy cross-contact?",
-  "What changes on the label if I cut sodium in this broth?",
-  "Compare v3 and v4 on protein, sugar and cost per serving.",
-  "Which allergens does this granola bar have to declare?",
+const FAQ = [
+  {
+    q: "Is the AI Agent included?",
+    a: "Yes. It is part of every plan, including the 14-day trial. There is no add-on and no credit system.",
+  },
+  {
+    q: "What does it read?",
+    a: "Your own workspace: recipes and versions, the ingredient library and supplier data, cost assumptions, nutrition analysis and labels, taste-test results, projects, timesheets and CRM — scoped to what your login can see.",
+  },
+  {
+    q: "Can it change a recipe?",
+    a: "No. It proposes swaps as a draft version that a developer reviews, applies or discards. Nothing in production changes without a person.",
+  },
+  {
+    q: "Can my co-packer see my conversations?",
+    a: "No. Conversations belong to the user and the organisation. Sharing follows the same per-user and per-group rights as the rest of Flavor Studio.",
+  },
+  {
+    q: "Does it work offline?",
+    a: "No. Like the rest of Flavor Studio it runs in the browser and needs a connection.",
+  },
+  {
+    q: "What if it cannot answer?",
+    a: "It says so, rather than guessing. Every answer carries its sources so you can check them in one click.",
+  },
 ];
 
-export default function AiAgentPage() {
-  const shot = productAssets.aiAgent;
+export default function AgentPage() {
+  const quote = testimonials.find((t) => t.name === "Andrew Hunter");
 
   return (
     <PageShell active="agent">
-      {/* hero. The visual used to be a chat vignette we scripted ourselves —
-          a question typing itself out, thinking dots, canned answer lines. It
-          was the one invented product surface left on the site, and it looped
-          forever. The real Agent, exported from the application, replaces it. */}
-      <Block className="relative px-[clamp(28px,3.6vw,64px)] py-[clamp(56px,7vw,96px)]">
-        <HeroBackdrop />
-        <div className="relative mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(min(100%,300px),1fr))] items-center gap-[clamp(28px,3.4vw,52px)] text-left">
-          <div>
-            <SectionLabel tone="dark">AI Agent</SectionLabel>
-            <Reveal
-              as="h1"
-              delay={0.06}
-              className="font-display mt-[14px] max-w-[18ch] text-[clamp(38px,5vw,64px)] leading-[1.05] font-extrabold tracking-[-0.025em] text-white"
-            >
-              It reads your workspace. It shows its sources.
-            </Reveal>
-            <Reveal
-              as="p"
-              delay={0.12}
-              className="mt-5 max-w-[52ch] text-[clamp(16px,1.5vw,18px)] leading-[1.6] text-[#aebdd0]"
-            >
-              Built into Flavor Studio, the AI Agent reads your recipes,
-              ingredient library and supplier data — then answers formulation,
-              nutrition, allergen, labeling and costing questions like a
-              colleague, with a citation on every claim.
-            </Reveal>
-            <Reveal delay={0.2} className="mt-[30px] flex flex-wrap gap-[14px]">
-              <BlueButton href="#try">See it in the product</BlueButton>
-              <GhostButton href={routes.demo}>Request a demo</GhostButton>
-            </Reveal>
-          </div>
-
-          <Reveal delay={0.16} className="mx-auto w-full max-w-[440px] min-w-0">
-            <figure className="m-0">
-              <ProductShot
-                src={shot.src as string}
-                alt={shot.alt}
-                width={shot.width}
-                height={shot.height}
-                focus={shot.focus}
-                tone="dark"
-                priority
-                sizes="(max-width: 960px) 100vw, 440px"
-                className="shadow-window"
-              />
-              <Caption as="figcaption" tone="dark">
-                The Agent beside a recipe, comparing two versions per serving
-                and naming its sources.
-              </Caption>
-            </figure>
-          </Reveal>
-        </div>
-      </Block>
-
-      {/* capabilities */}
-      <Block className="bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(56px,6.5vw,92px)]">
-        <div className="mx-auto max-w-[1180px]">
-          <div className="mx-auto max-w-[620px] text-center">
-            <SectionLabel>What it does</SectionLabel>
-            <SectionHeading>Real work, not chit-chat.</SectionHeading>
-          </div>
-          <div className="mt-[clamp(36px,5vw,56px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,290px),1fr))] gap-4">
-            {CAPABILITIES.map((cap, i) => (
-              <Reveal
-                key={cap.title}
-                delay={i * 0.05}
-                className={`px-6 py-[26px] ${CARD_LIGHT}`}
-              >
-                <Icon name={cap.icon} className="text-[24px] text-blue-600" />
-                <div className="mt-[14px] text-[16px] font-extrabold text-slate-800">
-                  {cap.title}
-                </div>
-                <div className="mt-[7px] text-[14px] leading-[1.6] text-slate-500">
-                  {cap.body}
-                </div>
+      <div className="on-dark bg-night text-[#b4b4b4]">
+        {/* hero */}
+        <Section className="relative overflow-hidden pt-[clamp(56px,8vw,120px)] pb-[clamp(40px,5vw,72px)]">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-x-0 top-0 h-[520px] opacity-40 blur-[90px]"
+            style={{
+              background:
+                "radial-gradient(60% 60% at 50% 0%, #2060a6 0%, rgba(10,12,16,0) 70%)",
+            }}
+          />
+          <Container className="relative">
+            <div className="mx-auto max-w-[860px] text-center">
+              <Reveal className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[.04] px-3 py-1.5 text-[13px] font-semibold text-white">
+                Built into Flavor Studio
+                <span className="text-lime-400">✦</span>
+                AI Agent
               </Reveal>
-            ))}
-          </div>
-        </div>
-      </Block>
+              <Headline
+                as="h1"
+                size="xl"
+                gradient
+                className="mt-6"
+                delay={0.05}
+              >
+                The AI that actually knows your formulas.
+              </Headline>
+              <RevealStagger
+                stagger={0.06}
+                delay={0.1}
+                className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[14px] text-[#dcdcdc]"
+              >
+                {[
+                  "Answers cite the recipe, regulation or test",
+                  "Proposes drafts, never silent edits",
+                  "Your data never trains third-party models",
+                ].map((t) => (
+                  <span key={t} className="flex items-center gap-2">
+                    <Tick tone="lime" /> {t}
+                  </span>
+                ))}
+              </RevealStagger>
+              <Reveal
+                delay={0.16}
+                className="mt-8 flex flex-wrap items-center justify-center gap-3"
+              >
+                <Button href={routes.demo} variant="inverse" size="lg" arrow>
+                  Request a demo
+                </Button>
+                <Button href="#how" variant="ghost-dark" size="lg">
+                  See how it works
+                </Button>
+              </Reveal>
+              <Reveal
+                delay={0.2}
+                className="eyebrow eyebrow-dark mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px]"
+              >
+                <span className="text-[#7b7b7b]">Works in</span>
+                {["Recipes", "Labels", "Costing", "Taste Tests", "CRM"].map(
+                  (m) => (
+                    <span key={m}>{m}</span>
+                  ),
+                )}
+              </Reveal>
+            </div>
 
-      {/* What the Agent actually looks like.
-          This block used to hold a scripted chat headed "Ask the AI Agent
-          yourself". It was removed for two reasons: the canned answers asserted
-          specific regulatory thresholds, CFR citations, supplier prices and
-          panel scores that were all invented — food-law guidance a real company
-          cannot publish — and a fixed script dressed as a live product is
-          exactly the "AI-generated" impression the client objected to. The real
-          screenshot and the real question set say more, and every word of both
-          is true.
-
-          The flow's frames are portrait (769×960); played at the full column
-          width they stood 1,350px tall. Copy and questions now sit beside the
-          player instead of above and below it. */}
-      <Block
-        id="try"
-        className="relative bg-slate-900 px-[clamp(28px,3.6vw,64px)] py-[clamp(60px,7vw,100px)]"
-      >
-        <div className="relative mx-auto grid max-w-[1180px] grid-cols-[repeat(auto-fit,minmax(min(100%,400px),1fr))] items-center gap-[clamp(36px,5vw,72px)]">
-          <div>
-            <SectionLabel tone="dark">In the product</SectionLabel>
-            <SectionHeading tone="dark">
-              It answers in the recipe you are already in.
-            </SectionHeading>
-            <Reveal
-              as="p"
-              delay={0.12}
-              className="mt-4 max-w-[50ch] text-[16px] leading-[1.6] text-slate-300"
-            >
-              The Agent opens beside your work, reads the recipes you point it
-              at with <code className="text-[15px] text-white">@</code>, and
-              answers with the panel, the numbers and the sources attached.
+            <Reveal delay={0.2} className="mt-[clamp(40px,5vw,72px)]">
+              <Orbit />
             </Reveal>
+          </Container>
+        </Section>
 
-            <Eyebrow tone="dark" className="mt-8">
-              What teams ask it
-            </Eyebrow>
-            <ul className="mt-4 grid list-none gap-3 p-0">
-              {ASKS.map((ask) => (
-                <li
-                  key={ask}
-                  className={`px-5 py-[14px] text-[15px] leading-[1.5] text-slate-200 ${CARD_DARK}`}
-                >
-                  {ask}
-                </li>
+        {/* facts */}
+        <Section className="py-[clamp(40px,5vw,72px)]">
+          <Container>
+            <StatCells stats={FACTS} tone="dark" />
+          </Container>
+        </Section>
+
+        {/* personas */}
+        <Section className="border-t border-hairline-dark py-[var(--section-gap)]">
+          <Container>
+            <Reveal>
+              <Eyebrow tone="dark">One Agent. Any job.</Eyebrow>
+            </Reveal>
+            <Headline
+              size="lg"
+              className="mt-4 max-w-[720px]"
+              tail="watch it work."
+            >
+              The Agent already knows what to do —
+            </Headline>
+            <p className="mt-4 max-w-[560px] text-[16px] leading-[1.6] text-[#b4b4b4]">
+              Pick a seat in the building. Each transcript is the kind of
+              question that role asks, answered from the workspace and cited.
+            </p>
+            <div className="mt-[clamp(32px,4vw,56px)]">
+              <PersonaTabs />
+            </div>
+          </Container>
+        </Section>
+
+        {/* how it works — sticky visual */}
+        <Section
+          id="how"
+          className="border-t border-hairline-dark py-[clamp(40px,5vw,72px)]"
+        >
+          <Container>
+            <Reveal>
+              <Eyebrow tone="dark">How it works</Eyebrow>
+            </Reveal>
+            <Headline
+              size="lg"
+              className="mt-4 max-w-[720px]"
+              tail="one panel."
+            >
+              Ask, compare, draft —
+            </Headline>
+            <HowItWorks />
+          </Container>
+        </Section>
+
+        {/* skills */}
+        <Section
+          id="skills"
+          className="border-t border-hairline-dark py-[var(--section-gap)]"
+        >
+          <Container>
+            <Reveal>
+              <Eyebrow tone="dark">What it can do</Eyebrow>
+            </Reveal>
+            <Headline
+              size="lg"
+              className="mt-4 max-w-[720px]"
+              tail="comes close."
+            >
+              Nothing generic
+            </Headline>
+            <p className="mt-4 max-w-[560px] text-[16px] leading-[1.6] text-[#b4b4b4]">
+              Six things food developers ask every week, answered from your own
+              data.
+            </p>
+            <div className="mt-[clamp(32px,4vw,56px)]">
+              <SkillsBento />
+            </div>
+          </Container>
+          <div className="mask-x mt-10 flex flex-col gap-2">
+            {[0, 1, 2].map((row) => {
+              const items = SKILL_CHIPS.slice(row * 6).concat(
+                SKILL_CHIPS.slice(0, row * 6),
+              );
+              const reel = [...items, ...items];
+              return (
+                <div key={row} className="overflow-hidden">
+                  <div
+                    className={`marquee gap-2 ${row % 2 ? "marquee-reverse" : ""}`}
+                    style={
+                      {
+                        "--marquee-duration": `${60 + row * 12}s`,
+                      } as React.CSSProperties
+                    }
+                  >
+                    {reel.map((c, i) => (
+                      <span
+                        key={i}
+                        className={`chip chip-dark ${i % 5 === 0 ? "ring-rainbow" : ""}`}
+                      >
+                        {c}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </Section>
+
+        {/* trust */}
+        <Section
+          id="trust"
+          className="border-t border-hairline-dark py-[var(--section-gap)]"
+        >
+          <Container>
+            <Reveal>
+              <Eyebrow tone="dark">Secure</Eyebrow>
+            </Reveal>
+            <Headline size="lg" className="mt-4 max-w-[760px]">
+              Your recipes{" "}
+              <span className="underline decoration-lime-400 decoration-dotted underline-offset-8">
+                never
+              </span>{" "}
+              train third-party models.
+            </Headline>
+            <RevealStagger
+              stagger={0.07}
+              className="hairline-grid-dark mt-[clamp(32px,4vw,56px)] md:grid-cols-3"
+            >
+              {TRUST.map((t) => (
+                <div key={t.title} className="flex flex-col gap-4 p-6">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-[10px] bg-white/[.06] text-[22px] text-lime-400">
+                    <Icon name={t.icon} />
+                  </span>
+                  <div className="font-display text-[20px] font-bold text-white">
+                    {t.title}
+                  </div>
+                  <p className="text-[14px] leading-[1.6] text-[#b4b4b4]">
+                    {t.body}
+                  </p>
+                </div>
               ))}
-            </ul>
-            <Caption tone="dark" className="mt-4">
-              Answers draw only on your own recipes, ingredient library and
-              supplier data — never on the open internet.
-            </Caption>
-          </div>
+            </RevealStagger>
+          </Container>
+        </Section>
 
-          <Reveal delay={0.16} className="mx-auto w-full max-w-[520px]">
-            <FlowPlayer
-              flow={flows.aiAgent}
-              tone="dark"
-              sizes="(max-width: 960px) 100vw, 520px"
-              dwell={3200}
-            />
-          </Reveal>
-        </div>
-      </Block>
-
-      {/* how it works */}
-      <Block className="bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(56px,6.5vw,92px)]">
-        <div className="mx-auto max-w-[1080px]">
-          <div className="mx-auto max-w-[600px] text-center">
-            <SectionLabel>How it works</SectionLabel>
-            <SectionHeading>
-              Grounded in your data, never guessing.
-            </SectionHeading>
-          </div>
-          <div className="mt-[clamp(36px,5vw,56px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))] gap-4">
-            {STEPS.map((step, i) => (
-              <Reveal
-                key={step.title}
-                delay={i * 0.08}
-                className={`px-6 py-[26px] ${CARD_LIGHT}`}
-              >
-                <HexTile
-                  size={36}
-                  className="font-display text-[15px] font-extrabold text-[#5c8f1c]"
-                  style={{ background: "var(--color-lime-100)" }}
-                >
-                  {i + 1}
-                </HexTile>
-                <div className="mt-[14px] text-[16px] font-extrabold text-slate-800">
-                  {step.title}
-                </div>
-                <div className="mt-[6px] text-[14px] leading-[1.6] text-slate-500">
-                  {step.body}
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal
-            className={`mt-4 flex flex-wrap items-center justify-center gap-[14px] px-6 py-[18px] ${CARD_LIGHT}`}
+        {/* quote */}
+        {quote ? (
+          <Section
+            className="border-t border-hairline-dark py-[var(--section-gap)]"
+            style={{
+              backgroundImage: "radial-gradient(#2a2a2a 1px, transparent 1px)",
+              backgroundSize: "18px 18px",
+            }}
           >
-            <Icon name="lock" className="flex-none text-[20px] text-blue-600" />
-            <span className="text-center text-[14px] leading-[1.55] text-slate-700">
-              Your formulas are trade secrets. Nothing is shared across
-              customers, and nothing you formulate is used to train models.
-            </span>
-          </Reveal>
-        </div>
-      </Block>
+            <Container>
+              <Reveal className="mx-auto max-w-[820px] text-center">
+                <Image
+                  src="/testimonials/andrew_hunter.png"
+                  alt={quote.name}
+                  width={72}
+                  height={72}
+                  className="mx-auto h-[72px] w-[72px] rounded-full object-cover"
+                />
+                <blockquote className="font-display mt-6 text-[clamp(24px,3vw,40px)] leading-[1.2] font-bold tracking-[-0.02em] text-white">
+                  {quote.quote}
+                </blockquote>
+                <div className="mt-5 text-[14px] font-semibold text-white">
+                  {quote.name}
+                </div>
+                <div className="text-[13px] text-[#7b7b7b]">{quote.role}</div>
+              </Reveal>
+            </Container>
+          </Section>
+        ) : null}
 
-      <CtaBand
-        title="Put the AI Agent on your own formulas."
-        body="A 30-minute demo, tailored to your category. Bring a recipe — we'll ask the Agent about it live."
-        className="py-[clamp(64px,9vw,110px)]"
-      >
-        <BlueButton href={routes.demo}>Request a demo</BlueButton>
-        <GhostButton href={routes.pricing}>See pricing</GhostButton>
-      </CtaBand>
+        {/* faq */}
+        <Section className="border-t border-hairline-dark py-[var(--section-gap)]">
+          <Container>
+            <div className="mx-auto max-w-[720px]">
+              <Headline
+                size="lg"
+                className="text-center"
+                tail="the Agent has answers."
+              >
+                You have questions,
+              </Headline>
+              <Reveal delay={0.08} className="mt-10">
+                <FaqAccordion
+                  items={FAQ}
+                  tone="dark"
+                  groupKey="agent"
+                  defaultOpen={0}
+                />
+              </Reveal>
+            </div>
+          </Container>
+        </Section>
+
+        {/* closing band */}
+        <div
+          style={{
+            background:
+              "linear-gradient(180deg, #0a0c10 0%, rgba(10,12,16,0) 30%), linear-gradient(100deg, #2060a6, #59a3eb 45%, #18bc9c 80%, #8cd135)",
+          }}
+        >
+          <Container className="py-[clamp(64px,9vw,128px)] text-center">
+            <Reveal
+              as="h2"
+              className="font-display mx-auto max-w-[18ch] text-[clamp(30px,4.4vw,60px)] leading-[1.06] font-bold tracking-[-0.03em] text-white"
+            >
+              Meet the Agent on your own formula.
+            </Reveal>
+            <Reveal
+              delay={0.08}
+              className="mt-8 flex flex-wrap items-center justify-center gap-4"
+            >
+              <Button href={routes.demo} variant="inverse" size="lg" arrow>
+                Request a demo
+              </Button>
+              <Button href={routes.features} variant="ghost-dark" size="lg">
+                Explore the platform
+              </Button>
+            </Reveal>
+          </Container>
+        </div>
+      </div>
     </PageShell>
   );
 }

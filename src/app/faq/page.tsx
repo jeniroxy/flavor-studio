@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { CtaBand } from "@/components/cta-band";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { Icon } from "@/components/icon";
-import {
-  Block,
-  BlueButton,
-  HeroBackdrop,
-  SectionLabel,
-} from "@/components/layout-primitives";
 import { PageShell } from "@/components/page-shell";
 import { Reveal } from "@/components/reveal";
+import { StickyRail } from "@/components/sticky-rail";
+import {
+  Container,
+  Headline,
+  Lede,
+  RainbowCta,
+  Section,
+  TextLink,
+} from "@/components/ui";
 import { faqGroups } from "@/lib/data";
 import { routes } from "@/lib/routes";
 
@@ -19,55 +21,70 @@ export const metadata: Metadata = {
     "Commonly asked questions about Flavor Studio — the company, using the platform, recipes and labeling, pricing, and security.",
 };
 
+const slug = (s: string) =>
+  s
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
+
+const groups = faqGroups.map((g) => ({ ...g, id: slug(g.title) }));
+
 export default function FaqPage() {
   return (
-    <PageShell fill>
-      <Block className="relative px-[clamp(28px,3.6vw,64px)] py-[clamp(56px,7vw,96px)]">
-        <HeroBackdrop />
-        <div className="relative mx-auto max-w-[1180px] text-center">
-          <SectionLabel tone="dark">FAQ</SectionLabel>
-          <Reveal
-            as="h1"
-            delay={0.06}
-            className="font-display mt-[14px] text-[clamp(34px,4.2vw,54px)] leading-[1.08] font-extrabold tracking-[-0.02em] text-white"
-          >
-            FAQs
+    <PageShell active="resources" fill>
+      <Section className="pt-[clamp(48px,7vw,96px)] pb-[clamp(32px,4vw,56px)]">
+        <Container wide className="text-center">
+          {/* The "FAQs" heading with the s in grey — FaqHeading's treatment,
+              rendered as the page's h1. The grey s is set inline rather than
+              through `tail`, which would put a space before it. */}
+          <Headline as="h1" size="hero">
+            FAQ<span className="tail">s</span>
+          </Headline>
+          <Lede className="mx-auto mt-4 max-w-[46ch]">
+            Commonly asked questions and answers. Something missing?
+          </Lede>
+          <Reveal delay={0.1} className="mt-4">
+            <TextLink href={routes.contact}>Contact us</TextLink>
           </Reveal>
-          <Reveal
-            as="p"
-            delay={0.12}
-            className="mx-auto mt-[18px] max-w-[48ch] text-[clamp(16px,1.5vw,18px)] leading-[1.65] text-[#aebdd0]"
-          >
-            Commonly asked questions and answers. Something missing?{" "}
-            <a href={routes.contact} className="font-bold text-lime-400">
-              Contact us
-            </a>{" "}
-            today.
-          </Reveal>
-        </div>
-      </Block>
+        </Container>
+      </Section>
 
-      <Block className="flex-1 bg-white px-[clamp(28px,3.6vw,64px)] py-[clamp(48px,5.5vw,76px)]">
-        <div className="mx-auto flex max-w-[760px] flex-col gap-[clamp(32px,4vw,48px)]">
-          {faqGroups.map((group) => (
-            <div key={group.title}>
-              <Reveal className="mb-4 flex items-center gap-[10px]">
-                <Icon name={group.icon} className="text-[20px] text-blue-600" />
-                <span className="font-display text-[20px] font-extrabold text-slate-800">
-                  {group.title}
-                </span>
-              </Reveal>
-              <div className="flex flex-col gap-3">
-                <FaqAccordion items={group.items} groupKey={group.title} />
-              </div>
+      <Section className="pb-[clamp(64px,8vw,120px)]">
+        <Container wide>
+          <StickyRail
+            items={groups.map((g) => ({ id: g.id, label: g.title }))}
+            railTop={100}
+          >
+            <div className="flex flex-col gap-[clamp(48px,6vw,80px)]">
+              {groups.map((group) => (
+                <section
+                  key={group.id}
+                  id={group.id}
+                  className="scroll-mt-[100px]"
+                >
+                  <Reveal className="flex items-center gap-3">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-blue-100 text-[18px] text-blue-700">
+                      <Icon name={group.icon} />
+                    </span>
+                    <h2 className="font-display text-[clamp(22px,2.2vw,28px)] leading-[1.2] font-bold tracking-[-0.02em] text-ink">
+                      {group.title}
+                    </h2>
+                  </Reveal>
+                  <Reveal delay={0.06} className="mt-5">
+                    <FaqAccordion items={group.items} groupKey={group.id} />
+                  </Reveal>
+                </section>
+              ))}
             </div>
-          ))}
-        </div>
-      </Block>
+          </StickyRail>
+        </Container>
+      </Section>
 
-      <CtaBand title="More questions?" className="py-[clamp(56px,6.5vw,92px)]">
-        <BlueButton href={routes.contact}>Contact us today</BlueButton>
-      </CtaBand>
+      <RainbowCta
+        title="More questions? Talk to us."
+        cta={{ label: "Contact us", href: routes.contact }}
+        note="Phone, email and in-app chat. We reply within one business day."
+      />
     </PageShell>
   );
 }

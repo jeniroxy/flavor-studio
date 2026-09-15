@@ -107,11 +107,13 @@ const TILES = [
  */
 function layout() {
   const tileArea = new Set<string>();
-  for (let r = 3; r <= 6; r++) for (let c = 4; c <= 7; c++) tileArea.add(`${r}-${c}`);
+  for (let r = 3; r <= 6; r++)
+    for (let c = 4; c <= 7; c++) tileArea.add(`${r}-${c}`);
   const slots: { r: number; c: number; empty: boolean }[] = [];
   for (let r = 1; r <= 8; r++)
     for (let c = 1; c <= 10; c++)
-      if (!tileArea.has(`${r}-${c}`)) slots.push({ r, c, empty: r === 1 || r === 8 });
+      if (!tileArea.has(`${r}-${c}`))
+        slots.push({ r, c, empty: r === 1 || r === 8 });
   return slots;
 }
 
@@ -126,7 +128,8 @@ export function FeatureWall() {
             Every module, one ingredient library, all
           </Headline>
           <Lede className="mx-auto mt-4 max-w-[600px]">
-            Eighteen modules that share one live cost model — use one of them, or all of them.
+            Eighteen modules that share one live cost model — use one of them,
+            or all of them.
           </Lede>
         </div>
       </Container>
@@ -141,34 +144,52 @@ export function FeatureWall() {
                 key={t.id}
                 href={t.href}
                 className="flex flex-col overflow-hidden rounded-[12px] border border-hairline"
-                style={{ background: `radial-gradient(120% 90% at 50% 0%, ${t.color} 0%, #fff 80%)` }}
+                style={{
+                  background: `radial-gradient(120% 90% at 50% 0%, ${t.color} 0%, #fff 80%)`,
+                }}
               >
                 <div className="relative mx-3 mt-3 aspect-[4/3] overflow-hidden rounded-t-[8px] border border-b-0 border-hairline bg-white">
                   {t.shot.src ? (
-                    <Image src={t.shot.src} alt={t.shot.alt} fill sizes="200px" className="object-cover object-left-top" />
+                    <Image
+                      src={t.shot.src}
+                      alt={t.shot.alt}
+                      fill
+                      sizes="200px"
+                      className="object-cover object-left-top"
+                    />
                   ) : null}
                 </div>
                 <div className="flex items-center justify-center gap-2 py-2.5">
                   <span className="flex h-6 w-6 items-center justify-center rounded-[6px] bg-blue-600 text-[14px] text-white">
                     <Icon name={t.icon} />
                   </span>
-                  <span className="font-display text-[16px] font-bold text-ink">{t.label}</span>
+                  <span className="font-display text-[16px] font-bold text-ink">
+                    {t.label}
+                  </span>
                 </div>
               </Link>
             ))}
           </div>
           <div className="mask-x mt-3 grid grid-cols-3 gap-px border border-hairline bg-hairline">
             {CELLS.slice(0, 24).map((cell) => (
-              <div key={cell[1]} className="flex flex-col items-center justify-center gap-2 bg-white px-2 py-5 text-center">
+              <div
+                key={cell[1]}
+                className="flex flex-col items-center justify-center gap-2 bg-white px-2 py-5 text-center"
+              >
                 <Icon name={cell[0]} className="text-[22px] text-ink-3" />
-                <span className="text-[12px] leading-[1.3] font-bold text-ink-2">{cell[1]}</span>
+                <span className="text-[12px] leading-[1.3] font-bold text-ink-2">
+                  {cell[1]}
+                </span>
               </div>
             ))}
           </div>
         </Container>
       </Reveal>
 
-      <Reveal delay={0.1} className="mask-xy mt-[clamp(32px,4vw,56px)] hidden overflow-hidden lg:block">
+      <Reveal
+        delay={0.1}
+        className="mask-xy mt-[clamp(32px,4vw,56px)] hidden overflow-hidden lg:block"
+      >
         <div
           className="mx-auto grid gap-px bg-hairline"
           style={{
@@ -189,7 +210,9 @@ export function FeatureWall() {
                 {cell ? (
                   <>
                     <Icon name={cell[0]} className="text-[24px] text-ink-3" />
-                    <span className="text-[13px] leading-[1.3] font-bold text-ink-2">{cell[1]}</span>
+                    <span className="text-[13px] leading-[1.3] font-bold text-ink-2">
+                      {cell[1]}
+                    </span>
                   </>
                 ) : null}
               </div>

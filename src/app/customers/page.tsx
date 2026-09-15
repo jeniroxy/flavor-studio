@@ -58,7 +58,11 @@ const FACTS: Stat[] = [
 ];
 
 /* Three short quotes read best on the tall tiles. */
-const PORTRAIT_NAMES = ["Kari Baker", "Greg Grisanti", "Michael Cheng, PhD., CHE"];
+const PORTRAIT_NAMES = [
+  "Kari Baker",
+  "Greg Grisanti",
+  "Michael Cheng, PhD., CHE",
+];
 
 export default function CustomersPage() {
   const portraitQuotes = PORTRAIT_NAMES.map((name) =>
@@ -111,7 +115,11 @@ export default function CustomersPage() {
       {/* Story grid */}
       <Section className="pt-[var(--section-gap)]">
         <Container>
-          <Headline size="lg" className="max-w-[18ch]" tail="with Flavor Studio.">
+          <Headline
+            size="lg"
+            className="max-w-[18ch]"
+            tail="with Flavor Studio."
+          >
             See how great teams get more done
           </Headline>
           <StoryGrid
