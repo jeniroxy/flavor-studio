@@ -376,11 +376,11 @@ export const whyPoints = [
 export const homeFaqs = [
   {
     q: "Is our data secure, and who owns the recipes?",
-    a: "Formulas are trade secrets and we treat them that way: SOC 2 Type II, encryption at rest and in transit, role-based permissions and a full audit log on Enterprise plans. You own everything you create and can export it at any time.",
+    a: "Formulas are trade secrets and we treat them that way. Data lives on highly secure servers and is shared only with your team, all web communication is TLS-encrypted, accounts use two-step authentication, and sign-on IP addresses are logged. You own what you create — the API or a one-click JSON download gets it out.",
   },
   {
     q: "How hard is it to move off our spreadsheets?",
-    a: "Onboarding includes a guided import for recipes, ingredients and cost data from Excel or CSV. Most teams are formulating in Flavor Studio within their first week — you do not rebuild anything by hand.",
+    a: "Most teams start with the ingredient library — 9,000+ USDA ingredients are built in, and supplier ingredients import straight from a vendor spec sheet PDF — then rebuild recipes on top. Start with recipes and labels and add other modules when you are ready; 24/7 support is there by phone, email or in-app chat.",
   },
   {
     q: "Can we trust what the AI Agent tells us?",

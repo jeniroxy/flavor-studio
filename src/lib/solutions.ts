@@ -264,7 +264,7 @@ export const solutions: Solution[] = [
     faqs: [
       {
         q: "How hard is it to move off our spreadsheets?",
-        a: "Onboarding includes a guided import for recipes, ingredients and cost data from Excel or CSV, and most custom ingredients come in from a vendor spec sheet — the tool reads the PDF and pulls the nutrient values in.",
+        a: "Most custom ingredients come in from a vendor spec sheet — the tool reads the PDF and pulls the nutrient values in.",
       },
       sharedFaqs.agent,
       sharedFaqs.permissions,

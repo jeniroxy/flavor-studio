@@ -255,7 +255,7 @@ export const featurePages: FeaturePage[] = [
       },
       {
         q: "How long does it take to move our formulas in?",
-        a: "Most teams import their ingredient library first — from a vendor spec sheet PDF, from the USDA database, or by hand — then rebuild recipes on top. Onboarding is included on every plan.",
+        a: "Most teams import their ingredient library first — from a vendor spec sheet PDF, from the USDA database, or by hand — then rebuild recipes on top. 24/7 support is available by phone, email or in-app chat.",
       },
       {
         q: "What happens when our formulas get complex?",
@@ -432,7 +432,7 @@ export const featurePages: FeaturePage[] = [
       },
       {
         q: "How long does it take to load our ingredients?",
-        a: "Most teams import from vendor spec sheets — the tool reads the PDF and pulls the nutrient values in — or start from the USDA database and adjust. Onboarding is included on every plan.",
+        a: "Most teams import from vendor spec sheets — the tool reads the PDF and pulls the nutrient values in — or start from the USDA database and adjust. 24/7 support is available by phone, email or in-app chat.",
       },
       {
         q: "What happens when our ingredient data gets complex?",
@@ -609,7 +609,7 @@ export const featurePages: FeaturePage[] = [
       },
       {
         q: "How long does it take to set up?",
-        a: "Ingredient costs are entered on the ingredient — many teams import them from vendor spec sheets — and workspace assumptions take an afternoon to define. Onboarding is included on every plan.",
+        a: "Ingredient costs are entered on the ingredient — many teams import them from vendor spec sheets — and workspace assumptions are defined once in Recipes Admin Settings. 24/7 support is available by phone, email or in-app chat.",
       },
       {
         q: "What happens when our costing gets complex?",
@@ -3117,7 +3117,7 @@ export const featurePages: FeaturePage[] = [
       },
       {
         q: "How long does it take to set up?",
-        a: "Adding users and assigning them to groups is done in-product; two-factor setup is a QR code per user. Onboarding is included on every plan.",
+        a: "Adding users and assigning them to groups is done in-product; two-factor setup is a QR code per user. 24/7 support is available by phone, email or in-app chat.",
       },
       {
         q: "How is billing handled?",
