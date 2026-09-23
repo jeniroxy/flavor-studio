@@ -2,9 +2,14 @@ import { routes } from "@/lib/routes";
 
 /*
  * The mega menu, modelled on clickup.com's curtain: Product (five columns of
- * icon + label), AI Agent (icon tiles with one-liners), Solutions (teams,
- * companies, industries + a featured card), Resources (learn, discover,
- * support + a customer-story card), then plain Pricing and Enterprise links.
+ * icon + label), AI Agent (icon tiles with one-liners), Resources (learn,
+ * discover, support + a customer-story card), then plain Pricing and
+ * Enterprise links.
+ *
+ * There is no Solutions menu: clickup.com groups by department, but the old
+ * flavorstudio.com never published audience pages, and five of the twelve we
+ * had drafted were departments no client material names. Audiences live on
+ * Customers instead.
  *
  * The client asked that visitors meet the platform first and AI second, so
  * Product is the first trigger and AI Agent the second — the reverse of
@@ -37,7 +42,7 @@ export type MenuCard = {
 };
 
 export type Menu = {
-  key: "product" | "agent" | "solutions" | "resources";
+  key: "product" | "agent" | "resources";
   label: string;
   columns: MenuColumn[];
   card?: MenuCard;
@@ -235,64 +240,6 @@ export const menus: Menu[] = [
         ],
       },
     ],
-  },
-  {
-    key: "solutions",
-    label: "Solutions",
-    style: "icon",
-    columns: [
-      {
-        heading: "Teams",
-        items: [
-          { label: "R&D and formulation", href: routes.solution("rd") },
-          {
-            label: "Regulatory and labeling",
-            href: routes.solution("regulatory"),
-          },
-          {
-            label: "Costing and procurement",
-            href: routes.solution("costing"),
-          },
-          { label: "Sales and account teams", href: routes.solution("sales") },
-          { label: "Sensory and QA", href: routes.solution("sensory") },
-        ],
-        more: { label: "See all teams", href: routes.solutions },
-      },
-      {
-        heading: "Companies",
-        items: [
-          { label: "CPG manufacturers", href: routes.solution("cpg") },
-          { label: "Ingredient suppliers", href: routes.solution("suppliers") },
-          { label: "Restaurant chains", href: routes.solution("restaurants") },
-          { label: "Enterprise", href: routes.enterprise },
-        ],
-      },
-      {
-        heading: "Industries",
-        items: [
-          { label: "Flavor and fragrance", href: routes.solution("flavor") },
-          {
-            label: "Food science programs",
-            href: routes.solution("education"),
-          },
-          {
-            label: "Sensory and research agencies",
-            href: routes.solution("research"),
-          },
-          {
-            label: "Dieticians and nutritionists",
-            href: routes.solution("nutrition"),
-          },
-        ],
-        more: { label: "See all industries", href: routes.solutions },
-      },
-    ],
-    card: {
-      heading: "Featured",
-      title: "One ingredient library, eighteen modules",
-      body: "Use one module or all of them — teams usually start with recipes and labels, then add the rest.",
-      cta: { label: "Explore the platform", href: routes.features },
-    },
   },
   {
     key: "resources",

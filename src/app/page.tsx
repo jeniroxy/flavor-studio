@@ -1,65 +1,39 @@
-import { FaqAccordion } from "@/components/faq-accordion";
 import { AgentAct } from "@/components/home/agent-act";
 import { Facts } from "@/components/home/facts";
 import { FeatureWall } from "@/components/home/feature-wall";
 import { Hero } from "@/components/home/hero";
-import { Labels } from "@/components/home/labels";
-import { Problem } from "@/components/home/problem";
-import { Stories } from "@/components/home/stories";
-import { TeamsTabs } from "@/components/home/teams-tabs";
-import { Testimonials } from "@/components/home/testimonials";
+import { SuccessStories } from "@/components/home/success-stories";
+import { Why } from "@/components/home/why";
 import { PageShell } from "@/components/page-shell";
-import { Reveal } from "@/components/reveal";
-import {
-  Container,
-  FaqHeading,
-  RainbowCta,
-  Section,
-  SecurityStrip,
-  TextLink,
-} from "@/components/ui";
+import { RainbowCta } from "@/components/ui";
 import { productAssets } from "@/lib/assets";
-import { homeFaqs } from "@/lib/data";
-import { routes } from "@/lib/routes";
 
 /*
- * The landing page, on clickup.com's section order (docs/research/
- * clickup-home-analysis.md §2), with one deliberate change: the AI act comes
- * after the platform, the teams and the labels. The client asked that
- * visitors understand Flavor Studio first and meet AI as a capability built
- * on top of it.
+ * The landing page, following the design at node 40000315:32514:
+ *
+ *   hero (with the module tabs and logo bar) · facts · why · feature wall ·
+ *   the AI act · success stories · testimonials · closing CTA
+ *
+ * Five sections the page used to carry are not in that design and have been
+ * dropped from the home page: Problem, TeamsTabs, Labels, the security strip
+ * and the FAQ accordion. None of them is deleted — Labels and Teams content
+ * lives on the feature pages, security on /enterprise, and the FAQ keeps its
+ * own /faq page — but the home page no longer repeats them.
+ *
+ * The design also draws "08b Why" twice. Its two copies overlap each other and
+ * the feature wall (y 1471 and y 2509, with the wall starting at 2499), so it
+ * is a stray duplicate in the file, not a section that renders twice.
  */
 export default function HomePage() {
   const shot = productAssets.recipeGrid;
   return (
     <PageShell>
       <Hero />
-      <Problem />
-      <FeatureWall />
-      <TeamsTabs />
-      <Labels />
-      <AgentAct />
       <Facts />
-      <Testimonials />
-      <Stories />
-
-      <Section className="py-[clamp(40px,5vw,72px)]">
-        <SecurityStrip />
-      </Section>
-
-      <Section id="faq" className="py-[clamp(40px,5vw,72px)]">
-        <Container>
-          <div className="mx-auto max-w-[680px]">
-            <FaqHeading />
-            <Reveal delay={0.08} className="mt-8">
-              <FaqAccordion items={homeFaqs} defaultOpen={0} groupKey="home" />
-            </Reveal>
-            <Reveal delay={0.12} className="mt-6 text-center">
-              <TextLink href={routes.faq}>See all questions</TextLink>
-            </Reveal>
-          </div>
-        </Container>
-      </Section>
+      <Why />
+      <FeatureWall />
+      <AgentAct />
+      <SuccessStories />
 
       <RainbowCta
         id="demo"

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { GridMock } from "@/components/home/grid-mock";
+import { AssetFrame } from "@/components/asset-frame";
 import { Icon } from "@/components/icon";
 import { productAssets, type AssetSpec } from "@/lib/assets";
 import { routes } from "@/lib/routes";
@@ -24,12 +24,29 @@ type Tab = {
   shot?: AssetSpec;
 };
 
+/*
+ * Twelve tabs, in the order the design lists them (node 40000315:32528).
+ *
+ * Two earlier decisions are reversed here, deliberately and by the design
+ * rather than by drift:
+ *
+ * - AI Agent is now a tab. It was left out because the client's review asked
+ *   that visitors meet the platform first, and a tab made AI one module among
+ *   many. The design puts it last in the rail, which keeps that ordering.
+ * - Versions, Projects, Timeline, Board and Integrations lost their tabs. All
+ *   five keep their own /features page, so the coverage the client asked for
+ *   is intact; only this shortcut from the hero is gone.
+ */
 const TABS: Tab[] = [
   {
     id: "recipes",
     label: "Recipes",
     icon: "chef-hat-one",
     href: routes.feature("recipes"),
+    /* The design shows the real Recipe page here. This tab used to render an
+       animated HTML mock of the grid — the approximation the client objected
+       to in their review. */
+    shot: productAssets.recipeGrid,
   },
   {
     id: "ingredients",
@@ -163,7 +180,11 @@ export function HeroTabs() {
         </div>
 
         {/* preview */}
-        <div className="relative aspect-[4/3] overflow-hidden bg-panel sm:aspect-[878/514]">
+        {/* The rail grew past 514px when Projects, Timeline, Board and
+            Integrations were added, and a fixed aspect ratio left dead space
+            beside the last tabs. On lg the preview stretches to the row
+            instead; the ratio still governs the stacked layout. */}
+        <div className="relative aspect-[4/3] overflow-hidden bg-panel sm:aspect-[878/514] lg:aspect-auto lg:h-full lg:min-h-[514px]">
           {TABS.map((tab) => {
             const on = tab.id === current.id;
             return (
@@ -178,17 +199,26 @@ export function HeroTabs() {
                   pointerEvents: on ? "auto" : "none",
                 }}
               >
-                {tab.shot ? (
+                {tab.shot?.src ? (
                   <Image
-                    src={tab.shot.src as string}
+                    src={tab.shot.src}
                     alt={on ? tab.shot.alt : ""}
                     fill
                     sizes="(max-width: 1024px) 100vw, 900px"
                     priority={on}
                     className="object-cover object-left-top"
                   />
-                ) : on ? (
-                  <GridMock />
+                ) : tab.shot ? (
+                  /* No screenshot yet — name the gap, never fake the screen. */
+                  <div className="flex h-full items-center justify-center p-[clamp(16px,3vw,40px)]">
+                    <AssetFrame
+                      alt={tab.shot.alt}
+                      width={tab.shot.width}
+                      height={tab.shot.height}
+                      spec={tab.shot.spec}
+                      className="w-full max-w-[560px]"
+                    />
+                  </div>
                 ) : null}
               </div>
             );

@@ -20,26 +20,46 @@ import { routes } from "@/lib/routes";
  * Tile drift reuses the fsGlowDrift keyframe with staggered durations; the
  * global reduced-motion rule stops it.
  */
-const CLOUD: { id: string; x: number; y: number; d: number }[] = [
-  { id: "recipes", x: 6, y: 16, d: 13 },
-  { id: "ingredients", x: 15, y: 64, d: 17 },
-  { id: "costing", x: 26, y: 8, d: 15 },
-  { id: "labeling", x: 30, y: 46, d: 19 },
-  { id: "versions", x: 38, y: 78, d: 14 },
-  { id: "designer", x: 55, y: 4, d: 16 },
-  { id: "claims", x: 62, y: 74, d: 18 },
-  { id: "taste-tests", x: 70, y: 30, d: 12 },
-  { id: "projects", x: 80, y: 62, d: 15 },
-  { id: "crm", x: 88, y: 14, d: 17 },
-  { id: "timesheet", x: 93, y: 48, d: 13 },
-  { id: "integrations", x: 46, y: 26, d: 20 },
-];
+/*
+ * All eighteen modules, not twelve. The six that used to be missing —
+ * timeline, board, reports, cr-builder, publishing, admin — are the ones the
+ * client's review listed as absent from the site, so a hero that claims
+ * "eighteen modules" while drawing twelve was making their point for them.
+ *
+ * Positions are a ring, not a scatter: eighteen tiles dropped into the old
+ * hand-placed scatter collided (labels ran through each other and through the
+ * centre mark). Even angular spacing keeps roughly 140px between neighbours,
+ * and the ring leaves the middle clear for the logo tile. `short` trims the
+ * three labels long enough to reach a neighbour — decorative only, the full
+ * names are on the cards below.
+ */
+const CLOUD: { id: string; x: number; y: number; d: number; short?: string }[] =
+  [
+    { id: "recipes", x: 50, y: 12, d: 13 },
+    { id: "ingredients", x: 60, y: 24, d: 17 },
+    { id: "versions", x: 74, y: 21, d: 15 },
+    { id: "costing", x: 75, y: 36, d: 19 },
+    { id: "labeling", x: 87, y: 43, d: 14 },
+    { id: "claims", x: 79, y: 55, d: 16, short: "Claims" },
+    { id: "designer", x: 83, y: 69, d: 18 },
+    { id: "publishing", x: 69, y: 71, d: 12, short: "Publish & export" },
+    { id: "taste-tests", x: 63, y: 86, d: 15 },
+    { id: "projects", x: 50, y: 78, d: 17 },
+    { id: "timeline", x: 37, y: 86, d: 13, short: "Timeline" },
+    { id: "board", x: 31, y: 71, d: 20, short: "Board" },
+    { id: "timesheet", x: 17, y: 69, d: 16 },
+    { id: "reports", x: 21, y: 55, d: 14 },
+    { id: "crm", x: 13, y: 43, d: 18 },
+    { id: "cr-builder", x: 25, y: 36, d: 15 },
+    { id: "integrations", x: 26, y: 21, d: 19 },
+    { id: "admin", x: 40, y: 24, d: 12, short: "Admin" },
+  ];
 
 function IconCloud() {
   return (
     <div
       aria-hidden="true"
-      className="mask-xy relative mx-auto h-[220px] w-full max-w-[880px] sm:h-[260px]"
+      className="mask-xy relative mx-auto h-[360px] w-full max-w-[980px] sm:h-[420px]"
     >
       {CLOUD.map((c, i) => {
         const m = modules.find((x) => x.id === c.id);
@@ -58,7 +78,7 @@ function IconCloud() {
               <Icon name={m.icon} />
             </span>
             <span className="hidden text-[11px] font-semibold whitespace-nowrap text-ink-3 sm:block">
-              {m.label}
+              {c.short ?? m.label}
             </span>
           </div>
         );
@@ -108,11 +128,16 @@ export function IndexHero() {
             platform underneath — sharing one ingredient library and one live
             cost model.
           </Lede>
+          {/* The secondary used to read "Get a demo" and point at /contact,
+              beside a primary reading "Request a demo" — two buttons, nearly
+              the same words, different destinations. The client asked for
+              exactly this distinction to be clear: a demo request goes to the
+              demo form, contacting us goes to Contact. */}
           <Reveal delay={0.1} className="mt-8">
             <CtaRow
               href={routes.demo}
               label="Request a demo"
-              secondary={{ label: "Get a demo", href: routes.contact }}
+              secondary={{ label: "Contact us", href: routes.contact }}
               align="center"
             />
           </Reveal>

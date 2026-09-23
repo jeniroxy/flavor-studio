@@ -8,15 +8,23 @@ import { routes } from "@/lib/routes";
  * systems and formats Flavor Studio connects to (modules.ts "integrations" and
  * "publishing"). Pure CSS — the `.marquee` track moves -50% over duplicated
  * content; the global reduced-motion rule stops it.
+ *
+ * Audited 2026-09-18. NetSuite, SAP and QuickBooks were removed: none appears
+ * in flavorstudio.com's copy, in the application design file, or in the
+ * client's review. They came from the ClickUp teardown's sketch of an
+ * integrations marquee (docs/research/clickup-pages-analysis.md §Integrations)
+ * — a proposal that was read back as fact. Naming a system we do not
+ * integrate with is the one claim on this page an integrator would act on, so
+ * a chip goes here only when a source names it. Plex stays: the client's
+ * review names it. ERP, accounting and the API are the legacy FAQ's own words
+ * ("connect any ERP, accounting…"). Drive/Dropbox/OneDrive sit in ROW_B where
+ * they belong — they are upload sources on the Recipes screen, not ERPs.
  */
 const ROW_A = [
   "REST API",
   "Webhooks",
   "ERP",
   "Plex",
-  "NetSuite",
-  "SAP",
-  "QuickBooks",
   "Accounting",
   "Plant systems",
   "Standards-based auth",

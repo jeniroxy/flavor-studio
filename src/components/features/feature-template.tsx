@@ -1,4 +1,3 @@
-import { ChatMock } from "@/components/chat-mock";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { Contrast } from "@/components/features/contrast";
 import { FeatureHero } from "@/components/features/feature-hero";
@@ -11,7 +10,6 @@ import { IconGrid } from "@/components/features/icon-grid";
 import { PlatformGrid } from "@/components/features/platform-grid";
 import { Reveal } from "@/components/reveal";
 import {
-  Button,
   Container,
   Eyebrow,
   FaqHeading,
@@ -30,12 +28,23 @@ import { routes } from "@/lib/routes";
  * section by section:
  *
  *   1 Hero · 2 LogoStrip · 3 WithoutWith | Thesis · 4 Pillars head ·
- *   5 three alternating rows · 6 GradientBanner · 7 AI head · 8 two AI rows ·
- *   9 icon grid · 10 platform grid · 11 SecurityStrip · 12 FAQ · 13 RainbowCta
+ *   5 alternating rows · 6 GradientBanner · 9 icon grid · 10 platform grid ·
+ *   11 SecurityStrip · 12 FAQ · 13 RainbowCta
  *
- * The AI Agent appears once, after the product has been explained — the
- * client's "product first, AI second" rule.
+ * Sections 7 and 8 — the "AI powered R&D" head and its two chat rows — are
+ * gone. They once ran on all eighteen pages, which put 37 AI transcripts
+ * across the site and drew the client's objection that AI "is mentioned
+ * several times and receives its own dedicated sections" while the core
+ * platform is under-explained; they were then narrowed to five pages, and now
+ * removed from the feature pages altogether. The Agent is still presented on
+ * its own page and on the home page, which is where the client's "product
+ * first, AI second" rule puts it.
+ *
+ * The `ai` copy is still carried per page in feature-pages.ts, unrendered, so
+ * restoring the section is a matter of putting this block back rather than
+ * rewriting eighteen transcripts.
  */
+
 export function FeatureTemplate({ page }: { page: FeaturePage }) {
   const mod = featureModule(page);
   const heroImage = visualImage(page.hero);
@@ -93,44 +102,6 @@ export function FeatureTemplate({ page }: { page: FeaturePage }) {
           cta={{ label: "Request a demo", href: routes.demo }}
         />
       </Container>
-
-      {/* 7 + 8 */}
-      <Section className="py-[clamp(56px,7vw,104px)]">
-        <Container>
-          <SectionHead
-            eyebrow="AI powered R&D"
-            title={page.ai.title}
-            tail={page.ai.tail}
-          />
-          <HairlineRows
-            className="mt-[clamp(32px,4vw,56px)]"
-            rows={page.ai.rows.map((row, i) => ({
-              eyebrow: row.eyebrow,
-              title: row.title,
-              body: row.body,
-              flip: i % 2 === 1,
-              plain: true,
-              visual: <ChatMock lines={row.chat} />,
-              footer:
-                i === 0 ? (
-                  <div className="flex flex-wrap gap-3">
-                    <Button
-                      href={routes.agent}
-                      variant="primary"
-                      size="sm"
-                      arrow
-                    >
-                      Explore the AI Agent
-                    </Button>
-                    <Button href={routes.demo} variant="secondary" size="sm">
-                      Request a demo
-                    </Button>
-                  </div>
-                ) : undefined,
-            }))}
-          />
-        </Container>
-      </Section>
 
       {/* 9 */}
       <IconGrid page={page} />

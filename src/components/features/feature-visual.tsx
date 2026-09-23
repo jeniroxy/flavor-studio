@@ -12,6 +12,10 @@ import type { Visual } from "@/lib/feature-pages";
  *   flow  — a sequence of real screens, played by FlowPlayer
  *   still — one frame of a flow, so a three-row section can show three
  *           distinct moments of a feature without a player in every cell
+ *   pending — no screenshot exists for this point yet; renders AssetFrame's
+ *           marked placeholder naming what is still needed, so a section can
+ *           carry every point flavorstudio.com lists without a picture that
+ *           shows something else
  */
 export function FeatureVisual({
   visual,
@@ -51,6 +55,17 @@ export function FeatureVisual({
       </div>
     );
   }
+  if (visual.kind === "pending") {
+    return (
+      <AssetFrame
+        alt={visual.alt}
+        width={visual.width ?? 1600}
+        height={visual.height ?? 1000}
+        spec=""
+        className={className}
+      />
+    );
+  }
   return (
     <AssetFrame
       {...visual.asset}
@@ -83,6 +98,7 @@ export function visualImage(visual: Visual) {
       height: visual.flow.height,
     };
   }
+  if (visual.kind === "pending") return undefined;
   const a = visual.asset;
   if (!a.src) return undefined;
   return { src: a.src, alt: a.alt, width: a.width, height: a.height };

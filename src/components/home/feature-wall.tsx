@@ -9,8 +9,35 @@ import { routes } from "@/lib/routes";
 /*
  * The wall of features (clickup.com S4): a 10×8 hairline grid of capability
  * cells with four 2×2 hero tiles in the centre, the outer edge fading out
- * under a mask. Every cell names something the application design file
- * shows; the tiles are the four modules most teams start with.
+ * under a mask. The tiles are the four modules most teams start with.
+ *
+ * Provenance rule: a cell goes on this wall only if it is named either by a
+ * screen in the application design file (Figma "Flavor Studio Application")
+ * or by flavorstudio.com's own published copy — most are in both. The split
+ * is real: "Triangle tests", "Attribute scores", "Roles & rights", "ERP sync"
+ * and "REST API" come from the old site's copy and FAQ ("connect any ERP,
+ * accounting…"), not from a screen; "Timesheet", "Aggregate labels",
+ * "Requirements builder", "Custom fields" and "Custom calculations" come from
+ * screens the old site never showed.
+ *
+ * There is a third source, and it outranks the other two: the client's
+ * written review of the redesign (see the client-feedback memory). It names
+ * what the site must cover — Project Timeline, Project Board, Reports, API
+ * integrations, Webhooks, Plex and other external systems, Publish Designer,
+ * newer recipe and ingredient capabilities, and the wider publishing/export
+ * options — and asks for more product detail, not less.
+ *
+ * Audited 2026-09-17. "Webhooks" was briefly cut for lacking a source and
+ * then restored: the client review names it outright, as it does Plex. Do
+ * not cut it again on the grounds that the old site and the design file are
+ * silent — they are, and it still ships. Dropped instead: "Print templates"
+ * (thin evidence, and "Reports" already covers reporting), "Types & tags",
+ * "Duplicate versions" (covered by Version history) and "24/7 support" (a
+ * support policy, not a capability). That freed the four cells which used to
+ * overflow the 44 visible slots — custom fields, custom calculations,
+ * overrun and servings — so they now render.
+ *
+ * There are exactly 44 cells. Add a 45th and it silently vanishes.
  */
 
 const CELLS = [
@@ -45,19 +72,15 @@ const CELLS = [
   ["truck", "Shipments"],
   ["order", "Purchase orders"],
   ["api", "REST API"],
-  ["plug", "Webhooks"],
   ["factory-building", "ERP sync"],
   ["key-one", "Two-factor auth"],
   ["lock", "Roles & rights"],
-  ["tag-one", "Types & tags"],
   ["search", "Library search"],
   ["pic", "Ingredient images"],
   ["certificate", "Certifications"],
   ["robot", "AI Agent"],
   ["link", "Cited answers"],
-  ["headset-one", "24/7 support"],
-  ["printer", "Print templates"],
-  ["copy", "Duplicate versions"],
+  ["plug", "Webhooks"],
   ["config", "Custom fields"],
   ["formula", "Custom calculations"],
   ["milk", "Overrun & fill"],

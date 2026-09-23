@@ -63,8 +63,6 @@ Lenis; register ScrollTrigger in any client component that pins).
 | `/features`                 | features index (pages §2)             | `product`    |
 | `/features/[id]`            | feature Template A (pages §1)         | `product`    |
 | `/ai-agent`                 | Brain² dark page (pages §3a)          | `agent`      |
-| `/solutions`                | teams hub (pages §6)                  | `solutions`  |
-| `/solutions/[slug]`         | Template A with team copy + tab suite | `solutions`  |
 | `/enterprise`               | enterprise (pages §6)                 | `enterprise` |
 | `/developers`               | integrations page (pages §6)          | `product`    |
 | `/pricing`                  | pricing (pages §4)                    | `pricing`    |
@@ -77,3 +75,17 @@ Lenis; register ScrollTrigger in any client component that pins).
 Module ids (18): recipes, ingredients, costing, versions, labeling, claims,
 designer, taste-tests, projects, timeline, board, timesheet, reports, crm,
 cr-builder, publishing, integrations, admin — see `src/lib/modules.ts`.
+
+**No `/solutions`.** An earlier pass built twelve audience pages on ClickUp's
+`/teams/<dept>` template. Removed on 2026-09-17: flavorstudio.com never
+published audience pages, no client material requests them (checked `docs/`,
+the v1-review non-negotiables above, `chats/chat1.md` and the git history),
+and while the seven company/industry audiences did come from the legacy FAQ
+"Who are your customers?", the five department pages — R&D, regulatory,
+costing, sales, sensory — matched no source at all. Audiences belong on
+`/customers`. Do not rebuild this without a written client request.
+
+The **"18 modules"** figure is this site's own count of `src/lib/modules.ts`,
+catalogued from the Figma application file. The legacy site uses the word
+"module" but never states a number, so treat 18 as ours to defend, not the
+client's — confirm before printing it anywhere new.

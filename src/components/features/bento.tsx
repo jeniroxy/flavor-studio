@@ -6,10 +6,16 @@ import { productAssets, type AssetSpec } from "@/lib/assets";
 import { routes } from "@/lib/routes";
 
 /*
- * "Built different. With purpose." — ClickUp's 2/2/3 bento of seven cards:
- * title, two-line description, a framed real screenshot cropped by the card's
- * bottom edge. The first card carries the NEW badge. Every image is a real
- * export from the application design file (src/lib/assets.ts).
+ * "Built different. With purpose." — ClickUp's bento, 2/3/3 across eight
+ * cards: title, two-line description, a framed real screenshot cropped by the
+ * card's bottom edge. Every image is a real export from the application
+ * design file (src/lib/assets.ts).
+ *
+ * Recipes leads and the AI Agent closes. It used to be the reverse — the AI
+ * card led the product hub and there was no Recipes card at all — which is
+ * what the client meant by AI carrying too much weight against "Recipes and
+ * recipe-related functionality" as the primary focus. The NEW badge travels
+ * with the AI card rather than sitting on whatever comes first.
  */
 type Card = {
   title: string;
@@ -22,11 +28,10 @@ type Card = {
 const ROWS: Card[][] = [
   [
     {
-      title: "The AI Agent that knows your formulas",
-      body: "Ask about cost, nutrition, allergens or claims on any version and get an answer with the recipe, regulation or test it came from cited.",
-      href: routes.agent,
-      asset: productAssets.aiAgent,
-      badge: "New",
+      title: "Recipes on a live formulation grid",
+      body: "Percentages, weight, yield and cost recompute as you type, with sub-recipes nested to any depth and processing steps beside the formula.",
+      href: routes.feature("recipes"),
+      asset: productAssets.recipeGrid,
     },
     {
       title: "Ingredients with real data",
@@ -48,14 +53,14 @@ const ROWS: Card[][] = [
       href: routes.feature("costing"),
       asset: productAssets.recipeCost,
     },
-  ],
-  [
     {
       title: "Labels that pass review",
       body: "FDA and Health Canada panels generated from the formula's own values, in six layouts.",
       href: routes.feature("labeling"),
       asset: productAssets.nutritionLabelFormats,
     },
+  ],
+  [
     {
       title: "Taste tests your team runs",
       body: "Panels and surveys scored across versions, with results tied to the version tasted.",
@@ -67,6 +72,13 @@ const ROWS: Card[][] = [
       body: "A layout canvas for spec sheets and published recipes, saved as templates and reused across products.",
       href: routes.feature("designer"),
       asset: productAssets.labelDesigner,
+    },
+    {
+      title: "The AI Agent that knows your formulas",
+      body: "Ask about cost, nutrition, allergens or claims on any version and get an answer with the recipe, regulation or test it came from cited.",
+      href: routes.agent,
+      asset: productAssets.aiAgent,
+      badge: "New",
     },
   ],
 ];

@@ -34,6 +34,9 @@
   --color-blue-050: #f8fbfe;
 
   /* ---- Accent: lime citrus (the logo) ---- */
+  /* Darker than the ramp's other steps and less saturated, but still the
+     brand's own hue (87°) — the readable green for text on white. */
+  --color-lime-700: #5c822b;
   --color-lime-600: #7fd234;
   --color-lime-500: #8cd135;
   --color-lime-400: #a8dd5e;
@@ -70,10 +73,10 @@
 
   /* ---- Typography ---- */
   --font-sans:
-    var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    var(--font-mulish), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif;
   --font-display:
-    var(--font-jakarta), var(--font-inter), -apple-system, BlinkMacSystemFont,
+    var(--font-jakarta), var(--font-mulish), -apple-system, BlinkMacSystemFont,
     sans-serif;
   --font-mono:
     var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
@@ -106,8 +109,11 @@
   --text-strong: var(--color-ink);
   --text-body: #292d34;
   --text-muted: var(--color-ink-2);
+  /* 72px, not 60: the client read the logo as too small, and the logo is
+     capped by the bar it sits in. Everything that offsets against the bar
+     reads this token, so raising it here moves them all. */
+  /* SiteNav v3 is a 60px bar with no announcement strip above it. */
   --nav-height: 60px;
-  --announce-height: 40px;
   --container: 1080px;
   --container-wide: 1240px;
   --section-gap: clamp(72px, 10vw, 150px);
@@ -250,9 +256,13 @@
     color: var(--color-lime-400);
   }
 
-  /* Headline whose tail fades to grey. Wrap the last words in .tail. */
+  /* Headline whose tail carries the brand green. Wrap the last words in .tail.
+     Light pages use lime-700: the brand's own hue (87°) dropped to 50%
+     saturation and darkened, so it reads at 4.47:1. The brand lime itself was
+     tried here and measures 1.86:1 on white — below the 3:1 large-text
+     threshold. On dark sections lime-400 is the legible one. */
   .tail {
-    color: #8f8f8f;
+    color: var(--color-lime-700);
   }
   .tail-grad {
     background: var(--grad-fade);
@@ -262,7 +272,7 @@
   }
   .dark .tail,
   .on-dark .tail {
-    color: #8f8f8f;
+    color: var(--color-lime-400);
   }
 
   /* 1px hairline grid: cells paint white over an #e8e8e8 gap. */
@@ -339,17 +349,19 @@
     -webkit-mask-composite: source-in;
   }
 
-  /* Buttons. Primary is near-black, secondary is the grey pill, inverse is
-     white on gradients. One radius (12px), one hover (colour only). */
+  /* Buttons follow the design in the application file (node 40000077:47453):
+     a full pill, lime primary, white ghost beside it, Plus Jakarta Sans
+     SemiBold 16. Previously these were 12px-radius rectangles with a near-black
+     primary. One radius (pill), one hover (colour only). */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 12px 20px;
-    border-radius: var(--radius-md);
+    gap: 8px;
+    padding: 16px 34px;
+    border-radius: 999px;
     font-family: var(--font-display);
-    font-weight: 650;
+    font-weight: 600;
     font-size: 16px;
     line-height: 1.2;
     white-space: nowrap;
@@ -361,29 +373,32 @@
       box-shadow 0.2s ease;
   }
   .btn-lg {
-    padding: 14px 22px;
+    padding: 18px 38px;
     font-size: 18px;
-    border-radius: 15px;
+    border-radius: 999px;
   }
   .btn-sm {
-    padding: 8px 12px;
+    padding: 12px 24px;
     font-size: 14px;
-    border-radius: var(--radius-sm);
+    border-radius: 999px;
   }
   .btn-primary {
-    background: var(--color-ink);
+    background: var(--color-lime-600);
     color: #fff;
-    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
   }
   .btn-primary:hover {
-    background: #3a3a3a;
+    background: var(--color-lime-500);
   }
+  /* The ghost pill: white, hairline border, ink label. No padding of its own —
+     it sits after .btn-lg/.btn-sm at equal specificity, so setting padding here
+     would collapse both size variants back to one size. */
   .btn-secondary {
-    background: var(--color-panel-2);
+    background: #fff;
     color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px var(--color-hairline);
   }
   .btn-secondary:hover {
-    background: var(--color-panel-3);
+    background: var(--color-panel-1);
   }
   .btn-tertiary {
     background: transparent;

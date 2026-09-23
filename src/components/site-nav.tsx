@@ -6,27 +6,29 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/icon";
 import { Badge } from "@/components/ui";
 import { menus, plainLinks, type Menu } from "@/lib/nav";
-import { loginUrl, routes, signupUrl, type NavKey } from "@/lib/routes";
+import { loginUrl, routes, type NavKey } from "@/lib/routes";
 
 /*
- * The v2 chrome, modelled on clickup.com:
+ * SiteNav v3, from the design at node 40000315:34236:
  *
- * - a 40px announcement bar that scrolls away (hidden on mobile);
- * - a 60px sticky frosted bar — logo, four menu triggers, two plain links,
- *   "Get a demo" / "Login" / "Sign up";
- * - a full-width white "curtain" under the bar for the open menu, columns
- *   fading in with a small stagger;
+ * - a 60px white bar, no announcement strip above it;
+ * - the logo left, four uppercase links centred, "Login" and a lime pill right;
  * - a full-screen sheet on mobile with accordion groups and a pinned Login.
+ *
+ * Three of the four links go straight to a page. RESOURCES keeps the curtain,
+ * because there is no /resources page to send it to — the design draws it flat
+ * like the others, and flat is how it looks until someone hovers it.
  *
  * Login and Sign up go to the app subdomain — the marketing site never
  * renders a sign-in form of its own.
  */
 
-const ANNOUNCEMENT = {
-  lead: "NEW:",
-  text: "The AI Agent now compares recipe versions side by side, with citations.",
-  href: `${routes.agent}#compare`,
-};
+/** The three links that have a page of their own. */
+const LINKS: { label: string; href: string; key: NavKey }[] = [
+  { label: "Features", href: routes.features, key: "product" },
+  { label: "AI Agent", href: routes.agent, key: "agent" },
+  { label: "Pricing", href: routes.pricing, key: "pricing" },
+];
 
 const MOBILE_BREAKPOINT = "(max-width: 960px)";
 
@@ -80,109 +82,101 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
   }, [cancelClose]);
 
   const current = menus.find((m) => m.key === open) ?? null;
+  const resourcesMenu = menus.find((m) => m.key === "resources") ?? null;
 
-  const triggerClass = (key: NavKey) =>
-    `flex items-center gap-1 rounded-[8px] px-3 py-1.5 text-[15px] transition-colors ${
+  /* The design gives the links no pill and no background, so state is carried
+     by colour alone. */
+  const navLinkClass = (key: NavKey) =>
+    `text-[14px] font-semibold uppercase transition-colors ${
       open === key || active === key
-        ? "bg-panel-2 text-ink"
-        : "text-[#292d34] hover:bg-panel-2"
+        ? "text-ink"
+        : "text-[#324561] hover:text-ink"
     }`;
 
   return (
     <>
-      {/* Announcement bar */}
-      {isDesktop && (
-        <Link
-          href={ANNOUNCEMENT.href}
-          className="flex h-[var(--announce-height)] items-center justify-center gap-1 bg-panel px-4 text-[14px] text-ink transition-colors hover:bg-panel-2"
-        >
-          <span className="font-semibold">{ANNOUNCEMENT.lead}</span>
-          <span>{ANNOUNCEMENT.text}</span>
-          <Icon name="right" className="text-[14px]" />
-        </Link>
-      )}
-
       <header
         className="sticky top-0 z-[100]"
         onMouseLeave={scheduleClose}
         onMouseEnter={cancelClose}
       >
-        <div ref={barRef} className="relative bg-white/90 backdrop-blur-[6px]">
-          <div className="container-wide flex h-[var(--nav-height)] items-center gap-2">
+        <div ref={barRef} className="relative border-b border-hairline bg-white">
+          {/* Logo left, links centred, Login and the pill right — the design
+              positions all three against a 1180px line. */}
+          <div className="mx-auto flex h-[var(--nav-height)] max-w-[1180px] items-center justify-between gap-4 px-6">
             <Link
               href={routes.home}
-              className="mr-4 flex shrink-0 items-center"
+              className="flex shrink-0 items-center"
               aria-label="Flavor Studio"
             >
               <Image
                 src="/assets/logo-dark-text.svg"
                 alt="Flavor Studio"
-                width={196}
-                height={38}
+                width={208}
+                height={40}
                 priority
-                className="h-9 w-auto"
+                className="h-10 w-auto"
               />
             </Link>
 
             {isDesktop && (
-              <nav className="flex items-center gap-1" aria-label="Primary">
-                {menus.map((menu) => (
-                  <button
-                    key={menu.key}
-                    type="button"
-                    className={triggerClass(menu.key)}
-                    aria-expanded={open === menu.key}
-                    aria-haspopup="true"
-                    onMouseEnter={() => {
-                      cancelClose();
-                      setOpen(menu.key);
-                    }}
-                    onFocus={() => setOpen(menu.key)}
-                    onClick={() =>
-                      setOpen((o) => (o === menu.key ? null : menu.key))
-                    }
-                  >
-                    {menu.label}
-                    <Icon
-                      name="down"
-                      className={`text-[14px] transition-transform ${open === menu.key ? "rotate-180" : ""}`}
-                    />
-                  </button>
-                ))}
-                {plainLinks.map((link) => (
+              <nav
+                className="absolute left-1/2 flex -translate-x-1/2 items-center gap-[26px]"
+                aria-label="Primary"
+              >
+                {LINKS.map((link) => (
                   <Link
                     key={link.key}
                     href={link.href}
-                    className={triggerClass(link.key)}
+                    className={navLinkClass(link.key)}
                     onMouseEnter={scheduleClose}
                   >
                     {link.label}
                   </Link>
                 ))}
+                {resourcesMenu && (
+                  <button
+                    type="button"
+                    className={navLinkClass("resources")}
+                    aria-expanded={open === "resources"}
+                    aria-haspopup="true"
+                    onMouseEnter={() => {
+                      cancelClose();
+                      setOpen("resources");
+                    }}
+                    onFocus={() => setOpen("resources")}
+                    onClick={() =>
+                      setOpen((o) => (o === "resources" ? null : "resources"))
+                    }
+                  >
+                    {resourcesMenu.label}
+                  </button>
+                )}
               </nav>
             )}
 
-            <div className="ml-auto flex items-center gap-2">
+            <div className="flex items-center gap-[18px]">
               {isDesktop && (
-                <>
-                  <Link href={routes.demo} className="btn btn-tertiary btn-sm">
-                    Get a demo
-                  </Link>
-                  <a href={loginUrl} className="btn btn-secondary btn-sm">
-                    Login
-                  </a>
-                </>
+                <a
+                  href={loginUrl}
+                  className="text-[14px] font-semibold text-[#324561] transition-colors hover:text-ink"
+                >
+                  Login
+                </a>
               )}
-              <a href={signupUrl} className="btn btn-primary btn-sm">
-                Sign up
-              </a>
+              <Link
+                href={routes.demo}
+                className="font-display inline-flex items-center rounded-full bg-[var(--color-lime-600)] px-5 py-2.5 text-[14px] font-semibold text-[#16223a] transition-colors hover:bg-[var(--color-lime-500)]"
+              >
+                Request a demo
+              </Link>
               {!isDesktop && (
                 <button
                   type="button"
                   onClick={() => setSheet((s) => !s)}
                   aria-label={sheet ? "Close menu" : "Open menu"}
                   aria-expanded={sheet}
-                  className="ml-1 flex h-8 w-8 items-center justify-center rounded-[8px] bg-panel-2 text-[20px] text-ink"
+                  className="flex h-8 w-8 items-center justify-center rounded-[8px] bg-panel-2 text-[20px] text-ink"
                 >
                   <Icon name={sheet ? "close" : "hamburger-button"} />
                 </button>

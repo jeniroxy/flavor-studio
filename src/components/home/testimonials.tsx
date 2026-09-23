@@ -34,8 +34,8 @@ export function Testimonials({
     <Section className="py-[var(--section-gap)]">
       <Container>
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <Headline size="lg" tail="who know food." className="max-w-[560px]">
-            Loved by developers, chefs and scientists
+          <Headline size="lg" className="max-w-[560px]">
+            In their own words.
           </Headline>
           <TextLink href={routes.customers}>Read customer stories</TextLink>
         </div>

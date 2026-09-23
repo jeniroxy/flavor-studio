@@ -25,7 +25,14 @@ export type Visual =
   /** One still from a flow — flows are sequences of real screens, so a
       three-row section can show three distinct moments of one feature.
       `step` is a zero-based index into `flow.steps`. */
-  | { kind: "still"; flow: Flow; step: number };
+  | { kind: "still"; flow: Flow; step: number }
+  /** No screenshot exists for this point yet, so the row renders
+      AssetFrame's marked placeholder and names what is missing. Used where a
+      section has to carry as many points as flavorstudio.com's own section
+      but the application design file has no screen for that point — pointing
+      the row at some other module's asset just to trigger the placeholder
+      would misname the gap and leak that asset into `visualImage()`. */
+  | { kind: "pending"; alt: string; width?: number; height?: number };
 
 export type PillarRow = {
   eyebrow: string;
@@ -63,7 +70,11 @@ export type FeaturePage = {
     lede: string;
     /** "Structured. Versioned. Scalable." */
     adjectives: string;
-    rows: [PillarRow, PillarRow, PillarRow];
+    /* As many rows as flavorstudio.com's own section has points — six for
+       Recipes, five for Project Management, four for Nutritional Analysis and
+       CRM, three for Taste Test. It was a fixed trio; the client asked that
+       the count match theirs. */
+    rows: PillarRow[];
   };
   banner: { title: string; body: string };
   ai: {
@@ -98,7 +109,8 @@ export const featurePages: FeaturePage[] = [
     eyebrow: "Recipes in Flavor Studio",
     h1: "Formulate once.",
     tail: "Scale anywhere.",
-    lede: "A formulation grid that already knows your ingredients, costs and nutrition — so every version, sub-recipe and batch is right the first time.",
+    /* flavorstudio.com's own opening line for Recipes, kept verbatim. */
+    lede: "Finally there is an easy-to-use system built specifically for creating, editing and managing recipes with all of the feature-rich functionality that creative professionals crave.",
     hero: { kind: "asset", asset: productAssets.recipeGrid },
     contrast: {
       kind: "without-with",
@@ -121,25 +133,49 @@ export const featurePages: FeaturePage[] = [
       title: "The foundation for every",
       tail: "product",
       lede: "Recipes power everything in Flavor Studio, so labels, costs, taste tests and specs stay attached to the formula they came from.",
-      adjectives: "Structured. Versioned. Scalable.",
+      adjectives: "Costed. Versioned. Nested.",
+      /* All six points flavorstudio.com's Recipes section carries, in their
+         own words — including the client's "let's" and their "customizeable".
+         The first three have a screenshot that actually shows them (cost
+         roll-up, named versions, sub-levels). The last three have none in the
+         application design file, so they render the marked placeholder rather
+         than borrow a picture of something else. */
       rows: [
         {
-          eyebrow: "Structured",
-          title: "More than a spreadsheet",
-          body: "Ingredients ordered into processing steps with item codes carried through. Percentages, weights, yield and cost roll up live in the sidebar, and moisture, fat and processing loss are applied automatically.",
+          eyebrow: "Real-time",
+          title: "Recipe Costing",
+          body: "With real-time costing you can view individual ingredient costs, total batch cost, and estimated retail pricing.",
           visual: { kind: "asset", asset: productAssets.recipeCost },
         },
         {
-          eyebrow: "Versioned",
-          title: "Every change tracked, every version comparable",
-          body: "Branch a formula without losing the original. Named versions switch from the recipe header, the history tool records who changed what and when, and taste-test results stay tied to the version they scored.",
+          eyebrow: "History",
+          title: "Built-in Versioning",
+          body: "Flavor Studio let's you look backward and forward at the entire development history of a recipe.",
           visual: { kind: "asset", asset: productAssets.recipeVersions },
         },
         {
-          eyebrow: "Scalable",
-          title: "From bench sample to production batch",
-          body: "Sub-recipes nest to any depth and cost through to the parent. Scale to a target weight or number of servings, and let ice-cream fill weight follow from overrun and container size.",
+          eyebrow: "Nesting",
+          title: "Sub-recipes",
+          body: "Assemble component recipes into a main recipe and Flavor Studio will distribute accurate costing and nutrient composition.",
           visual: { kind: "still", flow: flows.recipeImages, step: 1 },
+        },
+        {
+          eyebrow: "Grouping",
+          title: "Ingredient groups",
+          body: "Use this feature to combine and track a variety of similar ingredients (e.g., spices) into a single row in a recipe.",
+          visual: { kind: "pending", alt: "Ingredient groups on the formulation grid" },
+        },
+        {
+          eyebrow: "Method",
+          title: "Formulation method",
+          body: "Flavor Studio lets users choose to formulate by either: Percentage, Quantity, or Baker's Percentage.",
+          visual: { kind: "pending", alt: "Choosing the formulation method" },
+        },
+        {
+          eyebrow: "Options",
+          title: "Fully customizeable",
+          body: "Select the units of measurements (metric, standard, volume), set the number of decimal places (1, 2, 3), and many other options.",
+          visual: { kind: "pending", alt: "Units and decimal-place settings" },
         },
       ],
     },
@@ -192,7 +228,10 @@ export const featurePages: FeaturePage[] = [
         },
       ],
     },
-    gridTail: "get it to market",
+    /* Was "get it to market", which described none of the nine tiles below.
+       They all hang off the formula: ingredients, labels, costs, allergens,
+       yield, tags, taste tests, sharing, publishing. */
+    gridTail: "build on the formula",
     grid: [
       {
         icon: "leaves",
@@ -239,6 +278,9 @@ export const featurePages: FeaturePage[] = [
         title: "Publish & export",
         body: "Spec sheets, PDFs and label files from the recipe.",
       },
+      /* All six of flavorstudio.com's Recipes points now live in the pillar
+         rows above — the page's core section — so none of them is repeated
+         here. What stays below is the v2 material that section never had. */
     ],
     faq: [
       {
@@ -790,7 +832,8 @@ export const featurePages: FeaturePage[] = [
     eyebrow: "Nutrition labels in Flavor Studio",
     h1: "Compliant labels,",
     tail: "regenerated with the formula.",
-    lede: "US FDA and Health Canada panels generated from the recipe's own analysed values — in six layouts, with the ingredient statement and allergen declaration alongside.",
+    /* flavorstudio.com's own opening line for Nutritional Analysis, verbatim. */
+    lede: "All users can generate FDA compliant nutritional labels directly in Flavor Studio without the need for other external software systems.",
     hero: { kind: "flow", flow: flows.publishAggregate },
     contrast: {
       kind: "without-with",
@@ -813,25 +856,35 @@ export const featurePages: FeaturePage[] = [
       title: "Formula in.",
       tail: "Label out.",
       lede: "Nutritional analysis runs off the ingredient data and the yield, and the panel follows — in the format your market requires.",
-      adjectives: "Compliant. Complete. Current.",
+      adjectives: "Automatic. Formatted. Exportable.",
+      /* Core section, so these carry flavorstudio.com's own Nutritional
+         Analysis items verbatim, each matched to the screenshot that shows
+         it. "Empower all users" has no screenshot of its own and stays in the
+         icon grid below. */
       rows: [
         {
-          eyebrow: "Compliant",
-          title: "The panel the regulation describes",
-          body: "US FDA and Canadian Health Canada panels, Nutrition Panel or Supplement Facts style, with vitamins and minerals, fatty acids and %Daily Values controlled per panel and quantities shown per serving or per 100 g.",
+          eyebrow: "Automatic",
+          title: "Automatic statements",
+          body: "Ingredient declarations and allergen statements are automatically generated to save users time but also easily modified.",
           visual: { kind: "asset", asset: productAssets.nutritionLabelUs },
         },
         {
-          eyebrow: "Complete",
-          title: "Six layouts, one formula",
-          body: "Vertical, tabular, side-by-side, linear display, dual column and aggregate — the aggregate layout builds one panel from several recipes at once. Ingredient statements and allergen declarations publish alongside.",
+          eyebrow: "Formatted",
+          title: "Layout formats",
+          body: "Flavor Studio exports nutritional labels to: Vertical, Horizontal, Simplified, and Side-by-Side options.",
           visual: { kind: "asset", asset: productAssets.nutritionLabelFormats },
         },
         {
-          eyebrow: "Current",
-          title: "Recalculated whenever the recipe moves",
-          body: "Change an ingredient, the yield or the serving size and the label updates. Set region, method and file type per publish, preview the panel live, then export PNG for drafts or vector PDF for packaging.",
+          eyebrow: "Exportable",
+          title: "Artwork exports",
+          body: "Choose between low resolution PNG files for internal review and high resolution PDF files for packaging designers.",
           visual: { kind: "asset", asset: productAssets.publishExport },
+        },
+        {
+          eyebrow: "Everyone",
+          title: "Empower all users",
+          body: "All Flavor Studio users receive access to these nutrition features - not limited to only a single shared computer.",
+          visual: { kind: "pending", alt: "Nutrition features open to every user" },
         },
       ],
     },
@@ -934,6 +987,10 @@ export const featurePages: FeaturePage[] = [
         title: "Vector PDF export",
         body: "High resolution for the packaging designer.",
       },
+      /* All four of flavorstudio.com's Nutritional Analysis points now live in
+         the pillar rows above, so none is repeated here. Their "Layout
+         formats" line names four layouts; the "Six layouts" tile above it
+         stays, because the application design file shows six. */
     ],
     faq: [
       {
@@ -1296,7 +1353,9 @@ export const featurePages: FeaturePage[] = [
     eyebrow: "Taste Tests in Flavor Studio",
     h1: "Sensory data that",
     tail: "flows back into the formula.",
-    lede: "Run internal panels or consumer surveys, score attributes across versions, and keep the results attached to the formula they belong to instead of in a separate spreadsheet.",
+    /* flavorstudio.com's own opening line for Taste Test, verbatim —
+       including their "to collective objective data" wording. */
+    lede: "Flavor Studio includes the framework to build convenient online surveys for companies to collective objective data and/or metrics to guide the product development process.",
     hero: { kind: "flow", flow: flows.tasteTestPublish },
     contrast: {
       kind: "without-with",
@@ -1319,24 +1378,28 @@ export const featurePages: FeaturePage[] = [
       title: "Test what you made,",
       tail: "keep what you learned",
       lede: "Every test knows the version it scored, so the result is evidence about a formula rather than a number in a folder.",
-      adjectives: "Structured. Comparable. Reportable.",
+      adjectives: "Open. Structured. Analysed.",
+      /* Core section, carrying flavorstudio.com's three Taste Test items
+         verbatim — including their "to collective objective data" phrasing in
+         the page lede above. All three moved up, so the icon grid below no
+         longer repeats them. */
       rows: [
         {
-          eyebrow: "Structured",
-          title: "Panels and surveys, blind or open",
-          body: "Internal panels, consumer surveys, blind triangle and preference tests. Attribute scoring and purchase intent are captured together, and each test is tagged so a library of tests stays searchable.",
+          eyebrow: "Open",
+          title: "Surveys",
+          body: "Build sensory or consumer questionnaires depending on test objectives.",
           visual: { kind: "still", flow: flows.tasteTestPublish, step: 1 },
         },
         {
-          eyebrow: "Comparable",
-          title: "Versions scored side by side",
-          body: "Attribute scores line up across the versions tasted. Filter across tests, tags and verified tags to see how a formula's sensory profile moved from one iteration to the next.",
+          eyebrow: "Unrestricted",
+          title: "Respondents",
+          body: "Choose anyone to participate without restrictions: other licensed users, fellow company employees or external customers (CLT).",
           visual: { kind: "still", flow: flows.tasteTestPublish, step: 2 },
         },
         {
-          eyebrow: "Reportable",
-          title: "A report the whole team can read",
-          body: "Publish a summary, comprehensive or shelf-life report as PDF, filtered by product version and by taster, and circulate it without exporting the underlying data.",
+          eyebrow: "Analysed",
+          title: "Data analysis",
+          body: "Visual reporting of results combines mean scores and modal distribution on simple to interpret infographics.",
           visual: { kind: "still", flow: flows.tasteTestPublish, step: 0 },
         },
       ],
@@ -1440,6 +1503,8 @@ export const featurePages: FeaturePage[] = [
         title: "Filter by taster",
         body: "And by product version, per report.",
       },
+      /* Respondents, Surveys and Data analysis moved up into the pillar rows
+         — the page's core section — so they are not repeated here. */
     ],
     faq: [
       {
@@ -1472,7 +1537,8 @@ export const featurePages: FeaturePage[] = [
     eyebrow: "Projects in Flavor Studio",
     h1: "Launches move through",
     tail: "stage gates, not inboxes.",
-    lede: "Briefs, tasks and stage gates tied directly to the recipes they concern, so the state of a launch is a fact in the system rather than something someone has to chase.",
+    /* flavorstudio.com's own opening line for Project Management, verbatim. */
+    lede: "Organize all aspects of a project's life cycle and foster collaboration with a company's most important resources - its people.",
     hero: { kind: "asset", asset: productAssets.projectsOverview },
     contrast: {
       kind: "without-with",
@@ -1495,25 +1561,43 @@ export const featurePages: FeaturePage[] = [
       title: "From concept to shelf,",
       tail: "in one place",
       lede: "A project in Flavor Studio is connected to the recipes, the people and the hours it involves — so visibility does not depend on a status meeting.",
-      adjectives: "Gated. Connected. Visible.",
+      adjectives: "Teamed. Tracked. Shared.",
+      /* All five points flavorstudio.com's Project Management section carries,
+         in their own words and their order. Only "Monitor activities" has a
+         screen that shows it; the rest render the marked placeholder. Our own
+         "Reported without a status meeting" row was dropped to keep the count
+         theirs — reporting is still covered by the Reports tile in the grid
+         below and by the Reports module page. */
       rows: [
         {
-          eyebrow: "Gated",
-          title: "Stage gates from concept to shelf",
-          body: "Structure a launch as the stages your process already uses, with the brief kept on the project rather than in email. A gate is passed in the system, so the launch's state is a fact anyone with access can see.",
+          eyebrow: "Teams",
+          title: "Create teams",
+          body: "Assemble groups of people that will work together towards driving a project to successful completion.",
           visual: { kind: "asset", asset: productAssets.projectsOverview },
         },
         {
-          eyebrow: "Connected",
-          title: "Tasks that know their recipe",
-          body: "Tasks link to the specific recipes and versions they affect, and time is logged against the project from the timesheet. User privileges, groups and defined roles decide who sees and edits what.",
+          eyebrow: "Files",
+          title: "File storage",
+          body: "Secure cloud-based repository centralizes file storage for easy access to all project-related documents.",
+          visual: { kind: "pending", alt: "Project file repository" },
+        },
+        {
+          eyebrow: "Progress",
+          title: "Monitor activities",
+          body: "Task management provides clear visibility into a project's progress and helps to identify any roadblocks.",
           visual: { kind: "still", flow: flows.timesheet, step: 4 },
         },
         {
-          eyebrow: "Visible",
-          title: "Reported without a status meeting",
-          body: "Project and stage-gate reporting, Gantt reporting from the timeline and time and expense reporting from the timesheet answer the questions management asks from the system itself.",
-          visual: { kind: "asset", asset: productAssets.reports },
+          eyebrow: "Discussion",
+          title: "Message board",
+          body: "Keep team member communication concisely organized in a single location and keep abreast of status updates.",
+          visual: { kind: "pending", alt: "Project message board" },
+        },
+        {
+          eyebrow: "Deadlines",
+          title: "Reminders",
+          body: "Never miss an important upcoming deadline with courteous emails sent before tasks are due.",
+          visual: { kind: "pending", alt: "Deadline reminder email" },
         },
       ],
     },
@@ -1617,6 +1701,17 @@ export const featurePages: FeaturePage[] = [
         title: "CRM link",
         body: "Opportunities tied to development projects.",
       },
+      /* All five of flavorstudio.com's Project Management points now live in
+         the pillar rows above, so none is repeated here. "Due dates" stays:
+         it is not one of their points — it is what the application design
+         file actually shows on tasks and sub-tasks. */
+      {
+        icon: "alarm-clock",
+        title: "Due dates",
+        body: "On tasks and sub-tasks, visible on the board.",
+      },
+      /* Create teams and Monitor activities moved up into the pillar rows —
+         the page's core section — so they are not repeated here. */
     ],
     faq: [
       {
@@ -2305,7 +2400,8 @@ export const featurePages: FeaturePage[] = [
     eyebrow: "CRM in Flavor Studio",
     h1: "Connect the front line",
     tail: "to R&D.",
-    lede: "Customers, opportunities, contracts and purchase orders in the same system as the development work — with sample requests tied to the recipe being sampled.",
+    /* flavorstudio.com's own opening line for CRM, verbatim. */
+    lede: "Comprehensive CRM capabilities are built into Flavor Studio permitting front-line team to interact with R&D on a single software system to more effectively service customers.",
     hero: { kind: "asset", asset: productAssets.crmPipeline },
     contrast: {
       kind: "without-with",
@@ -2328,24 +2424,35 @@ export const featurePages: FeaturePage[] = [
       title: "Sales and development,",
       tail: "one record",
       lede: "The CRM in Flavor Studio is not a separate product bolted on — it shares the recipes, projects and reports the rest of the platform runs on.",
-      adjectives: "Connected. Traceable. Structured.",
+      adjectives: "Connected. Visible. Reported.",
+      /* All four points flavorstudio.com's CRM section carries, in their own
+         words and their order. Our "Requirements captured your way" row was
+         dropped to keep the count theirs; the Customer Requirements Builder
+         is still covered by the Requirements Builder tile in the grid below
+         and by its own module page. */
       rows: [
         {
-          eyebrow: "Connected",
-          title: "Opportunities that know their project",
-          body: "Customers, contacts, opportunities and contracts in one module, with products and purchase orders tracked against the customer. An opportunity links to the development project it depends on, so sales can see where the work stands.",
+          eyebrow: "Linked",
+          title: "Digitally connected",
+          body: "Link sales opportunities to product development projects for seamless reporting.",
+          visual: { kind: "pending", alt: "Opportunity linked to a development project" },
+        },
+        {
+          eyebrow: "Pipeline",
+          title: "Management visibility",
+          body: "View opportunity sales pipeline and sales team activity reports.",
           visual: { kind: "asset", asset: productAssets.crmPipeline },
         },
         {
-          eyebrow: "Structured",
-          title: "Requirements captured your way",
-          body: "The Customer Requirements Builder makes the form your category actually needs — sections, question types, nested options — and collects the customer's answers in a structure your team can work from.",
-          visual: { kind: "asset", asset: productAssets.crBuilder },
+          eyebrow: "Samples",
+          title: "Robust functionality",
+          body: "Manage sample requests and track their shipping status with FedEx connectivity.",
+          visual: { kind: "pending", alt: "Sample request with shipment tracking" },
         },
         {
-          eyebrow: "Traceable",
-          title: "Samples, shipments and reports",
-          body: "Sample requests are tied to the recipe being sampled, shipments are tracked in the same place, and opportunity and activity reporting answers the pipeline questions from the system.",
+          eyebrow: "Reporting",
+          title: "We'll build it",
+          body: "Customizable reporting ensures visibility into the important metrics for each organization.",
           visual: { kind: "asset", asset: productAssets.reports },
         },
       ],
@@ -2411,11 +2518,6 @@ export const featurePages: FeaturePage[] = [
         body: "With opportunities and contracts.",
       },
       {
-        icon: "funds",
-        title: "Opportunities",
-        body: "Linked to development projects.",
-      },
-      {
         icon: "agreement",
         title: "Contracts",
         body: "Kept with the customer record.",
@@ -2430,22 +2532,20 @@ export const featurePages: FeaturePage[] = [
         title: "Sample requests",
         body: "Tied to the recipe being sampled.",
       },
-      { icon: "truck", title: "Shipment tracking", body: "Built in." },
       {
         icon: "form-one",
         title: "Requirements Builder",
         body: "Forms for your category.",
       },
-      {
-        icon: "chart-histogram",
-        title: "Opportunity reports",
-        body: "Opportunity and activity reporting.",
-      },
+      /* Management visibility moved up into the pillar rows — the page's core
+         section — so it is not repeated here. */
       {
         icon: "file-pdf-one",
         title: "Read-only PDFs",
         body: "Publish for customers and co-manufacturers.",
       },
+      /* We'll build it moved up into the pillar rows — the page's core
+         section — so it is not repeated here. */
     ],
     faq: [
       {

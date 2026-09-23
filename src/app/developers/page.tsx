@@ -40,17 +40,24 @@ export const metadata: Metadata = {
 };
 
 /* The systems teams connect. Text chips only: these are systems reached
-   through the API, webhooks and import/export, not logos we own. */
+   through the API, webhooks and import/export, not logos we own.
+
+   Audited 2026-09-18: NetSuite, SAP, QuickBooks, Microsoft Dynamics, Shopify,
+   Zapier and Slack were removed. None of them appears in flavorstudio.com's
+   copy, in the application design file or in the client's review — they were
+   lifted from the ClickUp teardown's sketch of an integrations marquee and
+   shipped as if they were ours. This page is read by integrators, so a system
+   is named here only when a source names it. Plex stays because the client's
+   review asks for it by name; ERP and accounting are the legacy FAQ's words.
+   Drive, Dropbox and OneDrive are real but narrower than the rest of this
+   row: they are file sources on the Recipes screen (see lib/flows.ts), which
+   is why they close the row rather than lead it. */
 const ROW_A = [
   "ERP",
   "Plex",
-  "NetSuite",
-  "SAP",
-  "QuickBooks",
-  "Microsoft Dynamics",
-  "Shopify",
-  "Zapier",
-  "Slack",
+  "Accounting packages",
+  "Plant systems",
+  "Any system with an accessible interface",
   "Google Drive",
   "Dropbox",
   "OneDrive",

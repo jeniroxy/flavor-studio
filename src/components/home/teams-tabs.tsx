@@ -65,7 +65,7 @@ const TEAMS: Team[] = [
         desc: "Panels and surveys",
       },
     ],
-    href: routes.solution("rd"),
+    href: routes.feature("recipes"),
   },
   {
     id: "regulatory",
@@ -109,7 +109,7 @@ const TEAMS: Team[] = [
         desc: "PDF, PNG, print",
       },
     ],
-    href: routes.solution("regulatory"),
+    href: routes.feature("labeling"),
   },
   {
     id: "costing",
@@ -149,7 +149,7 @@ const TEAMS: Team[] = [
         desc: "ERP and accounting",
       },
     ],
-    href: routes.solution("costing"),
+    href: routes.feature("costing"),
   },
   {
     id: "sales",
@@ -193,7 +193,7 @@ const TEAMS: Team[] = [
         desc: "Opportunity reporting",
       },
     ],
-    href: routes.solution("sales"),
+    href: routes.feature("crm"),
   },
   {
     id: "sensory",
@@ -233,7 +233,7 @@ const TEAMS: Team[] = [
         desc: "Tests inside the launch",
       },
     ],
-    href: routes.solution("sensory"),
+    href: routes.feature("taste-tests"),
   },
   {
     id: "leadership",
@@ -293,11 +293,6 @@ export function TeamsTabs() {
         <PillTabs
           tabs={TEAMS}
           className="mt-[clamp(28px,3.5vw,44px)]"
-          trailing={
-            <Link href={routes.solutions} className="pill-tab">
-              See all teams <Icon name="arrow-right" className="text-[14px]" />
-            </Link>
-          }
           render={(team) => (
             <div className="panel mt-8 grid gap-10 rounded-[32px] p-[clamp(24px,4vw,56px)] lg:grid-cols-[1.1fr_1fr]">
               <div>

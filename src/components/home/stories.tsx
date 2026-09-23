@@ -18,10 +18,10 @@ export function Stories() {
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <Headline
             size="lg"
-            tail="with Flavor Studio."
+            tail="there's Flavor Studio."
             className="max-w-[560px]"
           >
-            See how great teams get more done
+            Behind better products,
           </Headline>
           <TextLink href={routes.stories}>Read more stories</TextLink>
         </div>

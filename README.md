@@ -27,7 +27,6 @@ node scripts/qa-overflow.mjs / 390               # list elements wider than the 
 | `/features`                                                 | Features index — bento, sticky category rail, card wall |
 | `/features/[id]`                                            | One page per module (`src/lib/feature-pages.ts`)        |
 | `/ai-agent`                                                 | The AI Agent — dark cinematic page                      |
-| `/solutions`, `/solutions/[slug]`                           | By team / company / industry (`src/lib/solutions.ts`)   |
 | `/enterprise`                                               | Enterprise                                              |
 | `/developers`                                               | Integrations & API                                      |
 | `/pricing`                                                  | Plan table, feature comparison, FAQ                     |

@@ -58,21 +58,6 @@ const columns: {
     ],
   },
   {
-    title: "Solutions",
-    href: routes.solutions,
-    links: [
-      { label: "R&D and formulation", href: routes.solution("rd") },
-      { label: "Regulatory and labeling", href: routes.solution("regulatory") },
-      { label: "Costing and procurement", href: routes.solution("costing") },
-      { label: "Sales and account teams", href: routes.solution("sales") },
-      { label: "CPG manufacturers", href: routes.solution("cpg") },
-      { label: "Ingredient suppliers", href: routes.solution("suppliers") },
-      { label: "Restaurant chains", href: routes.solution("restaurants") },
-      { label: "Food science programs", href: routes.solution("education") },
-      { label: "Enterprise", href: routes.enterprise },
-    ],
-  },
-  {
     title: "Company",
     links: [
       { label: "Customers", href: routes.customers },
@@ -105,7 +90,7 @@ export function SiteFooter() {
           alt="Flavor Studio"
           width={196}
           height={38}
-          className="h-9 w-auto"
+          className="h-11 w-auto"
         />
 
         <div className="mt-10 grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">

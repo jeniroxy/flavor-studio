@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Plus_Jakarta_Sans } from "next/font/google";
+import { JetBrains_Mono, Mulish, Plus_Jakarta_Sans } from "next/font/google";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import "./globals.css";
 
 /*
  * v2 type: Plus Jakarta Sans for display (the clickup.com headline face),
- * Inter for body and UI, JetBrains Mono for the uppercase eyebrows, column
+ * Mulish for body and UI, JetBrains Mono for the uppercase eyebrows, column
  * headings and stat labels that ClickUp sets in Sometype Mono.
+ *
+ * Body was Inter through the first rounds; the client asked for Mulish across
+ * every page, so it is loaded once here and reaches the whole site through
+ * --font-sans. Nothing sets a body face locally — if a page ever looks like
+ * Inter again, the cause is this file, not that page.
  */
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -15,10 +20,10 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const inter = Inter({
+const mulish = Mulish({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-inter",
+  variable: "--font-mulish",
   display: "swap",
 });
 
@@ -44,7 +49,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${jakarta.variable} ${inter.variable} ${jetbrains.variable}`}
+      className={`${jakarta.variable} ${mulish.variable} ${jetbrains.variable}`}
     >
       <body>
         <SmoothScroll />

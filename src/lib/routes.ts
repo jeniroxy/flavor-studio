@@ -5,8 +5,6 @@ export const routes = {
   /** One page per module, /features/<module id>. */
   feature: (id: string) => `/features/${id}`,
   agent: "/ai-agent",
-  solutions: "/solutions",
-  solution: (slug: string) => `/solutions/${slug}`,
   enterprise: "/enterprise",
   developers: "/developers",
   pricing: "/pricing",
@@ -37,7 +35,6 @@ export const signupUrl = `${appUrl}/signup`;
 export type NavKey =
   | "product"
   | "agent"
-  | "solutions"
   | "resources"
   | "pricing"
   | "enterprise"
