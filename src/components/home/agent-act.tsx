@@ -1,31 +1,50 @@
 "use client";
 
-import Image from "next/image";
-import { Icon } from "@/components/icon";
-import { Reveal, RevealStagger } from "@/components/reveal";
-import { Button, Container, Eyebrow } from "@/components/ui";
-import { productAssets } from "@/lib/assets";
+import { useCallback, useState } from "react";
+import { AgentPanel, type AgentStage } from "@/components/home/agent-panel";
+import { Button } from "@/components/ui";
 import { routes } from "@/lib/routes";
 
 /*
- * The AI Agent act (clickup.com S6, Brain²): a black panel inset from the page
- * edge, a gradient headline, the three starters the Agent ships with, and a
- * closing gradient band that hands off to the AI Agent page.
+ * The AI Agent act, built to Figma node 40000425:86686 ("07 AI Agent" in the
+ * Flavor Studio Application file): a night panel with the brand aurora, the
+ * pitch and a static composer on the left, the Agent's own panel on the
+ * right, and a gradient closing band that hands off to /ai-agent.
  *
- * The panel used to bleed to full width as it scrolled in, scrubbed by
- * ScrollTrigger, and reduced-motion readers got the full-bleed state outright.
- * The design draws a fixed rounded panel inset from both edges, so that effect
- * is gone; the clip-path tween is easy to put back if it is ever wanted.
+ * The right-hand panel (agent-panel.tsx) plays the Agent's COMPARE flow from
+ * the app design. It is a picture of the product, not a working chat: the
+ * client asked that nothing public ever reach their AI (see the client
+ * feedback memory), so its buttons are drawn, not wired. Its type is the
+ * app's own Avenir Next, as in the design, falling back to Mulish where
+ * Avenir is not installed.
  *
- * The content is the Agent as designed (Figma, page "AI Agent" → "AI AGENT >
- * Floating Concept"): the panel's own starter types — LIST / COMPARE /
- * WHAT-IF — with the questions and the results those flows return, the
- * composer's context rules, and the product's own disclaimer. The earlier
- * "workspace memory" block was invented; the Agent has no such settings, so
- * it is gone.
+ * The design's panel is 1400 wide; here it takes the site-wide 1170 section
+ * cap, with the 1080 content column centred inside it as drawn.
+ *
+ * Icons and the hex mark are the design's exported SVGs in public/ai-act.
+ *
+ * The pitch follows the panel: each of its three beats (ask, the answer and
+ * its steps, the sources) is underlined while the panel plays it, and the aurora
+ * brightens while the Agent is thinking. The copy is the design's, split at
+ * its own clause breaks.
  */
 
-/** The app sections the panel is available in. */
+/* Each beat of the pitch, and the panel stages it narrates. */
+const BEATS: { text: string; stages: AgentStage[] }[] = [
+  {
+    text: "Ask in plain language from the page you are already on.",
+    stages: ["welcome", "typing", "send", "sent"],
+  },
+  {
+    text: "The Agent answers from your organisation\u2019s own data, shows the steps it took",
+    stages: ["thinking", "steps", "table", "summary"],
+  },
+  {
+    text: "and cites what it used.",
+    stages: ["press-sources", "sources", "done"],
+  },
+];
+
 const SURFACES = [
   "Projects",
   "Inspire",
@@ -35,273 +54,157 @@ const SURFACES = [
   "CRM",
 ];
 
-const STARTERS = [
-  {
-    kind: "List",
-    prompt:
-      "Show me all ingredients with no soy allergen, categorized as starches",
-    body: "It reads the intent, filters the ingredient library on category and allergen, then groups what it finds — with the sources behind the answer.",
-    visual: "list",
-  },
-  {
-    kind: "Compare",
-    prompt: "Side-by-side nutrition labels: Recipe A vs Recipe B",
-    body: "It builds both panels per serving and highlights the rows that differ most, naming the two recipes and the nutrition engine it calculated from.",
-    visual: "compare",
-  },
-  {
-    kind: "What-if",
-    prompt: "If protein went to 10 g, how does raw-material cost change?",
-    body: "It reads the current formula and protein target, finds the cheapest lever to add the 2 g, then re-costs the batch and shows the delta per material.",
-    visual: "whatif",
-  },
-];
-
-/** The grouped ingredient list the LIST starter returns. */
-const GROUPS = [
-  ["Flours & meals", "5"],
-  ["Grains & noodles", "5"],
-  ["Starchy vegetables", "3"],
-];
-
-/** The raw-material delta the WHAT-IF starter returns. */
-const COSTS = [
-  {
-    item: "Whey protein isolate",
-    now: "$21.60",
-    next: "$33.30",
-    delta: "+$11.70",
-    up: true,
-  },
-  {
-    item: "All-purpose flour",
-    now: "$1.20",
-    next: "$0.84",
-    delta: "−$0.36",
-    up: false,
-  },
-  {
-    item: "Total / batch",
-    now: "$45.45",
-    next: "$56.79",
-    delta: "+$11.34",
-    up: true,
-    total: true,
-  },
-];
-
-/** The dark mono card both generated results sit in. */
-function ResultCard({
-  head,
-  foot,
-  children,
-}: {
-  head: string;
-  foot: string;
-  children: React.ReactNode;
-}) {
+/** The hex mark: outer ring and inner star, both flipped as in the file. */
+function Mark({ size }: { size: "sm" | "lg" }) {
+  const sm = size === "sm";
   return (
-    <div className="rounded-[12px] border border-hairline-dark bg-night-2 p-4 font-mono text-[12px]">
-      <div className="mb-3 text-[10px] tracking-[.1em] text-[#7b7b7b] uppercase">
-        {head}
-      </div>
-      {children}
-      <div className="mt-3 border-t border-hairline-dark pt-2 text-[10px] leading-[1.5] text-[#7b7b7b]">
-        {foot}
-      </div>
-    </div>
+    <span
+      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${sm ? "h-[14.225px] w-[13.2px]" : "h-[28.451px] w-[26.4px]"}`}
+    >
+      <img
+        alt=""
+        src={`/ai-act/mark-outer-${size}.svg`}
+        className="absolute inset-0 block size-full max-w-none -scale-x-100 -rotate-180"
+      />
+      <img
+        alt=""
+        src={`/ai-act/mark-inner-${size}.svg`}
+        className={`absolute top-1/2 left-1/2 block max-w-none -translate-x-1/2 -translate-y-1/2 -scale-y-100 ${sm ? "size-[8.976px]" : "size-[17.952px]"}`}
+      />
+    </span>
   );
 }
 
 export function AgentAct() {
-  const shot = productAssets.aiAgent;
+  // The stage the panel is playing; null while it is stopped, which leaves
+  // the pitch unmarked.
+  const [stage, setStage] = useState<AgentStage | null>(null);
+  const onStage = useCallback((s: AgentStage | null) => setStage(s), []);
+  const thinking = stage === "thinking";
 
   return (
-    <section className="py-[clamp(8px,1vw,16px)]">
-      <div className="on-dark relative mx-[clamp(12px,1.6vw,20px)] overflow-hidden rounded-[32px] bg-night text-[#b4b4b4]">
+    <section className="flex flex-col items-center py-4">
+      <div className="relative w-[calc(100%-2*clamp(12px,1.6vw,20px))] max-w-[var(--container)] overflow-hidden rounded-[32px] bg-night">
         {/* aurora */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-[38%] h-[260px] opacity-60 blur-[70px]"
+          className="pointer-events-none absolute top-[320px] left-0 h-[260px] w-full blur-[35px]"
           style={{
-            background:
-              "linear-gradient(90deg, #2060a6, #59a3eb 35%, #18bc9c 65%, #8cd135)",
-            animation: "fsGlowDrift 16s ease-in-out infinite",
+            backgroundImage:
+              "linear-gradient(90deg, #2060a6 0%, #59a3eb 35%, #18bc9c 65%, #8cd135 100%)",
+            opacity: thinking ? 0.95 : 0.6,
+            transform: thinking ? "scaleY(1.25)" : "none",
+            transition:
+              "opacity 900ms ease, transform 1200ms cubic-bezier(0.16, 1, 0.3, 1)",
           }}
         />
 
-        <Container className="relative pt-[clamp(64px,9vw,140px)] pb-[clamp(48px,6vw,80px)]">
-          <div className="mx-auto max-w-[820px] text-center">
-            <Reveal className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[.04] px-3 py-1.5 text-[13px] font-semibold text-white">
-              <span className="flex h-5 w-5 items-center justify-center rounded-full bg-lime-500 text-[12px] text-ink">
-                <Icon name="robot" />
-              </span>
-              AI Agent · built into Flavor Studio
-            </Reveal>
-            <Reveal
-              as="h2"
-              delay={0.05}
-              className="font-display mt-6 text-[clamp(36px,5.6vw,76px)] leading-[1.05] font-bold tracking-[-0.04em]"
-            >
-              <span className="tail-grad">
-                The AI that actually knows your formulas
-              </span>
-            </Reveal>
-            <Reveal
-              as="p"
-              delay={0.1}
-              className="mx-auto mt-5 max-w-[620px] text-[clamp(16px,1.4vw,20px)] leading-[1.55] text-[#b4b4b4]"
-            >
-              Ask in plain language from the page you are already on. The Agent
-              answers from your organisation&rsquo;s own data, shows the steps
-              it took and cites what it used.
-            </Reveal>
-            <Reveal
-              delay={0.14}
-              className="eyebrow eyebrow-dark mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[12px]"
-            >
-              <span className="text-[#7b7b7b]">Works in</span>
-              {SURFACES.map((s) => (
-                <span key={s}>{s}</span>
-              ))}
-            </Reveal>
-          </div>
-
-          {/* the three starters the panel offers, and what each returns */}
-          <RevealStagger
-            stagger={0.08}
-            className="hairline-grid-dark mt-[clamp(40px,5vw,72px)] md:grid-cols-3"
-          >
-            {STARTERS.map((s) => (
-              <div key={s.kind} className="flex flex-col gap-5 p-6">
-                <Eyebrow tone="dark" className="text-[12px] text-[#eee]">
-                  {s.kind}
-                </Eyebrow>
-                <p className="text-[15px] leading-[1.5] font-semibold text-white">
-                  &ldquo;{s.prompt}&rdquo;
+        <div className="relative mx-auto w-full max-w-[1080px] px-5 pt-[clamp(64px,9.7vw,140px)] lg:px-0">
+          <div className="flex flex-col items-center gap-12 lg:flex-row lg:items-start lg:justify-center lg:gap-20">
+            <div className="flex w-full min-w-0 flex-1 flex-col items-start gap-6">
+              <p className="flex items-center gap-2 overflow-hidden rounded-[999px] border border-white/15 bg-white/[0.04] px-3 py-1.5">
+                <span className="relative size-6 shrink-0 overflow-hidden rounded-[24px] bg-[#324561] shadow-[0_2px_4px_2px_rgba(0,0,0,0.05)]">
+                  <Mark size="sm" />
+                </span>
+                <span className="text-[13px] font-semibold whitespace-nowrap text-white">
+                  AI Agent · built into Flavor Studio
+                </span>
+              </p>
+              <h2 className="font-display w-full bg-[linear-gradient(90deg,#fff_0%,#fff_34%,#8f8f8f_100%)] bg-clip-text text-[clamp(40px,4.45vw,64px)] leading-[1.06] font-bold tracking-[-0.035em] text-transparent">
+                The AI that
+                <br />
+                actually knows
+                <br />
+                your formulas
+              </h2>
+              <p className="w-full text-[18px] leading-[1.6] text-white">
+                {BEATS.map((b, k) => {
+                  const lit = stage !== null && b.stages.includes(stage);
+                  return (
+                    <span key={k}>
+                      {k > 0 ? " " : ""}
+                      <span
+                        className="bg-[linear-gradient(#a8dd5e,#a8dd5e)] bg-no-repeat pb-[3px]"
+                        style={{
+                          backgroundPosition: "0 100%",
+                          backgroundSize: lit ? "100% 2px" : "0% 2px",
+                          transition: lit
+                            ? "background-size 900ms cubic-bezier(0.65, 0, 0.35, 1)"
+                            : "background-size 300ms ease",
+                        }}
+                      >
+                        {b.text}
+                      </span>
+                    </span>
+                  );
+                })}
+              </p>
+              <p className="flex w-full flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[12px] leading-[1.3] tracking-[0.08em] whitespace-nowrap uppercase">
+                <span className="text-[#f3f7fe]">Works in</span>
+                {SURFACES.map((s) => (
+                  <span key={s} className="text-[#a8dd5e]">
+                    {s}
+                  </span>
+                ))}
+              </p>
+              <div aria-hidden="true" className="h-6 w-px shrink-0" />
+              <div className="flex w-full items-center gap-3 overflow-hidden rounded-[14px] border border-hairline-dark bg-night-2 px-4 py-3">
+                <span className="shrink-0 rounded-[8px] border border-hairline-dark bg-night-2 px-3 py-1.5 font-mono text-[11px] leading-[16.5px] tracking-[0.06em] whitespace-nowrap text-[#b4b4b4]">
+                  Context · Recipes
+                </span>
+                <p className="min-w-0 flex-1 font-mono text-[13px] leading-[19.5px] text-[#7b7b7b]">
+                  Ask, <span className="text-[#a8dd5e]">@mention</span> a
+                  recipe or a colleague,
+                  <br className="hidden sm:inline" /> or / for actions
                 </p>
-                <p className="text-[14px] leading-[1.6] text-[#b4b4b4]">
-                  {s.body}
-                </p>
-                <div className="mt-auto">
-                  {s.visual === "list" ? (
-                    <ResultCard
-                      head="13 ingredients"
-                      foot="Completed 4 steps · grouped list output with sources"
-                    >
-                      {GROUPS.map(([name, count]) => (
-                        <div
-                          key={name}
-                          className="flex justify-between gap-4 border-b border-hairline-dark py-1.5 last:border-0"
-                        >
-                          <span className="text-[#b4b4b4]">{name}</span>
-                          <span className="text-lime-400">{count}</span>
-                        </div>
-                      ))}
-                    </ResultCard>
-                  ) : s.visual === "compare" ? (
-                    <div className="flex flex-col gap-3">
-                      <div className="frame-dark relative aspect-[4/3] overflow-hidden">
-                        {shot.src ? (
-                          <Image
-                            src={shot.src}
-                            alt={shot.alt}
-                            fill
-                            sizes="400px"
-                            className="object-cover object-left-top"
-                          />
-                        ) : null}
-                      </div>
-                      <p className="font-mono text-[11px] leading-[1.5] text-[#7b7b7b]">
-                        Recipe A: +5 g protein, 7 g less sugar, 40 fewer
-                        calories.{" "}
-                        <span className="text-[#b4b4b4]">2 sources</span>
-                      </p>
-                    </div>
-                  ) : (
-                    <ResultCard
-                      head="raw material · per batch"
-                      foot="Assumes current supplier prices and 90%-protein whey isolate. Excludes labor, package and overhead."
-                    >
-                      {COSTS.map((c) => (
-                        <div
-                          key={c.item}
-                          className={`border-b border-hairline-dark py-2 last:border-0 ${
-                            c.total ? "text-white" : "text-[#b4b4b4]"
-                          }`}
-                        >
-                          <div className="leading-[1.4]">{c.item}</div>
-                          <div className="mt-0.5 flex items-baseline gap-2 text-[11px]">
-                            <span className="text-[#7b7b7b]">{c.now}</span>
-                            <span className="text-[#7b7b7b]">&rarr;</span>
-                            <span>{c.next}</span>
-                            <span
-                              className={`ml-auto ${
-                                c.up ? "text-[#efc051]" : "text-lime-400"
-                              }`}
-                            >
-                              {c.delta}
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                    </ResultCard>
-                  )}
-                </div>
+                <span className="flex size-8 shrink-0 items-center justify-center overflow-hidden rounded-[999px] bg-lime-500">
+                  <span className="relative size-6">
+                    <img
+                      alt=""
+                      src="/ai-act/send.svg"
+                      className="absolute inset-[5.21%] block size-[21px] max-w-none"
+                    />
+                  </span>
+                </span>
               </div>
-            ))}
-          </RevealStagger>
+              <p className="w-full text-[12px] leading-[19.2px] text-[#7b7b7b]">
+                Attach a file or a link, or hand it the page you are on — and
+                the Agent&rsquo;s own output — as context. Answers draw only on
+                your organisation&rsquo;s data; verify before relying on
+                results.
+              </p>
+            </div>
 
-          {/* the composer: how you point the Agent at the right thing */}
-          <Reveal delay={0.1} className="mx-auto mt-10 max-w-[720px]">
-            <div className="flex flex-wrap items-center gap-3 rounded-[14px] border border-hairline-dark bg-night-2 px-4 py-3">
-              <span className="chip chip-dark flex-none font-mono text-[11px]">
-                Context · Recipes
-              </span>
-              <span className="min-w-0 flex-1 font-mono text-[13px] text-[#7b7b7b]">
-                Ask, <span className="text-lime-400">@mention</span> a recipe or
-                a colleague, or <span className="text-lime-400">/</span> for
-                actions
-              </span>
-              <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-white/[.08] text-[14px] text-white">
-                <Icon name="send" />
+            <div className="relative flex w-full max-w-[423px] shrink-0 flex-col lg:h-[705px] lg:w-[423px]">
+              <div className="w-full lg:absolute lg:top-0 lg:left-0 lg:w-[418px]">
+                <AgentPanel onStage={onStage} />
+              </div>
+              <span className="relative mt-2 size-12 self-end overflow-hidden rounded-[48px] bg-[#324561] shadow-[0_4px_8px_4px_rgba(0,0,0,0.05)] lg:absolute lg:top-[657px] lg:left-[375px] lg:mt-0">
+                <Mark size="lg" />
               </span>
             </div>
-            <p className="mt-3 text-center text-[12px] leading-[1.6] text-[#7b7b7b]">
-              Attach a file or a link, or hand it the page you are on — and the
-              Agent&rsquo;s own output — as context. Answers draw only on your
-              organisation&rsquo;s data; verify before relying on results.
-            </p>
-          </Reveal>
-        </Container>
+          </div>
+          <div aria-hidden="true" className="h-12" />
+        </div>
 
-        {/* closing band */}
         <div
-          className="relative"
+          className="relative flex w-full flex-col items-center gap-8 px-5 py-[clamp(64px,7.8vw,112px)]"
           style={{
-            background:
-              "linear-gradient(180deg, #0a0c10 0%, rgba(10,12,16,0) 30%), linear-gradient(100deg, #2060a6, #59a3eb 45%, #18bc9c 80%, #8cd135)",
+            backgroundImage:
+              "linear-gradient(180deg, #0a0c10 0%, rgba(10,12,16,0) 30%), linear-gradient(90deg, #2060a6 0%, #59a3eb 45%, #18bc9c 80%, #8cd135 100%)",
           }}
         >
-          <Container className="py-[clamp(56px,8vw,112px)] text-center">
-            <Reveal
-              as="h3"
-              className="font-display mx-auto max-w-[18ch] text-[clamp(30px,4vw,56px)] leading-[1.06] font-bold tracking-[-0.03em] text-white"
-            >
-              The only AI that actually knows your work
-            </Reveal>
-            <Reveal
-              delay={0.08}
-              className="mt-8 flex flex-wrap items-center justify-center gap-4"
-            >
-              <Button href={routes.agent} variant="inverse" size="lg" arrow>
-                Meet the AI Agent
-              </Button>
-              <Button href={routes.demo} variant="ghost-dark" size="lg">
-                Request a demo
-              </Button>
-            </Reveal>
-          </Container>
+          <h3 className="font-display w-full max-w-[560px] text-center [text-wrap:wrap] text-[clamp(34px,3.9vw,56px)] leading-[1.06] font-bold tracking-[-0.03em] text-white">
+            The only AI that actually knows your work
+          </h3>
+          <div className="flex flex-wrap items-start justify-center gap-4">
+            <Button href={routes.agent} variant="inverse" size="lg" arrow>
+              Meet the AI Agent
+            </Button>
+            <Button href={routes.demo} variant="ghost-dark" size="lg">
+              Request a demo
+            </Button>
+          </div>
         </div>
       </div>
     </section>

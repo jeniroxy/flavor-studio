@@ -93,7 +93,10 @@ export function FeaturedCarousel({
       onBlur={onBlur}
       onKeyDown={onKeyDown}
     >
-      <div className="overflow-hidden" style={trackVars}>
+      <div
+        className="mx-auto max-w-[var(--container)] overflow-hidden"
+        style={trackVars}
+      >
         <ul
           className="relative left-1/2 m-0 flex w-max list-none p-0"
           style={{

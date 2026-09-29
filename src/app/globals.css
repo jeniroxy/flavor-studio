@@ -114,8 +114,9 @@
      reads this token, so raising it here moves them all. */
   /* SiteNav v3 is a 60px bar with no announcement strip above it. */
   --nav-height: 60px;
-  --container: 1080px;
-  --container-wide: 1240px;
+  /* Every section on every page caps at 1170, box edge to box edge. */
+  --container: 1170px;
+  --container-wide: 1170px;
   --section-gap: clamp(72px, 10vw, 150px);
 
   /* Brand gradients. ClickUp's are blue→pink→orange→purple; ours run the
@@ -727,6 +728,19 @@
     background-position: 200% 0;
   }
 }
+/* The AI Agent panel's "Thinking…" dots. */
+@keyframes fsAgentDot {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+}
+
 @keyframes fsCaret {
   0%,
   49% {
@@ -744,6 +758,98 @@
   }
   50% {
     opacity: 1;
+  }
+}
+/* Capability hive: the slow bob every hex icon carries, and the one-off
+   wiggle an icon gives when its hex is hovered. */
+@keyframes fsHexFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -3px;
+  }
+}
+@keyframes fsHexWiggle {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: -12deg;
+  }
+  60% {
+    rotate: 9deg;
+  }
+}
+/* Hero vignettes: slide in from their own edge (--from), then bob. */
+@keyframes fsVignetteIn {
+  from {
+    opacity: 0;
+    translate: var(--from, 0) 0;
+    scale: 0.85;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+@keyframes fsVignetteFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -10px;
+  }
+}
+/* Hero dishes: the incoming plate spins in from small against --spin; the
+   outgoing one spins on with it, swelling and blurring away. */
+@keyframes fsPlateIn {
+  from {
+    opacity: 0;
+    rotate: calc(var(--spin, 120deg) * -1);
+    scale: 0.55;
+    filter: blur(4px);
+  }
+  55% {
+    opacity: 1;
+    filter: blur(0);
+  }
+  75% {
+    scale: 1.04;
+  }
+  to {
+    opacity: 1;
+    rotate: 0deg;
+    scale: 1;
+  }
+}
+@keyframes fsPlateOut {
+  from {
+    opacity: 1;
+    rotate: 0deg;
+    scale: 1;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    rotate: var(--spin, 120deg);
+    scale: 1.15;
+    filter: blur(6px);
+  }
+}
+/* Recipe walkthrough: the ring a simulated click leaves. */
+@keyframes fsClickRipple {
+  from {
+    opacity: 1;
+    scale: 0.4;
+  }
+  to {
+    opacity: 0;
+    scale: 1.6;
   }
 }
 @keyframes fsGlowDrift {

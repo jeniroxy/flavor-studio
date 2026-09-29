@@ -2,18 +2,22 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { AssetFrame } from "@/components/asset-frame";
 import { Icon } from "@/components/icon";
+import { ScreenStory } from "@/components/home/screen-story";
 import { productAssets, type AssetSpec } from "@/lib/assets";
 import { routes } from "@/lib/routes";
+import { stories } from "@/lib/stories";
 
 /*
  * The hero's product tab strip (clickup.com S1): a vertical rail of module
  * tabs on the left, an 878×514 preview on the right, bounded by hairlines.
- * Click-driven, no auto-cycling — ClickUp sets data-auto-cycling="false" and
- * the client asked for calmer motion. The first tab is the animated grid; the
- * rest are real screenshots that cross-fade.
+ * Each tab plays a walkthrough of its
+ * module (screen-story.tsx, scripts in src/lib/stories), built from the app's
+ * own Figma frames rather than an HTML imitation of the screens, which the
+ * client objected to in their review. A tab's shot is its fallback still.
+ * When a walkthrough ends the rail moves on to the next tab by itself.
  */
 
 type Tab = {
@@ -43,9 +47,6 @@ const TABS: Tab[] = [
     label: "Recipes",
     icon: "chef-hat-one",
     href: routes.feature("recipes"),
-    /* The design shows the real Recipe page here. This tab used to render an
-       animated HTML mock of the grid — the approximation the client objected
-       to in their review. */
     shot: productAssets.recipeGrid,
   },
   {
@@ -129,106 +130,160 @@ const TABS: Tab[] = [
 
 export function HeroTabs() {
   const [active, setActive] = useState(TABS[0].id);
+  // A tab's walkthrough mounts the first time it is opened and stays mounted,
+  // so its frames are only downloaded for tabs someone actually looks at.
+  // The tab after the open one is mounted too, so its first frame is loaded
+  // by the time autoplay reaches it.
+  const [opened, setOpened] = useState<string[]>([TABS[0].id, TABS[1].id]);
   const current = TABS.find((t) => t.id === active) ?? TABS[0];
+  const railRef = useRef<HTMLDivElement>(null);
+
+  const open = useCallback((id: string) => {
+    const k = TABS.findIndex((t) => t.id === id);
+    const next = TABS[(k + 1) % TABS.length].id;
+    setActive(id);
+    setOpened((o) => [...o, id, next].filter((v, n, a) => a.indexOf(v) === n));
+    // On phones the rail scrolls sideways; bring the tab into view there
+    // without moving the page.
+    const rail = railRef.current;
+    const btn = rail?.querySelector<HTMLElement>(`[data-tab="${id}"]`);
+    if (rail && btn && rail.scrollWidth > rail.clientWidth) {
+      rail.scrollTo({ left: btn.offsetLeft - 8, behavior: "smooth" });
+    }
+  }, []);
+
+  // Autoplay: when a tab's walkthrough has played through, the next tab
+  // opens, and after the last one the rail starts again. A tab someone
+  // clicks plays its own walkthrough to the end before the rail moves on;
+  // pausing the walkthrough holds the rail too.
+  const advance = useCallback(() => {
+    const k = TABS.findIndex((t) => t.id === active);
+    open(TABS[(k + 1) % TABS.length].id);
+  }, [active, open]);
 
   return (
-    <div className="border-y border-hairline">
-      <div className="container-wide grid grid-cols-1 lg:grid-cols-[210px_minmax(0,1fr)]">
-        {/* rail */}
-        <div className="flex min-w-0 flex-col border-hairline lg:border-r">
-          <div
-            role="tablist"
-            aria-label="Modules"
-            className="flex max-w-full gap-1 overflow-x-auto px-2 py-3 lg:flex-col lg:overflow-visible lg:py-4"
-            data-lenis-prevent
-          >
-            {TABS.map((tab) => {
-              const on = tab.id === current.id;
-              return (
-                <button
-                  key={tab.id}
-                  role="tab"
-                  type="button"
-                  aria-selected={on}
-                  onClick={() => setActive(tab.id)}
-                  className={`flex shrink-0 items-center gap-2 rounded-[8px] px-3 py-2 text-left text-[14px] font-semibold whitespace-nowrap transition-colors ${
-                    on
-                      ? "bg-blue-100 text-blue-700"
-                      : "text-ink-2 hover:bg-panel hover:text-ink"
-                  }`}
-                >
-                  <span
-                    className={`flex h-5 w-5 items-center justify-center rounded-full text-[12px] ${
+    <div className="relative overflow-hidden py-[clamp(16px,3.2vw,48px)]">
+      {/* A table of spice bowls behind the product: the same bowls that
+          frame the hero above (public/assets/food-1.png), so the page moves
+          from the bowls on white down onto the table they sit on. The
+          source is 1024px, so it is softened: blurred, it reads as depth
+          behind the sharp app window and its size never shows. */}
+      <Image
+        src="/hero/spices.webp"
+        alt=""
+        fill
+        sizes="100vw"
+        className="scale-105 object-cover blur-[5px]"
+      />
+      <div className="relative container-wide">
+        <div className="grid grid-cols-1 overflow-hidden rounded-[20px] bg-white shadow-[0_24px_60px_-12px_rgba(22,34,58,0.45)] lg:grid-cols-[210px_minmax(0,1fr)]">
+          {/* rail */}
+          <div className="flex min-w-0 flex-col border-hairline lg:border-r">
+            <div
+              ref={railRef}
+              role="tablist"
+              aria-label="Modules"
+              className="relative flex max-w-full gap-1 overflow-x-auto px-2 py-3 lg:flex-col lg:overflow-visible lg:py-4"
+              data-lenis-prevent
+            >
+              {TABS.map((tab) => {
+                const on = tab.id === current.id;
+                return (
+                  <button
+                    key={tab.id}
+                    role="tab"
+                    type="button"
+                    aria-selected={on}
+                    data-tab={tab.id}
+                    onClick={() => open(tab.id)}
+                    className={`flex shrink-0 items-center gap-2 rounded-[8px] px-3 py-2 text-left text-[14px] font-semibold whitespace-nowrap transition-colors ${
                       on
-                        ? "bg-blue-600 text-white"
-                        : "border border-hairline text-ink-3"
+                        ? "bg-blue-100 text-blue-700"
+                        : "text-ink-2 hover:bg-panel hover:text-ink"
                     }`}
                   >
-                    <Icon name={on ? "check" : tab.icon} />
-                  </span>
-                  {tab.label}
-                </button>
-              );
-            })}
+                    <span
+                      className={`flex h-5 w-5 items-center justify-center rounded-full text-[12px] ${
+                        on
+                          ? "bg-blue-600 text-white"
+                          : "border border-hairline text-ink-3"
+                      }`}
+                    >
+                      <Icon name={on ? "check" : tab.icon} />
+                    </span>
+                    {tab.label}
+                  </button>
+                );
+              })}
+            </div>
+            <div className="mt-auto hidden p-4 lg:block">
+              <Link
+                href={current.href}
+                className="btn btn-primary btn-sm w-full"
+              >
+                Explore {current.label}
+                <Icon name="arrow-right" />
+              </Link>
+            </div>
           </div>
-          <div className="mt-auto hidden p-4 lg:block">
-            <Link href={current.href} className="btn btn-primary btn-sm w-full">
-              Explore {current.label}
-              <Icon name="arrow-right" />
-            </Link>
-          </div>
-        </div>
 
-        {/* preview */}
-        {/* The rail grew past 514px when Projects, Timeline, Board and
+          {/* preview */}
+          {/* The rail grew past 514px when Projects, Timeline, Board and
             Integrations were added, and a fixed aspect ratio left dead space
             beside the last tabs. On lg the preview stretches to the row
             instead; the ratio still governs the stacked layout. */}
-        <div className="relative aspect-[4/3] overflow-hidden bg-panel sm:aspect-[878/514] lg:aspect-auto lg:h-full lg:min-h-[514px]">
-          {TABS.map((tab) => {
-            const on = tab.id === current.id;
-            return (
-              <div
-                key={tab.id}
-                role="tabpanel"
-                aria-hidden={!on}
-                className="absolute inset-0"
-                style={{
-                  opacity: on ? 1 : 0,
-                  transition: "opacity .3s ease",
-                  pointerEvents: on ? "auto" : "none",
-                }}
-              >
-                {tab.shot?.src ? (
-                  <Image
-                    src={tab.shot.src}
-                    alt={on ? tab.shot.alt : ""}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 900px"
-                    priority={on}
-                    className="object-cover object-left-top"
-                  />
-                ) : tab.shot ? (
-                  /* No screenshot yet — name the gap, never fake the screen. */
-                  <div className="flex h-full items-center justify-center p-[clamp(16px,3vw,40px)]">
-                    <AssetFrame
-                      alt={tab.shot.alt}
-                      width={tab.shot.width}
-                      height={tab.shot.height}
-                      spec={tab.shot.spec}
-                      className="w-full max-w-[560px]"
+          <div className="relative aspect-[4/3] overflow-hidden bg-panel sm:aspect-[878/514] lg:aspect-auto lg:h-full lg:min-h-[514px]">
+            {TABS.map((tab) => {
+              const on = tab.id === current.id;
+              return (
+                <div
+                  key={tab.id}
+                  role="tabpanel"
+                  aria-hidden={!on}
+                  className="absolute inset-0"
+                  style={{
+                    opacity: on ? 1 : 0,
+                    transition: "opacity .3s ease",
+                    pointerEvents: on ? "auto" : "none",
+                  }}
+                >
+                  {stories[tab.id] && opened.includes(tab.id) ? (
+                    <ScreenStory
+                      story={stories[tab.id]}
+                      active={on}
+                      onEnd={on ? advance : undefined}
                     />
-                  </div>
-                ) : null}
-              </div>
-            );
-          })}
-          <Link
-            href={current.href}
-            className="btn btn-primary btn-sm absolute right-3 bottom-3 lg:hidden"
-          >
-            Explore {current.label}
-          </Link>
+                  ) : tab.shot?.src ? (
+                    <Image
+                      src={tab.shot.src}
+                      alt={on ? tab.shot.alt : ""}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 900px"
+                      priority={on}
+                      className="object-cover object-left-top"
+                    />
+                  ) : tab.shot ? (
+                    /* No screenshot yet — name the gap, never fake the screen. */
+                    <div className="flex h-full items-center justify-center p-[clamp(16px,3vw,40px)]">
+                      <AssetFrame
+                        alt={tab.shot.alt}
+                        width={tab.shot.width}
+                        height={tab.shot.height}
+                        spec={tab.shot.spec}
+                        className="w-full max-w-[560px]"
+                      />
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })}
+            <Link
+              href={current.href}
+              className="btn btn-primary btn-sm absolute right-3 bottom-3 lg:hidden"
+            >
+              Explore {current.label}
+            </Link>
+          </div>
         </div>
       </div>
     </div>

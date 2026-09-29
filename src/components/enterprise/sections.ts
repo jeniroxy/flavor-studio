@@ -228,7 +228,7 @@ export const enterpriseSections: EnterpriseSection[] = [
         title: "Your data stays yours",
         body: "Never used to train third-party models. If the Agent cannot source an answer, it says so rather than guessing.",
         visual: { kind: "icon", icon: "shield" },
-        href: `${routes.agent}#trust`,
+        href: `${routes.agent}#verify`,
       },
     ],
   },

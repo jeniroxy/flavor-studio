@@ -163,6 +163,16 @@ export const productAssets = {
   },
 
   /* ------------------------------------------------------------- projects */
+  projectGantt: {
+    /* The Timeline view of a project's Work tab, from the Figma section "04
+       Pillars — synced to dev" (40000493:89173), cropped to the title, the
+       tabs and the Gantt; the task detail panel below it carries test copy. */
+    src: "/product/project-timeline.png",
+    alt: "Project Timeline — stages on a Gantt chart with their progress and tasks",
+    spec: "",
+    width: 1200,
+    height: 900,
+  },
   projectsOverview: {
     alt: "Projects — a launch and its stage gates",
     spec: `A project with its brief, stage gates and the recipes attached to it. ${SHOT}`,

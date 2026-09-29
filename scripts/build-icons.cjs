@@ -4,7 +4,7 @@ const fs = require("fs");
 const path = require("path");
 
 const NAMES =
-  `all-application arrow-right attention box branch-one calculator-one calendar-three
+  `all-application arrow-right pause attention box branch-one calculator-one calendar-three
 caution chart-histogram check-one chef-hat-one click cloud-storage degree-hat doc-detail doc-search
 experiment factory-building folder-open funds hamburger headset-one home income key-one knife-fork
 leaves left lightning local-two lock mail mouse peoples phone-telephone protect quote right

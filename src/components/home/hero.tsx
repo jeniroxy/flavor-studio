@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HeroTabs } from "@/components/home/hero-tabs";
+import { HeroVignettes } from "@/components/home/hero-vignettes";
 import { LogoBar } from "@/components/home/logo-bar";
 import { Icon } from "@/components/icon";
 import { Reveal } from "@/components/reveal";
@@ -19,54 +20,10 @@ import { routes } from "@/lib/routes";
  * Agent. The design is the later instruction, so it wins, but the earlier rule
  * was not forgotten.
  */
-/*
- * Six circular crops of one spice photo (public/assets/food-1.png, the same
- * 1024×783 image the design fills all six ellipses with). Each entry is that
- * ellipse's own crop, converted from its Figma imageTransform: the visible
- * window is 18.5% × 24.1% of the source, which maps to a 811×622 background.
- *
- * x/y are the design's own coordinates on its 1440 frame, shifted up by the
- * 60px nav. Several are negative or past 1440 on purpose — they bleed off the
- * frame edge, and the section clips them exactly as the frame does.
- */
-const VIGNETTES = [
-  { x: -59, y: 20, bx: -467, by: -236 },
-  { x: 1348, y: 23, bx: -467, by: -390 },
-  { x: 90, y: 119, bx: -332, by: -470 },
-  { x: 1191, y: 119, bx: -333, by: -314 },
-  { x: -60, y: 218, bx: -468, by: -390 },
-  { x: 1347, y: 218, bx: -195, by: -390 },
-];
-
-function Vignettes() {
-  return (
-    <div
-      aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 top-0 hidden justify-center lg:flex"
-    >
-      <div className="relative h-[400px] w-[1440px]">
-        {VIGNETTES.map((v) => (
-          <span
-            key={`${v.x}:${v.y}`}
-            className="absolute h-[150px] w-[150px] rounded-full"
-            style={{
-              left: v.x,
-              top: v.y,
-              backgroundImage: "url(/assets/food-1.png)",
-              backgroundSize: "811px 622px",
-              backgroundPosition: `${v.bx}px ${v.by}px`,
-            }}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export function Hero() {
   return (
     <section className="relative overflow-hidden pt-[clamp(40px,6vw,80px)]">
-      <Vignettes />
+      <HeroVignettes />
       <div className="relative container-wide text-center">
         <Reveal>
           {/* A translucent pill with a hairline border and a sky→teal badge,

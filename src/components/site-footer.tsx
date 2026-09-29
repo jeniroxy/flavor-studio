@@ -28,9 +28,10 @@ const columns: {
     href: routes.agent,
     links: [
       { label: "Overview", href: routes.agent },
-      { label: "Side-by-side compare", href: `${routes.agent}#compare` },
-      { label: "Skills", href: `${routes.agent}#skills` },
-      { label: "Trust & data", href: `${routes.agent}#trust` },
+      { label: "List", href: `${routes.agent}#list` },
+      { label: "Compare", href: `${routes.agent}#compare` },
+      { label: "What-if", href: `${routes.agent}#whatif` },
+      { label: "Check an answer", href: `${routes.agent}#verify` },
     ],
   },
   {
@@ -115,7 +116,7 @@ export function SiteFooter() {
                     link.href.startsWith("tel:") ? (
                       <a
                         href={link.href}
-                        className="text-[15px] text-[#292d34] transition-colors hover:text-blue-700"
+                        className="text-[15px] [overflow-wrap:anywhere] text-[#292d34] transition-colors hover:text-blue-700"
                       >
                         {link.label}
                       </a>

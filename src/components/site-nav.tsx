@@ -101,9 +101,9 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
         onMouseEnter={cancelClose}
       >
         <div ref={barRef} className="relative border-b border-hairline bg-white">
-          {/* Logo left, links centred, Login and the pill right — the design
-              positions all three against a 1180px line. */}
-          <div className="mx-auto flex h-[var(--nav-height)] max-w-[1180px] items-center justify-between gap-4 px-6">
+          {/* Logo left, links centred, Login and the pill right, on the same
+              1170 line as every section below. */}
+          <div className="mx-auto flex h-[var(--nav-height)] max-w-[var(--container)] items-center justify-between gap-4 px-5 sm:px-6">
             <Link
               href={routes.home}
               className="flex shrink-0 items-center"
@@ -115,7 +115,7 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
                 width={208}
                 height={40}
                 priority
-                className="h-10 w-auto"
+                className="h-8 w-auto sm:h-10"
               />
             </Link>
 
@@ -155,7 +155,9 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
               </nav>
             )}
 
-            <div className="flex items-center gap-[18px]">
+            {/* Under 390px the pill hides: logo, pill and menu button do not fit
+                on one line there, and the sheet carries "Get a demo". */}
+            <div className="flex items-center gap-3 sm:gap-[18px]">
               {isDesktop && (
                 <a
                   href={loginUrl}
@@ -166,7 +168,7 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
               )}
               <Link
                 href={routes.demo}
-                className="font-display inline-flex items-center rounded-full bg-[var(--color-lime-600)] px-5 py-2.5 text-[14px] font-semibold text-[#16223a] transition-colors hover:bg-[var(--color-lime-500)]"
+                className="font-display hidden items-center rounded-full bg-[var(--color-lime-600)] px-4 py-2.5 text-[13px] font-semibold whitespace-nowrap text-[#16223a] transition-colors hover:bg-[var(--color-lime-500)] min-[390px]:inline-flex sm:px-5 sm:text-[14px]"
               >
                 Request a demo
               </Link>

@@ -194,7 +194,7 @@ export default function DevelopersPage() {
 
       {/* --------------------------------------------------------- marquee */}
       <Section className="pb-[clamp(56px,7vw,110px)]">
-        <Reveal>
+        <Reveal className="mx-auto max-w-[var(--container)]">
           <ChipMarquee items={ROW_A} duration="55s" />
           <ChipMarquee items={ROW_B} reverse duration="65s" />
           <p className="eyebrow eyebrow-muted mt-5 text-center text-[11px]">

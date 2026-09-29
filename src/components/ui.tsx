@@ -621,7 +621,7 @@ export function RainbowCta({
 }) {
   return (
     <Section id={id} className={`py-[clamp(24px,3vw,40px)] ${className}`}>
-      <div className="px-[clamp(12px,1.6vw,20px)]">
+      <div className="mx-auto max-w-[var(--container)] px-[clamp(12px,1.6vw,20px)] min-[1210px]:px-0">
         <Reveal
           className="noise relative overflow-hidden rounded-[var(--radius-3xl)] text-white"
           style={{ background: "var(--grad-cta)" }}
@@ -631,7 +631,7 @@ export function RainbowCta({
               <h2 className="font-display max-w-[16ch] text-[clamp(30px,3.6vw,52px)] leading-[1.06] font-bold tracking-[-0.03em] text-white">
                 {title}
               </h2>
-              <div className="flex shrink-0 items-center gap-4">
+              <div className="flex shrink-0 flex-wrap items-center gap-4">
                 <Button href={cta.href} variant="inverse" size="lg" arrow>
                   {cta.label}
                 </Button>
