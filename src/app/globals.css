@@ -257,13 +257,33 @@
     color: var(--color-lime-400);
   }
 
-  /* Headline whose tail carries the brand green. Wrap the last words in .tail.
-     Light pages use lime-700: the brand's own hue (87°) dropped to 50%
-     saturation and darkened, so it reads at 4.47:1. The brand lime itself was
-     tried here and measures 1.86:1 on white — below the 3:1 large-text
-     threshold. On dark sections lime-400 is the legible one. */
+  /* Headline whose tail carries the brand ramp, blue into green. Wrap the
+     last words in .tail; it is for large headline type only. Every stop is
+     darkened so the thinnest point of the ramp still clears 4.2:1 on white
+     (the brand lime itself is 1.86:1): #2060a6 6.4:1, #0f7a6e 5.2:1,
+     #4f8a1f 4.2:1. `clone` repaints the full ramp on each line when a tail
+     wraps. The colour underneath is the fallback where background-clip:text
+     is unsupported, and what forced-colors mode shows. On dark sections the
+     tail stays lime-400, the legible one there. */
   .tail {
     color: var(--color-lime-700);
+    background-image: linear-gradient(
+      100deg,
+      #2060a6 0%,
+      #0f7a6e 55%,
+      #4f8a1f 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+  @media (forced-colors: active) {
+    .tail {
+      -webkit-text-fill-color: currentColor;
+      background-image: none;
+    }
   }
   .tail-grad {
     background: var(--grad-fade);
@@ -274,6 +294,8 @@
   .dark .tail,
   .on-dark .tail {
     color: var(--color-lime-400);
+    background-image: none;
+    -webkit-text-fill-color: currentColor;
   }
 
   /* 1px hairline grid: cells paint white over an #e8e8e8 gap. */
@@ -882,6 +904,36 @@
   }
   to {
     stroke-dashoffset: 0;
+  }
+}
+/* A data dot travelling along a wire (the integrations hub), left to right;
+   the wire's own direction sets which way it reads. */
+@keyframes fsWireFlow {
+  from {
+    left: -8px;
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  to {
+    left: 100%;
+    opacity: 0;
+  }
+}
+@keyframes fsWireFlowDown {
+  from {
+    top: -8px;
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  to {
+    top: 100%;
+    opacity: 0;
   }
 }
 @keyframes fsSpin {

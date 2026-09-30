@@ -72,7 +72,7 @@ const REASONS = [
 
 /*
  * Side-by-side from the breakpoint where the card is wide enough to hold it.
- * The number and title always run the full width of the card, above the
+ * The title always runs the full width of the card, above the
  * body and the picture: at the old size the title had to fit the 42% text
  * column, which is why it stayed small and "cost-effective" broke at the
  * hyphen.
@@ -85,14 +85,12 @@ const SIDE = {
 };
 
 function Reason({
-  n,
   title,
   body,
   visual,
   span,
   side,
 }: {
-  n: number;
   title: string;
   body: string;
   visual: ReactNode;
@@ -104,14 +102,15 @@ function Reason({
     <article
       className={`flex min-w-0 flex-col rounded-[var(--radius-lg)] bg-white p-5 sm:p-6 lg:p-8 ${span}`}
     >
-      <span className="font-display text-[15px] font-bold text-blue-700 tabular-nums">
-        {String(n).padStart(2, "0")}
-      </span>
-      <h3 className="font-display mt-2 max-w-[18ch] text-[clamp(26px,2.9vw,38px)] leading-[1.08] font-bold tracking-[-0.03em] text-balance text-ink">
+      <h3 className="font-display max-w-[18ch] text-[clamp(26px,2.9vw,38px)] leading-[1.08] font-bold tracking-[-0.03em] text-balance text-ink">
         {title}
       </h3>
-      <div className={`mt-4 flex min-w-0 flex-1 flex-col gap-6 ${s?.row ?? ""}`}>
-        <p className={`text-[15.5px] leading-[1.6] text-ink-2 ${s?.text ?? ""}`}>
+      <div
+        className={`mt-4 flex min-w-0 flex-1 flex-col gap-6 ${s?.row ?? ""}`}
+      >
+        <p
+          className={`text-[15.5px] leading-[1.6] text-ink-2 ${s?.text ?? ""}`}
+        >
           {body}
         </p>
         <div className="mt-auto min-w-0 flex-1">{visual}</div>
@@ -135,8 +134,8 @@ export function Why() {
               Why food and beverage teams choose Flavor Studio.
             </h2>
             <p className="max-w-[44ch] text-[clamp(15px,1.3vw,18px)] leading-[1.6] text-white lg:col-span-4 lg:col-start-9">
-              Formulas, costs, labels, taste tests and projects in one web
-              app, open to every team that works on the product.
+              Formulas, costs, labels, taste tests and projects in one web app,
+              open to every team that works on the product.
             </p>
           </div>
 
@@ -144,8 +143,8 @@ export function Why() {
             stagger={0.06}
             className="mt-[clamp(32px,4vw,56px)] grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-12 lg:gap-4"
           >
-            {REASONS.map((r, i) => (
-              <Reason key={r.title} n={i + 1} {...r} />
+            {REASONS.map((r) => (
+              <Reason key={r.title} {...r} />
             ))}
 
             {/* The demo card closes the grid in the ramp's own navy, so the

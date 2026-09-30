@@ -218,7 +218,7 @@ export default function AgentPage() {
                 </Reveal>
                 <Reveal as="h3" delay={0.04} className={`${h3} text-ink`}>
                   Say what you need.{" "}
-                  <span className="text-lime-700">Get the shortlist.</span>
+                  <span className="tail">Get the shortlist.</span>
                 </Reveal>
                 <Reveal
                   as="p"
@@ -255,9 +255,9 @@ export default function AgentPage() {
               delay={0.04}
               className="font-display mx-auto mt-6 max-w-[18ch] text-[clamp(34px,5vw,68px)] leading-[1.04] font-bold tracking-[-0.04em] text-ink"
             >
-              <span className="text-lime-700">+5g</span> protein,{" "}
-              <span className="text-lime-700">7g</span> less sugar,{" "}
-              <span className="text-lime-700">40</span> fewer calories.
+              <span className="tail">+5g</span> protein,{" "}
+              <span className="tail">7g</span> less sugar,{" "}
+              <span className="tail">40</span> fewer calories.
             </Reveal>
             <Reveal
               as="p"

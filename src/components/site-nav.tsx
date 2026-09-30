@@ -225,6 +225,9 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
   // The pill sits under the hovered link, else under the current section.
   const pillKey =
     hover ?? (LINKS.some((l) => l.key === active) ? active : null);
+  // Measured again whenever a link changes size (the web font arriving after
+  // first paint, a resize, zoom), not only when the key changes: a single
+  // measurement taken with the fallback font left the pill off its link.
   useLayoutEffect(() => {
     const track = trackRef.current;
     const el = pillKey ? itemRefs.current[pillKey] : null;
@@ -232,9 +235,17 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
       setPill(null);
       return;
     }
-    const t = track.getBoundingClientRect();
-    const r = el.getBoundingClientRect();
-    setPill({ x: r.left - t.left, w: r.width });
+    const measure = () => setPill({ x: el.offsetLeft, w: el.offsetWidth });
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(track);
+    Object.values(itemRefs.current).forEach((n) => n && ro.observe(n));
+    let live = true;
+    document.fonts?.ready.then(() => live && measure());
+    return () => {
+      live = false;
+      ro.disconnect();
+    };
   }, [pillKey, isDesktop]);
 
   const enter = (l: (typeof LINKS)[number]) => {
