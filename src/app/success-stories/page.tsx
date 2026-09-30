@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { PullQuote } from "@/components/customers/pull-quote";
 import { StoryCard } from "@/components/customers/story-card";
+import { StoryQuote } from "@/components/customers/story-quote";
 import { PageShell } from "@/components/page-shell";
 import { Reveal, RevealStagger } from "@/components/reveal";
 import {
@@ -21,13 +21,19 @@ export const metadata: Metadata = {
 };
 
 /*
- * The story index: the three real stories as large cover cards, the pull
- * quotes we have on record, and the closing CTA. Copy, photography and logos
+ * The story index: the three real stories as large cover cards, the three
+ * customers quoted on their legacy story pages, and the closing CTA. Copy, photography and logos
  * all come from src/lib/data.ts.
  */
 
 export default function SuccessStoriesPage() {
-  const quoted = stories.filter((s) => s.detail.quote);
+  // The customers speaking on the legacy story pages, one per story.
+  const quoted = stories.flatMap((s) => {
+    const q = s.legacy?.blocks.find((b) => b.kind === "quote" && b.name);
+    return q && q.kind === "quote" && q.name
+      ? [{ ...q, name: q.name, company: s.company, slug: s.slug }]
+      : [];
+  });
 
   return (
     <PageShell active="resources">
@@ -69,12 +75,17 @@ export default function SuccessStoriesPage() {
             <Headline size="lg" className="max-w-[16ch]" tail="words.">
               In their own
             </Headline>
-            <div className="mt-10 grid gap-6 md:grid-cols-2">
-              {quoted.map((story) =>
-                story.detail.quote ? (
-                  <PullQuote key={story.slug} quote={story.detail.quote} />
-                ) : null,
-              )}
+            <div className="mt-10 grid gap-4 lg:grid-cols-3">
+              {quoted.map((q) => (
+                <StoryQuote
+                  key={q.slug}
+                  text={q.text}
+                  name={q.name}
+                  role={q.role}
+                  company={q.company}
+                  size="md"
+                />
+              ))}
             </div>
           </Container>
         </Section>

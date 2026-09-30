@@ -200,7 +200,6 @@ const MODULE_OF: Record<string, string> = Object.fromEntries(
 
 const INDEX = Object.fromEntries(CELLS.map((c, i) => [c[1], i]));
 
-const HEX_FLAT = "polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%)";
 
 /*
  * What is lit, and why: a tile hovered (its hexes light), a hex hovered or
@@ -328,13 +327,11 @@ function Hex({
         {/* Resting white (the wall sits on a tinted band); lit blue-300;
             hovered or picked solid blue-600. */}
         <span
-          className="absolute inset-0 bg-white transition-colors duration-300 group-hover:bg-blue-600 group-data-[lit=true]:bg-blue-300 group-data-[sel=true]:bg-blue-600"
-          style={{ clipPath: HEX_FLAT }}
+          className="hex-round-flat absolute inset-0 bg-white transition-colors duration-300 group-hover:bg-blue-600 group-data-[lit=true]:bg-blue-300 group-data-[sel=true]:bg-blue-600"
         />
         <span
-          className="absolute inset-0 bg-blue-300 group-hover:hidden"
+          className="hex-round-flat absolute inset-0 bg-blue-300 group-hover:hidden"
           style={{
-            clipPath: HEX_FLAT,
             opacity: "calc(var(--lift, 0) * 0.85)",
           }}
         />

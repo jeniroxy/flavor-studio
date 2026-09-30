@@ -81,8 +81,7 @@ export function ReminderIllustration() {
       >
         <div className="flex h-11 items-center justify-center bg-[#324561]">
           <span
-            className="flex size-6 items-center justify-center bg-lime-500"
-            style={{ clipPath: "polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)" }}
+            className="hex-round flex w-6 aspect-[1/1.1547] items-center justify-center bg-lime-500"
           />
         </div>
         <div className="p-[clamp(14px,2.4vw,22px)]">

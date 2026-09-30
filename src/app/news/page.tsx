@@ -50,31 +50,42 @@ export default function NewsPage() {
       {featured ? (
         <Section className="pb-[clamp(48px,6vw,80px)]">
           <Container wide>
+            {/* The latest update, on the brand ramp: the page's one focal
+                point. The ramp stops at a deep teal so white copy holds. */}
             <Reveal
               as="article"
               id={featured.slug}
-              className="panel grid scroll-mt-[90px] gap-8 p-[clamp(24px,3.5vw,48px)] lg:grid-cols-[1.1fr_1fr]"
+              className="grid scroll-mt-[90px] gap-8 overflow-hidden rounded-[var(--radius-2xl)] p-[clamp(24px,4vw,56px)] text-white lg:grid-cols-[1.1fr_1fr]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(150deg, #17467f 0%, #2060a6 35%, #1a7f8c 75%, #0f6e5e 100%)",
+              }}
             >
               <div>
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                  <span className="chip">{featured.category}</span>
-                  <span className="eyebrow eyebrow-muted text-[11px]">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                  <span className="rounded-full bg-white px-2.5 py-1 text-[11.5px] font-bold text-[#17467f]">
+                    {featured.category}
+                  </span>
+                  <span className="font-mono text-[12px] tracking-[.06em] text-white/90 uppercase">
                     Latest ·{" "}
                     <time dateTime={featured.date}>
                       {formatNewsDate(featured.date)}
                     </time>
                   </span>
                 </div>
-                <h2 className="font-display mt-5 text-[clamp(26px,2.9vw,40px)] leading-[1.15] font-bold tracking-[-0.03em] text-ink">
+                <h2 className="font-display mt-5 text-[clamp(28px,3.4vw,46px)] leading-[1.1] font-bold tracking-[-0.03em]">
                   {featured.title}
                 </h2>
-                <p className="mt-4 text-[clamp(16px,1.35vw,18px)] leading-[1.6] text-ink-2">
+                <p className="mt-4 text-[clamp(16px,1.35vw,18px)] leading-[1.6] text-white/90">
                   {featured.summary}
                 </p>
               </div>
-              <div className="flex flex-col gap-4 border-t border-hairline pt-6 lg:border-t-0 lg:border-l lg:pt-0 lg:pl-8">
+              <div className="flex flex-col gap-4 rounded-[var(--radius-lg)] bg-white/10 p-[clamp(18px,2.4vw,28px)]">
                 {featured.body.map((para, i) => (
-                  <p key={i} className="text-[15px] leading-[1.7] text-ink-2">
+                  <p
+                    key={i}
+                    className="m-0 text-[15px] leading-[1.7] text-white"
+                  >
                     {para}
                   </p>
                 ))}

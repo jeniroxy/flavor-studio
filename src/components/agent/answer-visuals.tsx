@@ -43,7 +43,6 @@ function useSeen<T extends HTMLElement>() {
 
 /* -------------------------------------------------------------- LIST */
 
-const HEX = "polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)";
 const TINT: Record<string, string> = {
   flour: "#fcf3da",
   grain: "#deedfb",
@@ -107,11 +106,10 @@ export function IngredientHive() {
                   return (
                     <span
                       key={item}
-                      className="flex items-center justify-center px-2.5 text-center text-[clamp(10.5px,1vw,12px)] leading-[1.25] font-semibold text-ink"
+                      className="hex-round flex items-center justify-center px-2.5 text-center text-[clamp(10.5px,1vw,12px)] leading-[1.25] font-semibold text-ink"
                       style={{
                         width: "var(--hw)",
                         aspectRatio: "1 / 1.1547",
-                        clipPath: HEX,
                         background: TINT[g.tag],
                         opacity: seen ? 1 : 0,
                         transform: seen ? "none" : "scale(.6)",

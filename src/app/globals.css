@@ -472,6 +472,20 @@
   .card:hover {
     background: #f0f0f3;
   }
+  /* Hexagons with rounded corners, like the logo's. A mask rather than a
+     clip-path, because clip-path polygons cannot round their corners. The
+     mask keeps the regular hexagon's proportions (contain, no stretching),
+     so a hexagon is never squashed by a box of another shape; boxes that
+     carry one use the regular ratio (pointy 1 : 1.1547, flat 1.1547 : 1). */
+  .hex-round {
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 115.47'%3E%3Cpath d='M40.00 5.77Q50.00 0.00 60.00 5.77L90.00 23.09Q100.00 28.87 100.00 40.41L100.00 75.06Q100.00 86.60 90.00 92.38L60.00 109.70Q50.00 115.47 40.00 109.70L10.00 92.38Q0.00 86.60 0.00 75.06L0.00 40.41Q0.00 28.87 10.00 23.09Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 115.47'%3E%3Cpath d='M40.00 5.77Q50.00 0.00 60.00 5.77L90.00 23.09Q100.00 28.87 100.00 40.41L100.00 75.06Q100.00 86.60 90.00 92.38L60.00 109.70Q50.00 115.47 40.00 109.70L10.00 92.38Q0.00 86.60 0.00 75.06L0.00 40.41Q0.00 28.87 10.00 23.09Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+  .hex-round-flat {
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 115.47 100'%3E%3Cpath d='M23.09 10.00Q28.87 0.00 40.41 0.00L75.06 0.00Q86.60 0.00 92.38 10.00L109.70 40.00Q115.47 50.00 109.70 60.00L92.38 90.00Q86.60 100.00 75.06 100.00L40.41 100.00Q28.87 100.00 23.09 90.00L5.77 60.00Q0.00 50.00 5.77 40.00Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 115.47 100'%3E%3Cpath d='M23.09 10.00Q28.87 0.00 40.41 0.00L75.06 0.00Q86.60 0.00 92.38 10.00L109.70 40.00Q115.47 50.00 109.70 60.00L92.38 90.00Q86.60 100.00 75.06 100.00L40.41 100.00Q28.87 100.00 23.09 90.00L5.77 60.00Q0.00 50.00 5.77 40.00Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
   .frame {
     border: 1px solid var(--color-hairline);
     border-radius: var(--radius-md);

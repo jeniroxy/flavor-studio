@@ -132,6 +132,28 @@ export type Story = {
     sections: { heading: string; paragraphs: string[] }[];
     quote?: { text: string; name: string; role: string };
   };
+  /**
+   * The case study as the legacy story page tells it, verbatim (headings,
+   * paragraphs, the RESULTS figures and the pull-quotes), ported from
+   * flavorstudio.com/success-stories/<slug>-success-story on 2026-10-01.
+   * A quote with a name is a person speaking; one without is the page's own
+   * highlight of a line from the body.
+   */
+  legacy?: {
+    results: { value: string; label: string }[];
+    blocks: (
+      | {
+          kind: "section";
+          level: 2 | 3;
+          label?: string;
+          heading: string;
+          paragraphs: string[];
+        }
+      | { kind: "quote"; text: string; name?: string; role?: string }
+    )[];
+    /** A second photo from the legacy page, for the body. */
+    photo?: { src: string; w: number; h: number; alt: string };
+  };
 };
 
 export const stories: Story[] = [
@@ -152,6 +174,108 @@ export const stories: Story[] = [
     logoW: 160,
     logoH: 21,
     href: "/success-stories/deli-star",
+    legacy: {
+      results: [
+        {
+          value: "30%",
+          label: "Reduction in development time",
+        },
+      ],
+      blocks: [
+        {
+          kind: "section",
+          level: 2,
+          heading: "Innovation is key",
+          paragraphs: [
+            "Deli Star is a meat processing company rooted in a passion for scientific innovation, food safety, and family culture. They pride themselves in crafting products that are healthy, flavorful, and minimally processed because they believe that food is fuel.",
+            "To Deli Star, innovation is not just a buzz word—it is one of their core tenets. They believe innovation is rooted in education, so they created Deli Star University for employees and partners. They recently opened the Food Discovery Center, the first facility of its kind to house food science, venture capital, nutrition, education, R&D, and food manufacturing scale-up under one roof. This powerful combination sparks collaboration while leveraging internal and external capabilities.",
+            "Deli Star’s constant dedication to the health and safety of their customers differentiates them as leader in the industry. This commitment to food safety is exemplified with its innovative Steam Post-Pasteurization that achieves efficiency and quality from concept to customer.",
+            "Thirty-four years of innovation and protein manufacturing brings value to their customers with time-tested science. Founder, Dan Siegel, built Deli Star from the ground-up and, in doing so, forever changed the direction of the meat processing and packaging industry.",
+          ],
+          label: "Background",
+        },
+        {
+          kind: "section",
+          level: 2,
+          heading: "Here, there, everywhere – a tale of disparate systems",
+          paragraphs: [
+            "Deli Star was utilizing MS project with no other dedicated tools to handle their product development efforts. In addition, they were running their business using various spreadsheets and emails. They acknowledged they lacked a project management system to organize and execute their PLM efforts.",
+            "Deli Star was looking to centralize their PLM into one solution and move away from multiple, disparate systems. They wanted increased visibility and transparency for both sales and R&D as well as foster remote collaboration in response to the pandemic.",
+          ],
+          label: "Challenge",
+        },
+        {
+          kind: "quote",
+          text: "Flavor Studio has everything you need to run a business in one spot. The tools within the program are robust – project timelines, tasks, approval, CRM opportunities and pipeline. One can view the state of your business when the team embraces all the tools at their disposal.",
+          name: "Charles Hayes",
+          role: "Deli Star’s VP of Culinary Innovation",
+        },
+        {
+          kind: "section",
+          level: 2,
+          heading: "Comprehensive, all-in-one suite",
+          paragraphs: [
+            "Charles Hayes, the VP of Culinary Innovation at Deli Star, had experience with Flavor Studio in his previous role at another food ingredient company. Flavor Studio combined new product ideation, recipe formulation and costing, nutritional analysis, FDA compliant label creation, consumer research surveys, project management, customer relationship management, taste tests, and other tools that Deli Star needed into one user-friendly, cloud-based interface.",
+            "As the only solution of its kind to combine an entire suite of PLM tools, Flavor Studio facilitates cloud-based collaboration, eliminating disparate spreadsheets, and boosts internal and external communications.",
+            "With such a comprehensive offering, Hayes knew that Flavor Studio would be the perfect PLM solution for Deli Star’s challenges and recommended that the company adopt it.",
+          ],
+          label: "Solution",
+        },
+        {
+          kind: "quote",
+          text: "It became apparent quickly that Flavor Studio created tremendously more value in product innovation, reporting, and marketing for Deli Star.",
+        },
+        {
+          kind: "section",
+          level: 2,
+          heading: "Introducing new products faster",
+          paragraphs: [
+            "While the Deli Star team was initially attracted to the way Flavor Studio integrated all the tools needed to run their business into one cohesive interface, it became apparent quickly that the solution created tremendously more value in product innovation, reporting, and marketing.",
+            "This is due to the fact that Deli Star uses all components of Flavor Studio and as a result the software changed the foundation of their product development process. Moving Deli Star’s disparate records from spreadsheets and email into Flavor Studio streamlined project management efforts and achieved cohesion and transparency throughout the company. With remote work during the pandemic, Deli Star found a way with Flavor Studio to facilitate greater collaboration while team members were physically apart. Flavor Studio also served as a cloud-based solution for Deli Star’s R&D and sales teams which allowed them to continue innovating and servicing their customers at peak performance.",
+          ],
+          label: "Results",
+        },
+        {
+          kind: "section",
+          level: 3,
+          heading: "Product Innovation",
+          paragraphs: [
+            "Flavor Studio has helped Deli Star accelerate product innovation and time-to-market. The company gained the ability to communicate project statuses to teams in real time. And with increased collaboration, Deli Star observed development speed reduce by approximately 30%. Flavor Studio also serves as a central storage repository to houses images, product development details, and a library of products ready to be adapted, which cut time-to-market for new products. The Deli Star sales team loves these features because they can create relevant customer presentations quickly with the portfolio of items at their fingertips.",
+          ],
+        },
+        {
+          kind: "quote",
+          text: "With Flavor Studio, Deli Star experienced a reduction in development speed by approximately 30%.",
+        },
+        {
+          kind: "section",
+          level: 3,
+          heading: "Reporting",
+          paragraphs: [
+            "Crafting complex reports is painless with Flavor Studio’s rich reporting features. Deli Star makes use of the various analyses Flavor Studio offers including sales tracking, project pipeline, and project efficiency and has easy access to any custom reports within Flavor Studio that they may need. The ease of reporting has helped Deli Star’s management make rapid decisions and is especially helpful when tackling their seasonal business.",
+          ],
+        },
+        {
+          kind: "section",
+          level: 3,
+          heading: "Marketing",
+          paragraphs: [
+            "The use of Flavor Studio to track the effectiveness of sales and marketing efforts has been beneficial for Deli Star. Flavor Studio’s CRM and Taste Test features are key in helping the company recognize consumer needs. Hayes raves about the use of QR codes for taste tests and marvels at their ability to collect instant feedback from people tasting their products. Flavor Studio automatically analyzes this data so the R&D team can immediately pivot based on the results.",
+            "Deli Star’s partners can also view data from sensory evaluations in real time in tandem with nutritional information using Flavor Studio’s Taste Test feature. This allows them to collaborate with, and provide feedback to, the Deli Star R&D team.",
+          ],
+        },
+        {
+          kind: "quote",
+          text: "Utilizing Flavor Studio’s Taste Test feature, Deli Star is able to collect instant feedback from food testers and immediately analyze the data to quickly adapt to consumer needs.",
+        },
+      ],
+      photo: {
+        src: "/stories/deli-star-team.jpg",
+        w: 1024,
+        h: 576,
+        alt: "The Deli Star team at work",
+      },
+    },
     detail: {
       // Full narrative to be ported from the legacy story page.
       sections: [],
@@ -178,6 +302,73 @@ export const stories: Story[] = [
     logoW: 600,
     logoH: 337,
     href: "/success-stories/good-foods",
+    legacy: {
+      results: [
+        {
+          value: "100+",
+          label: "Projects managed",
+        },
+        {
+          value: "350+",
+          label: "Taste tests conducted",
+        },
+      ],
+      blocks: [
+        {
+          kind: "section",
+          level: 2,
+          heading: "Making Good Food From Everywhere",
+          paragraphs: [
+            "Good Foods is a family-owned business based out of small-town Pleasant Prairie, Wisconsin that transforms fresh produce into mouthwatering guacamoles, dips, dressings, salsas, and salads. The company believes that “good food makes the world go around,” and they contribute by processing fresh, healthy, and delicious foods.",
+            "Good Foods pride themselves on using the freshest ingredients possible to create high quality products, even if it means sourcing food from across the world. Their second home in Tacámbaro, Michoacán, Mexico allows them to source 100% fresh, heart-healthy Hass avocados for their guacamoles. They go the extra mile to meet the farmers and visit their fields to ensure they partner with individuals with standards equal to their own.",
+            "Their national distribution through retail partners allows them to strive toward their goal: a future with good foods available for everyone. And for customers unable to find their products locally, the store locator tool on their website can be used request Good Foods be carried.",
+          ],
+          label: "Background",
+        },
+        {
+          kind: "section",
+          level: 2,
+          heading: "Longer and Safer Options",
+          paragraphs: [
+            "A desire to innovate inspires Good Foods to fuse culinary expertise with consumer research and food technology to create safe, high-quality foods that are full of flavor. The passion, drive, and entrepreneurial spirit fuel their innovative product development process, with in-house HPP at the forefront. HPP, high-pressure processing, is the technical procedure of immersing freshly produced products in a cold-water bath and applying high pressure. The process extends the shelf life of produce without added preservatives by eliminating spoilage organisms. Kurt Penn, the founder, and CEO of Good Foods, said that HPP is the future of food safety.",
+            "Good Foods differentiates themselves from competitors by being vertically integrated from the avocado fields to owning their HPP equipment. This allows them to be in complete control of the manufacturing process and to ensure cold chain protection to prolong shelf-life.",
+          ],
+        },
+        {
+          kind: "quote",
+          text: "Flavor Studio has become our one stop shop for all Good Foods product development. From recipe generation to taste tests, Flavor Studio has streamlined our R&D processes. We could not be happier with the software and support to date.",
+          name: "Joe Schaber",
+          role: "Product Development Manager",
+        },
+        {
+          kind: "section",
+          level: 2,
+          heading: "Better Management Systems",
+          paragraphs: [
+            "Without a singular system in place and utilizing only spreadsheets, Good Foods had a slow process in launch their products into market. Good Foods aimed to improve their communication and create more innovative products faster by consolidating their PLM (Product Life Management) and taste tests.",
+          ],
+          label: "Objectives",
+        },
+        {
+          kind: "section",
+          level: 2,
+          heading: "Adopting Flavor Studio",
+          paragraphs: [
+            "Senspire suggested adopting Flavor Studio to combine Good Foods’s new product ideation, recipe formulation and costing, nutritional label creation, nutrient analysis, consumer research surveys, project management, customer relationship management, taste tests, and other tools into one cloud-based interface. Since Good Foods vertically integration is a core tenant, tracking all parts of the NPD process is crucial to the cohesion of the entire company. Flavor Studio would consolidate the tools that were previously separated to facilitate ease of communication, product development, and CRM.",
+            "The all-inclusive suite of PLM tools included in Flavor Studio provides everything needed to run a vertically integrated business. The software is unlike any other available; it allows for to facilitate cloud-based collaboration, taste testing, and CRM. Senspire’s world-class customer service is invaluable for a company like Good Foods that has unique needs.",
+          ],
+          label: "Solution",
+        },
+        {
+          kind: "section",
+          level: 3,
+          heading: "Flavorful Impact",
+          paragraphs: [
+            'Flavor Studio walks Good Foods through the entirety of new product development. Starting on the bench, Good Foods enter their recipes into Flavor Studio and utilize the version tracking to understand the trajectory of a formula. Once they’re satisfied with a formula, they can conduct shelf-life testing to track a product’s sensory changes over time through Flavor Studio’s Taste Test tools. Automatically consolidating all this information into reports only takes a few clicks with Flavor Studio’s reporting abilities. This makes analyzing the results and success of a product efficient so Good Foods can certify that they’re formulating high-quality, healthy products that meet their standards. The full suite of PLM tools available in Flavor Studio lets Good Foods to streamline product development and time-to-market so their customers don’t have to wait for new, flavorful foods. <div id="',
+          ],
+        },
+      ],
+    },
     detail: {
       sections: [],
     },
@@ -199,6 +390,62 @@ export const stories: Story[] = [
     logoW: 260,
     logoH: 89,
     href: "/success-stories/ripple-foods",
+    legacy: {
+      results: [
+        {
+          value: "1000+",
+          label: "Recipes stored in the cloud",
+        },
+      ],
+      blocks: [
+        {
+          kind: "section",
+          level: 2,
+          heading: "Dairy-Free Done Right",
+          paragraphs: [
+            "Founded in 2014, Ripple Foods makes plant-based and dairy-free foods and beverages. The founders observed that other dairy alternatives were low in protein, then identified yellow peas as a way to provide substantial protein and great taste. Ripple’s plant-based milk contains just as much protein as dairy milk and about eight times the protein found in almond milk.",
+            "Ripple doesn’t only produce plant-based milk. They’ve since expanded into product categories such as half and half, ice cream, and protein shakes. Their dedication to high-protein plant-based milk alternatives includes an awareness of environmental impacts.",
+            "Ripple believes good food should be simple and should leave a small environmental footprint. To honor this commitment to the planet, all of their ingredients are non-GMO certified. The use of yellow peas results in about one hundred times less water consumption compared to almond milk.",
+          ],
+        },
+        {
+          kind: "section",
+          level: 2,
+          heading: "Overcoming Limitations: Lacking the Necessary Systems",
+          paragraphs: [
+            "Ripple Foods’ product development team used spreadsheets to track their formulations. These spreadsheets didn’t allow the team to factor in ingredient density values which impeded real-time nutritional insights. As a company whose platform centers around nutrition and protein content, this hindrance became more than a program inefficiency.",
+            "They relied instead on a third party to generate their nutrition facts panels which slowed development and added cost. The team’s main issue was waiting for updated nutritional analyses. Ripple needed to bring this analysis in-house to accelerate their new product development timelines. They also wanted the formulas accessible to the entire team to ensure a single source of truth and eliminate the dependency on external partners.",
+          ],
+        },
+        {
+          kind: "section",
+          level: 2,
+          heading: "Cloud Communication Is Key",
+          paragraphs: [
+            "Ripple initially evaluated ESHA’s Genesis R&D as a possible solution but was discouraged to learn that the program wasn’t accessible to team members using Mac laptops without installing Microsoft Windows. ESHA’s alternative was their Cloud Services online portal but this required establishing a cumbersome remote desktop connections through a VPN. This method was not as refined as modern cloud-based software delivered through a browser on any computer.",
+            "One of Ripple’s food scientists had used Flavor Studio at another company and requested a demonstration of the software’s features and capabilities to manage Ripple’s formulas and nutritional analysis needs.",
+            "Ripple’s team was pleased to learn that Flavor Studio’s cloud-based software readily supported both Mac and Windows computers ensuring the same easy access to nutritional analysis for all users. And because Flavor Studio provides each user the ability to conduct nutritional analysis, it eliminates the constraint of having a single individual/computer as the gatekeeper to these insights.",
+            "Flavor Studio proved to be much more for Ripple’s team than just a nutritional analysis tool. The Ripple team found an easy-to-use solution that tackled the complex density conversions needed for their beverages. They appreciated the ability to identify in-development recipes from finished production formulas that had moved to manufacturing.",
+            "But most importantly, the cloud-based software provided a more efficient way to share formulas across the entire team. Flavor Studio’s robust search and filter capabilities made it a breeze to find a formula that used a specific ingredient or even to sort by ingredient categories.",
+          ],
+        },
+        {
+          kind: "section",
+          level: 2,
+          heading: "Consistent Results and a Growing Team",
+          paragraphs: [
+            "Over their five-year relationship with Flavor Studio, Ripple’s confidence in their product development process continues to improve. It is now effortless to send formulas to their contract manufacturer partners and share nutrition facts panel artwork with their designers; Flavor Studio allows Ripple to complete all these tasks internally. The version controls permit them to monitor revision history, which ensures consistency in their development process.",
+            "Ripple’s product development team has more than tripled in size since it adopted Flavor Studio, but the software still allows them to collaborate with the protein research and development team. Their recipe library has also expanded to include over 400 versions of their production formulas, and Flavor Studio houses them all efficiently and intuitively. For Ripple, adopting Flavor Studio was an instrumental decision that has supported the company’s growth into new product categories.",
+          ],
+        },
+        {
+          kind: "quote",
+          text: "Flavor Studio has completely changed the way our company goes through our R&D process. The cloud-based system has connected our company, keeping all our formulas up-to-date while providing the nutritional analysis that we were looking for. Flavor Studio’s ability to seamlessly scale as we grow merely reinforces the solution is exactly what our company needed.",
+          name: "Andrew Cummings",
+          role: "Ripple food scientist",
+        },
+      ],
+    },
     detail: {
       sections: [],
     },

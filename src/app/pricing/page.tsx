@@ -5,6 +5,7 @@ import { PricingFaq } from "@/components/pricing/pricing-faq";
 import { PricingTables } from "@/components/pricing/pricing-tables";
 import { Reveal, RevealStagger } from "@/components/reveal";
 import {
+  Button,
   Container,
   Eyebrow,
   Headline,
@@ -81,6 +82,14 @@ const AGENT_CELLS = [
   },
 ];
 
+/* The home page's Why ramp, top to bottom. */
+const AGENT_GRADIENT =
+  "linear-gradient(180deg, #17467f 0%, #2060a6 24%, #59a3eb 54%, #18bc9c 82%, #8cd135 100%)";
+/* The same hues on the diagonal, for the card icons (white icon over the
+   middle of the ramp). */
+const HEX_GRADIENT =
+  "linear-gradient(135deg, #17467f 0%, #2060a6 30%, #18bc9c 75%, #8cd135 100%)";
+
 export default function PricingPage() {
   return (
     <PageShell active="pricing">
@@ -110,64 +119,86 @@ export default function PricingPage() {
       </Section>
 
       {/* -------------------------------------------------------- AI agent */}
-      <Section id="ai" className="bg-night on-dark py-[clamp(64px,8vw,120px)]">
-        <Container wide>
-          <Reveal>
-            <Eyebrow tone="dark">[ AI Agent ]</Eyebrow>
-          </Reveal>
-          <div className="mt-6 grid items-end gap-6 lg:grid-cols-[1fr_auto]">
-            <Headline size="lg" className="max-w-[16ch]" tail="on every plan.">
-              The AI Agent is included
-            </Headline>
-            <Lede tone="dark" className="max-w-[44ch]">
-              No add-on, no credits to buy. The Agent reads your workspace —
-              recipes, the ingredient library, supplier data and test results —
-              and answers in the recipe you are already in.
-            </Lede>
-          </div>
-
-          <RevealStagger
-            stagger={0.08}
-            className="hairline-grid-dark mt-12 md:grid-cols-3"
+      {/* The home page's Why block: the brand ramp, navy at the top where the
+          white headline sits, lime at the foot, and the three columns as
+          white cards so their text never sits on the pale end. */}
+      <Section id="ai" className="py-[clamp(8px,1vw,16px)]">
+        <div className="mx-auto max-w-[var(--container)] px-[clamp(12px,1.6vw,20px)] min-[1210px]:px-0">
+          <div
+            className="rounded-[var(--radius-3xl)] px-[clamp(16px,4vw,72px)] py-[clamp(40px,5vw,80px)]"
+            style={{ background: AGENT_GRADIENT }}
           >
-            {AGENT_CELLS.map((cell, i) => (
-              <div key={cell.heading} className="flex flex-col p-7">
-                <div className="flex items-center gap-3">
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white/[.06]">
-                    {i === 0 ? (
-                      <SparkIcon size={16} fill="#a8dd5e" />
-                    ) : (
-                      <Icon
-                        name={i === 1 ? "shield" : "robot"}
-                        className="text-[18px] text-lime-400"
-                      />
-                    )}
-                  </span>
-                  <span className="eyebrow eyebrow-dark text-[12px]">
-                    {cell.heading}
-                  </span>
-                </div>
-                <ul className="check-list mt-6">
-                  {cell.items.map((item) => (
-                    <li key={item} className="text-[14px] text-[#d0d0d0]">
-                      <Icon
-                        name="check"
-                        className="tick text-[15px] text-lime-400"
-                      />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </RevealStagger>
+            <Reveal>
+              <span className="font-mono text-[13px] tracking-[.08em] text-white/85 uppercase">
+                [ AI Agent ]
+              </span>
+            </Reveal>
+            <div className="mt-6 grid items-end gap-6 lg:grid-cols-[1fr_auto]">
+              <Reveal
+                as="h2"
+                className="font-display max-w-[16ch] text-[clamp(32px,3.6vw,48px)] leading-[1.15] font-bold tracking-[-0.035em] text-white"
+              >
+                The AI Agent is included{" "}
+                <span className="text-lime-300">on every plan.</span>
+              </Reveal>
+              <Reveal
+                as="p"
+                delay={0.06}
+                className="max-w-[44ch] text-[clamp(16px,1.35vw,18px)] leading-[1.6] text-white"
+              >
+                No add-on, no credits to buy. The Agent reads your workspace —
+                recipes, the ingredient library, supplier data and test results —
+                and answers in the recipe you are already in.
+              </Reveal>
+            </div>
 
-          <Reveal className="mt-8">
-            <TextLink href={routes.agent} tone="dark">
-              See what the Agent can do
-            </TextLink>
-          </Reveal>
-        </Container>
+            <RevealStagger
+              stagger={0.08}
+              className="mt-[clamp(32px,4vw,56px)] grid gap-3 md:grid-cols-3 lg:gap-4"
+            >
+              {AGENT_CELLS.map((cell, i) => (
+                <div
+                  key={cell.heading}
+                  className="flex flex-col rounded-[var(--radius-lg)] bg-white p-6 lg:p-7"
+                >
+                  <div className="flex items-center gap-3">
+                    <span
+                      className="hex-round flex w-10 aspect-[1/1.1547] items-center justify-center text-white"
+                      style={{ background: HEX_GRADIENT }}
+                    >
+                      {i === 0 ? (
+                        <SparkIcon size={16} />
+                      ) : (
+                        <Icon
+                          name={i === 1 ? "shield" : "robot"}
+                          className="text-[18px]"
+                        />
+                      )}
+                    </span>
+                    <span className="eyebrow text-[12px]">{cell.heading}</span>
+                  </div>
+                  <ul className="check-list mt-6">
+                    {cell.items.map((item) => (
+                      <li key={item} className="text-[14.5px] text-ink-2">
+                        <Icon
+                          name="check"
+                          className="tick text-[15px] text-[#067a33]"
+                        />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </RevealStagger>
+
+            <Reveal className="mt-8">
+              <Button href={routes.agent} variant="inverse" arrow>
+                See what the Agent can do
+              </Button>
+            </Reveal>
+          </div>
+        </div>
       </Section>
 
       {/* ------------------------------------------------------ value props */}

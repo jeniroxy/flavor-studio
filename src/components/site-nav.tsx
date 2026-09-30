@@ -124,7 +124,12 @@ const RESOURCES: { heading: string; items: ResourceItem[] }[] = [
   },
 ];
 
-const HEX = "polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)";
+
+/* The home page's blue-to-green ramp, for the AI Agent's starter hexes. The
+   diagonal keeps the white icon over the middle of the ramp (about 3.8:1),
+   not over the pale lime end. */
+const AGENT_GRADIENT =
+  "linear-gradient(135deg, #17467f 0%, #2060a6 30%, #18bc9c 75%, #8cd135 100%)";
 
 function shotOf(m: Module) {
   if (m.asset.src)
@@ -149,8 +154,8 @@ function HexIcon({
 }) {
   return (
     <span
-      className="flex flex-none items-center justify-center text-white"
-      style={{ width: size, height: size * 1.1, clipPath: HEX, background: hue }}
+      className="hex-round flex flex-none items-center justify-center text-white"
+      style={{ width: size, height: size * 1.1547, background: hue }}
     >
       <Icon name={icon} style={{ fontSize: size * 0.48 }} />
     </span>
@@ -456,9 +461,8 @@ function FeaturesPanel({ onNavigate }: { onNavigate: () => void }) {
               className={`flex items-center gap-3 rounded-[14px] px-3 py-2.5 text-left transition-colors ${on ? "bg-white shadow-[0_4px_14px_rgba(22,34,58,0.08)]" : "hover:bg-white/70"}`}
             >
               <span
-                className="size-3 flex-none transition-transform"
+                className="hex-round w-3 aspect-[1/1.1547] flex-none transition-transform"
                 style={{
-                  clipPath: HEX,
                   background: GROUP[name].hue,
                   transform: on ? "scale(1.3)" : "none",
                 }}
@@ -560,8 +564,8 @@ function FeaturesPanel({ onNavigate }: { onNavigate: () => void }) {
           {mod.capabilities.slice(0, 3).map((c) => (
             <li key={c} className="flex items-start gap-2 text-[12.5px] leading-[1.4] text-ink-2">
               <span
-                className="mt-[5px] size-2 flex-none"
-                style={{ clipPath: HEX, background: g.hue }}
+                className="hex-round mt-[4px] w-2 aspect-[1/1.1547] flex-none"
+                style={{ background: g.hue }}
               />
               <span className="line-clamp-1">{c}</span>
             </li>
@@ -629,7 +633,7 @@ function AgentPanel({ onNavigate }: { onNavigate: () => void }) {
               className="group flex flex-col rounded-[16px] border border-hairline p-4 transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-[0_12px_28px_rgba(32,96,166,0.14)]"
             >
               <span className="flex items-center gap-2">
-                <HexIcon icon={s.icon} hue="#16223a" size={30} />
+                <HexIcon icon={s.icon} hue={AGENT_GRADIENT} size={30} />
                 <span className="font-mono text-[11.5px] tracking-[.08em] text-blue-700 uppercase">
                   {s.label}
                 </span>
@@ -792,8 +796,8 @@ function MobileSheet({ onNavigate }: { onNavigate: () => void }) {
                 className={`flex min-h-[64px] flex-col items-start justify-center rounded-[14px] px-3.5 py-2.5 text-left transition-colors ${on ? "bg-[#16223a] text-white" : "bg-[#f3f6fa] text-ink"}`}
               >
                 <span
-                  className="size-3"
-                  style={{ clipPath: HEX, background: GROUP[name].hue }}
+                  className="hex-round w-3 aspect-[1/1.1547]"
+                  style={{ background: GROUP[name].hue }}
                 />
                 <span className="mt-1.5 text-[14px] leading-tight font-bold">
                   {name}

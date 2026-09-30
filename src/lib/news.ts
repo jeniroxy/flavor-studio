@@ -14,9 +14,9 @@
  * else.
  *
  * The entries below are seeded from what the current public site already
- * announces (IFT, the AI Agent) plus category examples drawn from the release
- * material referenced in the redesign feedback. Replace freely — the shape is
- * the point.
+ * announces (IFT, the AI Agent) and the legacy site's one press release (the
+ * Cal Poly scholarship, verbatim). The placeholder entry that described the
+ * feed's editorial intent is gone: it was visible to the public.
  */
 
 export type NewsCategory =
@@ -61,16 +61,19 @@ export const newsEntries: NewsEntry[] = [
     ],
   },
   {
-    slug: "example-entry",
-    date: "2026-05-01",
-    category: "Improvement",
-    title: "How this News feed is meant to be used",
+    /* Verbatim from flavorstudio.com/news, the legacy site's press release. */
+    slug: "senspire-scholarship-cal-poly",
+    date: "2021-08-04",
+    category: "Announcement",
+    title:
+      "Senspire announces new annual scholarship for Cal Poly food science majors",
     summary:
-      "A placeholder describing the editorial intent of this page — replace it with the first real update note.",
+      "Senspire is proud to announce that it has partnered with California Polytechnic State University, San Luis Obispo to establish a scholarship for juniors and seniors majoring in Food Science beginning with the 2021-2022 academic year.",
     body: [
-      "This feed is for the material that already goes to customers in update emails: new modules, meaningful improvements to existing features, new integrations and export options — not only headline announcements.",
-      "Each entry is a few paragraphs at most: what changed, who it affects, and where to find it in the application. Entries are categorised (New module / Improvement / Integration / Announcement / Event) so readers can scan for what matters to them.",
-      "Publishing an update is currently a single edit to the site content; when the admin-editable content layer lands, this page will be managed from the Admin area without touching the site at all.",
+      "Senspire is proud to announce that it has partnered with California Polytechnic State University, San Luis Obispo to establish a scholarship for juniors and seniors majoring in Food Science beginning with the 2021-2022 academic year. The recipient of the Senspire Scholarship will be awarded a nonrenewable amount of $1,000. The scholarship aims to reward students who are passionate about food science innovation. A minimum 3.0 GPA is required and financial need will be considered in the selection process.",
+      "The company believes that the university’s educational philosophy fuels innovative thinking, which is front and center to Senspire’s values and prompted the creation of the Senspire Scholarship. The scholarship aims to help “Ignite Your Innovation” by supporting the pursuit of excellence in food science education. The Founder and President of Senspire, Gregory Willis, said “We are proud to sponsor this scholarship as it aligns with our core value of continuous innovation. We hope the recipients will take this opportunity to pursue food science careers that propel the industry forward and onward.”",
+      "Dr. Stephanie Jung, Cal Poly’s Food Science and Nutrition Department Head said, “The Senspire scholarship for students in our food science program provides a unique opportunity to apply our Learn by Doing methodology to projects that will have a significant impact on the industry. Thanks to Senspire's generosity, students will be “Ready Day One” to succeed in their chosen fields. We are grateful for Senspire's partnership in preparing tomorrow's leaders in food science.”",
+      "About Senspire: Senspire's Flavor Studio software helps leading food and beverage companies drive innovation and bring better products to market faster through a robust yet affordable product lifecycle management solution. From Recipes and Nutritional Analysis to Taste Tests and Project Management, Flavor Studio is a proven end-to-end cloud-based solution.",
     ],
   },
 ];

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import type { CSSProperties } from "react";
 import { IntegrationTabs } from "@/components/developers/integration-tabs";
 import { PageShell } from "@/components/page-shell";
@@ -14,6 +15,7 @@ import {
   RainbowCta,
   Section,
 } from "@/components/ui";
+import { productAssets } from "@/lib/assets";
 import { contactEmail, routes, supportEmail } from "@/lib/routes";
 
 /*
@@ -139,6 +141,38 @@ function PendingReference({ title, needs }: { title: string; needs: string }) {
   );
 }
 
+/*
+ * The real admin screen for the card, from the application (Figma "synced to
+ * dev" frames; keys masked in the app itself). It shows where the API and
+ * webhooks live; the reference itself is still the gap marked below it.
+ */
+function AppScreen({
+  shot,
+  caption,
+}: {
+  shot: { src?: string; alt: string; width: number; height: number };
+  caption: string;
+}) {
+  if (!shot.src) return null;
+  return (
+    <figure className="m-0 mt-6">
+      <div className="overflow-hidden rounded-[12px] bg-white shadow-[0_18px_44px_rgba(22,34,58,0.14)] ring-1 ring-black/5">
+        <Image
+          src={shot.src}
+          alt={shot.alt}
+          width={shot.width}
+          height={shot.height}
+          sizes="(max-width: 1024px) 100vw, 560px"
+          className="block w-full"
+        />
+      </div>
+      <figcaption className="mt-2 text-[13px] leading-[1.5] text-ink-2">
+        {caption}
+      </figcaption>
+    </figure>
+  );
+}
+
 /** One row of text chips sliding left (or right); content is doubled so the
     -50% keyframe loops seamlessly. Pure CSS, paused for reduced motion. */
 function ChipMarquee({
@@ -247,6 +281,10 @@ export default function DevelopersPage() {
                 recipe.
               </p>
               <CheckList items={API_POINTS} className="mt-5" />
+              <AppScreen
+                shot={productAssets.apiDocs}
+                caption="Admin › Settings › API in Flavor Studio, where the API is switched on and its keys are issued."
+              />
               <div className="mt-6 flex flex-col gap-3">
                 <PendingReference
                   title="Full endpoint reference"
@@ -264,7 +302,7 @@ export default function DevelopersPage() {
               className="panel flex scroll-mt-[90px] flex-col p-[clamp(24px,3vw,36px)]"
             >
               <div className="flex items-center justify-between gap-4">
-                <IconTile name="lightning" />
+                <IconTile name="link" />
                 <span className="chip">Webhooks</span>
               </div>
               <h3 className="font-display mt-6 text-[22px] leading-[1.25] font-bold text-ink">
@@ -275,7 +313,11 @@ export default function DevelopersPage() {
                 call your system when something changes.
               </p>
               <CheckList items={WEBHOOK_USES} className="mt-5" tone="blue" />
-              <div className="mt-6 flex flex-col gap-3">
+              <AppScreen
+                shot={productAssets.webhooks}
+                caption="Admin › Webhooks in Flavor Studio: each endpoint with its recent error rate and status."
+              />
+              <div className="mt-auto flex flex-col gap-3 pt-6">
                 <PendingReference
                   title="Event catalogue and payload shapes"
                   needs="The list of subscribable events, their payloads, delivery guarantees, retry behaviour and signature verification come from the implementation. Supply those and this becomes a complete webhook reference."

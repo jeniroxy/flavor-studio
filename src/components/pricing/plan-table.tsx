@@ -8,9 +8,13 @@ import { plans, yearlySaving, type Billing, type Plan } from "./plans";
 /*
  * ClickUp's plan table: one bordered container, a toolbar row with the
  * Monthly | Yearly toggle, then four hairline-divided columns. The
- * highlighted tier (our Premium, their Business) is inverted to near-black
- * with white check marks; the others sit on white.
+ * highlighted tier (our Premium, their Business) sits on the brand ramp,
+ * navy into a deep teal-green, with white check marks; the others sit on
+ * white. The ramp stops at #0f6e5e rather than lime so the white copy holds
+ * at least 4.9:1 all the way down.
  */
+
+const INV_BG = "linear-gradient(170deg, #17467f 0%, #1f5f9f 45%, #0f6e5e 100%)";
 
 function PriceLine({ plan, billing }: { plan: Plan; billing: Billing }) {
   if (!plan.price)
@@ -35,7 +39,7 @@ function PriceLine({ plan, billing }: { plan: Plan; billing: Billing }) {
 
 function Check({ inverted }: { inverted?: boolean }) {
   return inverted ? (
-    <span className="tick mt-[3px] flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white text-ink">
+    <span className="tick mt-[3px] flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-white text-[#17467f]">
       <Icon name="check" className="text-[11px]" />
     </span>
   ) : (
@@ -49,9 +53,8 @@ function Column({ plan, billing }: { plan: Plan; billing: Billing }) {
     plan.id === "trial" ? "primary" : inv ? "inverse" : "secondary";
   return (
     <div
-      className={`flex flex-col ${
-        inv ? "bg-ink text-white" : "bg-white text-ink"
-      }`}
+      className={`flex flex-col ${inv ? "text-white" : "bg-white text-ink"}`}
+      style={inv ? { backgroundImage: INV_BG } : undefined}
     >
       <div
         className={`border-b p-6 ${inv ? "border-white/15" : "border-hairline"}`}
@@ -73,7 +76,7 @@ function Column({ plan, billing }: { plan: Plan; billing: Billing }) {
         <PriceLine plan={plan} billing={billing} />
         <div
           className={`mt-1.5 min-h-[18px] text-[12px] ${
-            inv ? "text-white/70" : "text-ink-2"
+            inv ? "text-white/90" : "text-ink-2"
           }`}
         >
           {plan.sub[billing]}
@@ -89,7 +92,7 @@ function Column({ plan, billing }: { plan: Plan; billing: Billing }) {
       </div>
       <div className="p-6">
         <div
-          className={`eyebrow text-[11px] ${inv ? "text-white/70" : "eyebrow-muted"}`}
+          className={`eyebrow text-[11px] ${inv ? "text-white/90" : "eyebrow-muted"}`}
         >
           {plan.featuresHeading}
         </div>
@@ -105,7 +108,7 @@ function Column({ plan, billing }: { plan: Plan; billing: Billing }) {
           ))}
         </ul>
         <div
-          className={`mt-4 text-[13px] italic ${inv ? "text-white/60" : "text-ink-3"}`}
+          className={`mt-4 text-[13px] italic ${inv ? "text-white/90" : "text-ink-3"}`}
         >
           and much more…
         </div>
@@ -197,7 +200,8 @@ export function PlanTable({
             })}
             <span
               title="AI Agent"
-              className="flex h-6 w-6 items-center justify-center rounded-full border border-white bg-ink"
+              className="flex h-6 w-6 items-center justify-center rounded-full border border-white"
+              style={{ backgroundImage: INV_BG }}
             >
               <SparkIcon size={11} />
             </span>

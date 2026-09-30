@@ -128,11 +128,7 @@ function Kind({
   return (
     <div className="flex items-center gap-3">
       <span
-        className={`flex size-11 flex-none items-center justify-center ${dark ? "bg-lime-500 text-night" : "bg-night text-lime-400"}`}
-        style={{
-          clipPath:
-            "polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%)",
-        }}
+        className={`hex-round flex w-11 aspect-[1/1.1547] flex-none items-center justify-center ${dark ? "bg-lime-500 text-night" : "bg-night text-lime-400"}`}
       >
         <Icon name={icon} className="text-[18px]" />
       </span>

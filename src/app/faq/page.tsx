@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { FaqAccordion } from "@/components/faq-accordion";
 import { Icon } from "@/components/icon";
 import { PageShell } from "@/components/page-shell";
-import { Reveal } from "@/components/reveal";
+import { Reveal, RevealStagger } from "@/components/reveal";
 import { StickyRail } from "@/components/sticky-rail";
 import {
   Container,
@@ -29,6 +29,10 @@ const slug = (s: string) =>
 
 const groups = faqGroups.map((g) => ({ ...g, id: slug(g.title) }));
 
+/* The brand ramp on the diagonal, for the topic hexagons. */
+const HEX_RAMP =
+  "linear-gradient(135deg, #17467f 0%, #2060a6 30%, #18bc9c 75%, #8cd135 100%)";
+
 export default function FaqPage() {
   return (
     <PageShell active="resources" fill>
@@ -46,6 +50,34 @@ export default function FaqPage() {
           <Reveal delay={0.1} className="mt-4">
             <TextLink href={routes.contact}>Contact us</TextLink>
           </Reveal>
+
+          {/* The five topics as shortcuts, each with its question count, so a
+              reader can jump straight to theirs. */}
+          <RevealStagger
+            stagger={0.05}
+            className="mx-auto mt-[clamp(32px,4vw,48px)] grid max-w-[1000px] grid-cols-2 gap-3 text-left sm:grid-cols-3 lg:grid-cols-5"
+          >
+            {groups.map((g) => (
+              <a
+                key={g.id}
+                href={`#${g.id}`}
+                className="group flex min-h-[112px] flex-col rounded-[var(--radius-lg)] border border-hairline bg-white p-4 transition-[border-color,box-shadow,transform] hover:-translate-y-0.5 hover:border-blue-400 hover:shadow-[0_14px_30px_rgba(32,96,166,0.12)]"
+              >
+                <span
+                  className="hex-round flex aspect-[1/1.1547] w-9 items-center justify-center text-white"
+                  style={{ backgroundImage: HEX_RAMP }}
+                >
+                  <Icon name={g.icon} className="text-[16px]" />
+                </span>
+                <span className="mt-3 text-[14.5px] leading-[1.3] font-bold text-ink">
+                  {g.title}
+                </span>
+                <span className="mt-auto pt-1 font-mono text-[11.5px] tracking-[.06em] text-ink-2 uppercase">
+                  {g.items.length} questions
+                </span>
+              </a>
+            ))}
+          </RevealStagger>
         </Container>
       </Section>
 
@@ -63,8 +95,11 @@ export default function FaqPage() {
                   className="scroll-mt-[100px]"
                 >
                   <Reveal className="flex items-center gap-3">
-                    <span className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-blue-100 text-[18px] text-blue-700">
-                      <Icon name={group.icon} />
+                    <span
+                      className="hex-round flex aspect-[1/1.1547] w-10 items-center justify-center text-white"
+                      style={{ backgroundImage: HEX_RAMP }}
+                    >
+                      <Icon name={group.icon} className="text-[18px]" />
                     </span>
                     <h2 className="font-display text-[clamp(22px,2.2vw,28px)] leading-[1.2] font-bold tracking-[-0.02em] text-ink">
                       {group.title}
