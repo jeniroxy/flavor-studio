@@ -13,6 +13,7 @@ import {
 import { STARTERS } from "@/components/agent/agent-data";
 import { Icon } from "@/components/icon";
 import { moduleGroups, modules, type Module } from "@/lib/modules";
+import { GROUP, LINE } from "@/lib/module-style";
 import { loginUrl, routes, type NavKey } from "@/lib/routes";
 
 /*
@@ -52,78 +53,73 @@ const LINKS: { label: string; href?: string; key: NavKey; menu?: MenuKey }[] = [
 
 const MOBILE_BREAKPOINT = "(max-width: 960px)";
 
-/* One hue per module group, from the brand ramp. Used on the group's hex and
-   the preview's ground, so the three columns read as one group. */
-const GROUP: Record<
-  (typeof moduleGroups)[number],
-  { hue: string; tint: string; short: string }
-> = {
-  Formulation: { hue: "#7fd234", tint: "#f1f8e2", short: "Build the recipe" },
-  "Nutrition & compliance": {
-    hue: "#59a3eb",
-    tint: "#eef6fd",
-    short: "Label with certainty",
-  },
-  Sensory: { hue: "#18bc9c", tint: "#e3f7f2", short: "Test what you made" },
-  "Project management": {
-    hue: "#2060a6",
-    tint: "#eaf1f9",
-    short: "Ship the product",
-  },
-  Commercial: { hue: "#efc051", tint: "#fcf3da", short: "Sell the product" },
-  Platform: { hue: "#324561", tint: "#eef1f6", short: "Scale with confidence" },
-};
-
-/* Each module's headline, as its own page states it. */
-const LINE: Record<string, string> = {
-  recipes: "Formulate once. Scale anywhere.",
-  ingredients: "One library. Every recipe follows.",
-  costing: "Know the margin before the batch.",
-  versions: "Iterate freely. Never lose the original.",
-  labeling: "Compliant labels, regenerated with the formula.",
-  claims: "Know which claims you can make.",
-  designer: "Spec sheets that look the same every time.",
-  "taste-tests": "Sensory data that flows back into the formula.",
-  projects: "Launches move through stage gates, not inboxes.",
-  timeline: "See where a slip actually lands.",
-  board: "The launch, as today's work.",
-  timesheet: "R&D time your finance team actually trusts.",
-  reports: "Answer management from the system.",
-  crm: "Connect the front line to R&D.",
-  "cr-builder": "Brief once, in your own structure.",
-  publishing: "Your data, in the form the recipient needs.",
-  integrations: "Connected to the systems you already run.",
-  admin: "Trade secrets, treated that way.",
-};
-
 type ResourceItem = { label: string; desc: string; href: string; icon: string };
 
 const RESOURCES: { heading: string; items: ResourceItem[] }[] = [
   {
     heading: "Learn",
     items: [
-      { label: "Request a demo", desc: "Thirty minutes, on your own formula", href: routes.demo, icon: "play" },
-      { label: "FAQ", desc: "Plans, data, setup and support", href: routes.faq, icon: "comment" },
-      { label: "Developers & API", desc: "REST API, webhooks and exports", href: routes.developers, icon: "api" },
+      {
+        label: "Request a demo",
+        desc: "Thirty minutes, on your own formula",
+        href: routes.demo,
+        icon: "play",
+      },
+      {
+        label: "FAQ",
+        desc: "Plans, data, setup and support",
+        href: routes.faq,
+        icon: "comment",
+      },
+      {
+        label: "Developers & API",
+        desc: "REST API, webhooks and exports",
+        href: routes.developers,
+        icon: "api",
+      },
     ],
   },
   {
     heading: "Discover",
     items: [
-      { label: "Customers", desc: "The teams that develop in Flavor Studio", href: routes.customers, icon: "peoples" },
-      { label: "Success stories", desc: "Deli Star, Good Foods, Ripple Foods", href: routes.stories, icon: "book" },
-      { label: "News", desc: "New modules and improvements", href: routes.news, icon: "newspaper-folding" },
+      {
+        label: "Customers",
+        desc: "The teams that develop in Flavor Studio",
+        href: routes.customers,
+        icon: "peoples",
+      },
+      {
+        label: "Success stories",
+        desc: "Deli Star, Good Foods, Ripple Foods",
+        href: routes.stories,
+        icon: "book",
+      },
+      {
+        label: "News",
+        desc: "New modules and improvements",
+        href: routes.news,
+        icon: "newspaper-folding",
+      },
     ],
   },
   {
     heading: "Support",
     items: [
-      { label: "Contact us", desc: "Phone, e-mail or the form", href: routes.contact, icon: "mail" },
-      { label: "Privacy", desc: "How your data is handled", href: routes.privacy, icon: "shield" },
+      {
+        label: "Contact us",
+        desc: "Phone, e-mail or the form",
+        href: routes.contact,
+        icon: "mail",
+      },
+      {
+        label: "Privacy",
+        desc: "How your data is handled",
+        href: routes.privacy,
+        icon: "shield",
+      },
     ],
   },
 ];
-
 
 /* The home page's blue-to-green ramp, for the AI Agent's starter hexes. The
    diagonal keeps the white icon over the middle of the ramp (about 3.8:1),
@@ -227,7 +223,8 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
   }, [cancelClose]);
 
   // The pill sits under the hovered link, else under the current section.
-  const pillKey = hover ?? (LINKS.some((l) => l.key === active) ? active : null);
+  const pillKey =
+    hover ?? (LINKS.some((l) => l.key === active) ? active : null);
   useLayoutEffect(() => {
     const track = trackRef.current;
     const el = pillKey ? itemRefs.current[pillKey] : null;
@@ -418,7 +415,9 @@ export function SiteNav({ active = "" }: { active?: NavKey }) {
         )}
       </header>
 
-      {!isDesktop && sheet && <MobileSheet onNavigate={() => setSheet(false)} />}
+      {!isDesktop && sheet && (
+        <MobileSheet onNavigate={() => setSheet(false)} />
+      )}
     </>
   );
 }
@@ -562,7 +561,10 @@ function FeaturesPanel({ onNavigate }: { onNavigate: () => void }) {
             lists them. */}
         <ul className="mt-3 flex list-none flex-col gap-1.5 p-0">
           {mod.capabilities.slice(0, 3).map((c) => (
-            <li key={c} className="flex items-start gap-2 text-[12.5px] leading-[1.4] text-ink-2">
+            <li
+              key={c}
+              className="flex items-start gap-2 text-[12.5px] leading-[1.4] text-ink-2"
+            >
               <span
                 className="hex-round mt-[4px] w-2 aspect-[1/1.1547] flex-none"
                 style={{ background: g.hue }}

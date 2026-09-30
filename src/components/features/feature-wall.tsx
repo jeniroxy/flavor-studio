@@ -1,25 +1,22 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@/components/icon";
-import { RevealStagger } from "@/components/reveal";
-import { StickyRail } from "@/components/sticky-rail";
-import { Container, Section, TwoTone } from "@/components/ui";
+import { GroupTabs } from "@/components/features/group-tabs";
+import { Reveal, RevealStagger } from "@/components/reveal";
+import { Container, Section } from "@/components/ui";
 import { productAssets } from "@/lib/assets";
 import type { Visual } from "@/lib/feature-pages";
 import { flows } from "@/lib/flows";
-import { moduleGroups, modules } from "@/lib/modules";
+import { GROUP } from "@/lib/module-style";
+import { moduleGroups, modules, type Module } from "@/lib/modules";
 import { routes } from "@/lib/routes";
 
 /*
- * The feature wall (research §2): a sticky right rail of category anchors
- * over category sections, each a three-column grid of `.card` tiles — a
- * vignetted screenshot, an 18px title and a two-line description — linking
- * to the module page.
- *
- * Every module is one card, and its `capabilities` in modules.ts yield extra
- * cards so the wall is as dense as ClickUp's; extras link to the parent
- * module's page. The module card keeps the module id as its element id so the
- * old `/features#recipes` anchors still land.
+ * The feature wall: a sticky bar of the six module groups (group-tabs.tsx)
+ * over six chapters, one per group (see FeatureWall below). Each module is a
+ * card with its real screen; the EXTRAS below are its capabilities, listed
+ * under it. The module card keeps the module id as its element id so the old
+ * `/features#recipes` anchors still land.
  */
 
 const CATEGORY: Record<
@@ -402,130 +399,175 @@ const EXTRAS: Record<string, Extra[]> = {
   ],
 };
 
-/** The 241×179-ish vignetted shot on top of a wall card. */
-function CardShot({ visual, alt }: { visual: Visual; alt: string }) {
-  let img: { src: string; width: number; height: number } | undefined;
-  if (visual.kind === "asset" && visual.asset.src) {
-    img = {
-      src: visual.asset.src,
-      width: visual.asset.width,
-      height: visual.asset.height,
-    };
-  } else if (visual.kind === "still") {
-    const steps = visual.flow.steps;
-    const s = steps[Math.min(Math.max(visual.step, 0), steps.length - 1)];
-    img = { src: s.src, width: visual.flow.width, height: visual.flow.height };
-  } else if (visual.kind === "flow") {
-    const s = visual.flow.steps[0];
-    img = { src: s.src, width: visual.flow.width, height: visual.flow.height };
-  }
+/** The module's own screen, full width at the top of its card. */
+function ModuleShot({ m }: { m: Module }) {
+  const img = m.asset.src
+    ? { src: m.asset.src, width: m.asset.width, height: m.asset.height }
+    : m.flow
+      ? {
+          src: m.flow.steps[0].src,
+          width: m.flow.width,
+          height: m.flow.height,
+        }
+      : null;
   return (
-    <div className="vignette aspect-[4/3] overflow-hidden rounded-[6px] bg-panel">
+    <div className="relative aspect-[16/10] overflow-hidden rounded-[12px] bg-white shadow-[0_18px_40px_rgba(22,34,58,0.12)] ring-1 ring-black/5">
       {img ? (
         <Image
           src={img.src}
-          alt={alt}
-          width={img.width}
-          height={img.height}
-          sizes="(max-width: 640px) 100vw, 260px"
-          className="h-full w-full object-cover object-left-top"
+          alt={m.asset.alt}
+          fill
+          sizes="(max-width: 1024px) 100vw, 480px"
+          className="object-cover object-left-top transition-transform duration-500 ease-[var(--ease-out-soft)] group-hover:scale-[1.03]"
         />
-      ) : (
-        /* No export from the design file yet — a marked gap, not a mockup. */
-        <div className="flex h-full flex-col items-center justify-center gap-2 border border-dashed border-panel-3 text-center text-ink-3">
-          <Icon name="all-application" className="text-[22px]" />
-          <span className="eyebrow eyebrow-muted text-[10px]">
-            Screenshot on its way
-          </span>
-        </div>
-      )}
+      ) : null}
     </div>
   );
 }
 
-function WallCard({
-  id,
-  href,
-  title,
-  body,
-  visual,
+/*
+ * One module: its real screen, name and line, then the capabilities that
+ * used to be separate cards (most of them repeating the module's screenshot)
+ * as a compact list under it. Every title and line is unchanged.
+ */
+function ModuleCard({
+  m,
+  hue,
+  wide,
 }: {
-  id?: string;
-  href: string;
-  title: string;
-  body: string;
-  visual: Visual;
+  m: Module;
+  hue: string;
+  wide: boolean;
 }) {
+  const extras = EXTRAS[m.id] ?? [];
   return (
-    <Link
-      id={id}
-      href={href}
-      className="card group flex scroll-mt-[110px] flex-col p-2"
+    <article
+      id={m.id}
+      className={`flex scroll-mt-[110px] flex-col rounded-[var(--radius-xl)] bg-white p-[clamp(14px,1.8vw,20px)] shadow-[0_2px_6px_rgba(22,34,58,0.04)] ${
+        wide
+          ? "lg:col-span-2 lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-8"
+          : ""
+      }`}
     >
-      <CardShot visual={visual} alt={title} />
-      <div className="px-2 pt-4 pb-3">
-        <h3 className="font-display text-[18px] leading-[1.25] font-bold tracking-[-0.01em] text-ink transition-colors group-hover:text-blue-700">
-          {title}
-        </h3>
-        <p className="mt-1.5 text-[14px] leading-[1.5] text-ink-2">{body}</p>
+      <Link href={routes.feature(m.id)} className="group block">
+        <ModuleShot m={m} />
+      </Link>
+      <div
+        className={`flex flex-1 flex-col px-1 ${wide ? "pt-5 md:pt-2" : "pt-5"}`}
+      >
+        <div className="flex items-center gap-2.5">
+          <span
+            className="hex-round flex aspect-[1/1.1547] w-8 flex-none items-center justify-center text-white"
+            style={{ background: hue }}
+          >
+            <Icon name={m.icon} className="text-[15px]" />
+          </span>
+          <h3 className="font-display text-[20px] leading-[1.2] font-bold tracking-[-0.015em] text-ink">
+            <Link href={routes.feature(m.id)} className="hover:text-blue-700">
+              {m.label}
+            </Link>
+          </h3>
+        </div>
+        <p className="mt-2 text-[15px] leading-[1.55] text-ink-2">{m.title}</p>
+        {extras.length ? (
+          <ul className="mt-4 flex list-none flex-col gap-2.5 border-t border-hairline p-0 pt-4">
+            {extras.map((x) => (
+              <li key={x.title} className="flex gap-2.5">
+                <span
+                  aria-hidden="true"
+                  className="hex-round mt-[5px] aspect-[1/1.1547] w-2.5 flex-none"
+                  style={{ background: hue }}
+                />
+                <span className="text-[14px] leading-[1.45]">
+                  <span className="font-bold text-ink">{x.title}</span>{" "}
+                  <span className="text-ink-2">{x.body}</span>
+                </span>
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        <Link
+          href={routes.feature(m.id)}
+          className="mt-auto inline-flex min-h-11 items-center gap-1.5 pt-3 text-[14px] font-bold text-blue-700 hover:text-blue-600"
+        >
+          Explore {m.label}
+          <Icon name="arrow-right" className="text-[15px]" />
+        </Link>
       </div>
-    </Link>
+    </article>
   );
 }
 
+/*
+ * The wall, as six chapters. Each module group sits on its own tinted panel
+ * in its hue (the same one the nav and the hero hive use), with a header
+ * naming the group, its tagline and its module count, then its modules as
+ * cards, three across on wide screens. A group of one module gives it the
+ * full width, screen beside text.
+ */
 export function FeatureWall() {
-  const items = moduleGroups.map((g) => ({
-    id: CATEGORY[g].id,
-    label: g,
-  }));
+  const tabs = moduleGroups.map((g) => {
+    const mods = modules.filter((m) => m.group === g);
+    return {
+      id: CATEGORY[g].id,
+      label: g,
+      count: mods.length,
+      hue: GROUP[g].hue,
+      icon: mods[0].icon,
+    };
+  });
   return (
     <Section className="py-[clamp(56px,7vw,104px)]">
       <Container wide>
-        <StickyRail items={items}>
-          <div className="flex flex-col gap-[clamp(48px,6vw,80px)]">
-            {moduleGroups.map((group) => {
-              const cat = CATEGORY[group];
-              const mods = modules.filter((m) => m.group === group);
-              return (
-                <div key={group} id={cat.id} className="scroll-mt-[110px]">
-                  <TwoTone
-                    primary={group}
-                    secondary={cat.tagline}
-                    className="border-b border-hairline pb-4"
-                  />
-                  <RevealStagger
-                    stagger={0.04}
-                    className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
+        <GroupTabs tabs={tabs} />
+        <div className="mt-[clamp(20px,2.6vw,32px)] flex flex-col gap-[clamp(24px,3vw,40px)]">
+          {moduleGroups.map((group) => {
+            const cat = CATEGORY[group];
+            const style = GROUP[group];
+            const mods = modules.filter((m) => m.group === group);
+            return (
+              <section
+                key={group}
+                id={cat.id}
+                className="scroll-mt-[150px] rounded-[var(--radius-2xl)] p-[clamp(16px,2.6vw,32px)]"
+                style={{ background: style.tint }}
+              >
+                <Reveal className="flex flex-wrap items-center gap-x-4 gap-y-2 px-1 pb-[clamp(16px,2vw,24px)]">
+                  <span
+                    className="hex-round flex aspect-[1/1.1547] w-11 flex-none items-center justify-center text-white"
+                    style={{ background: style.hue }}
                   >
-                    {mods.flatMap((m) => [
-                      <WallCard
-                        key={m.id}
-                        id={m.id}
-                        href={routes.feature(m.id)}
-                        title={m.label}
-                        body={m.title}
-                        visual={
-                          m.flow
-                            ? { kind: "flow", flow: m.flow }
-                            : { kind: "asset", asset: m.asset }
-                        }
-                      />,
-                      ...(EXTRAS[m.id] ?? []).map((x) => (
-                        <WallCard
-                          key={`${m.id}:${x.title}`}
-                          href={routes.feature(m.id)}
-                          title={x.title}
-                          body={x.body}
-                          visual={x.visual}
-                        />
-                      )),
-                    ])}
-                  </RevealStagger>
-                </div>
-              );
-            })}
-          </div>
-        </StickyRail>
+                    <Icon name={mods[0].icon} className="text-[19px]" />
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <h2 className="font-display text-[clamp(24px,2.6vw,32px)] leading-[1.1] font-bold tracking-[-0.025em] text-ink">
+                      {group}
+                    </h2>
+                    <p className="mt-0.5 font-mono text-[12px] tracking-[.08em] text-ink-2 uppercase">
+                      {cat.tagline}
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-white px-3 py-1.5 font-mono text-[12px] tracking-[.06em] text-ink uppercase">
+                    {mods.length} {mods.length === 1 ? "module" : "modules"}
+                  </span>
+                </Reveal>
+                <RevealStagger
+                  stagger={0.05}
+                  className="grid gap-[clamp(12px,1.6vw,20px)] md:grid-cols-2 xl:grid-cols-3"
+                >
+                  {mods.map((m, i) => (
+                    <ModuleCard
+                      key={m.id}
+                      m={m}
+                      hue={style.hue}
+                      wide={mods.length === 1}
+                    />
+                  ))}
+                </RevealStagger>
+              </section>
+            );
+          })}
+        </div>
       </Container>
     </Section>
   );
