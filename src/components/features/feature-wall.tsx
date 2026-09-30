@@ -445,7 +445,7 @@ function ModuleCard({
       id={m.id}
       className={`flex scroll-mt-[110px] flex-col rounded-[var(--radius-xl)] bg-white p-[clamp(14px,1.8vw,20px)] shadow-[0_2px_6px_rgba(22,34,58,0.04)] ${
         wide
-          ? "lg:col-span-2 lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] lg:gap-8"
+          ? "md:col-span-2 md:grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] md:gap-8"
           : ""
       }`}
     >
@@ -502,8 +502,10 @@ function ModuleCard({
  * The wall, as six chapters. Each module group sits on its own tinted panel
  * in its hue (the same one the nav and the hero hive use), with a header
  * naming the group, its tagline and its module count, then its modules as
- * cards, three across on wide screens. A group of one module gives it the
- * full width, screen beside text.
+ * cards, two across: each screen stays large enough to read, and the two
+ * cards in a row carry lists of similar length. In a group with an odd count
+ * the last module takes the full width, screen beside text, so no chapter
+ * ends on a lone half-width card.
  */
 export function FeatureWall() {
   const tabs = moduleGroups.map((g) => {
@@ -553,14 +555,14 @@ export function FeatureWall() {
                 </Reveal>
                 <RevealStagger
                   stagger={0.05}
-                  className="grid gap-[clamp(12px,1.6vw,20px)] md:grid-cols-2 xl:grid-cols-3"
+                  className="grid gap-[clamp(12px,1.6vw,20px)] md:grid-cols-2"
                 >
                   {mods.map((m, i) => (
                     <ModuleCard
                       key={m.id}
                       m={m}
                       hue={style.hue}
-                      wide={mods.length === 1}
+                      wide={mods.length % 2 === 1 && i === mods.length - 1}
                     />
                   ))}
                 </RevealStagger>
