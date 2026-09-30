@@ -30,9 +30,11 @@ export const FACTS = [
   },
 ];
 
+/* Facts and the Why block read as one beat, so the gap between them is one
+   step, not two stacked --section-gap paddings (300px at desktop). */
 export function Facts() {
   return (
-    <Section className="py-[var(--section-gap)]">
+    <Section className="pt-[clamp(48px,6vw,88px)]">
       <Container>
         {/* The design carries the four cells on their own — the heading, lede
             and CTA this section used to open with are not in it. */}

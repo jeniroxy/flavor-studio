@@ -383,9 +383,10 @@
     font-size: 14px;
     border-radius: 999px;
   }
+  /* Navy on lime, as the nav pill: white on lime-600 is 1.9:1. */
   .btn-primary {
     background: var(--color-lime-600);
-    color: #fff;
+    color: #16223a;
   }
   .btn-primary:hover {
     background: var(--color-lime-500);

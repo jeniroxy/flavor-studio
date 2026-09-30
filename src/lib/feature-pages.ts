@@ -32,7 +32,10 @@ export type Visual =
       but the application design file has no screen for that point — pointing
       the row at some other module's asset just to trigger the placeholder
       would misname the gap and leak that asset into `visualImage()`. */
-  | { kind: "pending"; alt: string; width?: number; height?: number };
+  | { kind: "pending"; alt: string; width?: number; height?: number }
+  /** A drawn illustration in the app's look, for a point the app design
+      only has as a mockup (features/illustrations.tsx). */
+  | { kind: "illustration"; id: "reminder" | "dependencies" };
 
 export type PillarRow = {
   eyebrow: string;
@@ -157,25 +160,25 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Nesting",
           title: "Sub-recipes",
           body: "Assemble component recipes into a main recipe and Flavor Studio will distribute accurate costing and nutrient composition.",
-          visual: { kind: "still", flow: flows.recipeImages, step: 1 },
+          visual: { kind: "asset", asset: productAssets.recipeSubLevels },
         },
         {
           eyebrow: "Grouping",
           title: "Ingredient groups",
           body: "Use this feature to combine and track a variety of similar ingredients (e.g., spices) into a single row in a recipe.",
-          visual: { kind: "pending", alt: "Ingredient groups on the formulation grid" },
+          visual: { kind: "asset", asset: productAssets.ingredientGroups },
         },
         {
           eyebrow: "Method",
           title: "Formulation method",
           body: "Flavor Studio lets users choose to formulate by either: Percentage, Quantity, or Baker's Percentage.",
-          visual: { kind: "pending", alt: "Choosing the formulation method" },
+          visual: { kind: "asset", asset: productAssets.formulationMethod },
         },
         {
           eyebrow: "Options",
           title: "Fully customizeable",
           body: "Select the units of measurements (metric, standard, volume), set the number of decimal places (1, 2, 3), and many other options.",
-          visual: { kind: "pending", alt: "Units and decimal-place settings" },
+          visual: { kind: "asset", asset: productAssets.formulationUnits },
         },
       ],
     },
@@ -668,7 +671,7 @@ export const featurePages: FeaturePage[] = [
     h1: "Iterate freely.",
     tail: "Never lose the original.",
     lede: "Versions are first-class objects: branch a formula, compare nutrition and cost side by side, keep sensory results against the version they scored, and promote the winner.",
-    hero: { kind: "asset", asset: productAssets.recipeVersions },
+    hero: { kind: "asset", asset: productAssets.recipeGrid },
     contrast: {
       kind: "thesis",
       title: "From first bench sample to",
@@ -866,7 +869,7 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Automatic",
           title: "Automatic statements",
           body: "Ingredient declarations and allergen statements are automatically generated to save users time but also easily modified.",
-          visual: { kind: "asset", asset: productAssets.nutritionLabelUs },
+          visual: { kind: "asset", asset: productAssets.labelStatement },
         },
         {
           eyebrow: "Formatted",
@@ -884,7 +887,7 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Everyone",
           title: "Empower all users",
           body: "All Flavor Studio users receive access to these nutrition features - not limited to only a single shared computer.",
-          visual: { kind: "pending", alt: "Nutrition features open to every user" },
+          visual: { kind: "asset", asset: productAssets.adminUsers },
         },
       ],
     },
@@ -1213,13 +1216,13 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Consistent",
           title: "Every element styled by an inspector",
           body: "Position, typography, layout and box style are set per element in the inspector, with a header and footer toggled per template — so the spec sheet for product forty looks like the spec sheet for product one.",
-          visual: { kind: "asset", asset: productAssets.publishExport },
+          visual: { kind: "asset", asset: productAssets.designerInspector },
         },
         {
           eyebrow: "Reusable",
           title: "Named templates, applied across products",
           body: "Save a layout as a template for one recipe or reuse it across the catalogue. Print directly, or publish through the export formats — the published output is laid out through the template you designed.",
-          visual: { kind: "still", flow: flows.publishAggregate, step: 4 },
+          visual: { kind: "asset", asset: productAssets.designerTemplates },
         },
       ],
     },
@@ -1388,19 +1391,19 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Open",
           title: "Surveys",
           body: "Build sensory or consumer questionnaires depending on test objectives.",
-          visual: { kind: "still", flow: flows.tasteTestPublish, step: 1 },
+          visual: { kind: "asset", asset: productAssets.tasteSurvey },
         },
         {
           eyebrow: "Unrestricted",
           title: "Respondents",
           body: "Choose anyone to participate without restrictions: other licensed users, fellow company employees or external customers (CLT).",
-          visual: { kind: "still", flow: flows.tasteTestPublish, step: 2 },
+          visual: { kind: "asset", asset: productAssets.tasteRespondents },
         },
         {
           eyebrow: "Analysed",
           title: "Data analysis",
           body: "Visual reporting of results combines mean scores and modal distribution on simple to interpret infographics.",
-          visual: { kind: "still", flow: flows.tasteTestPublish, step: 0 },
+          visual: { kind: "asset", asset: productAssets.tasteResults },
         },
       ],
     },
@@ -1573,31 +1576,31 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Teams",
           title: "Create teams",
           body: "Assemble groups of people that will work together towards driving a project to successful completion.",
-          visual: { kind: "asset", asset: productAssets.projectsOverview },
+          visual: { kind: "asset", asset: productAssets.adminUsers },
         },
         {
           eyebrow: "Files",
           title: "File storage",
           body: "Secure cloud-based repository centralizes file storage for easy access to all project-related documents.",
-          visual: { kind: "pending", alt: "Project file repository" },
+          visual: { kind: "asset", asset: productAssets.projectFiles },
         },
         {
           eyebrow: "Progress",
           title: "Monitor activities",
           body: "Task management provides clear visibility into a project's progress and helps to identify any roadblocks.",
-          visual: { kind: "still", flow: flows.timesheet, step: 4 },
+          visual: { kind: "asset", asset: productAssets.projectTimeline },
         },
         {
           eyebrow: "Discussion",
           title: "Message board",
           body: "Keep team member communication concisely organized in a single location and keep abreast of status updates.",
-          visual: { kind: "pending", alt: "Project message board" },
+          visual: { kind: "asset", asset: productAssets.projectMessages },
         },
         {
           eyebrow: "Deadlines",
           title: "Reminders",
           body: "Never miss an important upcoming deadline with courteous emails sent before tasks are due.",
-          visual: { kind: "pending", alt: "Deadline reminder email" },
+          visual: { kind: "illustration", id: "reminder" },
         },
       ],
     },
@@ -1762,13 +1765,13 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Scheduled",
           title: "Gates and milestones on a single timeline",
           body: "Every stage gate and milestone of a launch on one Gantt timeline, so the plan and the reality can be read in the same view — by the people doing the work and the people waiting on it.",
-          visual: { kind: "asset", asset: productAssets.projectTimeline },
+          visual: { kind: "asset", asset: productAssets.projectGantt },
         },
         {
           eyebrow: "Dependent",
           title: "Dependencies made visible",
           body: "What waits on what is drawn, not remembered. When the shelf-life test moves, the packaging artwork that depends on it moves with it, and the gate that depends on both shows the new date.",
-          visual: { kind: "asset", asset: productAssets.projectBoard },
+          visual: { kind: "illustration", id: "dependencies" },
         },
         {
           eyebrow: "Reportable",
@@ -1927,13 +1930,13 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Staged",
           title: "Cards by stage",
           body: "Tasks sit in columns for the stage they are in. Moving a card moves the task; there is no second list to update, because the board and the timeline show the same underlying data.",
-          visual: { kind: "asset", asset: productAssets.projectBoard },
+          visual: { kind: "asset", asset: productAssets.projectBoardStages },
         },
         {
           eyebrow: "Linked",
           title: "Every card knows its recipe",
           body: "Cards link back to the recipes and projects they belong to, so opening a task opens the version it concerns rather than a description of it.",
-          visual: { kind: "asset", asset: productAssets.projectsOverview },
+          visual: { kind: "asset", asset: productAssets.projectCardRecipe },
         },
         {
           eyebrow: "Owned",
@@ -2262,19 +2265,19 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Cross-module",
           title: "Projects, costs, time and customers",
           body: "Project and stage-gate reporting, costing reports across recipes and versions, time and expense reporting from the timesheet, CRM opportunity and activity reports, and Gantt reporting from the project timeline.",
-          visual: { kind: "asset", asset: productAssets.reports },
+          visual: { kind: "asset", asset: productAssets.crmPipeline },
         },
         {
           eyebrow: "Filterable",
           title: "Cut it the way the question was asked",
           body: "Filter by activity type, project, description, expenses or hours; view detailed or weekly. The report reads the same entries the team logged, so the total and the detail always agree.",
-          visual: { kind: "still", flow: flows.timesheet, step: 6 },
+          visual: { kind: "asset", asset: productAssets.reportsDetailed },
         },
         {
           eyebrow: "Repeatable",
           title: "Templates that keep their shape",
           body: "Reporting templates hold the filters and layout between runs, so the monthly report is the same report next month. Export it for circulation outside Flavor Studio.",
-          visual: { kind: "still", flow: flows.tasteTestPublish, step: 0 },
+          visual: { kind: "asset", asset: productAssets.reportsWeekly },
         },
       ],
     },
@@ -2402,7 +2405,7 @@ export const featurePages: FeaturePage[] = [
     tail: "to R&D.",
     /* flavorstudio.com's own opening line for CRM, verbatim. */
     lede: "Comprehensive CRM capabilities are built into Flavor Studio permitting front-line team to interact with R&D on a single software system to more effectively service customers.",
-    hero: { kind: "asset", asset: productAssets.crmPipeline },
+    hero: { kind: "asset", asset: productAssets.crmCustomer },
     contrast: {
       kind: "without-with",
       title: "A better way to",
@@ -2435,7 +2438,7 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Linked",
           title: "Digitally connected",
           body: "Link sales opportunities to product development projects for seamless reporting.",
-          visual: { kind: "pending", alt: "Opportunity linked to a development project" },
+          visual: { kind: "asset", asset: productAssets.crmOpportunity },
         },
         {
           eyebrow: "Pipeline",
@@ -2447,7 +2450,7 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Samples",
           title: "Robust functionality",
           body: "Manage sample requests and track their shipping status with FedEx connectivity.",
-          visual: { kind: "pending", alt: "Sample request with shipment tracking" },
+          visual: { kind: "asset", asset: productAssets.crmSamples },
         },
         {
           eyebrow: "Reporting",
@@ -2903,7 +2906,7 @@ export const featurePages: FeaturePage[] = [
     h1: "Connected to the systems",
     tail: "you already run.",
     lede: "A full REST API over your recipes, ingredients, projects and CRM data, webhooks for reacting to changes, and integration paths for the ERP, accounting package or plant system you already use.",
-    hero: { kind: "asset", asset: productAssets.apiDocs },
+    hero: { kind: "asset", asset: productAssets.integrationEvents },
     contrast: {
       kind: "thesis",
       title: "From an island of recipe data to",
@@ -2926,13 +2929,13 @@ export const featurePages: FeaturePage[] = [
           eyebrow: "Reactive",
           title: "Webhooks when something changes",
           body: "Subscribe to changes — a recipe promoted, an ingredient cost updated, an opportunity moved — and let your ERP, accounting package or plant system react as it happens rather than on a nightly export.",
-          visual: { kind: "asset", asset: productAssets.recipeGrid },
+          visual: { kind: "asset", asset: productAssets.webhooks },
         },
         {
           eyebrow: "Complete",
           title: "ERP, accounting, Plex and bulk export",
           body: "Integration paths for companies running Plex and other external systems, ERP and accounting integrations, and the API as the supported route for bulk data export — alongside CSV, JSON and PDF from the publish dialog.",
-          visual: { kind: "asset", asset: productAssets.publishExport },
+          visual: { kind: "asset", asset: productAssets.erpPlex },
         },
       ],
     },

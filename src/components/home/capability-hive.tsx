@@ -325,9 +325,10 @@ function Hex({
             "translateY(calc(var(--lift, 0) * -6px)) scale(calc(1 + var(--lift, 0) * 0.08))",
         }}
       >
-        {/* Resting #f3f5f9; lit blue-300; hovered or picked solid blue-600. */}
+        {/* Resting white (the wall sits on a tinted band); lit blue-300;
+            hovered or picked solid blue-600. */}
         <span
-          className="absolute inset-0 bg-[#f3f5f9] transition-colors duration-300 group-hover:bg-blue-600 group-data-[lit=true]:bg-blue-300 group-data-[sel=true]:bg-blue-600"
+          className="absolute inset-0 bg-white transition-colors duration-300 group-hover:bg-blue-600 group-data-[lit=true]:bg-blue-300 group-data-[sel=true]:bg-blue-600"
           style={{ clipPath: HEX_FLAT }}
         />
         <span
@@ -418,8 +419,8 @@ function HexHive({
             x2="1"
             y2="1"
           >
-            <stop offset="0" stopColor="#f6fbee" />
-            <stop offset="1" stopColor="#f2f8fd" />
+            <stop offset="0" stopColor="#ffffff" />
+            <stop offset="1" stopColor="#f7fbf2" />
           </linearGradient>
         </defs>
         <path
@@ -582,7 +583,7 @@ function Tile({
 
 function Hint() {
   return (
-    <p className="mx-auto flex w-fit items-center gap-2 rounded-[999px] bg-[#f3f5f9] px-3.5 py-1.5 text-[12.5px] font-semibold text-ink-2">
+    <p className="mx-auto flex w-fit items-center gap-2 rounded-[999px] bg-white px-3.5 py-1.5 text-[12.5px] font-semibold text-ink-2">
       <Icon name="click" className="text-[15px] text-blue-700" />
       Click any capability to request a demo of it.
     </p>

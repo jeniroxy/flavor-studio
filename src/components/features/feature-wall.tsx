@@ -259,7 +259,7 @@ const EXTRAS: Record<string, Extra[]> = {
     {
       title: "Briefs on the project",
       body: "Kept with the project rather than in email.",
-      visual: asset("projectsOverview"),
+      visual: asset("projectMessages"),
     },
   ],
   timeline: [
@@ -278,7 +278,7 @@ const EXTRAS: Record<string, Extra[]> = {
     {
       title: "Cards linked to recipes",
       body: "Open a task, open the version it concerns.",
-      visual: asset("projectBoard"),
+      visual: asset("projectCardRecipe"),
     },
   ],
   timesheet: [
@@ -312,24 +312,24 @@ const EXTRAS: Record<string, Extra[]> = {
     {
       title: "Time & expense reports",
       body: "From the timesheet, filterable by any field.",
-      visual: asset("reports"),
+      visual: asset("reportsDetailed"),
     },
     {
       title: "Report templates",
       body: "A report keeps its shape between runs.",
-      visual: asset("reports"),
+      visual: asset("reportsWeekly"),
     },
   ],
   crm: [
     {
       title: "Sample requests & shipments",
       body: "Tied to the recipe sampled, with shipment tracking.",
-      visual: asset("crmPipeline"),
+      visual: asset("crmSamples"),
     },
     {
       title: "Opportunity reports",
       body: "Opportunity and activity reporting.",
-      visual: asset("reports"),
+      visual: asset("crmPipeline"),
     },
   ],
   "cr-builder": [
@@ -375,12 +375,12 @@ const EXTRAS: Record<string, Extra[]> = {
     {
       title: "Webhooks",
       body: "React to changes as they happen.",
-      visual: asset("apiDocs"),
+      visual: asset("webhooks"),
     },
     {
       title: "ERP & accounting",
       body: "Integration paths for Plex and other external systems.",
-      visual: asset("apiDocs"),
+      visual: asset("erpPlex"),
     },
   ],
   admin: [

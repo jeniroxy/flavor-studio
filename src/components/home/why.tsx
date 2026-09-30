@@ -30,7 +30,7 @@ const GRADIENT =
 
 const REASONS = [
   {
-    title: "Comprehensive, cost-effective suite",
+    title: "Comprehensive, cost\u2011effective suite",
     body: "One-stop shop for all product development needs. Do away with multiple, disparate spreadsheets and solutions that do not work well with one another and are not cost effective.",
     visual: <SuiteVisual />,
     span: "md:col-span-2 lg:col-span-7",
@@ -70,10 +70,16 @@ const REASONS = [
   side?: "md";
 }[];
 
-/* Side-by-side from the breakpoint where the card is wide enough to hold it. */
+/*
+ * Side-by-side from the breakpoint where the card is wide enough to hold it.
+ * The number and title always run the full width of the card, above the
+ * body and the picture: at the old size the title had to fit the 42% text
+ * column, which is why it stayed small and "cost-effective" broke at the
+ * hyphen.
+ */
 const SIDE = {
   md: {
-    card: "md:flex-row md:items-stretch",
+    row: "md:flex-row md:items-stretch",
     text: "md:w-[42%] md:shrink-0",
   },
 };
@@ -96,25 +102,27 @@ function Reason({
   const s = side ? SIDE[side] : undefined;
   return (
     <article
-      className={`flex min-w-0 flex-col gap-6 rounded-[var(--radius-lg)] bg-white p-5 sm:p-6 lg:p-7 ${span} ${s?.card ?? ""}`}
+      className={`flex min-w-0 flex-col rounded-[var(--radius-lg)] bg-white p-5 sm:p-6 lg:p-8 ${span}`}
     >
-      <div className={`flex flex-col ${s?.text ?? ""}`}>
-        <span className="font-display text-[14px] font-bold text-blue-700 tabular-nums">
-          {String(n).padStart(2, "0")}
-        </span>
-        <h3 className="font-display mt-2 text-[clamp(20px,1.8vw,24px)] leading-[1.2] font-bold tracking-[-0.015em] text-ink">
-          {title}
-        </h3>
-        <p className="mt-3 text-[15px] leading-[1.6] text-ink-2">{body}</p>
+      <span className="font-display text-[15px] font-bold text-blue-700 tabular-nums">
+        {String(n).padStart(2, "0")}
+      </span>
+      <h3 className="font-display mt-2 max-w-[18ch] text-[clamp(26px,2.9vw,38px)] leading-[1.08] font-bold tracking-[-0.03em] text-balance text-ink">
+        {title}
+      </h3>
+      <div className={`mt-4 flex min-w-0 flex-1 flex-col gap-6 ${s?.row ?? ""}`}>
+        <p className={`text-[15.5px] leading-[1.6] text-ink-2 ${s?.text ?? ""}`}>
+          {body}
+        </p>
+        <div className="mt-auto min-w-0 flex-1">{visual}</div>
       </div>
-      <div className="mt-auto min-w-0 flex-1">{visual}</div>
     </article>
   );
 }
 
 export function Why() {
   return (
-    <Section id="why" className="py-[var(--section-gap)]">
+    <Section id="why" className="py-[clamp(48px,6vw,88px)]">
       {/* Capped at the site's 1170 section width, the same box the closing
           CTA and the AI panel use. */}
       <div className="mx-auto max-w-[var(--container)] px-[clamp(12px,1.6vw,20px)] min-[1210px]:px-0">
@@ -143,7 +151,7 @@ export function Why() {
             {/* The demo card closes the grid in the ramp's own navy, so the
                 one action in the section reads as the end of the list. */}
             <div className="flex flex-col rounded-[var(--radius-lg)] bg-[#16223a] p-5 sm:p-6 md:col-span-2 lg:col-span-5 lg:p-7">
-              <h3 className="font-display text-[clamp(24px,2.4vw,32px)] leading-[1.1] font-bold tracking-[-0.02em] text-white">
+              <h3 className="font-display text-[clamp(28px,3.2vw,42px)] leading-[1.06] font-bold tracking-[-0.03em] text-balance text-white">
                 See it on your own formula.
               </h3>
               <p className="mt-3 max-w-[36ch] text-[15px] leading-[1.6] text-white/85">

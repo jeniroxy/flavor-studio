@@ -174,22 +174,25 @@ export const productAssets = {
     height: 900,
   },
   projectsOverview: {
-    alt: "Projects — a launch and its stage gates",
-    spec: `A project with its brief, stage gates and the recipes attached to it. ${SHOT}`,
-    width: 1600,
-    height: 1000,
+    src: "/product/app/projects-hero.webp",
+    alt: "Project Board view: a launch laid out in stages, with the tasks under each",
+    spec: "",
+    width: 2160,
+    height: 1350,
   },
   projectTimeline: {
-    alt: "Project Timeline — Gantt view of a launch",
-    spec: `Timeline with stage gates, dependencies and dates across a real-looking launch. ${SHOT}`,
-    width: 1600,
-    height: 1000,
+    src: "/product/app/timeline-hero.webp",
+    alt: "Project Timeline: stages on a Gantt chart with their progress, and the detail of one stage below",
+    spec: "",
+    width: 2160,
+    height: 1350,
   },
   projectBoard: {
-    alt: "Project Board — tasks by stage",
-    spec: `Board view with columns per stage and cards linked to recipes. ${SHOT}`,
-    width: 1600,
-    height: 1000,
+    src: "/product/app/projects-hero.webp",
+    alt: "Project Board: tasks as cards in a column per stage",
+    spec: "",
+    width: 2160,
+    height: 1350,
   },
   timesheet: {
     src: "/product/timesheet.png",
@@ -244,10 +247,11 @@ export const productAssets = {
     height: 932,
   },
   crmPipeline: {
-    alt: "CRM — opportunity pipeline and sample requests",
-    spec: `Pipeline view plus a sample request tied to a recipe, with shipment status. ${SHOT}`,
-    width: 1600,
-    height: 1000,
+    src: "/product/app/crm-pipeline.webp",
+    alt: "Reports, Opportunity Pipeline: each opportunity with its owner, customer, stage and probability",
+    spec: "",
+    width: 1760,
+    height: 1283,
   },
 
   /* ------------------------------------------------------------- ideation */
@@ -276,10 +280,11 @@ export const productAssets = {
 
   /* --------------------------------------------------------- integrations */
   apiDocs: {
-    alt: "API documentation",
-    spec: "Either a screenshot of the existing API reference, or the source (OpenAPI/Swagger file, or the current docs export) so the reference can be published properly.",
-    width: 1600,
-    height: 1000,
+    src: "/product/app/rest-api.webp",
+    alt: "Admin settings, API section: the public and private keys, masked",
+    spec: "",
+    width: 1760,
+    height: 1283,
   },
   publishExport: {
     src: "/product/publish-recipe.png",
@@ -298,10 +303,181 @@ export const productAssets = {
 
   /* ---------------------------------------------------------------- admin */
   adminUsers: {
-    alt: "Administration — users, roles and two-factor setup",
-    spec: `The user list with roles and groups, or the authenticator-app setup screen. ${SHOT}`,
-    width: 1600,
-    height: 1000,
+    src: "/product/app/users-roles.webp",
+    alt: "Admin, Users and Groups: every user with their last login, type and status (e-mail addresses blurred)",
+    spec: "",
+    width: 1760,
+    height: 1283,
+  },
+
+  /* ------------------------------------------------ app screens, synced
+     Exported from the Figma section "04 Pillars — synced to dev"
+     (40000475:89173), whose frames were rebuilt from app.dev.flavorstudio.com.
+     The frames marked "NOT IN DEV" there were left out on purpose. E-mail
+     addresses (users, tasters) are blurred. The four CRM screens come from
+     copies in the section "CRM screens — clean sample data (website)"
+     (40000586:89111), where the dev test data ("blah blah", staff names,
+     real brands, a phone number) was replaced with neutral sample data. */
+  projectFiles: {
+    src: "/product/app/project-files.webp",
+    alt: "A project's Repository tab: images, documents and Inspire collections stored with the project",
+    spec: "",
+    width: 1760,
+    height: 667,
+  },
+  projectMessages: {
+    src: "/product/app/project-messages.webp",
+    alt: "A project's Conversations tab: threads per stage and task, with messages and attachments",
+    spec: "",
+    width: 1760,
+    height: 1283,
+  },
+  projectCardRecipe: {
+    src: "/product/app/card-recipe.webp",
+    alt: "A task opened from the project timeline, with its stage, dates, creator and assignee",
+    spec: "",
+    width: 1760,
+    height: 1283,
+  },
+  ingredientGroups: {
+    src: "/product/app/ingredient-groups.webp",
+    alt: "The formulation grid with supplier columns, costs and the Yield sidebar",
+    spec: "",
+    width: 1760,
+    height: 1283,
+  },
+  formulationMethod: {
+    src: "/product/app/formulation-method.webp",
+    alt: "Admin, Recipes, Formulation Options: the formulation method, units, sorting and decimal places",
+    focus: { x: 27, y: 24, w: 16, h: 19, label: "Formulation method" },
+    spec: "",
+    width: 1760,
+    height: 1283,
+  },
+  formulationUnits: {
+    src: "/product/app/formulation-method.webp",
+    alt: "Admin, Recipes, Formulation Options: units, sorting and decimal places",
+    focus: { x: 43, y: 24, w: 38, h: 24, label: "Units & decimals" },
+    spec: "",
+    width: 1760,
+    height: 1283,
+  },
+  tasteSurvey: {
+    src: "/product/app/survey-builder.webp",
+    alt: "A taste test's Questionnaire tab: screener, product and follow-up questions",
+    spec: "",
+    width: 1760,
+    height: 847,
+  },
+  tasteRespondents: {
+    src: "/product/app/respondents.webp",
+    alt: "A taste test's Tasters tab: each taster with their status (e-mail addresses blurred)",
+    spec: "",
+    width: 1760,
+    height: 590,
+  },
+  tasteResults: {
+    src: "/product/app/data-analysis.webp",
+    alt: "A taste test's Results tab: the product version's score as a bar",
+    spec: "",
+    width: 1760,
+    height: 590,
+  },
+  crmCustomer: {
+    src: "/product/app/crm-hero.webp",
+    alt: "CRM customer record: customer information beside the history of changes and attachments",
+    spec: "",
+    width: 2160,
+    height: 1350,
+  },
+  crmOpportunity: {
+    src: "/product/app/opportunity-project.webp",
+    alt: "CRM opportunity linked to a development project, with its sample requests",
+    spec: "",
+    width: 1760,
+    height: 1283,
+  },
+  crmSamples: {
+    src: "/product/app/sample-request.webp",
+    alt: "Reports, Sample Request: each request with customer, requester, product, quantity and delivery date",
+    spec: "",
+    width: 1760,
+    height: 1283,
+  },
+  integrationEvents: {
+    src: "/product/app/integrations-hero.webp",
+    alt: "Admin, Integrations, Plex: the events Flavor Studio sends to Plex",
+    spec: "",
+    width: 2160,
+    height: 702,
+  },
+  webhooks: {
+    src: "/product/app/webhooks.webp",
+    alt: "Admin, Webhooks: each webhook URL with its error rate and status",
+    spec: "",
+    width: 1760,
+    height: 590,
+  },
+  erpPlex: {
+    src: "/product/app/erp-plex.webp",
+    alt: "Admin, Integrations, Plex: the log of recipe conversions sent to production",
+    spec: "",
+    width: 1760,
+    height: 872,
+  },
+
+  projectBoardStages: {
+    src: "/product/app/projects-hero.webp",
+    alt: "Project Board: the tasks of two stages as cards, each with its owner",
+    focus: { x: 6, y: 23, w: 50, h: 76, label: "Cards by stage" },
+    spec: "",
+    width: 2160,
+    height: 1350,
+  },
+  recipeSubLevels: {
+    src: "/product/recipe-view.png",
+    alt: "The Recipe page with two sub-recipes nested in the formulation grid",
+    focus: { x: 5, y: 60, w: 66, h: 24, label: "Sub-recipes" },
+    spec: "",
+    width: 1440,
+    height: 606,
+  },
+  /* ---------------------------------------- frames from the home walkthroughs */
+  reportsDetailed: {
+    src: "/stories/reports/detailed.webp",
+    alt: "Reports, Detailed: time entries filtered by activity type, project, description, expenses and hours",
+    spec: "",
+    width: 1440,
+    height: 928,
+  },
+  reportsWeekly: {
+    src: "/stories/reports/weekly.webp",
+    alt: "Reports, Weekly: hours per activity type across the week, with the same filters",
+    spec: "",
+    width: 1440,
+    height: 928,
+  },
+  designerInspector: {
+    src: "/stories/designer/recipe-name.webp",
+    alt: "Publish Designer with an element selected: position, typography, layout and box style in the inspector",
+    focus: { x: 83, y: 5, w: 16, h: 90, label: "Inspector" },
+    spec: "",
+    width: 1440,
+    height: 820,
+  },
+  designerTemplates: {
+    src: "/stories/designer/templates.webp",
+    alt: "Publish Designer's template menu, listing the templates saved for the recipe",
+    spec: "",
+    width: 1440,
+    height: 820,
+  },
+  labelStatement: {
+    src: "/stories/publishing/pub-statement.webp",
+    alt: "Publish Recipe: the ingredient statement generated automatically, with its case and style options",
+    spec: "",
+    width: 1440,
+    height: 941,
   },
 } satisfies Record<string, AssetSpec>;
 

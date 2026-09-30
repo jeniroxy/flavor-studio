@@ -1,6 +1,10 @@
 import Image from "next/image";
 import { AssetFrame } from "@/components/asset-frame";
 import { FlowPlayer } from "@/components/flow-player";
+import {
+  DependencyIllustration,
+  ReminderIllustration,
+} from "@/components/features/illustrations";
 import type { Visual } from "@/lib/feature-pages";
 
 /*
@@ -55,6 +59,13 @@ export function FeatureVisual({
       </div>
     );
   }
+  if (visual.kind === "illustration") {
+    return visual.id === "reminder" ? (
+      <ReminderIllustration />
+    ) : (
+      <DependencyIllustration />
+    );
+  }
   if (visual.kind === "pending") {
     return (
       <AssetFrame
@@ -98,7 +109,8 @@ export function visualImage(visual: Visual) {
       height: visual.flow.height,
     };
   }
-  if (visual.kind === "pending") return undefined;
+  if (visual.kind === "pending" || visual.kind === "illustration")
+    return undefined;
   const a = visual.asset;
   if (!a.src) return undefined;
   return { src: a.src, alt: a.alt, width: a.width, height: a.height };

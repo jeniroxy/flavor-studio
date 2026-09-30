@@ -5,7 +5,7 @@ import {
   FeatureVisual,
   visualImage,
 } from "@/components/features/feature-visual";
-import { HairlineRows } from "@/components/features/hairline-rows";
+import { PillarShowcase } from "@/components/features/pillar-showcase";
 import { IconGrid } from "@/components/features/icon-grid";
 import { PlatformGrid } from "@/components/features/platform-grid";
 import { Reveal } from "@/components/reveal";
@@ -28,7 +28,7 @@ import { routes } from "@/lib/routes";
  * section by section:
  *
  *   1 Hero · 2 LogoStrip · 3 WithoutWith | Thesis · 4 Pillars head ·
- *   5 alternating rows · 6 GradientBanner · 9 icon grid · 10 platform grid ·
+ *   5 pillar showcase (pillar-showcase.tsx) · 6 GradientBanner · 9 icon grid · 10 platform grid ·
  *   11 SecurityStrip · 12 FAQ · 13 RainbowCta
  *
  * Sections 7 and 8 — the "AI powered R&D" head and its two chat rows — are
@@ -75,17 +75,17 @@ export function FeatureTemplate({ page }: { page: FeaturePage }) {
               {page.pillars.adjectives}
             </Eyebrow>
           </Reveal>
-          <HairlineRows
-            className="mt-[clamp(32px,4vw,56px)]"
-            rows={page.pillars.rows.map((row, i) => ({
+          <PillarShowcase
+            className="mt-[clamp(40px,6vw,88px)]"
+            rows={page.pillars.rows.map((row) => ({
               eyebrow: row.eyebrow,
               title: row.title,
               body: row.body,
-              flip: i % 2 === 1,
               visual: (
                 <FeatureVisual
                   visual={row.visual}
-                  sizes="(max-width: 1024px) 100vw, 520px"
+                  sizes="(max-width: 1024px) 100vw, 680px"
+                  className="!rounded-none !border-0"
                 />
               ),
             }))}
