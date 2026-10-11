@@ -30,7 +30,7 @@ export const routes = {
  */
 export const appUrl = "https://app.flavorstudio.com";
 export const loginUrl = appUrl;
-export const signupUrl = `${appUrl}/signup`;
+export const signupUrl = `${appUrl}/sign-up`;
 
 export type NavKey =
   | "product"

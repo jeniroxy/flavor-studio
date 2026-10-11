@@ -30,8 +30,10 @@ export const metadata: Metadata = {
     "Recipes, ingredients, costing, versions, nutrition labels, nutrient content claims, the Publish Designer, taste tests, projects with timeline, board, timesheet and reports, CRM, the Customer Requirements Builder, publishing, the API and administration — every Flavor Studio module.",
 };
 
-const faqs =
-  faqGroups.find((g) => g.title === "Using Flavor Studio")?.items ?? [];
+/* The first six; /faq has the full twelve. */
+const faqs = (
+  faqGroups.find((g) => g.title === "Using Flavor Studio")?.items ?? []
+).slice(0, 6);
 
 export default function FeaturesPage() {
   return (

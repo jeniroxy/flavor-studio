@@ -18,7 +18,7 @@ import { routes } from "@/lib/routes";
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Commonly asked questions about Flavor Studio — the company, using the platform, recipes and labeling, pricing, and security.",
+    "Commonly asked questions about Flavor Studio: the company, using the platform, recipes and labeling, pricing, and security.",
 };
 
 const slug = (s: string) =>
@@ -116,9 +116,9 @@ export default function FaqPage() {
       </Section>
 
       <RainbowCta
-        title="More questions? Talk to us."
+        title="More questions? Contact us today."
         cta={{ label: "Contact us", href: routes.contact }}
-        note="Phone, email and in-app chat. We reply within one business day."
+        note="24/7 in-program chat, email, and phone support."
       />
     </PageShell>
   );

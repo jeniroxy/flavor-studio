@@ -1,6 +1,7 @@
 import { productAssets, type AssetSpec } from "@/lib/assets";
 import { flows } from "@/lib/flows";
 import type { Flow } from "@/components/flow-player";
+import type { FaqItem } from "@/components/faq-accordion";
 import { routes } from "@/lib/routes";
 
 /*
@@ -678,18 +679,38 @@ export const pricingFaqs = [
 
 /* ----------------------------------------------------------------- full FAQ */
 
-export const faqGroups = [
+export const faqGroups: { title: string; icon: string; items: FaqItem[] }[] = [
   {
     title: "About Us",
     icon: "home",
     items: [
       {
         q: "How long have you been in business?",
-        a: "Senspire has been helping food and beverage companies bring better products to market since 2011. It began with an algorithm that predicted flavor combinations — named Inspire — and over the following decade grew into a complete suite of product-development tools for food and beverage manufacturers.",
+        a: [
+          "We've been helping food and beverage companies bring better products to market since 2011.",
+          "Senspire's founder had the ambitious idea to explore the use of mathematics to unlock the keys to creativity. Shortly thereafter the team had developed an algorithm that predicted flavor combinations and aptly named this tool Inspire. Flavor Studio was born. Little did they know how much further their passion for supporting innovation would take them. Working with its various customers over the last decade, Senspire has expanded beyond its original algorithm to encompass a complete suite of solutions to facilitate the product development activities of food and beverage manufacturers.",
+        ],
       },
       {
         q: "Who are your customers?",
-        a: "CPG manufacturers, ingredient suppliers, product developers, flavor and fragrance companies, QSR and fast casual chains, food science and culinology programs, sensory science companies, consumer research agencies, and dieticians. If you create, manufacture or supply the food and beverage industry, Flavor Studio is designed for you.",
+        a: [
+          "Flavor Studio proudly attracts customers in the following food industry segments:",
+          {
+            list: [
+              "CPG Manufacturers",
+              "Ingredient Suppliers",
+              "Product Developers",
+              "Flavor and Fragrance Companies",
+              "QSR Chains",
+              "Fast Casual Restaurant Chains",
+              "Food Science Programs",
+              "Culinology Programs",
+              "Sensory Science Companies",
+              "Dieticians and Nutritionists",
+            ],
+          },
+          "If you create, manufacture, or supply the food and beverage industry in any way, Flavor Studio is designed for you.",
+        ],
       },
     ],
   },
@@ -699,27 +720,104 @@ export const faqGroups = [
     items: [
       {
         q: "Is Flavor Studio easy to use?",
-        a: "Yes. The team invests heavily in making advanced tools intuitive — one look and it’s clear how to use it. And if you ever get stuck, 24/7 support is available by phone, email, or the chat built right into the program.",
+        a: [
+          "Yes! At Senspire, we believe that technology and creativity don't need to be mutually exclusive. While we build extremely advanced technological products, Senspire invests a greater amount of time making them intuitive and easy to use so that people like you will enjoy working with Flavor Studio. You are already familiar with the many features and modules that support product development tasks for food and beverage manufacturers. One look at Flavor Studio and it is easy to see how to use it - a welcome relief to anyone who has struggled to use software like this in the past. Having a problem? Just ask your question using our 24/7 support via phone, email, or chat built right into the program. Find out why Flavor Studio customer service is the best in the industry.",
+        ],
       },
       {
         q: "Do I have to download anything? Will it run on my computer?",
-        a: "Nothing to download or install — Flavor Studio is completely cloud-based, runs in all current browsers, and is optimized for mobile devices without any apps.",
+        a: [
+          "Completely cloud-based, Flavor Studio requires nothing to download or install beyond your internet browser of choice. Flavor Studio runs in all current browsers and is optimized to run on mobile devices without downloading any apps.",
+        ],
+      },
+      {
+        q: "Why should we use Flavor Studio?",
+        a: [
+          "You use Flavor Studio not just for the recipes and nutritional analysis, but to drive your company's innovation. Our customers find a cost effective, easy-to-use system that has the various PLM tools they need, all in one place. They stay, year-over-year, because of our best-in-industry support and dedication to our customer's success. We are always available, listening to and valuing their suggestions. Flavor Studio users appreciate that they influence the further evolution of the software and that we incorporate their requests into new features and enhancements. At the end of the day, Flavor Studio helps you manage your businesses more successfully. Learn more at our [customer page](/customers).",
+        ],
       },
       {
         q: "How can Flavor Studio save me time?",
-        a: "It imports nutrient data straight from ingredient spec files, and automates calculations like moisture and fat loss adjustments, processing loss, nutritional analysis, costing, batch scaling and ice-cream fill weight from overrun percentage. It also speeds team communication by sharing data across recipes, projects and CRM opportunities.",
+        a: [
+          "Specifically designed to aid in all your PLM tasks, there are countless ways Flavor Studio can save you time, including:",
+          {
+            list: [
+              "Automatically import nutrient information from ingredient specification files saving you data entry time.",
+              {
+                text: "Performing the following calculations automatically:",
+                list: [
+                  "Moisture and Fat Loss Adjustments",
+                  "Processing Loss",
+                  "Nutritional Analysis",
+                  "Costing Scale batches up/down",
+                  "Ice cream fill weight based upon overrun percentage",
+                ],
+              },
+              "Speeding team communications by effortlessly sharing data across recipes, projects, and CRM opportunities.",
+              "Automating all the time consuming tasks related to sample requests and price requests.",
+            ],
+          },
+          "Our customers continually find ways to improve their processes using Flavor Studio.",
+        ],
       },
       {
-        q: "Do I have to use every module?",
-        a: "No. Unlike an ERP, each component stands alone — sign up and use just recipes and labels today, then expand into projects, CRM or taste tests as your needs grow. Flavor Studio is flexible by design.",
+        q: "Do I have to use everything to enjoy any features, like an ERP system? Can I just create recipes and generate nutritional labels using Flavor Studio?",
+        a: [
+          "No you don't have to use all the modules, you will just find that you'll want to! While most of our software competitors are focused on one task, Flavor Studio facilitates the entire PLM process from concept to commercialization with modules to help our clients with related challenges such as Project Management and CRM. However, we know you have work to do now, so unlike an ERP, you can sign up and start using the tools and functions your company needs immediately and, as your confidence level grows, expand to the fully integrated system. Or not. Each component stands alone, ready to be used, or ignored, as you see fit. Flavor Studio is flexible by design, to suit your particular process and needs.",
+        ],
       },
       {
-        q: "What collaboration tools does it offer?",
-        a: "User privileges and groups, defined roles, recipe sharing with per-user or per-group edit/read rights, stage/gate project management with full Gantt reporting, and a CRM module with opportunity and task support.",
+        q: "What workflow or collaboration tools does Flavor Studio offer?",
+        a: [
+          "Flavor Studio purposefully supports teamwork. Some of the team features include:",
+          {
+            list: [
+              "Setting up users with different privileges.",
+              "Creating user groups to represent different types of teams.",
+              "Setting up defined roles.",
+              "Sharing information such as recipes to individuals and groups and assigning edit or read privileges by individual or group.",
+              "Supporting stage/gate-styled project management with full Gantt reporting.",
+              "Providing a Customer Relationship Management (CRM) module with opportunity and task support.",
+            ],
+          },
+        ],
       },
       {
-        q: "Can we download our data if we leave?",
-        a: "Yes — the API is the easiest route, and for recipes there’s a button that downloads a JSON file in seconds.",
+        q: "Do you support different roles or different types of users?",
+        a: [
+          "Flavor Studio's robust user management module defines the rights and roles of your multiple users. Each user customizes their own dashboard interface to suit their personal work styles.",
+        ],
+      },
+      {
+        q: "How does it work? How do I get a demo?",
+        a: [
+          "New to Flavor Studio and want a custom demo? Just drop us a [line](/contact) and we'll set up an online presentation for you and your team.",
+          "Are you familiar with software and want to poke around for yourself? Sign up for our truly [free trial](https://app.flavorstudio.com/sign-up) and see how easy it is.",
+        ],
+      },
+      {
+        q: "What type of support do you offer?",
+        a: [
+          "Flavor Studio provides the best support in the industry with 24/7 in-program chat, email, and phone support all available.",
+        ],
+      },
+      {
+        q: "Do you offer training? What is the onboarding process like?",
+        a: [
+          "Designed for experienced professionals in the food and beverage industry, if you've performed the task before, it's apparent how much easier it is to do the same thing in Flavor Studio. So instead of generic training programs, we personally walk you through the system during the onboarding process, showing you everything your company needs. Have a question? Just drop a line to support and we'll get right back to you. There's a chat window right in the program and we endeavor to answer your questions in real time.",
+        ],
+      },
+      {
+        q: "Can we install and run Flavor Studio on our own network?",
+        a: [
+          "Unfortunately, the software as a service (SaaS) business model does not support other installations. On the upside, by hosting Flavor Studio on our servers, this means zero maintenance for your IT team and no updates to run, no packages to install, or headaches to remedy. You're going to enjoy 99.99% uptime without ever having to worry. We think that is an awesome reason to sign up in itself.",
+        ],
+      },
+      {
+        q: "If we don't want to use Flavor Studio anymore can we download our data?",
+        a: [
+          "We can't imagine why anyone would ever want to leave Flavor Studio and this is truly a rare occurrence, but if that time ever comes, it's quite easy to download your content. Using our API is the easiest method, but if you just want your recipes, there is a button that downloads a JSON file in seconds.",
+        ],
       },
     ],
   },
@@ -728,28 +826,68 @@ export const faqGroups = [
     icon: "chef-hat-one",
     items: [
       {
-        q: "Are multiple versions of a recipe supported?",
-        a: "Yes — duplicate a recipe into as many versions as you need, name them for easy reference, and review every edit with the History tool. Flavor Studio records each modification, showing how a formula changed over time and by whom.",
+        q: "Are multiple versions of a recipe supported by Flavor Studio?",
+        a: [
+          "Yes! Once created, feel free to duplicate a recipe into any number of versions you need - we don't limit your creativity! Flavor Studio automatically records every edit or modification to a formula, providing insights about how a formula changed over time and by which users. Name individual versions for easy reference and review all the edits with the History tool.",
+        ],
       },
       {
-        q: "How many ingredients are in the nutritional database? Can I add my own?",
-        a: "Over 9,000 ingredients from the USDA’s trusted SR28 database are built in. You can also add custom ingredients — most users import them from vendor spec sheets with a tool that reads a PDF and imports the nutrient values automatically.",
+        q: "How many ingredients are in Flavor Studio's nutritional database? Can I add my own ingredients to Flavor Studio?",
+        a: [
+          "Flavor Studio comes with over 9,000 ingredients from the USDA's trusted SR28 database. We found this the most accurate database to provide confidence for our customers. However, Flavor Studio supports adding custom ingredient data for your team's exclusive use. Most Flavor Studio users import custom ingredients from specification sheets provided by their vendors and are not concerned with public or private databases. For them, our terrific tool that uploads a PDF spec sheet and automatically imports the nutrient information values is the greatest thing since sliced bread. How much time would this feature save you?",
+        ],
       },
       {
-        q: "Are compliant nutritional labels generated?",
-        a: "Yes — US and Canadian labels with full FDA and Health Canada compliance. As your recipe or serving sizes change, the nutritional information updates automatically.",
+        q: "Are compliant nutritional labels generated by Flavor Studio?",
+        a: [
+          "Of course! Currently the software produces US and Canadian labels with support for Mexico available later in 2024. We ensure full compliance with all of the FDA and Health Canada regulations. As you change your recipe or your serving sizes, Flavor Studio automatically updates the nutritional information appropriately. You don't have to worry about compliance, Flavor Studio does it for you.",
+        ],
       },
       {
-        q: "What label layouts are supported?",
-        a: "All standard layouts — vertical, tabular, side-by-side, linear and dual column — plus additional vitamins and minerals beyond the mandatory four. Export as PNG for internal drafts or high-res vector PDF for your packaging designer.",
+        q: "What label customization or layout options does Flavor Studio support?",
+        a: [
+          "Take advantage of an almost endless number of options, ensuring labels look exactly as you want. Select any standard layout including vertical, tabular, side-by-side, linear, and dual column. Add additional individual vitamins and minerals beyond the mandatory four to suit the needs of your customers. Flavor Studio's export options include image files (PNG) for sharing internal drafts or high res vector files (PDF) for use by a packaging designer.",
+        ],
       },
       {
-        q: "Are yield adjustments taken into account?",
-        a: "Yes. Enter a loss amount or a target value, by percentage or gram weight, and the effect on nutrition is handled — including complex cases like ice-cream overrun, where fill weight is calculated from your overrun percentage and container size.",
+        q: "Are yield adjustments and the effect on nutrition taken into consideration by Flavor Studio?",
+        a: [
+          "Yes! Users see the starting moisture and fat values quite clearly. Flavor Studio's flexibility permits you to either indicate an amount of loss or a target value. These values can be entered by percentages or gram weight to accommodate the data that you have.",
+        ],
       },
       {
-        q: "Can I export recipes to share with others?",
-        a: "Print them, download for Word, export CSV for Excel, publish read-only PDFs, or save to the encrypted FS format that carries embedded custom ingredients to Flavor Studio users outside your company.",
+        q: "Are we limited to one specific unit for formulating?",
+        a: [
+          "Configure Flavor Studio to display the units of measurements relevant to your business. Select to see only metric units such as grams and kilograms, or if you prefer displaying imperial units such as ounces and pounds, select those. Beyond that, users can also choose from all of the volumetric units and configure the default units for formulating.",
+        ],
+      },
+      {
+        q: "What measurement conversions does Flavor Studio support?",
+        a: [
+          "Flavor Studio handles all conversions between units of mass. For mass to volume conversions, users need only provide a density value and Flavor Studio handles the rest.",
+        ],
+      },
+      {
+        q: "Are complex calculations like overrun for ice cream manufacturers handled by Flavor Studio?",
+        a: [
+          "As it has for years, Flavor Studio continues supporting the ice cream industry by combining the overrun calculations previously done on separate spreadsheets with the nutritional analysis into one solution. You simply enter your overrun percentage, select your container size, and Flavor Studio calculates the fill weight. Flavor Studio even smartly ignores inclusions when calculating the air incorporation.",
+        ],
+      },
+      {
+        q: "Can I export my recipes from Flavor Studio to share with others?",
+        a: [
+          "Share your recipes in a number of ways:",
+          {
+            list: [
+              "Print a recipe to have a paper copy floating around your lab.",
+              "Download to a file type readable by a document editor like Word.",
+              "Export to a CSV file for use in a spreadsheet program like Excel.",
+              "Publish to a PDF for read-only distribution.",
+              "Save to our proprietary file type called FS creating an encrypted copy of your recipe with all the embedded custom ingredients for sharing with other Flavor Studio users not in your company.",
+            ],
+          },
+          "Of course, you easily share data with your team right in Flavor Studio.",
+        ],
       },
     ],
   },
@@ -758,20 +896,58 @@ export const faqGroups = [
     icon: "funds",
     items: [
       {
-        q: "Is there a free trial?",
-        a: "Yes — a 14-day, totally free trial with 100% of the functionality, no credit card required. Add as many users as you need; everything you build carries over when you become a customer.",
+        q: "Is there a free trial to test Flavor Studio?",
+        a: [
+          "Yes, sign up for a 14-day, totally [free, trial](https://app.flavorstudio.com/sign-up) period with access to 100% of Flavor Studio's functionality and features and we won't even ask for a credit card. Add as many users as you need during the trial period and at the end, transition to an official customer and not lose any of the work created during the previous two weeks.",
+        ],
       },
       {
         q: "How much does Flavor Studio cost?",
-        a: "From $100 per user per month billed annually ($110 monthly). Premium is $150/$165, and teams over 30 users get a custom Enterprise plan.",
+        a: [
+          "We proudly provide our affordable [pricing](/pricing) upfront and available for all to see. We suggest starting out with a free 14-day trial, and then sign up for a plan for as low as $100 per month billed annually or $110 billed monthly. There is a Premium plan with additional features for $150/$165 respectively and if you have more than 30 users, we can customize a solution for you!",
+        ],
       },
       {
-        q: "Are there long-term contracts or hidden fees?",
-        a: "No contracts — pay as you go, monthly or annually. The only charge is the licensing fee; custom development happens only if you explicitly request it.",
+        q: "Do we have to pay for upgrades?",
+        a: [
+          "Software as a Service (SaaS) eliminates the version upgrades of traditional software. Always working with clients to come up with new features, we ensure all of our users have the most current version of Flavor Studio at all times. Updates happen seamlessly behind the scenes and the latest and greatest tools are always available to you, automatically.",
+        ],
       },
       {
-        q: "Do you offer academic discounts?",
-        a: "Yes — Senspire has supported food science and culinology programs from day one. Reach out via the contact form.",
+        q: "Are there any long-term contracts to sign?",
+        a: [
+          "Nope. You pay as you go on a monthly or annual basis for the services and users that you need.",
+        ],
+      },
+      {
+        q: "How do I cancel?",
+        a: [
+          "Closing the entire account happens so infrequently, that we handle this personally, on a case-by-case basis. Just drop us a line and we will contact you immediately to terminate your account. But if you're just looking to stop the billing process for an individual user, change that user's status to inactive on your administration screen and that person will not be counted when calculating your next payment.",
+        ],
+      },
+      {
+        q: "Do I need a credit card to sign up?",
+        a: [
+          "Nope. Start using Flavor Studio's [free trial](https://app.flavorstudio.com/sign-up) today without a credit card. Yep, a truly free trial. Just type in your name, email address and create a password and you're off and running. No worries that your card will be charged if you forget to cancel. But when the two weeks are over and you want to continue using Flavor Studio, then yes, it will request a credit card.",
+        ],
+      },
+      {
+        q: "How does billing work?",
+        a: [
+          "Billing is an automatic process that happens either on a monthly or annual basis based upon your preference for payment. On each anniversary, Flavor Studio counts the number of active users and bills accordingly. Your first payment is by credit card but then you can switch to ACH, or we'll even move you to a traditional invoice sent to your AP department if requested (Just use the promo code: “Please!”).",
+        ],
+      },
+      {
+        q: "Are there other hidden charges or supplemental modules that we have to buy?",
+        a: [
+          "The only additional charges are for customizing some aspect of Flavor Studio that benefits only your organization. We're happy to oblige and create unique solutions for customers, but just ask that they pay for the development. So unless you explicitly request us to do something special for you, no additional charges occur.",
+        ],
+      },
+      {
+        q: "Do you offer academic discounts to universities?",
+        a: [
+          "Senspire and Flavor Studio support colleges and universities offering food science and culinology programs and have from day one. We want students exposed to cutting edge technologies so they enter the workforce properly trained and contribute their best on their first jobs out of school. Reach out to us via our [contact form](/contact) and we'll see how we can make it happen.",
+        ],
       },
     ],
   },
@@ -780,16 +956,22 @@ export const faqGroups = [
     icon: "protect",
     items: [
       {
-        q: "Is my intellectual property secure?",
-        a: "Data lives on highly secure servers and is shared only with your team. All web communication is TLS-encrypted, accounts use two-step authentication, and sign-on IP addresses are logged for traceability.",
+        q: "How do I know that my intellectual property is secure in Flavor Studio?",
+        a: [
+          "Flavor Studio resides on the most secure servers available and your data is only shared with your team. All web communication is encrypted using TLS. We even secure your user account using two-step authentication with a mobile phone so, rest assured, security is our priority. For traceability, we log the IP addresses for sign ons. View our [privacy policy](/privacy)",
+        ],
       },
       {
-        q: "Can I share my login credentials?",
-        a: "Use the user-management module instead — multiple users can share data, projects and opportunities. Only one concurrent session is allowed per account, and two-factor authentication makes credential sharing impractical by design.",
+        q: "Can I share my login credentials with someone?",
+        a: [
+          "If you are interested in sharing data, Flavor Studio's robust user configuration module enables you to set up multiple users that share data, projects, and opportunities. Also share your recipes with other Flavor Studio users by exporting them to a special Flavor Studio format. For your own security, we only permit one concurrent session at a time, so if someone else were to log into Flavor Studio using your credentials, you'll be logged out. We also employ two-factor authentication, which makes sharing a login cumbersome.",
+        ],
       },
       {
-        q: "Does Flavor Studio connect with other applications?",
-        a: "Yes, through a full internet-based API that securely exposes all your data using industry standards — connect any ERP, accounting package or other application you choose.",
+        q: "Does Flavor Studio connect with other software applications?",
+        a: [
+          "Instead of developing countless interfaces for every possible ERP system, accounting software or other application, we took a more open approach. Flavor Studio supports a full, internet-based API to access all your data securely. Connect to Flavor Studio with any other application of your choosing using industry standards. A complete description of the API is available on our [developer page](/developers).",
+        ],
       },
     ],
   },
